@@ -1,0 +1,20 @@
+{
+  "name": "DigitalSignage-Facyt",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fcontreras2/DigitalSignage-Facyt",
+  "authors": [
+    "fcontreras2 <freddy.contreras3@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {    
+    "bootstrap-sass-official": "~3.3.4",
+    "fontawesome": "~4.3.0"
+  }
+}

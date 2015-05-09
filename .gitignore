@@ -33,5 +33,13 @@
 # Build data
 /build/
 
+#bower components - grunt components
+/bower_components
+/node_modules
+
 # Composer PHAR
 /composer.phar
+
+#Css y Js Vendors
+
+src/DSFacyt/InfrastructureBundle/Resources/public/assets/sass/vendors/*

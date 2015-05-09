@@ -1,0 +1,3 @@
+ds_facyt_infrastructure_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:index }

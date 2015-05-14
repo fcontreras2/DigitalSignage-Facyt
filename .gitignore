@@ -41,5 +41,5 @@
 /composer.phar
 
 #Css y Js Vendors
-
+**/.sass-cache
 src/DSFacyt/InfrastructureBundle/Resources/public/assets/sass/vendors/*

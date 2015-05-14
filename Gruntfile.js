@@ -8,30 +8,33 @@ module.exports = function(grunt) {
     bowercopy: {
       options: {
         srcPrefix: 'bower_components',
-        destPrefix: "src/DSFacyt/InfrastructureBundle/Resources/public/assets",
+        destPrefix: "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor",
         runBower: false
       },
-      
-      
+      scripts: {
+          files: {
+              "js/bootstrap.js": "bootstrap-sass-official/assets/javascripts/bootstrap.js",
+              "js/jquery.js": "jquery/dist/jquery.js"             
+          }
+      },      
       folders: {
           files: {
-              "sass/vendors/bootstrap-sass-official": "bootstrap-sass-official/assets/stylesheets/*",
-              "sass/vendors/font-awesome-sass": "fontawesome/scss/*"
+              "sass/bootstrap-sass-official": "bootstrap-sass-official/assets/stylesheets/*",
+              "sass/font-awesome-sass": "fontawesome/scss/*"
           }
       }
-    }
+    },
+
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bowercopy');
+  grunt.loadNpmTasks("grunt-bowercopy");
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
 
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask("default", ["bowercopy"]);
+  grunt.registerTask("prod", ["cssmin", "uglify"]);
 
 };

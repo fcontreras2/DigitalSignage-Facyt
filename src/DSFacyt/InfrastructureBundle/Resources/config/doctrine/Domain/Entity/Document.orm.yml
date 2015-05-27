@@ -1,0 +1,16 @@
+DSFacyt\Core\Domain\Model\Entity\Document:
+    type: entity
+    table: document
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        fileName:
+            type: string
+
+    lifecycleCallbacks: {  }

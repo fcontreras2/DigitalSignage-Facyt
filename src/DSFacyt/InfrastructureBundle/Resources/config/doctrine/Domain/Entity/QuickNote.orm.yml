@@ -1,0 +1,26 @@
+DSFacyt\Core\Domain\Model\Entity\QuickNote: 
+    type: entity
+    table: quick_note
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        start_date:
+            type: date
+
+        end_date:
+            type: date
+
+        title:
+            type: string
+
+        info:
+            type: string
+
+        status:
+            type: string
+
+    lifecycleCallbacks: {  }

@@ -1,3 +1,11 @@
 ds_facyt_infrastructure_homepage:
     path:     /
     defaults: { _controller: DSFacytInfrastructureBundle:Default:index }
+
+ds_facyt_infrastructure_upload_image:
+    path:     /upload/image
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:testImage }
+
+ds_facyt_infrastructure_show_image:
+    path:   /show/image
+    defaults: { _controller:DSFacytInfrastructureBundle:Default:showImage }

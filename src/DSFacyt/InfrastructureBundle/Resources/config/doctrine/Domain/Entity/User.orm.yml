@@ -12,9 +12,7 @@ DSFacyt\Core\Domain\Model\Entity\User:
         name:
             type: string
         school:
-            type: string
-        email:
-            type: string
+            type: string        
         phone:
             type: string
 

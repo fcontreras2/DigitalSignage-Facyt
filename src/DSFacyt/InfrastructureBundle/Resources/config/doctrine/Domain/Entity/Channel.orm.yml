@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\Channel:
     type: entity
     table: channel
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbChannelRepository
     id:
         id:
             type: integer

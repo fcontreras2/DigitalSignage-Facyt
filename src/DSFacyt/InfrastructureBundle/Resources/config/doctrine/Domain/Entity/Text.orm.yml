@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\Text: 
     type: entity
     table: text
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbTextRepository
     id:
         id:
             type: integer

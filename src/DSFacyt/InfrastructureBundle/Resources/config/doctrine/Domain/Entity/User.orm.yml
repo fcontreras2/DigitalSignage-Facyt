@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\User:
     type:  entity
     table: fos_user
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbUserRepository
     id:
         id:
             type: integer

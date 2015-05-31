@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\Image:
     type: entity
     table: image
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbImageRepository
     id:
         id:
             type: integer

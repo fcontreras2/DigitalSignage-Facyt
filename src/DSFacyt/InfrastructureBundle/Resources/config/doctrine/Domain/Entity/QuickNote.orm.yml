@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\QuickNote: 
     type: entity
     table: quick_note
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbQuickNoteRepository
     id:
         id:
             type: integer

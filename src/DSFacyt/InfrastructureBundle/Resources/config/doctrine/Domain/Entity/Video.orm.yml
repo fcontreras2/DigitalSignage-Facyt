@@ -1,6 +1,7 @@
 DSFacyt\Core\Domain\Model\Entity\Video:
     type: entity
     table: video
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbVideoRepository
     id:
         id:
             type: integer

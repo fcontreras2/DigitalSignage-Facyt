@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo app/console doctrine:schema:drop --force
+sudo app/console doctrine:schema:update --force
+sudo app/console doctrine:fixtures:load

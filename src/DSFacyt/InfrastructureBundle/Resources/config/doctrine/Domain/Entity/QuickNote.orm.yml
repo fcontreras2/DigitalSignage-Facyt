@@ -23,4 +23,24 @@ DSFacyt\Core\Domain\Model\Entity\QuickNote:
         status:
             type: string
 
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: quick_notes
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    manyToMany:
+        channels:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: quick_notes
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+
     lifecycleCallbacks: {  }

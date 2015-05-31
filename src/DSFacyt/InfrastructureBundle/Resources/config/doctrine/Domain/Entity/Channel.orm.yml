@@ -17,4 +17,90 @@ DSFacyt\Core\Domain\Model\Entity\Channel:
         status:
             type: string
 
+    manyToMany:
+        images:
+            targetEntity: Image
+            cascade: {  }
+            mappedBy: null
+            inversedBy: channels
+            joinTable:
+                name: channel_image
+                joinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: image_id
+                        referencedColumnName: id
+            orderBy: null
+
+        quick_notes:
+            targetEntity: QuickNote
+            cascade: {  }
+            mappedBy: null
+            inversedBy: channels
+            joinTable:
+                name: channel_quick_note
+                joinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: quick_note_id
+                        referencedColumnName: id
+            orderBy: null
+
+        quick_notes:
+            targetEntity: QuickNote
+            cascade: {  }
+            mappedBy: null
+            inversedBy: channels
+            joinTable:
+                name: channel_quick_note
+                joinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: quick_note_id
+                        referencedColumnName: id
+            orderBy: null
+
+        texts:
+            targetEntity: Text
+            cascade: {  }
+            mappedBy: null
+            inversedBy: channels
+            joinTable:
+                name: channel_text
+                joinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: text_id
+                        referencedColumnName: id
+            orderBy: null
+
+        videos:
+            targetEntity: Video
+            cascade: {  }
+            mappedBy: null
+            inversedBy: channels
+            joinTable:
+                name: channel_video
+                joinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: video_id
+                        referencedColumnName: id
+            orderBy: null
+
     lifecycleCallbacks: {  }

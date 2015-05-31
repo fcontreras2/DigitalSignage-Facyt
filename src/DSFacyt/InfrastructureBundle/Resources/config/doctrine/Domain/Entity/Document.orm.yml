@@ -13,4 +13,12 @@ DSFacyt\Core\Domain\Model\Entity\Document:
         fileName:
             type: string
 
+    oneToMany:
+        images:
+            targetEntity: Image
+            mappedBy: document
+        videos:
+            targetEntity: Video
+            mappedBy: documet
+
     lifecycleCallbacks: {  }

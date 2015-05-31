@@ -26,4 +26,33 @@ DSFacyt\Core\Domain\Model\Entity\Video:
         status:
             type: string
 
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: videos
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        document:
+            targetEntity: Document
+            cascade: {  }
+            mappedBy: null
+            inversedBy: videos
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    manyToMany:
+        channels:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: videos
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+
     lifecycleCallbacks: {  }

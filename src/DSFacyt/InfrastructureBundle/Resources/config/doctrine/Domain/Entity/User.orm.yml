@@ -1,0 +1,33 @@
+DSFacyt\Core\Domain\Model\Entity\User:
+    type:  entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        indentity_card:
+            type: integer
+        name:
+            type: string
+        school:
+            type: string
+        email:
+            type: string
+        phone:
+            type: string
+
+    oneToMany:
+        images:
+            targetEntity: Image
+            mappedBy: user
+        quick_notes:
+            targetEntity: QuickNote
+            mappedBy: user
+        texts:
+            targetEntity: Text
+            mappedBy: user
+        videos:
+            targetEntity: Video
+            mappedBy: user

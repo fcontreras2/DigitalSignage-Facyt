@@ -1,6 +1,6 @@
 DSFacyt\Core\Domain\Model\Entity\Text: 
     type: entity
-    table: quick_note
+    table: text
     id:
         id:
             type: integer
@@ -25,5 +25,33 @@ DSFacyt\Core\Domain\Model\Entity\Text:
 
         status:
             type: string
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: texts
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        channel:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: null
+            inversedBy: texts
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    manyToMany:
+        channels:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: texts
+            inversedBy: null
+            joinTable: null
+            orderBy: null
 
     lifecycleCallbacks: {  }

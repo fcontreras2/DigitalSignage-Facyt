@@ -26,4 +26,32 @@ DSFacyt\Core\Domain\Model\Entity\Image:
         status:
             type: string
 
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: 
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        document:
+            targetEntity: Document
+            cascade: {  }
+            mappedBy: null
+            inversedBy: images
+            joinColumns:
+                property_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        channels:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: images
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+
     lifecycleCallbacks: {  }

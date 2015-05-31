@@ -2,6 +2,8 @@
 
 namespace DSFacyt\Core\Domain\Model\Entity;
 
+use DSFacyt\Core\Domain\Adapter\ArrayCollection;
+
 /**
 * La clase se encarga del manejo de archivos del sistema
 * 
@@ -11,21 +13,19 @@ namespace DSFacyt\Core\Domain\Model\Entity;
 */
 class Document
 {
-  public function __construct() { }
-
     /**
      * Esta propiedad es usada como llave primaria dentro de la DB.
      * 
      * @var Integer
      */
-    protected $id;
+    private $id;
     
     /**
      * Esta propiedad representa un nombre auxiliar del documento
      * 
      * @var String
      */
-    public $name;
+    private $name;
 
     /**
      * Esta hace referencia al nombre del archivo 
@@ -33,20 +33,42 @@ class Document
      * 
      * @var String
      */
-    public $fileName;
+    private $fileName;
 
     /**
      * Esta propiedad hace referencia al archivo
      * 
+     * @var File
      */
     private $file;
 
-    /*
+    /**
      * Esta propiedad hace referencia al subDominio donde 
      * se almacenará la imagen (ej: /imagenes/.. )
+     * 
+     * @var String
      */
     private $subDir;
 
+    /**
+     * Esta propiedad maneja el conjunto de imagenes asociada a los documentos
+     *
+     * @var \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     */
+    private $images;
+
+    /**
+     * Esta propiedad maneja el conjunto de vidos asociada a los documentos
+     *
+     * @var \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     */
+    private $videos;
+
+    public function __construct() 
+    { 
+        $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+    }
 
     public function setFile($file = null)
     {
@@ -187,5 +209,71 @@ class Document
 
       $this->fileName = $fileName;
       $this->setSubDir($subDir);
+    }
+
+    /**
+     * Add images
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     * @return Document
+     */
+    public function addImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     */
+    public function removeImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add videos
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
+     * @return Document
+     */
+    public function addVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
+    {
+        $this->videos[] = $videos;
+
+        return $this;
+    }
+
+    /**
+     * Remove videos
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
+     */
+    public function removeVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
+    {
+        $this->videos->removeElement($videos);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection 
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

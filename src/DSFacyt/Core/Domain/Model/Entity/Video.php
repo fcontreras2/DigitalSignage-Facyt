@@ -2,6 +2,8 @@
 
 namespace DSFacyt\Core\Domain\Model\Entity;
 
+use \DSFacyt\Core\Domain\Adapter\ArrayCollection;
+
 /**
 * La clase se encarga del manejo de Videos del sistema
 * 
@@ -11,8 +13,6 @@ namespace DSFacyt\Core\Domain\Model\Entity;
 */
 class Video
 {
-  public function __construct() { }
-
     /**
      * Esta propiedad es usada como llave primaria dentro de la DB.
      * 
@@ -25,45 +25,69 @@ class Video
      * 
      * @var Date
      */
-    protected $start_date;
+    private $start_date;
 
     /**
      * Esta propiedad refleja la fecha final a publicar
      * 
      * @var Date
      */
-    protected $end_date;
+    private $end_date;
 
     /**
      * Esta propiedad refleja la hora a publicar
      * 
      * @var Time
      */
-    protected $publish_time;
+    private $publish_time;
 
     /**
      * Esta propiedad refleja el titulo de la publicación
      * 
      * @var String
      */
-    protected $title;
+    private $title;
 
     /**
      * Esta propiedad refleja la descripción del video publicada
      * 
      * @var String
      */
-    protected $description;
-
+    private $description;
 
     /**
      * Esta propiedad refleja el estado de la publicación (activa, revisión, en espera, cancelada)
-     * 
-     * @var String
+     *
+     * @var string
      */
-    protected $status;
+    private $status;
 
+    /**
+     * Esta propiedad representa al usuario al que le pertenece la publicación
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $user;
 
+    /**
+     * Esta propiedad representa los canales donde se mostrará la publicación
+     * 
+     * @var \DSFacyt\Core\Domain\Model\Entity\Channel
+     */
+    private $channels;
+
+    /**
+     * Esta propiedad refleja el documento asociada el video
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\Document
+     */
+    private $document;
+
+    public function __construct() 
+    { 
+        $this->channels = new ArrayCollection();        
+    }
+    
 
     /**
      * Get id
@@ -79,7 +103,7 @@ class Video
      * Set start_date
      *
      * @param \DateTime $startDate
-     * @return Image
+     * @return Video
      */
     public function setStartDate($startDate)
     {
@@ -102,7 +126,7 @@ class Video
      * Set end_date
      *
      * @param \DateTime $endDate
-     * @return Image
+     * @return Video
      */
     public function setEndDate($endDate)
     {
@@ -125,7 +149,7 @@ class Video
      * Set publish_time
      *
      * @param \DateTime $publishTime
-     * @return Image
+     * @return Video
      */
     public function setPublishTime($publishTime)
     {
@@ -142,52 +166,6 @@ class Video
     public function getPublishTime()
     {
         return $this->publish_time;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Image
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     * @return Image
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string 
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
@@ -211,5 +189,130 @@ class Video
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Video
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Video
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $user
+     * @return Video
+     */
+    public function setUser(\DSFacyt\Core\Domain\Model\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set document
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Document $document
+     * @return Video
+     */
+    public function setDocument(\DSFacyt\Core\Domain\Model\Entity\Document $document = null)
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
+    /**
+     * Get document
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\Document 
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * Add channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     * @return Video
+     */
+    public function addChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels[] = $channels;
+
+        return $this;
+    }
+
+    /**
+     * Remove channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     */
+    public function removeChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels->removeElement($channels);
+    }
+
+    /**
+     * Get channels
+     *
+     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     */
+    public function getChannels()
+    {
+        return $this->channels;
     }
 }

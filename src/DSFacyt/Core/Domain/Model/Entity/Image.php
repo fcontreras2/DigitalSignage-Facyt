@@ -2,6 +2,8 @@
 
 namespace DSFacyt\Core\Domain\Model\Entity;
 
+use DSFacyt\Core\Domain\Adapter\ArrayCollection;
+
 /**
 * La clase se encarga del manejo de imagenes del sistema
 * 
@@ -11,58 +13,80 @@ namespace DSFacyt\Core\Domain\Model\Entity;
 */
 class Image
 {
-  public function __construct() { }
-
     /**
      * Esta propiedad es usada como llave primaria dentro de la DB.
      * 
      * @var Integer
      */
-    protected $id;
+    private $id;
     
     /**
      * Esta propiedad refleja la fecha inicial a publicar la imagen
      * 
      * @var Date
      */
-    protected $start_date;
+    private $start_date;
 
     /**
      * Esta propiedad refleja la fecha final a publicar la imagen
      * 
      * @var Date
      */
-    protected $end_date;
+    private $end_date;
 
     /**
      * Esta propiedad refleja la hora a publicar de la imagen
      * 
      * @var Time
      */
-    protected $publish_time;
+    private $publish_time;
 
     /**
      * Esta propiedad refleja el titulo de la publicación
      * 
      * @var String
      */
-    protected $title;
+    private $title;
 
     /**
      * Esta propiedad refleja la descripción de la imagen publicada
      * 
      * @var String
      */
-    protected $description;
-
+    private $description;
 
     /**
      * Esta propiedad refleja el estado de la publicación (activa, revisión, en espera, cancelada)
      * 
      * @var String
      */
-    protected $status;
+    private $status;
 
+    /**
+     * Esta propiedad representa los canales donde se mostrará la publicación
+     * 
+     * @var \DSFacyt\Core\Domain\Model\Entity\Channel
+     */
+    private $channels;
+
+    /**
+     * Esta propiedad refleja el documento asociada a la imagen
+     * 
+     * @var \DSFacyt\Core\Domain\Model\Entity\Document
+     */
+    private $document;
+
+   /**
+     * Esta propiedad representa al usuario al que le pertenece la publicación
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $user;
+
+    public function __construct() 
+    { 
+        $this->channels = new ArrayCollection();        
+    }
 
 
     /**
@@ -145,6 +169,29 @@ class Image
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return Image
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set description
      *
      * @param string $description
@@ -191,25 +238,81 @@ class Image
     }
 
     /**
-     * Set title
+     * Set user
      *
-     * @param string $title
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $user
      * @return Image
      */
-    public function setTitle($title)
+    public function setUser(\DSFacyt\Core\Domain\Model\Entity\User $user = null)
     {
-        $this->title = $title;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get user
      *
-     * @return string 
+     * @return \DSFacyt\Core\Domain\Model\Entity\User 
      */
-    public function getTitle()
+    public function getUser()
     {
-        return $this->title;
+        return $this->user;
+    }
+
+    /**
+     * Set document
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Document $document
+     * @return Image
+     */
+    public function setDocument(\DSFacyt\Core\Domain\Model\Entity\Document $document = null)
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
+    /**
+     * Get document
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\Document 
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * Add channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     * @return Image
+     */
+    public function addChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels[] = $channels;
+
+        return $this;
+    }
+
+    /**
+     * Remove channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     */
+    public function removeChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels->removeElement($channels);
+    }
+
+    /**
+     * Get channels
+     *
+     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     */
+    public function getChannels()
+    {
+        return $this->channels;
     }
 }

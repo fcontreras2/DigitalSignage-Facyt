@@ -2,6 +2,8 @@
 
 namespace DSFacyt\Core\Domain\Model\Entity;
 
+use \DSFacyt\Core\Domain\Adapter\ArrayCollection;
+
 /**
 * La clase se encarga del manejo de notas rapidas del sistema
 * 
@@ -11,50 +13,67 @@ namespace DSFacyt\Core\Domain\Model\Entity;
 */
 class QuickNote
 {
-    public function __construct() { }
-
     /**
      * Esta propiedad es usada como llave primaria dentro de la DB.
      * 
      * @var Integer
      */
-    protected $id;
+    private $id;
     
     /**
      * Esta propiedad refleja la fecha de inicio a publicar 
      * 
      * @var Date
      */
-    protected $start_date;
+    private $start_date;
 
     /**
      * Esta propiedad refleja la fecha de final a publicar 
      * 
      * @var Date
      */
-    protected $end_date;
+    private $end_date;
 
     /**
      * Esta propiedad refleja el titulo de la publicación
      * 
      * @var String
      */
-    protected $title;
+    private $title;
 
     /**
      * Esta propiedad refleja la información a publicar
      * 
      * @var String
      */
-    protected $info;
-
+    private $info;
 
     /**
      * Esta propiedad refleja el estado de la publicación (activa, revisión, en espera, cancelada)
      * 
      * @var String
      */
-    protected $status;
+    private $status;
+
+    /**
+     * Esta propiedad representa los canales donde se mostrará la publicación
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\Channel
+     */
+    private $channels;
+
+    /**
+     * Esta propiedad representa al usuario al que le pertenece la publicación
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $user;
+
+    public function __construct() 
+    { 
+        $this->channels = new ArrayCollection();        
+    }
+
 
     /**
      * Get id
@@ -179,5 +198,61 @@ class QuickNote
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $user
+     * @return QuickNote
+     */
+    public function setUser(\DSFacyt\Core\Domain\Model\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     * @return QuickNote
+     */
+    public function addChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels[] = $channels;
+
+        return $this;
+    }
+
+    /**
+     * Remove channels
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
+     */
+    public function removeChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channels)
+    {
+        $this->channels->removeElement($channels);
+    }
+
+    /**
+     * Get channels
+     *
+     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     */
+    public function getChannels()
+    {
+        return $this->channels;
     }
 }

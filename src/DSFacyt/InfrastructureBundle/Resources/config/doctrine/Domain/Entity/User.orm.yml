@@ -12,8 +12,7 @@ DSFacyt\Core\Domain\Model\Entity\User:
             type: integer
         name:
             type: string
-        school:
-            type: string        
+
         phone:
             type: string
 
@@ -30,3 +29,16 @@ DSFacyt\Core\Domain\Model\Entity\User:
         videos:
             targetEntity: Video
             mappedBy: user
+
+    manyToOne:
+        school:
+            targetEntity: School
+            cascade: {  }
+            mappedBy: null
+            inversedBy: users
+            joinColumns:
+                school_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    lifecycleCallbacks: {  }

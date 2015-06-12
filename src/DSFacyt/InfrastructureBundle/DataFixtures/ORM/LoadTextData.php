@@ -4,7 +4,7 @@ namespace Navicu\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacty\Core\Domain\Model\Entity\Text;
+use DSFacyt\Core\Domain\Model\Entity\Text;
 
 /**
  * Clase LoadTextData "DataFixtures".
@@ -25,7 +25,40 @@ class LoadTextData extends AbstractFixture implements OrderedFixtureInterface
     */
     public function load(ObjectManager $manager)
     {
-    
+        for ($i=0; $i < 12 ; $i++) { 
+        
+            $text = new Text();
+            $text->setStartDate(new \DateTime());
+            $text->setEndDate(new \DateTime());
+            $text->setTitle('image_title'.$i);
+            $text->setInfo('image_description'.$i);
+            $text->setPublishTime(new \DateTime());
+            $text->setStatus('ACTIVE');
+
+            if ( $i < 4) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(1);
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(1);
+                    
+            } else if ( $i < 8) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(2);                
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(2);
+            } else if ( $i < 12) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(3);
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(3);                
+            }
+
+            $text->setUser($user);
+            $text->addChannel($channel);
+
+            $manager->persist($text);
+            $manager->flush();
+        } 
     }
     
     /**
@@ -34,6 +67,6 @@ class LoadTextData extends AbstractFixture implements OrderedFixtureInterface
     */
     public function getOrder()
     {
-        return 1;
+        return 10;
     }
 }

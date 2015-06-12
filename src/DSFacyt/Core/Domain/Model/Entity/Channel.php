@@ -77,7 +77,6 @@ class Channel
         $this->videos = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
@@ -160,10 +159,10 @@ class Channel
     /**
      * Add images
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $images
      * @return Channel
      */
-    public function addImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    public function addImage(\DSFacyt\Core\Domain\Model\Entity\Channel $images)
     {
         $this->images[] = $images;
 
@@ -173,9 +172,9 @@ class Channel
     /**
      * Remove images
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $images
      */
-    public function removeImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    public function removeImage(\DSFacyt\Core\Domain\Model\Entity\Channel $images)
     {
         $this->images->removeElement($images);
     }

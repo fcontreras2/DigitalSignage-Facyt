@@ -4,7 +4,7 @@ namespace Navicu\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacty\Core\Domain\Model\Entity\QuickNote;
+use DSFacyt\Core\Domain\Model\Entity\QuickNote;
 
 /**
  * Clase LoadQuickNoteData "DataFixtures".
@@ -25,7 +25,39 @@ class LoadQuickNoteData extends AbstractFixture implements OrderedFixtureInterfa
     */
     public function load(ObjectManager $manager)
     {
-    
+        for ($i=0; $i < 12 ; $i++) { 
+        
+            $quickNote = new QuickNote();
+            $quickNote->setStartDate(new \DateTime());
+            $quickNote->setEndDate(new \DateTime());
+            $quickNote->setTitle('image_title'.$i);
+            $quickNote->setInfo('image_description'.$i);
+            $quickNote->setStatus('ACTIVE');
+
+            if ( $i < 4) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(1);
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(1);
+                    
+            } else if ( $i < 8) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(2);                
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(2);
+            } else if ( $i < 12) {
+                $user = $manager->getRepository("DSFacytDomain:User")
+                    ->findOneById(3);
+                $channel = $manager->getRepository("DSFacytDomain:Channel")
+                    ->findOneById(3);                
+            }
+
+            $quickNote->setUser($user);
+            $quickNote->addChannel($channel);
+
+            $manager->persist($quickNote);
+            $manager->flush();
+        }    
     }
     
     /**
@@ -34,6 +66,6 @@ class LoadQuickNoteData extends AbstractFixture implements OrderedFixtureInterfa
     */
     public function getOrder()
     {
-        return 1;
+        return 10;
     }
 }

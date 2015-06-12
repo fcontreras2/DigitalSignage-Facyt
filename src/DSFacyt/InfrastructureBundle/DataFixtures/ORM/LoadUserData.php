@@ -1,10 +1,10 @@
 <?php
-namespace Navicu\InfrastructureBundle\DataFixtures\ORM;
+namespace DSFacyt\InfrastructureBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacty\Core\Domain\Model\Entity\User;
+use DSFacyt\Core\Domain\Model\Entity\User;
 
 /**
  * Clase LoadUserData "DataFixtures".
@@ -25,7 +25,25 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     */
     public function load(ObjectManager $manager)
     {
-    
+        $entityCard = 20000000;
+        for ($i=0; $i < 3 ; $i++) { 
+           
+            $user = new User();
+            $user->setIndentityCard($entityCard);
+            $user->setUserName('user'.$i);
+            $user->setName('user'.$i);
+            $user->setEmail('user'.$i.'@facyt.uc.edu.ve');
+            $user->setPassword('123456');
+            $user->setPhone('0412-000000'.$i);
+            $school = $manager->getRepository('DSFacytDomain:School')->findOneById(1);
+            $user->setSchool($school);
+            $user->addRole(1);
+            $user->setEnabled(true);
+
+
+            $manager->persist($user);
+            $manager->flush();
+        }
     }
     
     /**
@@ -34,6 +52,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     */
     public function getOrder()
     {
-        return 1;
+        return 10;
     }
 }

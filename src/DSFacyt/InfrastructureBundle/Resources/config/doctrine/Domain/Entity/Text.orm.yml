@@ -33,16 +33,7 @@ DSFacyt\Core\Domain\Model\Entity\Text:
             mappedBy: null
             inversedBy: texts
             joinColumns:
-                property_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-        channel:
-            targetEntity: Channel
-            cascade: {  }
-            mappedBy: null
-            inversedBy: texts
-            joinColumns:
-                property_id:
+                user_id:
                     referencedColumnName: id
             orphanRemoval: false
 
@@ -50,9 +41,18 @@ DSFacyt\Core\Domain\Model\Entity\Text:
         channels:
             targetEntity: Channel
             cascade: {  }
-            mappedBy: texts
-            inversedBy: null
-            joinTable: null
+            mappedBy: null
+            inversedBy: texts
+            joinTable:
+                name: channel_text
+                joinColumns:
+                    -
+                        name: text_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
             orderBy: null
 
     lifecycleCallbacks: {  }

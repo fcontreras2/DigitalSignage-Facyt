@@ -4,19 +4,20 @@ namespace DSFacyt\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacyt\Core\Domain\Model\Entity\Channel;
+use DSFacyt\Core\Domain\Model\Entity\School;
 
 /**
- * Clase LoadChannelData "DataFixtures".
+ * Clase LoadSchoolData "DataFixtures".
  *
- * La clase carga los datos de prueba del sistema de los canales donde se publicara la información
+ * La clase carga los datos de prueba del sistema de las escuelas o carreras a las que estan
+ * asociadas los usuarios del sistema.
  *
  * @author Freddy Contreras <freddy.contreras3@gmail.com>
  * @author Currently Working: Freddy Contreras <freddy.contreras3@gmail.com>
  * @version 31/05/2015
  */
 
-class LoadChannelData extends AbstractFixture implements OrderedFixtureInterface
+class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
     * Función donde se implementa el DataFixture
@@ -25,15 +26,12 @@ class LoadChannelData extends AbstractFixture implements OrderedFixtureInterface
     */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i < 3; $i++) { 
-            $channel = new Channel();
-            $channel->setName('channel'.$i);
-            $channel->setDescription('Description'.$i);
-            $channel->setStatus('ACTIVE');
+        $school = new School();
+        $school->setName('Computación');
+        $school->setDescription('Descripción Computación');
 
-            $manager->persist($channel);
-            $manager->flush();
-        }        
+        $manager->persist($school);
+        $manager->flush();
     }
     
     /**

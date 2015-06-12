@@ -80,12 +80,6 @@ class Text
     { 
         $this->channels = new ArrayCollection();        
     }
-    
-    /**
-     * @var \DSFacyt\Core\Domain\Model\Entity\Channel
-     */
-    private $channel;
-
 
     /**
      * Get id
@@ -259,29 +253,6 @@ class Text
     }
 
     /**
-     * Set channel
-     *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channel
-     * @return Text
-     */
-    public function setChannel(\DSFacyt\Core\Domain\Model\Entity\Channel $channel = null)
-    {
-        $this->channel = $channel;
-
-        return $this;
-    }
-
-    /**
-     * Get channel
-     *
-     * @return \DSFacyt\Core\Domain\Model\Entity\Channel 
-     */
-    public function getChannel()
-    {
-        return $this->channel;
-    }
-
-    /**
      * Add channels
      *
      * @param \DSFacyt\Core\Domain\Model\Entity\Channel $channels
@@ -307,7 +278,7 @@ class Text
     /**
      * Get channels
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getChannels()
     {

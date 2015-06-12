@@ -309,7 +309,7 @@ class Video
     /**
      * Get channels
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getChannels()
     {

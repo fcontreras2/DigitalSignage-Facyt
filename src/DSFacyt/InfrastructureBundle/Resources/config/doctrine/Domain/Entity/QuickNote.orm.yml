@@ -39,9 +39,18 @@ DSFacyt\Core\Domain\Model\Entity\QuickNote:
         channels:
             targetEntity: Channel
             cascade: {  }
-            mappedBy: quick_notes
-            inversedBy: null
-            joinTable: null
+            mappedBy: null
+            inversedBy: quick_notes
+            joinTable:
+                name: channel_quick_note
+                joinColumns:
+                    -
+                        name: quick_note_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
             orderBy: null
 
     lifecycleCallbacks: {  }

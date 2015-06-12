@@ -1,0 +1,23 @@
+DSFacyt\Core\Domain\Model\Entity\School:
+    type: entity
+    table: school
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbSchoolRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+
+        description:
+            type: string
+
+    oneToMany:
+        users:
+            targetEntity: User
+            mappedBy: school
+
+    lifecycleCallbacks: {  }

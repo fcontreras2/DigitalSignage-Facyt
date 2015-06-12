@@ -1,10 +1,10 @@
 <?php
-namespace Navicu\InfrastructureBundle\DataFixtures\ORM;
+namespace DSFacyt\InfrastructureBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacty\Core\Domain\Model\Entity\Document;
+use DSFacyt\Core\Domain\Model\Entity\Document;
 
 /**
  * Clase LoadDocumentData "DataFixtures".
@@ -25,7 +25,28 @@ class LoadDocumentData extends AbstractFixture implements OrderedFixtureInterfac
     */
     public function load(ObjectManager $manager)
     {
-    
+        $j = 1;
+
+        for ($i=0; $i < 18 ; $i++) { 
+            
+            $document = new Document();
+            
+            if ($i < 9) {
+
+                $document->setName('name_image'.$j);
+                $document->setFileName('/name_image/image'.$i.".jpg");
+                if ($i == 8)
+                    $j = 1;
+
+            } else if ($i < 18) {
+                $document->setName('name_video'.$j);
+                $document->setFileName('/name_video/video'.$i.".mp4");
+            }
+
+            $manager->persist($document);
+            $manager->flush();
+            $j++;
+        }
     }
     
     /**

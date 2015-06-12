@@ -34,13 +34,6 @@ class User extends BaseUser
     protected $name;
 
     /**
-     * La propiedad representa la escuela del usuario
-     * 
-     * @var string
-     */
-    protected $school;
-
-    /**
      * La propiedad representa el télefono del usuario
      * 
      * @var string
@@ -75,6 +68,13 @@ class User extends BaseUser
      */
     private $videos;
 
+    /**
+     * La propiedad representa la escuela del usuario
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\School
+     */
+    private $school;
+
 
     public function __construct() 
     { 
@@ -84,6 +84,28 @@ class User extends BaseUser
         $this->quick_notes = new ArrayCollection();
         $this->texts = new ArrayCollection();
         $this->videos = new ArrayCollection();
+    }
+
+
+    /**
+     * Implementación de una lista de roles para los usuarios 
+     * 
+     * @throws Exception
+     * @param Rol $rol 
+     */
+    public function addRole($rol)
+    {
+        switch($rol){
+            case 1:
+                array_push($this->roles, 'ROLE_USER');
+                break;
+            case 2:
+                array_push($this->roles, 'ROLE_ADMIN');
+                break;
+            default:
+                array_push($this->roles, 'ROLE_USER');
+                break;
+        }
     }
 
 
@@ -144,29 +166,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set school
-     *
-     * @param string $school
-     * @return User
-     */
-    public function setSchool($school)
-    {
-        $this->school = $school;
-
-        return $this;
-    }
-
-    /**
-     * Get school
-     *
-     * @return string 
-     */
-    public function getSchool()
-    {
-        return $this->school;
-    }
-
-    /**
      * Set phone
      *
      * @param string $phone
@@ -215,7 +214,7 @@ class User extends BaseUser
     /**
      * Get images
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getImages()
     {
@@ -248,7 +247,7 @@ class User extends BaseUser
     /**
      * Get quick_notes
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getQuickNotes()
     {
@@ -281,7 +280,7 @@ class User extends BaseUser
     /**
      * Get texts
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTexts()
     {
@@ -314,10 +313,33 @@ class User extends BaseUser
     /**
      * Get videos
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * Set school
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\School $school
+     * @return User
+     */
+    public function setSchool(\DSFacyt\Core\Domain\Model\Entity\School $school = null)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\School 
+     */
+    public function getSchool()
+    {
+        return $this->school;
     }
 }

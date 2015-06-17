@@ -33,7 +33,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             $user->setUserName('user'.$i);
             $user->setName('user'.$i);
             $user->setEmail('user'.$i.'@facyt.uc.edu.ve');
-            $user->setPassword('123456');
+            $user->setPlainPassword('123456');
             $user->setPhone('0412-000000'.$i);
             $school = $manager->getRepository('DSFacytDomain:School')->findOneById(1);
             $user->setSchool($school);

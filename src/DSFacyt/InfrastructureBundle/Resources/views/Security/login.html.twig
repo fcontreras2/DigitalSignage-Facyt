@@ -1,33 +1,44 @@
 {% extends "DSFacytInfrastructureBundle:Security:layout.html.twig" %}
 
 {% block fos_user_content %}
-    {% if error %}
-        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-    {% endif %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        Menu administrativo<br>
-        <a href="{{ path('fos_user_security_logout') }}">
-            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-        </a>
-    {% else %}
+{% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
+<div class="container" style="margin-top:10%;">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
 
-    <form action="{{ path("fos_user_security_check") }}" class="form-signin" role="form" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-        <img src="{{ asset('images/logo.png') }}" alt="Symfony!" class="form-signin-heading" width=150 />
-        
-        <h5 class="form-signin-heading text-bold"><b>Extranet</h5>
-        <label for="username" class="sr-only">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Usuario" required="" autofocus="">
-        
-        <label for="password" class="sr-only">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Contraseña">
-        <!--<div class="checkbox">
-          <label>
-            <input type="checkbox" value="on"> Remember me
-          </label>
-        </div>-->
-        <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" >{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>        
-    </form>
+            {% if error %}
+            ... {{ error.messageKey|trans(error.messageData, 'security') }} ...
+            {% endif %}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                Menu administrativo<br>
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+           
+            <div class="panel panel-default">            
+                <div class="panel-content">
+                    <form action="{{ path("fos_user_security_check") }}" class="form-signin" role="form" method="post">
+                        <div class="tab-pane active panel-body" id="login">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />            
+                            <div class="form-group">
+                                <label >Nombre de Usuario</label>
+                                <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Introduce tu Nombre de Usuario">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label >Constraseña</label>
+                                <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">
+                            </div>
+                            
+                            <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" >Iniciar Sesión</button>
+                            </h5>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-    {% endif %}
 {% endblock fos_user_content %}

@@ -20,6 +20,11 @@ class User extends BaseUser
     protected $id;
     
     /**
+     * @var La propiedad representa el apellido del usuario
+     */
+    protected $last_name;
+
+    /**
      * La propiedad representa la cedula de identidad del usuario
      * 
      * @var integer
@@ -117,6 +122,29 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set last_name
+     *
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get last_name
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
     }
 
     /**
@@ -341,5 +369,5 @@ class User extends BaseUser
     public function getSchool()
     {
         return $this->school;
-    }
+    }    
 }

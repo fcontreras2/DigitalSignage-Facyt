@@ -31,7 +31,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             $user = new User();
             $user->setIndentityCard($entityCard);
             $user->setUserName('user'.$i);
-            $user->setName('user'.$i);
+            $user->setName('user_name'.$i);
+            $user->setLastName('user'.$i.'last_name');
             $user->setEmail('user'.$i.'@facyt.uc.edu.ve');
             $user->setPlainPassword('123456');
             $user->setPhone('0412-000000'.$i);

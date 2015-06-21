@@ -8,8 +8,12 @@ DSFacyt\Core\Domain\Model\Entity\User:
             generator:
                 strategy: AUTO
     fields:
+        last_name:
+            type: string
+
         indentity_card:
             type: integer
+
         name:
             type: string
 

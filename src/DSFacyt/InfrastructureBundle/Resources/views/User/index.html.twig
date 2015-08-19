@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    
+        
+        {% stylesheets 
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
+        
+        
+        
+         filter='?yui_css'  %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+        {% endstylesheets %}    
+    
+{% endblock %}
+
+{% block body %}
+{% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+    
+    
+</div>  
+{% endblock %}
+
+{% block javascripts%}
+    {% if app.environment == "dev" %}
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
+    {% else %}
+        {% javascripts         
+            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js' 
+            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
+            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js'
+            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js'        
+
+            
+        filter='?yui_js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

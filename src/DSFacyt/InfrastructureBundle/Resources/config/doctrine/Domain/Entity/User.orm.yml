@@ -10,6 +10,7 @@ DSFacyt\Core\Domain\Model\Entity\User:
     fields:
         last_name:
             type: string
+            nullable: false
 
         indentity_card:
             type: integer

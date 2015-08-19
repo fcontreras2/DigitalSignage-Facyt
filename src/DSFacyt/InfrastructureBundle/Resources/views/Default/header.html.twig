@@ -9,27 +9,30 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{path('ds_facyt_infrastructure_homepage')}}"><span class="fa fa-lg fa-desktop"></span>
-
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse sidebar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#">¿Cómo publicar?</a>
                 </li>
                 {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li>                    
+                        <a href="{{path('ds_facyt_infrastructure_register')}}">Registrate</a>
+                    </li>
                     <li>
-                        <a href="#">Registrate</a>
+                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}">Iniciar Sesión</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="#">Mis Publicaciones</a>
+                    </li>
+                                  <li>
+                        <a href="{{ path('ds_facyt_infrastructure_security_logout') }}">Cerrar Sesión</a>
                     </li>
                 {% endif %}
-                <li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <a href="{{ path('fos_user_security_logout') }}">Cerrar Sesión</a>                    
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}">Iniciar Sesión</a>
-                    {% endif %}
-                </li>
+      
             </ul>
         </div>
         <!-- /.navbar-collapse -->

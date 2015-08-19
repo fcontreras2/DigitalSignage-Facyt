@@ -1,6 +1,22 @@
+#Los archivos de routing referentes a la seguridad del sistema (login, login_check, loguot)
+ds_facyt_infrastructure_security:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/security/security.yml"
+
+ds_facyt_infrastructure_user_homepage:
+    path:   /panel
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Default:indexPanel }
+
 ds_facyt_infrastructure_homepage:
-    path:     /
+    path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Default:index }
+
+ds_facyt_infrastructure_register:
+    path:    /register
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:register }
+
+ds_facyt_infrastructure_validate_register:
+    path:   /register/validate
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:registerValidation}
 
 ds_facyt_infrastructure_upload_image:
     path:     /upload/image

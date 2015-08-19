@@ -1,0 +1,12 @@
+#Conjunto de rutas donde se verifican las sesiones del usuario
+ds_facyt_infrastructure_security_login:
+    path: /login
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:login }
+
+ds_facyt_infrastructure_security_check:
+    path: /login_check
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:check }
+
+ds_facyt_infrastructure_security_logout:
+    path: /logout
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:logout }

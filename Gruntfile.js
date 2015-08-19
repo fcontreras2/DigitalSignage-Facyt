@@ -14,13 +14,17 @@ module.exports = function(grunt) {
       scripts: {
           files: {
               "js/bootstrap.js": "bootstrap-sass-official/assets/javascripts/bootstrap.js",
-              "js/jquery.js": "jquery/dist/jquery.js"             
+              "js/jquery.js": "jquery/dist/jquery.js",
+              "js/sb-admin-2.js":"startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
+              "js/metisMenu.js": "metisMenu/dist/metisMenu.js"
           }
       },      
       folders: {
           files: {
               "sass/bootstrap-sass-official": "bootstrap-sass-official/assets/stylesheets/*",
-              "sass/font-awesome-sass": "fontawesome/scss/*"
+              "css/startbootstrap-sb-admin-2": "startbootstrap-sb-admin-2/dist/css/*",
+              "css/metisMenu":"metisMenu/dist/metisMenu.css",
+              "sass/font-awesome-sass": "font-awesome/scss/*"              
           }
       }
     },

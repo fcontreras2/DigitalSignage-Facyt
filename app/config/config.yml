@@ -71,6 +71,13 @@ doctrine:
                 dir: %kernel.root_dir%/../src/DSFacyt/InfrastructureBundle/Resources/config/doctrine/Domain/Entity
                 is_bundle: false
 
+monolog:
+    # ...
+    handlers:
+        # ...
+        nested:
+            # ...
+            path: "php://stderr"
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

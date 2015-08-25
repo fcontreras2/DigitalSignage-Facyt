@@ -1,14 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-    
-        
+            
         {% stylesheets 
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
-        
         
         
          filter='?yui_css'  %}
@@ -19,11 +17,49 @@
 {% endblock %}
 
 {% block body %}
+{{ include("DSFacytInfrastructureBundle:User:Modal/modalExample.html.twig") }}
+<div ng-app="ExampleModule" ng-controller="ExampleController">
+
+    <button type="button" class="btn btn-lg btn-danger" ng-click="showModal()">Modal
+      <br>
+      <small>(using service)</small>
+    </button>
+
+    <b>New Contacto</b><br> 
+    Nombre: <input type="text" ng-model="newContact.name"> <br>
+    Apellido: <input type="text" ng-model="newContact.last_name"> <br>
+    <b ng-if="newContact.isString == false"> Error</b><br>
+    <button ng-click="addContact()"> Agregar </button>
+    <br><br>
+
+    Buscar Nombre: <input type="text" ng-model="search.name">
+    Buscar Apellido: <input type="text" ng-model="search.last_name">
+    
+    <br>
+    <br>
+    Número a Agregar: <input type="text"  id="input" class="form-control"  ng-model="string" ng-change="addNumber(string)"><br>
+    <br>
+    <input type="number" step="3" ng-model="number" ng-change="quiteValue(number)">
+
+    <table class="table table-bordered table-hover ">
+        <thead>
+            <th><a href="" ng-click="reverse=!reverse;order('name',reverse)">Nombre</a></th>
+            <th><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Apellido</a></th>
+            <th><a href="" ng-click="reverse=!reverse;order('age',reverse)">Edad</a></th>
+        </thead>
+        <tr ng-repeat="aux in array | filter: search: strict ">
+                                            <td>{[{aux.name  }]}</td>
+            <td>{[{aux.last_name}]}</td>
+            <td>{[{aux.age}]}</td>
+        </tr>
+    </table>
+    
+</div>
 {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
     <div id="page-wrapper" style="min-height: 311px;">
             <div class="row">
                 <div class="col-lg-12 ">
-                    <h1 class="page-header ">  <span class="fa fa-user"></span> Panel de Usuario</h1>
+                    <h1 class="page-header ">  <span class="fa fa-dashboard"></span> Panel de Usuario</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -120,13 +156,18 @@
             </div>
             <!-- /.row -->
                     
-        </div>
-    
+        </div>    
 </div>  
 {% endblock %}
 
 {% block javascripts%}
     {% if app.environment == "dev" %}
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>                        
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleModule.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleService.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleController.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>

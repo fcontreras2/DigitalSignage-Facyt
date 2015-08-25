@@ -14,8 +14,6 @@
 /app/config/parameters.yml
 /app/config/parameters.ini
 
-#Vendors css y js
-src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor
 # Managed by Composer
 /app/bootstrap.php.cache
 /var/bootstrap.php.cache
@@ -46,4 +44,5 @@ web/js/*
 
 #Css y Js Vendors
 **/.sass-cache
-src/DSFacyt/InfrastructureBundle/Resources/public/assets/sass/vendors/*
+!src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular
+src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor

@@ -13,8 +13,12 @@
     "test",
     "tests"
   ],
-  "dependencies": {    
+  "dependencies": {
     "bootstrap-sass-official": "~3.3.4",
-    "font-awesome": "4.3.*"
+    "font-awesome": "4.3.*",
+    "angular": "~1.4.4",
+    "angular-repeat-n": "~0.1.5",
+    "angular-strap": "~2.3.1",
+    "angular-motion": "~0.4.2"
   }
 }

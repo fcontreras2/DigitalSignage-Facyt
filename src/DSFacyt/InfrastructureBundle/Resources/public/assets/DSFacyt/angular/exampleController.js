@@ -1,4 +1,4 @@
-gexampleModule.controller('ExampleController', ['$scope','$filter', 'exampleService', '$modal' , 
+exampleModule.controller('ExampleController', ['$scope','$filter', 'exampleService', '$modal' ,
   function ($scope, $filter,exampleService, $modal) {
 	   
 	$scope.newContact = { name: null , last_name: null };

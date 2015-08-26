@@ -17,7 +17,6 @@
 {% endblock %}
 
 {% block body %}
-{{ include("DSFacytInfrastructureBundle:User:Modal/modalExample.html.twig") }}
 <div ng-app="ExampleModule" ng-controller="ExampleController">
 
     <button type="button" class="btn btn-lg btn-danger" ng-click="showModal()">Modal
@@ -53,7 +52,7 @@
             <td>{[{aux.age}]}</td>
         </tr>
     </table>
-    
+    {{ include("DSFacytInfrastructureBundle:User:Modal/modalExample.html.twig") }}
 </div>
 {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
     <div id="page-wrapper" style="min-height: 311px;">
@@ -164,7 +163,8 @@
     {% if app.environment == "dev" %}
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>                        
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleModule.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleService.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleController.js') }}"></script>

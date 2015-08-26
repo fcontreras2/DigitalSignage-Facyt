@@ -24,7 +24,8 @@ module.exports = function(grunt) {
               "js/jquery.js": "jquery/dist/jquery.js",
               "js/sb-admin-2.js":"startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
               "js/metisMenu.js": "metisMenu/dist/metisMenu.js",
-              "js/angular-strap.js": "angular-strap/dist/angular-strap.js"              
+              "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
+              "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js"
           }
       },      
       folders: {

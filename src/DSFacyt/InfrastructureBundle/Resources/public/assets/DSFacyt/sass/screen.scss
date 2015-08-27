@@ -7,3 +7,16 @@ $fa-font-path:   "/fonts/font-awesome";
 /** IMPORT VENDOR SASS **/
 @import "../../vendor/sass/bootstrap-sass-official/bootstrap";
 @import "../../vendor/sass/font-awesome-sass/font-awesome";
+
+
+#body {
+  min-height: 100% !important;
+  position:relative;
+}
+
+footer {
+  #div_footer {
+    position: relative;
+    display: block;
+  }
+}

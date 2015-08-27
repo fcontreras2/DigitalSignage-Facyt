@@ -7,7 +7,8 @@
         <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
 
             {% if error %}
-            ... {{ error.messageKey|trans(error.messageData, 'security') }} ...
+                <div class="alert alert-danger" role="alert"><span class="fa fa-warning"></span> Datos incorrectos</div>
+
             {% endif %}
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 Menu administrativo<br>
@@ -15,30 +16,40 @@
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% else %}
-           
-            <div class="panel panel-default">            
-                <div class="panel-content">
-                    <form action="{{ path("ds_facyt_infrastructure_security_check") }}" class="form-signin" role="form" method="post">
-                        <div class="tab-pane active panel-body" id="login">
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />            
-                            <div class="form-group">
+            <form action="{{ path("ds_facyt_infrastructure_security_check") }}" class="form-signin" role="form" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><center><b>Inicio de Sesión</b></center></div>
+                    <div class="panel-content">
+
+                            <div class="tab-pane active panel-body" id="login">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                                 <label >Nombre de Usuario</label>
-                                <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Introduce tu Nombre de Usuario">
-                            </div>
-                            
-                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="fa fa-user"></span></span>
+                                    <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Introduce tu Nombre de Usuario">
+                                </div>
+                                <div class="form-group">
+
+                                </div>
                                 <label >Constraseña</label>
-                                <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="fa fa-lock"></span></span>
+                                    <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">
+                                </div>
+                                <br>
+                                </h5>
                             </div>
-                            
-                            <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" >Iniciar Sesión</button>
-                            </h5>
-                        </div>
-                    </form>
+
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-sm btn-primary btn-block" ><b>Ingresar</b></button>
+                    </div>
                 </div>
+            </form>
             {% endif %}
         </div>
     </div>
 </div>
 
 {% endblock fos_user_content %}
+

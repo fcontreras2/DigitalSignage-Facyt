@@ -1,12 +1,12 @@
 {% extends "DSFacytInfrastructureBundle:Default:base.html.twig" %}
 
 {% block stylesheets %}
-    {% if app.environment == "dev" %}   
+    {% if app.environment == "dev" %}
 
         {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css' filter='?yui_css'  %}
-            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
-        {% endstylesheets %}    
+        {% endstylesheets %}
     {% endif %}   
 {% endblock %}
 
@@ -35,6 +35,10 @@
     {% endblock fos_user_content %}
     
 {% endblock %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
 
 {% block javascripts%}
     {% javascripts         

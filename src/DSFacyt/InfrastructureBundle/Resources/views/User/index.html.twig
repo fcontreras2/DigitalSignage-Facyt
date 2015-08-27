@@ -2,13 +2,12 @@
 
 {% block stylesheets %}
             
-        {% stylesheets 
+        {% stylesheets
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
-        
-        
+
          filter='?yui_css'  %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
@@ -17,6 +16,7 @@
 {% endblock %}
 
 {% block body %}
+<!-- {#
 <div ng-app="ExampleModule" ng-controller="ExampleController">
 
     <button type="button" class="btn btn-lg btn-danger" ng-click="showModal()">Modal
@@ -53,7 +53,7 @@
         </tr>
     </table>
     {{ include("DSFacytInfrastructureBundle:User:Modal/modalExample.html.twig") }}
-</div>
+</div>#}-->
 {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
     <div id="page-wrapper" style="min-height: 311px;">
             <div class="row">
@@ -79,9 +79,11 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
+                                <a href="{{ path('ds_facyt_infrastructure_user_text_homepage') }}">
                                 <span class="pull-left">Ver Textos</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
+                                </a>
                             </div>
                         </a>
                     </div>
@@ -101,9 +103,11 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
+                                <a href="{{ path('ds_facyt_infrastructure_user_image_homepage') }}">
                                 <span class="pull-left">Ver Imagenes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
+                                </a>
                             </div>
                         </a>
                     </div>
@@ -123,9 +127,11 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
+                                <a href="{{ path('ds_facyt_infrastructure_user_video_homepage') }}">
                                 <span class="pull-left">Ver tus videos</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
+                                </a>
                             </div>
                         </a>
                     </div>

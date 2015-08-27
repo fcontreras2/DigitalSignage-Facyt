@@ -2,6 +2,15 @@
 ds_facyt_infrastructure_security:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/security/security.yml"
 
+ds_facyt_infrastructure_user_text:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/text.yml"
+
+ds_facyt_infrastructure_user_iage:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/image.yml"
+
+ds_facyt_infrastructure_user_video:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/video.yml"
+
 ds_facyt_infrastructure_user_homepage:
     path:   /panel
     defaults: { _controller: DSFacytInfrastructureBundle:User\Default:indexPanel }

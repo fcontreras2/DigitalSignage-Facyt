@@ -1,0 +1,3 @@
+ds_facyt_infrastructure_user_image_homepage:
+  path:   /panel/image
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Image:index }

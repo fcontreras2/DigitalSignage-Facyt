@@ -1,0 +1,3 @@
+ds_facyt_infrastructure_user_text_homepage:
+  path:   /panel/text
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Text:index }

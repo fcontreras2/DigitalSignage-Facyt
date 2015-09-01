@@ -12,7 +12,7 @@ Para poder instalar el sistema debe contar con las siguientes componetes:
 * PHP5 / Apache
 * PostgresSqL o Mysql
 * [Compass][3] /Sass
-* [Grunt][4]http://gruntjs.com/
+* [Grunt][4]
 * [Bower][5]
 
 [1]:  https://es.wikipedia.org/wiki/Se%C3%B1alizaci%C3%B3n_digital

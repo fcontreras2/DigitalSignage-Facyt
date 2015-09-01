@@ -1,4 +1,11 @@
 services:
-#    ds_facyt_infrastructure.example:
-#        class: DSFacyt\InfrastructureBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+#Servicios de Infraestructura
+    RepositoryFactory:
+        class: DSFacyt\InfrastructureBundle\Resources\Services\RepositoryFactory
+        arguments: ["@doctrine.orm.entity_manager"]
+
+#Servicios de la Aplicación
+    CommandBus:
+        class: DSFacyt\Core\Application\Services\CommandBus
+        arguments: ["@RepositoryFactory"]

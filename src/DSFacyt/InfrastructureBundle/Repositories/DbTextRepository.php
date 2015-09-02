@@ -3,8 +3,6 @@
 namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\EntityManager;
-use DSFacyt\Core\Domain\Model\Entity\Text;
 use DSFacyt\Core\Domain\Repository\TextRepository;
 
 /**
@@ -19,5 +17,19 @@ use DSFacyt\Core\Domain\Repository\TextRepository;
 class DbTextRepository extends EntityRepository implements 
     TextRepository  
 {
-    
+    /**
+     * La siguiente función retorna todas las publicaciones de tipo textos dado un usuario
+     *
+     * @param $user
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @return array
+     * @version 01/09/2015
+     */
+    public function findAllByUser($user)
+    {
+        return $this->createQueryBuilder('p')
+            ->where(' p.user = :user')
+            ->setParameters( array('user' => $user))
+            ->getQuery()->getResult();
+    }
 }

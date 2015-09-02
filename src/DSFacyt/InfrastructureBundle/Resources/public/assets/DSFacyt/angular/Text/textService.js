@@ -1,0 +1,3 @@
+textModule.service('textService', function(){
+
+});

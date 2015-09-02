@@ -1,0 +1,88 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+
+    {% stylesheets
+    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css'
+    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
+    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
+    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
+
+    filter='?yui_css'  %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+    {% endstylesheets %}
+
+{% endblock %}
+
+{% block body %}
+{% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+
+<div ng-app="TextModule" ng-controller="TextController" id="page-wrapper" style="min-height: 311px;">
+    <div class="row">
+        <div class="col-lg-12 ">
+            <h1 class="page-header ">  <span class="fa fa-pencil"></span> Mis Textos</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover ">
+                <thead>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
+                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Fecha de Publicación</a></th>
+                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
+                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
+                <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Titulo</a></th>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Ver</a></th>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Eliminar</a></th>
+
+                </thead>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts%}
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = response;
+        response = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js'
+
+
+        filter='?yui_js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

@@ -5,6 +5,8 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;
+
 /**
  * Class TextController
  *
@@ -28,6 +30,14 @@ class TextController extends Controller
      */
     public function indexAction()
     {
-        return new Response("Repuesta prueba - Texto");
+        $command = new GetTextsCommand();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $command->setUser($user);
+
+        $response = $this->get('CommandBus')->execute($command);
+
+        return $this->render('DSFacytInfrastructureBundle:User\Text:index.html.twig', array('data' => json_encode($response->getData())));
     }
 }

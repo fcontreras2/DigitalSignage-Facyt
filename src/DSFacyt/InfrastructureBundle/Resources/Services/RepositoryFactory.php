@@ -20,35 +20,35 @@ class RepositoryFactory implements RepositoryFactoryInterface
 
     protected $map = array(
         'Channel'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbChannelRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbChannelRepository',
             'entity'=>'DSFacytDomain:Channel'
         ),
         'Document'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbDocumentRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbDocumentRepository',
             'entity'=>'DSFacytDomain:Document'
         ),
         'Image'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbImageRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbImageRepository',
             'entity'=>'DSFacytDomain:Image'
         ),
         'QuickNote'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbQuickNoteRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbQuickNoteRepository',
             'entity'=>'DSFacytDomain:QuickNote'
         ),
         'School'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbSchoolRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbSchoolRepository',
             'entity'=>'DSFacytDomain:School'
         ),
         'Text'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbTextRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbTextRepository',
             'entity'=>'DSFacytDomain:Text'
         ),
         'User'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbUserRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbUserRepository',
             'entity'=>'DSFacytDomain:User'
         ),
         'Video'=>array(
-            'repository'=>'DSfacyt\InfrastructureBundle\Repositories\DbVideoRepository',
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbVideoRepository',
             'entity'=>'DSFacytDomain:Video'
         ),
     );

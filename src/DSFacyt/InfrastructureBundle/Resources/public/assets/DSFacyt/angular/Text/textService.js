@@ -1,3 +1,3 @@
-textModule.service('textService', function(){
+text.service('textService', function(){
 
 });

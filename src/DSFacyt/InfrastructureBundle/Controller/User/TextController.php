@@ -40,4 +40,9 @@ class TextController extends Controller
 
         return $this->render('DSFacytInfrastructureBundle:User\Text:index.html.twig', array('data' => json_encode($response->getData())));
     }
+
+    public function publishNewAction()
+    {
+        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig');
+    }
 }

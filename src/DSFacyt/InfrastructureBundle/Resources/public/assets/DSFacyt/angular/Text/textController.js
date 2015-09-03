@@ -2,8 +2,9 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
     function ($scope, $filter,textService, $modal, $alert) {
 
         $scope.data = data;
+        $scope.hola = 'freddy';
 
-        var myAlert = $alert(
+        var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',
                 content: 'No tiene ninguna publicación de tipo texto',
@@ -15,7 +16,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         if ($scope.data.length == 0 ) {
             $scope.data = [];
-            myAlert.$promise.then(function() {myAlert.show();});
+            alertEmptyData.$promise.then(function() {alertEmptyData.show();});
         }
 
     }]);

@@ -114,7 +114,11 @@
                             <a href="{{ path('ds_facyt_infrastructure_user_text_homepage') }}"><span class="fa fa-caret-right"> Mis textos</span></a>
                         </li>
                         <li>
-                            <a href="flot.html"><span class="fa fa-caret-right"> Publicar texto</span></a>
+                            {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_new' %}
+                                <a href="{{ path('ds_facyt_infrastructure_user_text_new') }}" class="active"><span class="fa fa-caret-right"> Publicar texto</span></a>
+                            {% else %}
+                                <a href="{{ path('ds_facyt_infrastructure_user_text_new') }}"><span class="fa fa-caret-right"> Publicar texto</span></a>
+                            {% endif %}
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

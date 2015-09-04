@@ -3,7 +3,10 @@
 namespace DSFacyt\InfrastructureBundle\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
+use DSFacyt\Core\Domain\Model\Entity\Text;
+use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
 
 use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;
 
@@ -41,8 +44,27 @@ class TextController extends Controller
         return $this->render('DSFacytInfrastructureBundle:User\Text:index.html.twig', array('data' => json_encode($response->getData())));
     }
 
+    /**
+     * La siguiente Función se encarga de mostrar el formulario de
+     * las pubicaciones nuevas de tipo texto
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 02/09/2015
+     * @return Response
+     */
     public function publishNewAction()
     {
-        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig');
+        $text= new Text();
+        $form = $this->createForm(new RegisterTextType(), $text,
+            array(
+                'action' => $this->generateUrl('ds_facyt_infrastructure_user_text_new_validate'),
+                'method' => 'POST'));
+
+        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+    }
+
+    public function validateNewAction(Request $request)
+    {
+        return new Response("asas");
     }
 }

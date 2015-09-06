@@ -2,7 +2,6 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
     function ($scope, $filter,textService, $modal, $alert) {
 
         $scope.data = data;
-        $scope.hola = 'freddy';
 
         var alertEmptyData = $alert(
             {
@@ -10,11 +9,11 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 content: 'No tiene ninguna publicación de tipo texto',
                 placement: 'top',
                 type: 'info',
-                show: true,
+                show: false,
                 container:'#empty-table'
             });
 
-        if ($scope.data.length == 0 ) {
+        if (!$scope.data.length ) {
             $scope.data = [];
             alertEmptyData.$promise.then(function() {alertEmptyData.show();});
         }

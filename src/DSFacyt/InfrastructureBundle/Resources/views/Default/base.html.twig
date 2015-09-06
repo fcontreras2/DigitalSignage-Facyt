@@ -7,13 +7,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div id="body">
+        <div id="body" >
             {% block body %}{% endblock %}
+
         </div>
+
         {% block javascripts %}{% endblock %}
     </body>
+
     <footer>
-        <div id="footer">
+        <div class="div-footer" style="marin">
             {% block footer %}
             {% endblock footer %}
         </div>

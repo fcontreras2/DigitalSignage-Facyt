@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-10 col-xs-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Ingresa los datos de la publicación</div>
 
@@ -33,8 +33,9 @@
                         {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <label >Título</label>
-                                <input type="text" class="form-control" name="_password" value="asas" placeholder="Introduce el título">
+                                {{ form_errors(form.title) }}
+                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
                                 <br>
                             </div>
 
@@ -43,33 +44,31 @@
                                     <div class="col-xs-4">
                                         {{ form_errors(form.publish_time) }}
                                         {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        {{ form_widget(form.publish_time, {'attr': {'class': 'form-control input-lg'}}) }}
+                                        {{ form_widget(form.publish_time, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                     <div class="col-xs-4">
                                         {{ form_errors(form.start_date) }}
                                         {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        {{ form_widget(form.start_date, {'attr': {'class': 'form-control input-lg'}}) }}
+                                        {{ form_widget(form.start_date, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                     <div class="col-xs-4">
                                         {{ form_errors(form.end_date) }}
                                         {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        {{ form_widget(form.end_date, {'attr': {'class': 'form-control input-lg'}}) }}
+                                        {{ form_widget(form.end_date, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
                                 <br>
-
                                 {{ form_errors(form.Channels) }}
                                 {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
-                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control input-lg'}}) }}
-
-
+                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
                             </div>
+
                             <div class="col-xs-10 col-xs-offset-1">
-                                <br>
-                                <label> Información a publicar </label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                    {{ form_errors(form.info) }}
+                                    {{ form_label(form.info,  null, {'label_attr': {'class': 'foo'}}) }}
+                                    {{ form_widget(form.info, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">
                                 <div class="form-group ">

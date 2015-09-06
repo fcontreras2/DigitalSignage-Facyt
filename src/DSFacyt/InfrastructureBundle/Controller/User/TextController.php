@@ -3,7 +3,7 @@
 namespace DSFacyt\InfrastructureBundle\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use DSFacyt\Core\Domain\Model\Entity\Text;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
@@ -63,8 +63,43 @@ class TextController extends Controller
         return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * La siguiente función publicar un texto del usuario
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param Request $request
+     * @version 03/09/2015
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function validateNewAction(Request $request)
     {
-        return new Response("asas");
+        $text = new Text();
+        $form = $this->createForm(new RegisterTextType(), $text);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+
+            $text->setUser($user);
+            $text->setStatus('PENDING');
+
+            $validator = $this->get('validator');
+            $errors = $validator->validate($text);
+
+            if (count($errors) > 0) {
+                return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($text);
+            $em->flush();
+
+            return $this->redirectToRoute('ds_facyt_infrastructure_user_text_homepage');
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+
     }
 }

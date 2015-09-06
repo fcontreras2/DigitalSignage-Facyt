@@ -1,0 +1,12 @@
+DSFacyt\Core\Domain\Model\Entity\Text:
+    properties:
+        title:
+            - NotBlank: ~
+            - Length:
+                min: 10
+                max: 20
+        info:
+            - NotBlank: ~
+            - Length:
+                min: 20
+                max: 100

@@ -19,5 +19,19 @@ use DSFacyt\Core\Domain\Repository\VideoRepository;
 class DbVideoRepository extends EntityRepository implements 
     VideoRepository 
 {
-    
+    /**
+     * La siguiente función retorna todas las publicaciones de tipo videos dado un usuario
+     *
+     * @param $user
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @return array
+     * @version 03/09/2015
+     */
+    public function findAllByUser($user)
+    {
+        return $this->createQueryBuilder('p')
+            ->where(' p.user = :user')
+            ->setParameters( array('user' => $user))
+            ->getQuery()->getResult();
+    }
 }

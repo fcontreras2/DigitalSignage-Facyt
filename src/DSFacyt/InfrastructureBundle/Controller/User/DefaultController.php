@@ -5,6 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use DSFacyt\Core\Application\UseCases\User\BasicInformation\BasicInformationCommand;
 
 /**
  * Class DefaultController
@@ -28,7 +29,15 @@ class DefaultController extends Controller
      * @return Response
      */
     public function indexPanelAction()
-    {   
-        return $this->render('DSFacytInfrastructureBundle:User:index.html.twig');
+    {
+        $command = new BasicInformationCommand();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $command->setUser($user);
+
+        $response = $this->get('CommandBus')->execute($command);
+
+        return $this->render('DSFacytInfrastructureBundle:User:index.html.twig', array('data' => $response->getData()));
     }
 }

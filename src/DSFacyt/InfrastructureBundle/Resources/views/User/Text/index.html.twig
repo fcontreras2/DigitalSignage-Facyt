@@ -42,13 +42,13 @@
             <table class="table table-bordered table-hover " >
                 <thead>
                 <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
-                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Fecha de Publicación</a></th>
+                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
                 <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
                 <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
                 <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Titulo</a></th>
                 <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
-                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Ver</a></th>
-                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Eliminar</a></th>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Editar</a></th>
+                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Elimina</a></th>
                 </thead>
                 <tbody>
 
@@ -63,8 +63,8 @@
                         <td>{[{ currentText.end_date}]}</td>
                         <td>{[{ currentText.title}]}</td>
                         <td>{[{ currentText.status}]}</td>
-                        <td><a ng-click="previewText($index)"> <span class="fa fa-eye" ></span></a></td>
-                        <td><span class="fa fa-user"></span></td>
+                        <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-edit" ></span></a></td>
+                        <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-trash" ></span></a></td>
                     </tr>
                 </tbody>
 

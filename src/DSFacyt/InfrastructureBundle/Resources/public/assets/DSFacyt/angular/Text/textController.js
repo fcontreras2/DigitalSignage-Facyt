@@ -20,8 +20,8 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
         
-        $scope.previewText = function(index) {
-
+        $scope.previewText = function(indexPreview) {
+            $scope.indexPreview = indexPreview;
             myOtherModal.$promise.then(myOtherModal.show);
         };
 

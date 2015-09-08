@@ -18,11 +18,11 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             alertEmptyData.$promise.then(function() {alertEmptyData.show();});
         }
 
-        var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
+        var modalNewText = $modal({scope: $scope, template: 'modal-editText.tpl', show: false});
         
-        $scope.previewText = function(indexPreview) {
+        $scope.editText = function(indexPreview) {
             $scope.indexPreview = indexPreview;
-            myOtherModal.$promise.then(myOtherModal.show);
+            modalNewText.$promise.then(modalNewText.show);
         };
 
     }]);

@@ -63,7 +63,7 @@
                         <td>{[{ currentText.end_date}]}</td>
                         <td>{[{ currentText.title}]}</td>
                         <td>{[{ currentText.status}]}</td>
-                        <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-edit" ></span></a></td>
+                        <td style="text-align: center"><a style="cursor: pointer" ng-click="editText($index)"> <span class="fa fa-edit" ></span></a></td>
                         <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-trash" ></span></a></td>
                     </tr>
                 </tbody>
@@ -71,7 +71,7 @@
             </table>
         </div>
     </div>
-    {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreview.html.twig") }}
+    {{ include("DSFacytInfrastructureBundle:User:Modal/modalEditText.html.twig") }}
 </div>
 
 

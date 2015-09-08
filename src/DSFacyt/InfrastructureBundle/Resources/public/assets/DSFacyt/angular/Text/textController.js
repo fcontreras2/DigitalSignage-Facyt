@@ -18,7 +18,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             alertEmptyData.$promise.then(function() {alertEmptyData.show();});
         }
 
-        var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false, title:'ola    '});
+        var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
         
         $scope.previewText = function(index) {
 

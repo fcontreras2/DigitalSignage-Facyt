@@ -21,5 +21,21 @@ $fa-font-path:   "/fonts/font-awesome";
     width: 100%;
     height: 115px;
     background-color: #222;
+}
 
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition: opacity .15s linear;
+  &.ng-enter {
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: .5;
+    }
+  }
+  &.ng-leave {
+    opacity: .5;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
 }

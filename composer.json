@@ -52,6 +52,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "compile": [
+            "app/console assetic:dump",
+            "php app/console doctrine:schema:drop --force",
+            "php app/console doctrine:schema:update --force",
+            "php app/console doctrine:fixtures:load"
         ]
     },
     "config": {

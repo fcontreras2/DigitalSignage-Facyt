@@ -1,69 +1,70 @@
 <script id="modal-editText.tpl" type="text/ng-template">
     <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" >
-
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" >
-                                <span class="fa fa-pencil"></span>
-                                Texto - {[{ data[indexPreview].title}]}
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body" style="font-size:16px">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <label class="control-label">Título</label>
-                            <input type="text" value="{[{data[indexPreview].title}]}" required="required" class="form-control ">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <label class="control-label">Hora a publicar</label>
-                            <input type="datetime" id="registerText_title" value="{[{data[indexPreview].publish_time}]}" required="required" class="form-control ">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-5 col-xs-offset-1">
-                            <label class="control-label">Fecha de Publlicación</label>
-                            <input type="datetime" id="registerText_title" value="{[{data[indexPreview].start_date}]}" required="required" class="form-control ">
-                        </div>
-                        <div class="col-xs-5 ">
-                            <label class="control-label">Fecha Final</label>
-                            <input type="datetime" id="registerText_title" value="{[{data[indexPreview].end_date}]}" required="required" class="form-control ">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <b>Canales:</b>
-                            <div id="registerText_Channels" class="form-control" >
-                                <span ng-repeat="(key, value) in data[indexPreview].channels">
-                                    <input type="checkbox" id="registerText_Channels_1" name="registerText[Channels][]" value="1">
-                                    <label for="registerText_Channels_1">{[{ value.channel_name }]}</label>
-                                </span>
+            <form name="form" class="css-form" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" >
+                                    <span class="fa fa-pencil"></span>
+                                    Texto - {[{ data[indexPreview].title}]}
+                                </h4>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <label class="control-label">Información:</label>
-                            <textarea id="registerText_info" name="registerText[info]" required="required" class="form-control" >{[{ data[indexPreview].info }]}</textarea>
+                    <div class="modal-body" style="font-size:16px">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <label class="control-label">Título</label>
+                                <input type="text" name="title" ng-model="data[indexPreview].title" required="required" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <label class="control-label">Hora a publicar</label>
+                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].publish_time" required="required" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-xs-offset-1">
+                                <label class="control-label">Fecha de Publlicación</label>
+                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].start_date" required="required" class="form-control ">
+                            </div>
+                            <div class="col-xs-5 ">
+                                <label class="control-label">Fecha Final</label>
+                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].end_date" required="required" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <b>Canales:</b>
+                                <div id="registerText_Channels" class="form-control" >
+                                    <span ng-repeat="(key, value) in data[indexPreview].channels">
+                                        <input type="checkbox" id="registerText_Channels_1" ng-model="value" name="registerText[Channels][]" value="1">
+                                        <label for="registerText_Channels_1">{[{ value.channel_name }]}</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <label class="control-label">Información:</label>
+                                <textarea id="registerText_info" name="registerText[info]" required="required" class="form-control" ng-model="data[indexPreview].info"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button class="btn btn-primary" ng-disabled="form.$pristine"><span class="fa fa-edit"></span> Editar</button>
+                                <button type="button" class="btn btn-default" ng-click="$hide()">Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <button class="btn btn-primary" ng-click="sendEditText(indexPreview)"><span class="fa fa-edit"></span> Editar</button>
-                            <button type="button" class="btn btn-default" ng-click="$hide()">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </script>

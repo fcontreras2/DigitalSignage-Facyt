@@ -21,21 +21,8 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         //Declaración del modal de editar el texto
         var modalNewText = $modal({scope: $scope, template: 'modal-editText.tpl', show: false});
 
-        //Variable que contendrá el ultimo texto que se dio click a editar
-        var lastModalText = {};
-
         // La función muestra el modal de un editar un texto
         $scope.editText = function(indexPreview) {
-
-            lastModalText = {};
-            lastModalText.text_id = $scope.data[indexPreview].text_id;
-            lastModalText.start_date = $scope.data[indexPreview].start_date;
-            lastModalText.end_date = $scope.data[indexPreview].end_date;
-            lastModalText.title = $scope.data[indexPreview].title;
-            lastModalText.publish_time = $scope.data[indexPreview].publish_time;
-            lastModalText.info = $scope.data[indexPreview].info;
-            lastModalText.channels = $scope.data[indexPreview].channels;
-            lastModalText.status = $scope.data[indexPreview].status;
 
             $scope.indexPreview = indexPreview;
             modalNewText.$promise.then(modalNewText.show);

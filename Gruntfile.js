@@ -13,7 +13,8 @@ module.exports = function(grunt) {
       },
       stylesheets: {
         files: {
-              "css/angular-motion.css": "angular-motion/dist/angular-motion.css"
+            "css/angular-motion.css": "angular-motion/dist/angular-motion.css",
+            "css/bootstrap-datepicker.css": "bootstrap-datepicker/dist/css/bootstrap-datepicker.css"
         }
       },
       scripts: {
@@ -23,6 +24,8 @@ module.exports = function(grunt) {
               "js/bootstrap.js": "bootstrap-sass-official/assets/javascripts/bootstrap.js",
               "js/jquery.js": "jquery/dist/jquery.js",
               "js/sb-admin-2.js":"startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
+              "js/bootstrap-datepicker.js": "bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+              "js/bootstrap-datepicker.es.min.js": "bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js",
               "js/metisMenu.js": "metisMenu/dist/metisMenu.js",
               "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
               "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js"

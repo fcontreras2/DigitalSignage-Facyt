@@ -13,8 +13,8 @@ class RegisterTextType extends AbstractType
         $builder
             ->add('title','text',array('label' => 'Título', 'constraints' => array(new NotBlank())))
             ->add('publish_time','time',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank())))
-            ->add('start_date','date',array('label' => 'Fecha inicial', 'constraints' => array(new NotBlank())))
-            ->add('end_date','date',array('label' => 'Fecha final', 'constraints' => array(new NotBlank())))
+            ->add('start_date','text',array('label' => 'Fecha inicial', 'constraints' => array(new NotBlank())))
+            ->add('end_date','text',array('label' => 'Fecha final', 'constraints' => array(new NotBlank())))
             ->add('info','textarea',array('label' => 'Información a publicar', 'constraints' => array(new NotBlank())))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',

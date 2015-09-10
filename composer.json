@@ -71,10 +71,10 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
             "env-map": {
-                "database_name": "d9ic0c4sf7qhgb",
-                "database_user": "fohbvsxvivhlge",
-                "database_host": "ec2-50-19-208-138.compute-1.amazonaws.com",
-                "database_password": "4yYyWLTj4kciMrcA5vplO7HEd_"
+                "database_name": "dbl0a6f34b6bm6",
+                "database_user": "eefxsrhkcukczc",
+                "database_host": "ec2-54-227-254-13.compute-1.amazonaws.com",
+                "database_password": "EMLRRGcLovUd-OhmgC_YnJtWrR"
             }
         }
     }

@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Digitalsignage-facyt by fcontreras2</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Digitalsignage-facyt</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/fcontreras2/DigitalSignage-Facyt">View the Project on GitHub <small>fcontreras2/DigitalSignage-Facyt</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fcontreras2/DigitalSignage-Facyt/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fcontreras2/DigitalSignage-Facyt/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fcontreras2/DigitalSignage-Facyt">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="digital-signage" class="anchor" href="#digital-signage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Digital Signage</h1>
+
+<h1>
+<a id="symfony-standard-edition" class="anchor" href="#symfony-standard-edition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Symfony Standard Edition</h1>
+
+<p>Welcome to the Symfony Standard Edition - a fully-functional Symfony2
+application that you can use as the skeleton for your new applications.</p>
+
+<p>This document contains information on how to download, install, and start
+using Symfony. For a more detailed explanation, see the <a href="http://symfony.com/doc/2.5/book/installation.html">Installation</a>
+chapter of the Symfony Documentation.</p>
+
+<h2>
+<a id="1-installing-the-standard-edition" class="anchor" href="#1-installing-the-standard-edition" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) Installing the Standard Edition</h2>
+
+<p>When it comes to installing the Symfony Standard Edition, you have the
+following options.</p>
+
+<h3>
+<a id="use-composer-recommended" class="anchor" href="#use-composer-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use Composer (<em>recommended</em>)</h3>
+
+<p>As Symfony uses <a href="http://getcomposer.org/">Composer</a> to manage its dependencies, the recommended way
+to create a new project is to use it.</p>
+
+<p>If you don't have Composer yet, download it following the instructions on
+<a href="http://getcomposer.org/">http://getcomposer.org/</a> or just run the following command:</p>
+
+<pre><code>curl -s http://getcomposer.org/installer | php
+</code></pre>
+
+<p>Then, use the <code>create-project</code> command to generate a new Symfony application:</p>
+
+<pre><code>php composer.phar create-project symfony/framework-standard-edition path/to/install
+</code></pre>
+
+<p>Composer will install Symfony and all its dependencies under the
+<code>path/to/install</code> directory.</p>
+
+<h3>
+<a id="download-an-archive-file" class="anchor" href="#download-an-archive-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download an Archive File</h3>
+
+<p>To quickly test Symfony, you can also download an <a href="http://symfony.com/download">archive</a> of the Standard
+Edition and unpack it somewhere under your web server root directory.</p>
+
+<p>If you downloaded an archive "without vendors", you also need to install all
+the necessary dependencies. Download composer (see above) and run the
+following command:</p>
+
+<pre><code>php composer.phar install
+</code></pre>
+
+<h2>
+<a id="2-checking-your-system-configuration" class="anchor" href="#2-checking-your-system-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Checking your System Configuration</h2>
+
+<p>Before starting coding, make sure that your local system is properly
+configured for Symfony.</p>
+
+<p>Execute the <code>check.php</code> script from the command line:</p>
+
+<pre><code>php app/check.php
+</code></pre>
+
+<p>The script returns a status code of <code>0</code> if all mandatory requirements are met,
+<code>1</code> otherwise.</p>
+
+<p>Access the <code>config.php</code> script from a browser:</p>
+
+<pre><code>http://localhost/path-to-project/web/config.php
+</code></pre>
+
+<p>If you get any warnings or recommendations, fix them before moving on.</p>
+
+<h2>
+<a id="3-browsing-the-demo-application" class="anchor" href="#3-browsing-the-demo-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) Browsing the Demo Application</h2>
+
+<p>Congratulations! You're now ready to use Symfony.</p>
+
+<p>From the <code>config.php</code> page, click the "Bypass configuration and go to the
+Welcome page" link to load up your first Symfony page.</p>
+
+<p>You can also use a web-based configurator by clicking on the "Configure your
+Symfony Application online" link of the <code>config.php</code> page.</p>
+
+<p>To see a real-live Symfony page in action, access the following page:</p>
+
+<pre><code>web/app_dev.php/demo/hello/Fabien
+</code></pre>
+
+<h2>
+<a id="4-getting-started-with-symfony" class="anchor" href="#4-getting-started-with-symfony" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) Getting started with Symfony</h2>
+
+<p>This distribution is meant to be the starting point for your Symfony
+applications, but it also contains some sample code that you can learn from
+and play with.</p>
+
+<p>A great way to start learning Symfony is via the <a href="http://symfony.com/doc/2.5/quick_tour/the_big_picture.html">Quick Tour</a>, which will
+take you through all the basic features of Symfony2.</p>
+
+<p>Once you're feeling good, you can move onto reading the official
+<a href="http://symfony.com/doc/2.5/index.html">Symfony2 book</a>.</p>
+
+<p>A default bundle, <code>AcmeDemoBundle</code>, shows you Symfony2 in action. After
+playing with it, you can remove it by following these steps:</p>
+
+<ul>
+<li><p>delete the <code>src/Acme</code> directory;</p></li>
+<li><p>remove the routing entry referencing AcmeDemoBundle in <code>app/config/routing_dev.yml</code>;</p></li>
+<li><p>remove the AcmeDemoBundle from the registered bundles in <code>app/AppKernel.php</code>;</p></li>
+<li><p>remove the <code>web/bundles/acmedemo</code> directory;</p></li>
+<li><p>empty the <code>security.yml</code> file or tweak the security configuration to fit
+your needs.</p></li>
+</ul>
+
+<h2>
+<a id="whats-inside" class="anchor" href="#whats-inside" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's inside?</h2>
+
+<p>The Symfony Standard Edition is configured with the following defaults:</p>
+
+<ul>
+<li><p>Twig is the only configured template engine;</p></li>
+<li><p>Doctrine ORM/DBAL is configured;</p></li>
+<li><p>Swiftmailer is configured;</p></li>
+<li><p>Annotations for everything are enabled.</p></li>
+</ul>
+
+<p>It comes pre-configured with the following bundles:</p>
+
+<ul>
+<li><p><strong>FrameworkBundle</strong> - The core Symfony framework bundle</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/bundles/SensioFrameworkExtraBundle/index.html"><strong>SensioFrameworkExtraBundle</strong></a> - Adds several enhancements, including
+template and routing annotation capability</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/book/doctrine.html"><strong>DoctrineBundle</strong></a> - Adds support for the Doctrine ORM</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/book/templating.html"><strong>TwigBundle</strong></a> - Adds support for the Twig templating engine</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/book/security.html"><strong>SecurityBundle</strong></a> - Adds security by integrating Symfony's security
+component</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/cookbook/email.html"><strong>SwiftmailerBundle</strong></a> - Adds support for Swiftmailer, a library for
+sending emails</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/cookbook/logging/monolog.html"><strong>MonologBundle</strong></a> - Adds support for Monolog, a logging library</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/cookbook/assetic/asset_management.html"><strong>AsseticBundle</strong></a> - Adds support for Assetic, an asset processing
+library</p></li>
+<li><p><strong>WebProfilerBundle</strong> (in dev/test env) - Adds profiling functionality and
+the web debug toolbar</p></li>
+<li><p><strong>SensioDistributionBundle</strong> (in dev/test env) - Adds functionality for
+configuring and working with Symfony distributions</p></li>
+<li><p><a href="http://symfony.com/doc/2.5/bundles/SensioGeneratorBundle/index.html"><strong>SensioGeneratorBundle</strong></a> (in dev/test env) - Adds code generation
+capabilities</p></li>
+<li><p><strong>AcmeDemoBundle</strong> (in dev/test env) - A demo bundle with some example
+code</p></li>
+</ul>
+
+<p>All libraries and bundles included in the Symfony Standard Edition are
+released under the MIT or BSD license.</p>
+
+<p>Enjoy!</p>
+
+<h3>
+<a id="" class="anchor" href="#" aria-hidden="true"><span class="octicon octicon-link"></span></a>``</h3>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fcontreras2">fcontreras2</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

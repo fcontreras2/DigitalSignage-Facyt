@@ -70,6 +70,12 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
+            "env-map": {
+                "database_name": "d9ic0c4sf7qhgb",
+                "database_user": "fohbvsxvivhlge",
+                "database_host": "ec2-50-19-208-138.compute-1.amazonaws.com",
+                "database_password": "4yYyWLTj4kciMrcA5vplO7HEd_"
+            }
         }
     }
 }

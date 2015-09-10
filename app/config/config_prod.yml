@@ -12,9 +12,6 @@ imports:
 #        query_cache_driver: apc
 
 monolog:
-    # ...
     handlers:
-        # ...
         nested:
-            # ...
             path: "php://stderr"

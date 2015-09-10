@@ -25,7 +25,7 @@ module.exports = function(grunt) {
               "js/jquery.js": "jquery/dist/jquery.js",
               "js/sb-admin-2.js":"startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
               "js/bootstrap-datepicker.js": "bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
-              "js/bootstrap-datepicker.es.min.js": "bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js",
+                  "js/bootstrap-datepicker.es.min.js": "bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js",
               "js/metisMenu.js": "metisMenu/dist/metisMenu.js",
               "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
               "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js"
@@ -40,6 +40,67 @@ module.exports = function(grunt) {
           }
       }
     },
+    // Concatenar y minimizar archivos css
+      cssmin: {
+          stylesheets: {
+              files: {
+                  // Css screen contiene bootstrap, y la declaración css
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css"
+                  ],
+                  // Css de angular
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/angular.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/angular-motion.css",
+                  ],
+                  // Css de template del panel del usuario
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template-panel.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/*.css",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/*.css"
+                  ],
+                  // Css del datePicker
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css"
+                  ]
+              }
+          }
+      },
+      // Concatenar y minimizar archivos js
+      uglify: {
+          options: {
+              // Esta opcion es para cambiar los nombres de funciones y
+              // variables por letras y palabras cortas. Dejar opcion en falso.
+              mangle: false
+          },
+          scripts: {
+              files: {
+                  //Js Bases
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js": [
+                      // Archivos bases
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/jquery.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js",
+
+                      // Dependencias de Bootstrap
+                      "src/Navicu/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js"
+                  ],
+                  // Js de angular-strap
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-strap.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-strap.tpl.js"
+                  ],
+                  //Js del template del Panel
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js"
+                  ],
+                  //Js del template del Panel
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.es.min.js"
+                  ]
+              }
+          }
+      }
 
   });
 

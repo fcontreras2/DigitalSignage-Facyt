@@ -167,25 +167,15 @@
 
 {% block javascripts%}
     {% if app.environment == "dev" %}
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleModule.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleService.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/exampleController.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
     {% else %}
-        {% javascripts         
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js' 
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js'
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js'        
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js"
 
-            
         filter='?yui_js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
 

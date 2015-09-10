@@ -102,6 +102,8 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
     {% else %}
         {% javascripts
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js'
@@ -115,4 +117,13 @@
 
         {% endjavascripts %}
     {% endif %}
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+
+        });
+    </script>
 {% endblock %}

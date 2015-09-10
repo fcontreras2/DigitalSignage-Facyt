@@ -44,8 +44,8 @@ class GetTextsHandler implements Handler
         foreach ($texts as $currentTexts) {
             $auxText = array();
             $auxText['text_id'] = $currentTexts->getId();
-            $auxText['start_date'] = $currentTexts->getStartDate()->format('Y-m-d');
-            $auxText['end_date'] = $currentTexts->getEndDate()->format('Y-m-d');
+            $auxText['start_date'] = $currentTexts->getStartDate()->format('d/m/Y');
+            $auxText['end_date'] = $currentTexts->getEndDate()->format('d/m/Y');
             $auxText['publish_time'] = $currentTexts->getPublishTime()->format('h:i:s A');
             $auxText['title'] = $currentTexts->getTitle();
             $auxText['info'] = $currentTexts->getInfo();

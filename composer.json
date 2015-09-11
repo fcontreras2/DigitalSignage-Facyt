@@ -9,8 +9,6 @@
         }
     },
     "require": {
-        "ext-intl": "*",
-        "ext-mbstring": "*",
         "php": ">=5.3.3",
         "symfony/symfony": "2.6.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
@@ -26,8 +24,9 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "monolog/monolog": "~1.7",
-        "heroku/heroku-buildpack-PHP": "*"
-
+        "heroku/heroku-buildpack-PHP": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -61,6 +60,9 @@
             "php app/console doctrine:schema:drop --force",
             "php app/console doctrine:schema:update --force",
             "php app/console doctrine:fixtures:load"
+        ],
+        "pre-install-cmd": [
+            "DSFacyt\\InfrastructureBundle\\Composer\\HerokuEnvironment::populateEnvironment"
         ]
     },
     "config": {
@@ -73,17 +75,17 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
-                "database_name": "d6cu4jbc8vaqaq",
-                "database_user": "jzkqwrrijuxrah",
-                "database_host": "ec2-54-227-254-13.compute-1.amazonaws.com",
-                "database_password": "T8qDAOm4nQdG7_L8OXApW-2mIu"
+                "database_name": "SYMFONY__DATABASE_NAME",
+                "database_user": "SYMFONY__DATABASE_USER",
+                "database_host": "SYMFONY__DATABASE_HOST",
+                "database_password": "SYMFONY__DATABASE_PASSWORD"
             }
         },
         "heroku": {
             "framework": "symfony2",
             "document-root": "web",
             "php-config": [
-                "date.timezone=Europe/Kiev",
+                "date.timezone=America/Caracas",
                 "display_errors=off",
                 "short_open_tag=off"
             ]

@@ -36,8 +36,6 @@ web/js/*
 /bower_components
 /node_modules
 
-# Composer PHAR
-/composer.phar
 
 #Css y Js Vendors
 **/.sass-cache

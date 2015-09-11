@@ -73,10 +73,10 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
-                "database_name": "d8rbvtiu7o252s",
-                "database_user": "tajwxxjgkukrxx",
-                "database_host": "ec2-107-21-105-116.compute-1.amazonaws.com",
-                "database_password": "l_AC4YHK9xObM-yl4U4g5lbMVt"
+                "database_name": "d6cu4jbc8vaqaq",
+                "database_user": "jzkqwrrijuxrah",
+                "database_host": "ec2-54-227-254-13.compute-1.amazonaws.com",
+                "database_password": "T8qDAOm4nQdG7_L8OXApW-2mIu"
             }
         },
         "heroku": {

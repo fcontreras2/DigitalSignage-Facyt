@@ -24,7 +24,6 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "monolog/monolog": "~1.7",
-        "heroku/heroku-buildpack-php": "*",
         "ext-intl": "*",
         "ext-mbstring": "*"
     },

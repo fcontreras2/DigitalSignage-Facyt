@@ -1,5 +1,5 @@
 <?php
-namespace DSFacyt\InfrastructureBundle\Bundle\Composer;
+namespace DSFacyt\InfrastructureBundle\Composer;
 
 use Composer\Script\Event;
 

@@ -25,7 +25,9 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "monolog/monolog": "~1.7",
         "ext-intl": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

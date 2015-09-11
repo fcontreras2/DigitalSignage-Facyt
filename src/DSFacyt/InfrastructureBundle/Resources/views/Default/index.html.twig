@@ -1,13 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-    {% if app.environment == "dev" %}   
 
-        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css' filter='?yui_css'  %}
+
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'   %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}    
-    {% endif %}   
+
 {% endblock %}
 
 {% block body %}
@@ -99,7 +99,7 @@
 {% block javascripts%}
     {% javascripts         
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
-    filter='?yui_js' %}
+    %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
 
     {% endjavascripts %}

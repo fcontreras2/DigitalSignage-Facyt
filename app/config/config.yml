@@ -39,10 +39,11 @@ assetic:
     bundles:        [ DSFacytInfrastructureBundle]
     #java: /usr/bin/java
     filters:
-        yui_css:
-            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
-        yui_js:
-            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        cssrewrite: ~
+        #yui_css:
+         #   jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        #yui_js:
+         #   jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
 
 # Doctrine Configuration
 doctrine:

@@ -35,10 +35,11 @@ web/js/*
 #bower components - grunt components
 /bower_components
 /node_modules
-
+/composer.phar
 
 #Css y Js Vendors
 **/.sass-cache
 !src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular
 /src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets
 /src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor
+

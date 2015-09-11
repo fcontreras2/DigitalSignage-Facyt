@@ -62,7 +62,7 @@
             "php app/console doctrine:fixtures:load"
         ],
         "pre-install-cmd": [
-            "DSFacyt\\InfrastructureBundle\\Composer\\HerokuEnvironment::populateEnvironment"
+            "DSFacytInfrastructureBundle\\Composer\\HerokuEnvironment::populateEnvironment"
         ]
     },
     "config": {

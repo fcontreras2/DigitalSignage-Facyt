@@ -9,6 +9,8 @@
         }
     },
     "require": {
+        "ext-intl": "*",
+        "ext-mbstring": "*",
         "php": ">=5.3.3",
         "symfony/symfony": "2.6.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
@@ -71,11 +73,20 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
             "env-map": {
-                "database_name": "dbl0a6f34b6bm6",
-                "database_user": "eefxsrhkcukczc",
-                "database_host": "ec2-54-227-254-13.compute-1.amazonaws.com",
-                "database_password": "EMLRRGcLovUd-OhmgC_YnJtWrR"
+                "database_name": "d8rbvtiu7o252s",
+                "database_user": "tajwxxjgkukrxx",
+                "database_host": "ec2-107-21-105-116.compute-1.amazonaws.com",
+                "database_password": "l_AC4YHK9xObM-yl4U4g5lbMVt"
             }
+        },
+        "heroku": {
+            "framework": "symfony2",
+            "document-root": "web",
+            "php-config": [
+                "date.timezone=Europe/Kiev",
+                "display_errors=off",
+                "short_open_tag=off"
+            ]
         }
     }
 }

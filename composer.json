@@ -25,11 +25,11 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "monolog/monolog": "~1.7",
         "ext-intl": "*",
-        "ext-mbstring": "*",
-        "heroku/heroku-buildpack-PHP": "*"
+        "ext-mbstring": "*"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "heroku/heroku-buildpack-php": "*"
     },
     "scripts": {
         "post-root-package-install": [

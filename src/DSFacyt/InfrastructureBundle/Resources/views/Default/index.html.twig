@@ -3,7 +3,7 @@
 {% block stylesheets %}
     {% if app.environment == "dev" %}   
 
-        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css' filter='?yui_css'  %}
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css' filter='?yui_css'  %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}    

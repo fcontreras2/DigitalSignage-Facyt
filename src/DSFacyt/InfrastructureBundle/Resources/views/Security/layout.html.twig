@@ -3,7 +3,7 @@
 {% block stylesheets %}
 
 
-        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css' filter='?yui_css'  %}
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'  %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}
@@ -44,7 +44,7 @@
     {% javascripts         
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js' 
         '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
-    filter='?yui_js' %}
+     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
 
     {% endjavascripts %}

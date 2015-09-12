@@ -1,13 +1,14 @@
 {% extends "DSFacytInfrastructureBundle:Default:base.html.twig" %}
 
 {% block stylesheets %}
-
-
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+    {% else %}
         {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'  %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}
-
+    {% endif %}
 {% endblock %}
 
 
@@ -42,13 +43,9 @@
 
 {% block javascripts%}
     {% if app.environment == "dev" %}
-        {% javascripts
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js'
-            '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
-         %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
 
-        {% endjavascripts %}
     {% else  %}
         {% javascripts
             '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
@@ -60,7 +57,7 @@
     {% endif %}
     <script>
        $(function () {
-    $('.tabs a:last').tab('show')
-  });
+        $('.tabs a:last').tab('show')
+    });
     </script>
 {% endblock %}

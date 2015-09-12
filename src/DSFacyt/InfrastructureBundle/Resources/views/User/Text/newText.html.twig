@@ -1,17 +1,29 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
+     {% if app.environment == "dev" %}
+        {% stylesheets
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
+        %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
-    {% stylesheets
-    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
-    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/metisMenu.css'
-    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css'
-    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css'
-    '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css'
-    %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+        {% endstylesheets %}
 
-    {% endstylesheets %}
+    {% else %}
+       {% stylesheets
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template-panel.css'
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
+
+       %}
+       <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+       {% endstylesheets %}
+    {% endif %
 
 {% endblock %}
 
@@ -125,10 +137,10 @@
 
     {% else %}
         {% javascripts
-        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/jquery.js'
-        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js'
-        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js'
-        '@DSFacytInfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/datepicker.js'
+        
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
 

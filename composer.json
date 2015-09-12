@@ -57,6 +57,9 @@
         ],
         "pre-install-cmd": [
             "DSFacyt\\InfrastructureBundle\\Composer\\HerokuEnvironment::populateEnvironment"
+        ],
+        "compile": [
+            "app/console assetic:dump"
         ]
     },
     "config": {

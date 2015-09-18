@@ -3,6 +3,8 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         $scope.data = data;
 
+        $scope.selectedDate = {date: new Date("2012-09-01")};
+
         var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',
@@ -19,13 +21,12 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         }
 
         //Declaración del modal de editar el texto
-        var modalNewText = $modal({scope: $scope, template: 'modal-editText.tpl', show: false});
+        //var modalNewText = $modal({scope: $scope, template: 'modal-editText.tpl', show: false});
 
         // La función muestra el modal de un editar un texto
-        $scope.editText = function(indexPreview) {
-
-            $scope.indexPreview = indexPreview;
-            modalNewText.$promise.then(modalNewText.show);
+        $scope.editText = function(indexText) {
+            /app_dev.php/panel/text/edit
+            $scope.indexEditText = $scope.data[indexText].text_id;
         };
 
         $scope.sendEditText = function(indexPreview) {

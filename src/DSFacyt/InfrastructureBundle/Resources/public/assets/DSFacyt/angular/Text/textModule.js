@@ -28,5 +28,10 @@ var text = angular.module("TextModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
                 $httpProvider.responseInterceptors.push(httpStatusCodeInterceptorFactory);
             }
         }
-    }]);
+    }])
+    .config(function($datepickerProvider) {
+        angular.extend($datepickerProvider.defaults, {
+            dateFormat: 'dd/MM/yyyy',
+            startWeek: 1
+        })});
 

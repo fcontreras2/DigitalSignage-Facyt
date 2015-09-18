@@ -6,6 +6,10 @@ ds_facyt_infrastructure_user_text_new:
   path:   /panel/text/new
   defaults: { _controller: DSFacytInfrastructureBundle:User\Text:publishNew }
 
+ds_facyt_infrastructure_user_text_edit:
+  path:   /panel/text/edit
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Text:edit }
+
 ds_facyt_infrastructure_user_text_new_validate:
     path:   /panel/text/new_validate
     defaults: { _controller: DSFacytInfrastructureBundle:User\Text:validateNew }

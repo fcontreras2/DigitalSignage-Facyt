@@ -102,4 +102,10 @@ class TextController extends Controller
         return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
 
     }
+
+    public function editAction(Request $request)
+    {
+        var_dump($request);
+        return new Response();
+    }
 }

@@ -47,7 +47,10 @@
         <br>
         <div class="col-xs-12" >
             <div id="empty-table"></div>
-            <table class="table table-bordered table-hover " >
+            <form action="{{ path('ds_facyt_infrastructure_user_text_edit') }}" method="post">
+                <input type="hidden" ng-model="indexEditText" name="indexText">
+            </form>
+                <table class="table table-bordered table-hover " >
                 <thead>
                 <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
                 <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
@@ -71,14 +74,19 @@
                         <td>{[{ currentText.end_date}]}</td>
                         <td>{[{ currentText.title}]}</td>
                         <td>{[{ currentText.status}]}</td>
-                        <td style="text-align: center"><a style="cursor: pointer" ng-click="editText($index)"> <span class="fa fa-edit" ></span></a></td>
+                        <td style="text-align: center">
+                            <input ng-submit="editText($index)"  type="submit" style="cursor: pointer"  >
+                                <span class="fa fa-edit" ></span>
+                            </input>
+                        </td>
                         <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-trash" ></span></a></td>
                     </tr>
                 </tbody>
-
             </table>
+            </form>
         </div>
     </div>
+
     {{ include("DSFacytInfrastructureBundle:User:Modal/modalEditText.html.twig") }}
 </div>
 

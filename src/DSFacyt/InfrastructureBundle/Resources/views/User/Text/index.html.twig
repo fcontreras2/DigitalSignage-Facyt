@@ -47,10 +47,7 @@
         <br>
         <div class="col-xs-12" >
             <div id="empty-table"></div>
-            <form action="{{ path('ds_facyt_infrastructure_user_text_edit') }}" method="post">
-                <input type="hidden" ng-model="indexEditText" name="indexText">
-            </form>
-                <table class="table table-bordered table-hover " >
+            <table class="table table-bordered table-hover " >
                 <thead>
                 <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
                 <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
@@ -75,15 +72,12 @@
                         <td>{[{ currentText.title}]}</td>
                         <td>{[{ currentText.status}]}</td>
                         <td style="text-align: center">
-                            <input ng-submit="editText($index)"  type="submit" style="cursor: pointer"  >
-                                <span class="fa fa-edit" ></span>
-                            </input>
+                            <a href="{{ app.request.getBaseURL()  }}/panel/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
                         </td>
                         <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-trash" ></span></a></td>
                     </tr>
                 </tbody>
             </table>
-            </form>
         </div>
     </div>
 
@@ -96,7 +90,6 @@
 {% block javascripts%}
     <!-- Tomando variables enviadas desde el servidor -->
     <script type="text/javascript">
-
         var data = "{{ data }}";
         var div = document.createElement('div');
         div.innerHTML = data;

@@ -9,6 +9,7 @@ use DSFacyt\Core\Domain\Model\Entity\Text;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
 
 use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;
+use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
 
 /**
  * Class TextController
@@ -103,9 +104,73 @@ class TextController extends Controller
 
     }
 
-    public function editAction(Request $request)
+    /**
+     * La siguiente función se encarga de mostrar el formulario para editar los datos de un texto
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $textId
+     * @version 30/09/2015
+     * @return Response
+     */
+    public function editAction($textId)
     {
-        var_dump($request);
-        return new Response();
+        $command = new EditTextCommand();
+        $command->setTextId($textId);
+        $response = $this->get('CommandBus')->execute($command);
+        if ($response->getStatusCode() == 201) {
+            $form = $this->createForm(new RegisterTextType(), $command->getEntityText(),
+                array(
+                    'action' => $this->generateUrl('ds_facyt_infrastructure_user_text_edit_validate',array('textId' => $textId)),
+                    'method' => 'POST'));
+            return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+        }
+
+        return $this->redirect('ds_facyt_infrastructure_user_text_homepage');
+    }
+
+    /**
+     * La siguiente función se encarga de mostrar el formulario de validar y persistir los datos
+     * del formulario de editar los datos del texto
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $textId
+     * @param Request $request
+     * @version 30/09/2015
+     * @return Response
+     */
+    public function validateEditAction($textId, Request $request)
+    {
+        if (!$textId) {
+            throw $this->createNotFoundException('Hubo un error a enviar el formulario');
+        }
+
+        $command = new EditTextCommand();
+        $command->setTextId($textId);
+        $this->get('CommandBus')->execute($command);
+        $form = $this->createForm(new RegisterTextType(), $command->getEntityText(),
+            array(
+                'action' => $this->generateUrl('ds_facyt_infrastructure_user_text_edit_validate',array('textId' => $textId)),
+                'method' => 'POST'));
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $text = $command->getEntityText();
+            $text->setStatus('Pendiente');
+
+            $validator = $this->get('validator');
+            $errors = $validator->validate($text);
+
+            if (count($errors) > 0) {
+                return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($text);
+            $em->flush();
+
+            return $this->redirectToRoute('ds_facyt_infrastructure_user_text_homepage');
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
     }
 }

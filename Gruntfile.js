@@ -77,11 +77,10 @@ module.exports = function(grunt) {
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js": [
                       // Archivos bases
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/jquery.js",
+                      "src/Navicu/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular.js",
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js"
 
-                      // Dependencias de Bootstrap
-                      "src/Navicu/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js"
                   ],
                   // Js de angular-strap
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js": [

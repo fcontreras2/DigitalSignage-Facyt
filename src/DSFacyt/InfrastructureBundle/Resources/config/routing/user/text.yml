@@ -17,3 +17,12 @@ ds_facyt_infrastructure_user_text_edit:
 ds_facyt_infrastructure_user_text_edit_validate:
     path:   /panel/text/edit_validate/{textId}
     defaults: { _controller: DSFacytInfrastructureBundle:User\Text:validateEdit }
+
+ds_facyt_infrastructure_user_text_delete:
+    path:   /panel/text/delete
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Text:delete }
+    options:
+      expose: true
+    requirements:
+      { _format: (xml | json), _method: POST}
+

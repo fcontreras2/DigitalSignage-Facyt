@@ -74,14 +74,14 @@
                         <td style="text-align: center">
                             <a href="{{ app.request.getBaseURL()  }}/panel/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
                         </td>
-                        <td style="text-align: center"><a style="cursor: pointer" ng-click="previewText($index)"> <span class="fa fa-trash" ></span></a></td>
+                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    {{ include("DSFacytInfrastructureBundle:User:Modal/modalEditText.html.twig") }}
+    {{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteText.html.twig") }}
 </div>
 
 
@@ -97,6 +97,9 @@
         //console.log( div.firstChild.nodeValue);
         data = JSON.parse(data);
     </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     {% if app.environment == "dev" %}
 

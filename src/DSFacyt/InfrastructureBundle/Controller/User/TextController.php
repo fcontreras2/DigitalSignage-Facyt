@@ -10,7 +10,7 @@ use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
 
 use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;
 use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
-
+use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
 /**
  * Class TextController
  *
@@ -172,5 +172,33 @@ class TextController extends Controller
         }
 
         return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+    * La siguiente función se encarga de eliminar un texto
+    * dado un json que contiene el id del texto a eliminar
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    * @version 06/10/2015
+    * @return Response
+    */
+    public function deleteAction( Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+
+            $command = new DeleteTextCommand();
+            $command->setTextId($data['text_id']);
+
+            $response = $this->get('CommandBus')->execute($command);
+
+            if ($response->getStatusCode() == 201)
+                return new Response('Ok', 201);    
+            else
+                return new Response('Bad Request', 401);
+            
+        }
+        return new Response('Not Found',404);        
     }
 }

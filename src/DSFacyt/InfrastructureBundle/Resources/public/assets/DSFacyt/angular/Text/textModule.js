@@ -3,7 +3,6 @@ var text = angular.module("TextModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
-
     .config(['$httpProvider',function ($httpProvider) {
         $httpProvider.defaults.withCredentials = '';
         $httpProvider.defaults.useXDomain = false;

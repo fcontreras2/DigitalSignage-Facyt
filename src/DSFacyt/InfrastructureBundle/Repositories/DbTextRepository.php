@@ -4,6 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use DSFacyt\Core\Domain\Repository\TextRepository;
+use DSFacyt\Core\Domain\Model\Entity\Text;
 
 /**
 * La clase se declaran los metodos y funciones que implementan
@@ -31,5 +32,16 @@ class DbTextRepository extends EntityRepository implements
             ->where(' p.user = :user')
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
+    }
+
+    /**
+    * La siguiente función  elimina un texto
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 06/10/2015
+    */
+    public function delete(Text $text)
+    {
+        $this->getEntityManager()->remove($text);
+        $this->getEntityManager()->flush();
     }
 }

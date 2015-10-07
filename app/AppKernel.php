@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),                        
             new DSFacyt\InfrastructureBundle\DSFacytInfrastructureBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
         );
 
         if (in_array($this->getEnvironment(), array('prod'))) {

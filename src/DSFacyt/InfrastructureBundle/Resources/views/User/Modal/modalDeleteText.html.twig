@@ -1,4 +1,4 @@
-<script id="modal-editText.tpl" type="text/ng-template">
+<script id="modal-deleteText.tpl" type="text/ng-template">
     <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <form name="form" class="css-form" novalidate>
@@ -18,47 +18,45 @@
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <label class="control-label">Título</label>
-                                <input type="text" name="title" ng-model="data[indexPreview].title" required="required" class="form-control ">
+                                <span>{[{data[indexPreview].title}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <label class="control-label">Hora a publicar</label>
-                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].publish_time" required="required" class="form-control ">
+                                <span>{[{data[indexPreview].publish_time}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-5 col-xs-offset-1">
                                 <label class="control-label">Fecha de Publlicación</label>
-                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].start_date" required="required" class="form-control ">
+                                <span>{[{data[indexPreview].start_date}]}</span>
+
                             </div>
                             <div class="col-xs-5 ">
                                 <label class="control-label">Fecha Final</label>
-                                <input type="datetime" id="registerText_title" ng-model="data[indexPreview].end_date" required="required" class="form-control ">
+                                <span>{[{data[indexPreview].end_date}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <b>Canales:</b>
-                                <div id="registerText_Channels" class="form-control" >
-                                    <span ng-repeat="(key, value) in data[indexPreview].channels">
-                                        <input type="checkbox" id="registerText_Channels_1" ng-model="value" name="registerText[Channels][]" value="1">
-                                        <label for="registerText_Channels_1">{[{ value.channel_name }]}</label>
-                                    </span>
-                                </div>
+                                <span ng-repeat="(key, value) in data[indexPreview].channels">
+                                    <label for="registerText_Channels_1">{[{ value.channel_name }]}</label>
+                                </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <label class="control-label">Información:</label>
-                                <textarea id="registerText_info" name="registerText[info]" required="required" class="form-control" ng-model="data[indexPreview].info"></textarea>
+                                <span> {[{data[indexPreview].info}]}</span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <button class="btn btn-primary" ng-disabled="form.$pristine"><span class="fa fa-edit"></span> Editar</button>
+                                <button class="btn btn-primary" ng-click="deleteText(indexPreview)"><span class="fa fa-trash"></span> Eliminar</button>
                                 <button type="button" class="btn btn-default" ng-click="$hide()">Cerrar</button>
                             </div>
                         </div>

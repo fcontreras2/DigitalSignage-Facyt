@@ -1,11 +1,10 @@
-text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert','$http',
-    function ($scope, $filter,textService, $modal, $alert, $http) {
+text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert',
+    function ($scope, $filter,textService, $modal, $alert) {
 
         $scope.data = data;
 
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
-        checkEmptyData();
 
         var alertEmptyData = $alert(
             {
@@ -17,8 +16,10 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 container:'#empty-table'
             });
 
+        checkEmptyData(alertEmptyData);        
 
-        function checkEmptyData() {
+
+        function checkEmptyData(alertEmptyData) {
             if (!$scope.data.length ) {
                 $scope.data = [];
                 alertEmptyData.$promise.then(function() {alertEmptyData.show();});

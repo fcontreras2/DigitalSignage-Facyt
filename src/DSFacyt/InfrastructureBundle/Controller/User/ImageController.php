@@ -5,6 +5,8 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;
+
 
 /**
  * Class ImageController
@@ -29,6 +31,14 @@ class ImageController extends Controller
      */
     public function indexAction()
     {
-        return new Response("Repuesta prueba - Image");
+        $command = new GetImagesCommand();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $command->setUser($user);
+
+        $response = $this->get('CommandBus')->execute($command);
+
+        return $this->render('DSFacytInfrastructureBundle:User\Image:index.html.twig', array('data' => json_encode($response->getData())));
     }
 }

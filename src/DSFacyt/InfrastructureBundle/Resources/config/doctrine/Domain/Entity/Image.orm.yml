@@ -39,7 +39,7 @@ DSFacyt\Core\Domain\Model\Entity\Image:
             orphanRemoval: false
         document:
             targetEntity: Document
-            cascade: {  }
+            cascade: ["persist"]
             mappedBy: null
             inversedBy: images
             joinColumns:

@@ -49,7 +49,7 @@ class GetImagesHandler implements Handler
             $auxImage['publish_time'] = $currentImage->getPublishTime()->format('h:i:s A');
             $auxImage['title'] = $currentImage->getTitle();
             $auxImage['status'] = $currentImage->getStatus();
-            $auxImage['url_image'] = $currentImage->getDocumentId()->getFileName();
+            $auxImage['url_image'] = $currentImage->getDocument()->getFileName();
             $auxImage['channels'] = array();
 
             foreach ($currentImage->getChannels() as $currentChannel) {

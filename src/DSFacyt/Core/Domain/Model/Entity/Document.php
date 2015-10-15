@@ -1,16 +1,15 @@
 <?php
-
 namespace DSFacyt\Core\Domain\Model\Entity;
 
-use DSFacyt\Core\Domain\Adapter\ArrayCollection;
-
 /**
-* La clase se encarga del manejo de archivos del sistema
-* 
-* @author Freddy Contreras <freddycontreras3@gmail.com>
-* @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
-* @version 20-05-15
-*/
+ * La clase se encarga del manejo de archivos del sistema
+ *
+ * Se define una clase y una serie de propiedades para el manejo de archivos del sistema.
+ *
+ * @author Freddy Contreras <freddycontreras3@gmail.com>
+ * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
+ * @version 13-05-15
+ */
 class Document
 {
     /**
@@ -18,14 +17,14 @@ class Document
      * 
      * @var Integer
      */
-    private $id;
+    protected $id;
     
     /**
      * Esta propiedad representa un nombre auxiliar del documento
      * 
      * @var String
      */
-    private $name;
+    public $name;
 
     /**
      * Esta hace referencia al nombre del archivo 
@@ -33,42 +32,24 @@ class Document
      * 
      * @var String
      */
-    private $fileName;
+    public $fileName;
 
     /**
      * Esta propiedad hace referencia al archivo
      * 
-     * @var File
      */
     private $file;
 
-    /**
+    /*
      * Esta propiedad hace referencia al subDominio donde 
      * se almacenará la imagen (ej: /imagenes/.. )
-     * 
-     * @var String
      */
     private $subDir;
 
     /**
-     * Esta propiedad maneja el conjunto de imagenes asociada a los documentos
-     *
-     * @var \DSFacyt\Core\Domain\Adapter\ArrayCollection
+     * constructor
      */
-    private $images;
-
-    /**
-     * Esta propiedad maneja el conjunto de vidos asociada a los documentos
-     *
-     * @var \DSFacyt\Core\Domain\Adapter\ArrayCollection
-     */
-    private $videos;
-
-    public function __construct() 
-    { 
-        $this->images = new ArrayCollection();
-        $this->videos = new ArrayCollection();
-    }
+    public function __construct() { }
 
     public function setFile($file = null)
     {
@@ -104,7 +85,7 @@ class Document
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -115,7 +96,8 @@ class Document
      * Set name
      *
      * @param string $name
-     * @return DocumentEntity
+     *
+     * @return Document
      */
     public function setName($name)
     {
@@ -127,7 +109,7 @@ class Document
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -138,7 +120,8 @@ class Document
      * Set fileName
      *
      * @param string $fileName
-     * @return DocumentEntity
+     *
+     * @return Document
      */
     public function setFileName($fileName)
     {
@@ -150,7 +133,7 @@ class Document
     /**
      * Get fileName
      *
-     * @return string 
+     * @return string
      */
     public function getFileName()
     {
@@ -194,22 +177,77 @@ class Document
     }
     
     /**
-    * La función crea un documento
+    * La función crea un documento en el directorio
     *
+    * @param String $typeFile 
+    * @param String $fileName
+    * @param String $subDir
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 25/06/2015
     * @return Void
     */
-    public function upload($fileName, $subDir = '')
+    public function upload($typeFile = 'image', $subDir = '', $nameFile = null)
     {
 
-      if (null === $this->getFile()) {
-        return;
-      }
+        if (null === $this->getFile()) {
+            return;
+        }
 
-      move_uploaded_file($this->getFile(), $this->getUploadRootDir().$subDir.$fileName);
+        $pathTypeFile = $this->getPathTypeFile($typeFile);
+        $this->setSubDir($pathTypeFile.$subDir);
 
-      $this->fileName = $fileName;
-      $this->setSubDir($subDir);
+        // Si no existe el directorio se crea el directorio
+        if (!file_exists($this->getUploadRootDir())) {
+            mkdir($this->getUploadRootDir(),0755, true);
+        }
+
+        if (is_null($nameFile))
+            $nameFile = substr(time() + rand(), 0, 14);
+        else{
+            $nameFile = $nameFile.substr(time()+rand(), 0, 14);
+        }
+        
+        $extension = $this->getFile()->guessExtension();
+        $path = $this->getUploadRootDir().$nameFile.'.'.$extension;
+
+
+        $this->setFileName($subDir.$nameFile.'.'.$extension);
+        move_uploaded_file($this->getFile(), $path);
     }
+
+    /**
+    * La siguiente función retorna el directorio principal 
+    * del documento según el tipo de documento (imagen, video, pdf, etc)
+    * 
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 25/06/2015
+    */
+    private function getPathTypeFile($type)
+    {
+        $response = 'image';
+
+        switch ($type) {
+            case 'image':
+                $response  = '/uploads/images/';
+                break;
+            
+            default:
+                $response  = '/uploads/images/';
+                break;
+        }
+
+        return $response;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $images;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $videos;
+
 
     /**
      * Add images
@@ -237,7 +275,7 @@ class Document
     /**
      * Get images
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getImages()
     {
@@ -270,7 +308,7 @@ class Document
     /**
      * Get videos
      *
-     * @return \DSFacyt\Core\Domain\Adapter\ArrayCollection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getVideos()
     {

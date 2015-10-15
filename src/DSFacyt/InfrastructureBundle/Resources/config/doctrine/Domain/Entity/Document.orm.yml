@@ -18,6 +18,7 @@ DSFacyt\Core\Domain\Model\Entity\Document:
         images:
             targetEntity: Image
             mappedBy: document
+            cascade: []
         videos:
             targetEntity: Video
             mappedBy: documet

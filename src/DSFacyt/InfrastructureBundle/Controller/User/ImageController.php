@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterImageType;
 use DSFacyt\Core\Domain\Model\Entity\Image;
 use DSFacyt\Core\Domain\Model\Entity\Document;
+use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
 
 use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;
 
@@ -94,9 +95,9 @@ class ImageController extends Controller
         if ($form->isValid()) {
 
             $user = $security = $this->container->get('security.context')->getToken()->getUser();
-
             $image->setUser($user);
-            $image->setStatus('Pendiente');
+            $command = new UploadImageCommand($image, $user->getIndentityCard());
+            $this->get('CommandBus')->execute($command);
 
             $validator = $this->get('validator');
             $errors = $validator->validate($image);

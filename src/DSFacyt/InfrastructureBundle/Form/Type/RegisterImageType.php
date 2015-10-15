@@ -16,15 +16,17 @@ class RegisterImageType extends AbstractType
             ->add('publish_time','time',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank())))
             ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
             ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
+            ->add('description','text',array('label' => 'Descripción de la imagen', 'constraints' => array(new NotBlank())))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',
                 'class' => 'DSFacytDomain:Channel',
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true))
-            ->add('document', 
-                new RegisterDocumentType(),
-                array('label' => 'Datos de la Imagen')    
+            ->add( 
+                $builder->create('document', 'form', 
+                    array('data_class' => 'DSFacyt\Core\Domain\Model\Entity\Document', 'label' => false))
+                    ->add('file', 'file', array('label' => 'Selecciona el archivo'))
             );
     }
 

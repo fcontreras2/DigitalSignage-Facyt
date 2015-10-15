@@ -34,4 +34,15 @@ class DbImageRepository extends EntityRepository implements
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
     }
+    /**
+     * Almacena en la BD una imagen
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param  Image $image
+     */
+    public function save(Image $image)
+    {
+        $this->getEntityManager()->persist($image);
+        $this->getEntityManager()->flush();
+    }
 }

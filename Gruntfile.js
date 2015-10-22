@@ -14,7 +14,8 @@ module.exports = function(grunt) {
       stylesheets: {
         files: {
             "css/angular-motion.css": "angular-motion/dist/angular-motion.css",
-            "css/bootstrap-datepicker.css": "bootstrap-datepicker/dist/css/bootstrap-datepicker.css"
+            "css/bootstrap-datepicker.css": "bootstrap-datepicker/dist/css/bootstrap-datepicker.css",
+            "css/fileinput.css" : "bootstrap-fileinput/css/fileinput.css"
         }
       },
       scripts: {
@@ -28,7 +29,8 @@ module.exports = function(grunt) {
                   "js/bootstrap-datepicker.es.min.js": "bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js",
               "js/metisMenu.js": "metisMenu/dist/metisMenu.js",
               "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
-              "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js"
+              "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js",
+              "js/fileinput.js" : "bootstrap-fileinput/js/fileinput.js"
           }
       },      
       folders: {

@@ -1,92 +1,115 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+    {% else %}
 
         {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'   %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}    
-
+    {% endif %}
 {% endblock %}
 
 {% block body %}
 {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
     
-    <div style="background-image:url('http://placehold.it/1271px374px');margin-top:45px;height:400px;width:100%">
-    <div class="container">
-    <br>
-        <div class="row">
-        <div class="col-xs-12">
-            <a href="#" class="btn btn-primary">Publicar Aquí</a> 
-        </div>
-        </div>
+    <div style="background-image:url('http://www.level-iv-consulting.com/wp-content/uploads/2014/04/Information-Technology-Page.jpg');margin-top:60px;height:100vh;width:100%;background-size:cover">   
     </div>
+    <div class="container-triangle" style="background:#003366;margin-top:-4.375rem">    
+        
     </div>
-    <div class="container" >
-        <br>
-        <br>
-        <div class="row text-center">
-                <div class="col-xs-12">
-                    <h2>CANALES DISPONIBLES</h2>
-                    <p>Selecciona cual es el canal donde quieres publicar</p>
-                </div>
+    <div class="row" style="background:#003366;color:white"> 
+        <div class="container">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+                <h2>CANALES DISPONIBLES</h2>
+                <p>Selecciona cual es el canal donde quieres publicar</p>
             </div>
-            <hr>
+        </div>
+    </div>
+    <div class="row" style="background:#003366;color:white">
+        <div class="container" >                    
             <br>
-        <div class="row text-center">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+            <div class="row text-center">
 
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail" style="box-shadow:2px 2px  2px gray">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Cafetín</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Publicar Aquí</a> 
-                        </p>
-                    </div>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    
+                        <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
+                        <div class="caption">
+                            <h3>Cafetín</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail" style="box-shadow:2px 2px  2px gray">
-                    <img src="http://placehold.it/800x500" alt="">
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
                     <div class="caption">
                         <h3>Edificio de Aulas</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Publicar Aquí</a> 
-                        </p>
-                    </div>
+                    </div>                    
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail" style="box-shadow:2px 2px  2px gray">
-                    <img src="http://placehold.it/800x500" alt="">
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">                        
                     <div class="caption">
                         <h3>Biología</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Publicar Aquí</a> 
-                        </p>
-                    </div>
+                    </div>                    
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail" style="box-shadow:2px 2px  2px gray">
-                    <img src="http://placehold.it/800x500" alt="">
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
                     <div class="caption">
                         <h3>Decanato</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Publicar Aquí</a> 
-                        </p>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
         <br>
-        <hr>
+    </div>
+    <div class="container-triangle" style="background:#134A71;border-top:62px solid #003366">    
+    </div>
+    <div class="row" style="background:#134A71;color:white">
+        <div class="container" >            
+            <br>
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 hero-feature">                    
+                        <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
+                        <div class="caption">
+                            <h3>Cafetín</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        
+                </div>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
+                    <div class="caption">
+                        <h3>Edificio de Aulas</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>                    
+                </div>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">                        
+                    <div class="caption">
+                        <h3>Biología</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+                    </div>                    
+                </div>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    
+                    <img src="http://placehold.it/800x500" style=" border-radius: 100%; width: 200px;height: 200px;">
+                    <div class="caption">
+                        <h3>Decanato</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <br>
     </div>
 </div>
 {% endblock %}

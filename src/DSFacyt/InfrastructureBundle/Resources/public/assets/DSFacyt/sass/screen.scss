@@ -4,6 +4,9 @@
 $fa-font-path:   "/fonts/font-awesome";
 
 
+/** IMPORT SASS DEL SISTEMA **/
+@import "variables_system";
+
 /** IMPORT VENDOR SASS **/
 @import "../../vendor/sass/bootstrap-sass-official/bootstrap";
 @import "../../vendor/sass/font-awesome-sass/font-awesome";
@@ -14,6 +17,40 @@ $fa-font-path:   "/fonts/font-awesome";
   position: relative;
 }
 
+#home-channels {
+  #info-channels {
+    background: $blue-dark;
+    color:white;
+  }
+  
+  .container-triangle {
+    background: $blue-ligth;
+    height: 48px;
+    border-left: 100vh solid transparent;
+    border-right: 100vh solid transparent;
+    border-top: 62px solid $blue-dark;
+  }
+
+  .container-triangle2 { 
+    background: $blue-dark;
+    height: 48px;
+    border-left: 100vh solid transparent;
+    border-right: 100vh solid transparent;
+    border-top: 62px solid $blue-ligth;
+  }  
+
+  .box-channels {
+      background:$blue-ligth;
+      color:white;
+  }
+
+  .box-channels2 {
+      background:$blue-dark;
+      color:white;
+  } 
+}
+
+  
 
 #top-navbar {
   background: #EAEAEA;
@@ -27,15 +64,6 @@ $fa-font-path:   "/fonts/font-awesome";
     margin-top: -15px;
     width: 50px !important;  
   }
-}
-
-.container-triangle {
-
-    background: #2c90b8  ;
-    height: 48px;
-    border-left: 689px solid transparent;
-    border-right: 671px solid transparent;
-    border-top: 62px solid red;
 }
 
 .div-footer {

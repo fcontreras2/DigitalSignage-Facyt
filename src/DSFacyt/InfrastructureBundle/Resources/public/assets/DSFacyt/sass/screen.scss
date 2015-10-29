@@ -11,6 +11,17 @@ $fa-font-path:   "/fonts/font-awesome";
 @import "../../vendor/sass/bootstrap-sass-official/bootstrap";
 @import "../../vendor/sass/font-awesome-sass/font-awesome";
 
+#body-user {
+  background: $blue-dark;
+  height: 100vh;  
+  margin-top: 58px;  
+}
+
+.top-navbar-panel {
+  .fa {
+    color:green;
+  }
+}
 
 #body {
   min-height:100% !important;

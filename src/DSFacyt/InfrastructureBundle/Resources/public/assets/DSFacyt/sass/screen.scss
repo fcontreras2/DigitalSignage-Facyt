@@ -6,10 +6,29 @@ $fa-font-path:   "/fonts/font-awesome";
 
 /** IMPORT SASS DEL SISTEMA **/
 @import "variables_system";
+@import "avenir_font";
 
 /** IMPORT VENDOR SASS **/
 @import "../../vendor/sass/bootstrap-sass-official/bootstrap";
 @import "../../vendor/sass/font-awesome-sass/font-awesome";
+
+body {
+  font-family:'Avenir LT Std 45 Book';font-weight:normal;
+}
+
+#body-login {
+  background: $blue-dark;
+  .panel-heading {
+    background: $green;
+    color:white;    
+  }
+  .panel-footer {
+    button {
+      background:$blue-ligth;
+      color:whit    
+    }
+  }
+}
 
 #body-user {
   background: $blue-dark;
@@ -53,18 +72,30 @@ $fa-font-path:   "/fonts/font-awesome";
   .box-channels {
       background:$blue-ligth;
       color:white;
+      img {
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+      }
   }
 
   .box-channels2 {
       background:$blue-dark;
       color:white;
+      img {
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 200px;height: 200px;
+      }
   } 
 }
 
   
 
 #top-navbar {
-  background: #EAEAEA;
+  background: white;
   border-color: #EAEAEA;
   padding: 1%;
   a {

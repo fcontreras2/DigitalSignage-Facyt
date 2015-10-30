@@ -19,8 +19,10 @@ body {
 #body-login {
   background: $blue-dark;
   .panel-heading {
+    font-family: 'Avenir LT Std 85 Heavy';
     background: $green;
-    color:white;    
+    color:white;
+    text-align: right;
   }
   .panel-footer {
     button {

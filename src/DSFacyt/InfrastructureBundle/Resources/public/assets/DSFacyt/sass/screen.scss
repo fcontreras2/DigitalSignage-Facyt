@@ -16,8 +16,22 @@ body {
   font-family:'Avenir LT Std 45 Book';font-weight:normal;
 }
 
+/* Mixin */
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(25%);
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+}
+
 #body-login {
+  
   background: $blue-dark;
+  #panel-login {
+    @include vertical-align();
+  }
+
   .panel-heading {
     font-family: 'Avenir LT Std 85 Heavy';
     background: $green;
@@ -75,10 +89,10 @@ body {
       background:$blue-ligth;
       color:white;
       img {
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
       }
   }
 
@@ -86,10 +100,10 @@ body {
       background:$blue-dark;
       color:white;
       img {
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
-        border-radius: 100%; width: 200px;height: 200px;
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
       }
   } 
 }

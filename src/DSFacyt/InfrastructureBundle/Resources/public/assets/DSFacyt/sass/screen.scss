@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+  @import url(http://fonts.googleapis.com/css?family=Titillium+Web);
 
 // PRE-IMPORT font-variant: ABLES
 $fa-font-path:   "/fonts/font-awesome";
@@ -13,7 +13,11 @@ $fa-font-path:   "/fonts/font-awesome";
 @import "../../vendor/sass/font-awesome-sass/font-awesome";
 
 body {
-  font-family:'Avenir LT Std 45 Book';font-weight:normal;
+  font-family:'Avenir LT Std 45 Book';font-weight:normal;  
+}
+
+.triangle-footer {
+    background: gray !important;    
 }
 
 /* Mixin */
@@ -52,9 +56,27 @@ body {
   margin-top: 58px;  
 }
 
+.panel-perfil {
+  .panel-body {
+    background: $green;
+    color:white;
+  }
+}
+
+.panel-items {
+  .panel-body {
+    background: white;
+    color:$blue-dark;
+  }
+}
+
 .top-navbar-panel {
   .fa {
     color:green;
+  }
+  li {
+    padding: 1%;
+    width: 83px;
   }
 }
 
@@ -118,6 +140,15 @@ body {
    color: #7C7C7C; 
    font-weight: bold;
   }
+  
+    li:hover, .active {
+    a {
+      text-decoration: none;
+    }
+    border-bottom: 4px solid $blue-dark;
+  }
+  
+
   #logo-facyt {
     margin-top: -15px;
     width: 50px !important;  
@@ -131,7 +162,13 @@ body {
     min-height: 115px;
     color:white;  
     background-color: gray;
-    padding: 2%;
+    .row {
+      padding: 2%;
+    }        
+}
+
+#home-channels:last-child {
+  background: gray;
 }
 
 .modal-backdrop.am-fade {

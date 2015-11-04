@@ -15,20 +15,26 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse sidebar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#"><span class="fa fa-home"></span> Principal</a>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <center><a href="#"><span class="fa fa-home"></span><br>Principal</a></center>
+                
+                
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-pencil"></span> Textos</a>
+                    <center><a href="#"><span class="fa fa-pencil"></span><br>Textos</a></center>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-picture-o"></span> Imágenes</a>
+                    <center><a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a></center>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-video-camera"></span> Videos</a>
+                    <center><a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a></center>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-user"></span> Perfil</a>
+                    <center><a href="#"><span class="fa fa-user"></span> <br>Perfil</a></center>
                 </li>
             </ul>
         </div>

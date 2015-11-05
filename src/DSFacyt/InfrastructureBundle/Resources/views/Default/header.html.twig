@@ -19,11 +19,20 @@
                     <a href="#">¿Cómo publicar?</a>
                 </li>
                 {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li>                    
-                        <a href="{{path('ds_facyt_infrastructure_register')}}">Registrate</a>
+                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white">Registrate</a>
+                    
                     </li>
-                    <li>
-                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}">Iniciar Sesión</a>
+                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_security_login' %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}" style="background-color:white">Iniciar Sesión</a>
                     </li>
                 {% else %}
                     <li>

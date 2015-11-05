@@ -13,19 +13,24 @@
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse sidebar" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
                     <li class="active">
                 {% else %}
                     <li>
                 {% endif %}
-                    <center><a href="#"><span class="fa fa-home"></span><br>Principal</a></center>
-                
-                
+                    <center><a href="#" ><span class="fa fa-home"></span><br>Principal</a></center>
                 </li>
-                <li>
-                    <center><a href="#"><span class="fa fa-pencil"></span><br>Textos</a></center>
+                <li  class="dropdown">
+                    <a  id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil"></span><br>Textos</a>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                  </ul>
                 </li>
                 <li>
                     <center><a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a></center>

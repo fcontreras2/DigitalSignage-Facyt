@@ -1,4 +1,4 @@
-  @import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+    @import url(http://fonts.googleapis.com/css?family=Titillium+Web);
 
 // PRE-IMPORT font-variant: ABLES
 $fa-font-path:   "/fonts/font-awesome";
@@ -52,7 +52,7 @@ body {
 
 #body-user {
   background: $blue-dark;
-  height: 100vh;  
+  min-height: 100vh;  
   margin-top: 58px;  
 }
 
@@ -94,17 +94,15 @@ body {
   .container-triangle {
     background: $blue-ligth;
     height: 48px;
-    border-left: 100vh solid transparent;
-    border-right: 100vh solid transparent;
     border-top: 62px solid $blue-dark;
+    width: 100%;
   }
 
   .container-triangle2 { 
     background: $blue-dark;
     height: 48px;
-    border-left: 100vh solid transparent;
-    border-right: 100vh solid transparent;
     border-top: 62px solid $blue-ligth;
+    width: 100%;
   }  
 
   .box-channels {
@@ -132,28 +130,121 @@ body {
 
   
 
-#top-navbar {
+#top-navbar  {
+  .navbar-toggle:hover, .navbar-toggle:focus {
+    background: $gray-light ;
+    border-color: $blue-dark;
+  }
+  .navbar-toggle {
+    border-color: $blue-dark;
+    .icon-bar {
+      background: $blue-dark;
+    }  
+  }
+  
   background: white;
   border-color: #EAEAEA;
   padding: 1%;
   a {
-   color: #7C7C7C; 
-   font-weight: bold;
+    background: white;
+    color: #7C7C7C; 
+    font-weight: bold;
+    line-height: 1.42857;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
   }
-  
-    li:hover, .active {
+  li {
     a {
+      text-align: center;
+      cursor: pointer;
       text-decoration: none;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+      background: white;
+      border-bottom: none !important;
     }
-    border-bottom: 4px solid $blue-dark;
+  }
+
+  .navbar-right {
+    .dropdown-menu {
+      a {
+        li {
+          padding-left: 20px !important;
+          text-align: left !important;
+        }
+      }
+    }
+    .active { 
+      border-bottom: 4px solid $blue-dark;
+    }
+
+    .desactive:hover {
+      border-bottom: 4px solid $gray-light;
+    }
   }
   
-
   #logo-facyt {
-    margin-top: -15px;
     width: 50px !important;  
   }
 }
+
+@media (max-width: $screen-sm-min) {
+  #top-navbar {
+
+      li {
+        width: 100% !important;         
+        text-align: left !important;
+        
+      } 
+      .desactive {
+        border-bottom: none !important;
+        a {
+          background: white !important;
+        }
+      }
+
+      .active {
+       border-bottom: none !important;
+       background: $gray-light  !important; 
+       a {
+        background: $gray-light;
+       }
+      }
+
+      a {
+        text-align: left !important; 
+      }
+
+      .active:hover, .desactive:hover  {
+        background: $gray-light;        
+        a:hover {
+          background: $gray-light !important;
+        }
+      }
+      a:hover{
+        background: $gray-light;        
+      }
+    }
+  }
+
+@media (min-width: $screen-sm-min) {
+  .dropdown-menu {
+    margin-top:17.7px !important;
+    li {
+      width: 100% !important;
+      padding: 5%;      
+      text-align: left !important;      
+      
+    }
+    
+    li:hover {
+      background-color: $gray-light !important;
+      color:white !important;
+    
+    }
+  }
+}
+
 
 .div-footer {
     position: relative;

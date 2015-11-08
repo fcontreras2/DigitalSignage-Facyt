@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-navbar">
+<nav class="navbar navbar-inverse navbar-fixed-top top-navbar-panel" role="navigation" id="top-navbar">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -9,37 +9,36 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{path('ds_facyt_infrastructure_homepage')}}">
-            <img src="{{ asset('images/logo-facyt.png')}}" id="logo-facyt">
+                <img src="{{ asset('images/logo-facyt.png')}}" id="logo-facyt">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse sidebar" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">¿Cómo publicar?</a>
+                <li class="desactive">
+                    <a href="#"><i class="fa fa-question-circle"></i> Ayuda</a>
                 </li>
                 {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' %}
                         <li class="active">
                     {% else %}
-                        <li>
+                        <li class="desactive">
                     {% endif %}
-                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white">Registrate</a>
-                    
+                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i> Registrate</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_security_login' %}
                         <li class="active">
                     {% else %}
                         <li>
                     {% endif %}
-                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}" style="background-color:white">Iniciar Sesión</a>
+                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}" style="background-color:white"><i class="fa fa-user"></i> Entrar</a>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="#">Mis Publicaciones</a>
-                    </li>
+                    <li class="desactive">
+                        <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}"><i class="fa fa-list-alt"></i> Panel</a>
+                    </li class="desactive">
                                   <li>
-                        <a href="{{ path('ds_facyt_infrastructure_security_logout') }}">Cerrar Sesión</a>
+                        <a href="{{ path('ds_facyt_infrastructure_security_logout') }}"><i class="fa fa-sign-out"></i><br>Salir </a>
                     </li>
                 {% endif %}
       

@@ -39,6 +39,27 @@ class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->persist($school);
         $manager->flush();
+
+        $school = new School();
+        $school->setName('Física');
+        $school->setDescription('Descripción Física');
+
+        $manager->persist($school);
+        $manager->flush();
+
+        $school = new School();
+        $school->setName('Matemática');
+        $school->setDescription('Descripción Matemática');
+
+        $manager->persist($school);
+        $manager->flush();
+
+        $school = new School();
+        $school->setName('Biología');
+        $school->setDescription('Descripción Biología');
+
+        $manager->persist($school);
+        $manager->flush();
     }
     
     /**

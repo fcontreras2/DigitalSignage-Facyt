@@ -78,7 +78,7 @@
                 "database_user": "SYMFONY__DATABASE_USER",
                 "database_host": "SYMFONY__DATABASE_HOST",
                 "database_password": "SYMFONY__DATABASE_PASSWORD",
-                "locale": "es"
+                "locale": "SYMFONY__LOCALE"
             }
         },
         "heroku": {

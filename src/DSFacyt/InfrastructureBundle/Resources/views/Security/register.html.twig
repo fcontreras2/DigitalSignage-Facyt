@@ -12,46 +12,46 @@
 
                     <div class="tab-pane active panel-body" id="login">
 
-                        <div class="form-group col-xs-6">
-                            {{ form_errors(form.name) }}
+                        <div class="form-group col-xs-6">                            
                             {{ form_label(form.name, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.name) }}
                         </div>
 
-                        <div class="form-group col-xs-6">
-                            {{ form_errors(form.last_name) }}
+                        <div class="form-group col-xs-6">                            
                             {{ form_label(form.last_name, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.last_name, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.last_name) }}
                         </div>
 
-                        <div class="form-group col-xs-6">
-                            {{ form_errors(form.indentity_card) }}
+                        <div class="form-group col-xs-6">                            
                             {{ form_label(form.indentity_card, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.indentity_card, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.indentity_card) }}
                         </div>
 
                         <div class="form-group col-xs-6">
-                            {{ form_errors(form.username) }}
                             {{ form_label(form.username, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.username) }}
                         </div>
 
                         <div class="form-group col-xs-6">
-                            {{ form_errors(form.email) }}
                             {{ form_label(form.email, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.email) }}
                         </div>
 
                         <div class="form-group col-xs-6">
-                            {{ form_errors(form.password) }}
                             {{ form_label(form.password, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.password) }}
                         </div>                          
 
                         <div class="form-group col-xs-6">
-                            {{ form_errors(form.phone) }}
                             {{ form_label(form.phone, null, {'label_attr': {'class': 'control-label'}}) }}
                             {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.phone) }}
                         </div>
 
                         <div class="form-group col-xs-6">

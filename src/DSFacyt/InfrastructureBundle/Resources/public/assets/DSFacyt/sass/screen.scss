@@ -72,7 +72,7 @@ body {
 
 .top-navbar-panel {
   .fa {
-    color:green;
+    color:$green;
   }
   li {
     padding: 1%;
@@ -245,6 +245,38 @@ body {
   }
 }
 
+table tr:last-child td:first-child {
+    -moz-border-radius-bottomleft:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-left-radius:10px
+}
+
+table tr:last-child td:last-child {
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    border-bottom-right-radius:10px
+}
+
+table {
+   
+  border: 1px solid $blue-dark !important;
+  thead {
+    background: $green; 
+    th {
+      border: 1px solid $gray-dark!important;
+    }
+    a { color:#ffffff; }
+  }
+  tbody {
+    tr:hover {
+      td { background: $gray-light; color:$blue-dark}
+    }
+    td {
+      background: $gray-light-two;
+      border: 1px solid $gray-dark !important;
+    }
+  }
+}
 
 .div-footer {
     position: relative;

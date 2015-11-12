@@ -1,9 +1,9 @@
 {%- block form_errors -%}
 {%- if errors|length > 0 -%}
-    <div class="alert alert-danger" role="alert" style="margin-top:1%">
+    
         {%- for error in errors -%}
-            {{ error.message }}
+            <span style="color:#DB2929">{{ error.message }}</span>
         {%- endfor -%}
-    </div>
+    
 {%- endif -%}
 {%- endblock form_errors -%}

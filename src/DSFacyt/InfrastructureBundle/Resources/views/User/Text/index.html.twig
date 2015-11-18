@@ -3,7 +3,6 @@
 {% block stylesheets %}
     {% if app.environment == "dev" %}
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/metisMenu/metisMenu.css') }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
 
     {% else %}
@@ -49,7 +48,7 @@
             <br>
             <div class="col-xs-12" >
                 <div id="empty-table"></div>
-                <table class="table table-bordered table-hover " >
+                <table class="table table-bordered table-hover table-content" >
                     <thead>
                     <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
                     <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>

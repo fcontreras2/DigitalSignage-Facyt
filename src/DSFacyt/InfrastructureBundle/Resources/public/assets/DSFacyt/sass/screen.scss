@@ -29,13 +29,9 @@ body {
   transform: translateY(25%);
 }
 
-#body-login {
+.panel {
   
-  background: $blue-dark;
-  #panel-login {
-    @include vertical-align();
-  }
-
+  
   .panel-heading {
     font-family: 'Avenir LT Std 85 Heavy';
     background: $green;
@@ -83,6 +79,10 @@ body {
 #body {
   min-height:100% !important;
   position: relative;
+}
+
+#register_text_checkbox {
+  label { margin-right: 3% !important;}
 }
 
 #home-channels {
@@ -245,19 +245,7 @@ body {
   }
 }
 
-table tr:last-child td:first-child {
-    -moz-border-radius-bottomleft:10px;
-    -webkit-border-bottom-left-radius:10px;
-    border-bottom-left-radius:10px
-}
-
-table tr:last-child td:last-child {
-    -moz-border-radius-bottomright:10px;
-    -webkit-border-bottom-right-radius:10px;
-    border-bottom-right-radius:10px
-}
-
-table {
+.table-content{
    
   border: 1px solid $blue-dark !important;
   thead {
@@ -274,8 +262,36 @@ table {
     td {
       background: $gray-light-two;
       border: 1px solid $gray-dark !important;
-    }
+    }    
   }
+}
+
+.table-content tr td:first-child, .table-content thead tr th:first-child {
+  border-left: 1px solid $blue-dark !important;
+}
+ 
+ .table-content tr td:last-child, .table-content thead tr th:last-child {
+  border-right: 1px solid $blue-dark !important;
+}   
+          
+.table-content tr:last-child td {
+  border-bottom: 1px solid $blue-dark !important;
+}
+
+.table-content tr:last-child td:first-child {
+    -moz-border-radius-bottomleft:5px;
+    -webkit-border-bottom-left-radius:5px;
+    border-bottom-left-radius:5px;
+    border-left: transparent !important;
+
+
+}
+
+.table-content tr:last-child td:last-child {
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-bottom-right-radius:5px;
+    border-bottom-right-radius:5px;
+    border-right: transparent !important;
 }
 
 .div-footer {

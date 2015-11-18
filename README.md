@@ -4,8 +4,9 @@ Digital Signage - Facyt
 El siguiente proyecto se desarrollada un sistema de Señalización digital ([Digital Sigange][1]) en una institución universitaria, utilizando herramientas de desarrollo de aplicaciones Web. Se utiliza como framework web base [Symfony2][2].
 
 El sistema permite realizar publicaciones en distintos canales (pantallas). Las distintas publicaciones estarán comprendidas entre textos, images, videos, entre otros.
-========================
+
 DEMO
+===
 
 Para poder ver el demo de este proyecto ingrese en la siguiente página: 
 [digital-signage-facyt.herokuapp.com][0]

@@ -5,6 +5,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Doctrine\ORM\EntityRepository;
+
 
 class RegisterType extends AbstractType
 {
@@ -21,6 +23,10 @@ class RegisterType extends AbstractType
             ->add('school', 'entity', array(
                 'label' => 'Escuela',
                 'class' => 'DSFacytDomain:School',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
                 'property' => 'name'));
     }
 

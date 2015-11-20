@@ -78,8 +78,8 @@ module.exports = function(grunt) {
                   //Js Bases
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js": [
                       // Archivos bases
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/jquery.min.js",
-                      "src/Navicu/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.min.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/jquery.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js"
 

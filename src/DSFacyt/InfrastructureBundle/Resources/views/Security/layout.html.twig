@@ -42,19 +42,10 @@
 {% endblock footer %}
 
 {% block javascripts%}
-    {% if app.environment == "dev" %}
+    
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
 
-    {% else  %}
-        {% javascripts
-            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
-
-        %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-
-        {% endjavascripts %}
-    {% endif %}
     <script>
        $(function () {
         $('.tabs a:last').tab('show')

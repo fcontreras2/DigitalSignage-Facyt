@@ -206,7 +206,8 @@ body {
   }
 
   @media (min-width: $screen-sm-min) {
-    .navbar-right { min-width: 450px !important; }
+    .navbar-right { min-width: 70% !important; }
+    li { float:right;}
   }
 
   .navbar-right {
@@ -223,6 +224,9 @@ body {
       border-bottom: 4px solid $blue-dark;
     }
 
+    .desactive {
+      border-bottom: 4px solid white;
+    }
     .desactive:hover {
       border-bottom: 4px solid $gray-light;
     }

@@ -14,38 +14,84 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
-                    <li class="active">
-                {% else %}
-                    <li class="desactive">
-                {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa-home"></span><br>Principal</a>
-                </li>
+            <ul class="nav navbar-nav navbar-right hidden-xs">
 
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
-                    <li  class="dropdown active">
-                {% else %}
-                    <li  class="dropdown desactive">
-                {% endif %}
-                    <a  id="dropdown-text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil" ></span><br>Textos</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-text">
-                      <a href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <li><i class="fa fa-pencil"></i> Mis textos</li></a>
-                      <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
-                  </ul>
-                </li>
-                <li class="desactive">
-                    <a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
-                </li>
-                <li class="desactive">
-                 <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
+                <li class="desactive ">
+                    <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
                         <a href="{{ path('ds_facyt_infrastructure_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
                     </ul>
                 </li>
+                <li class="">
+                    <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
+                </li>
+                <li class="desactive ">
+                    <a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a>
+                </li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
+                <li  class="dropdown active ">
+                {% else %}
+                <li  class="dropdown desactive ">
+                    {% endif %}
+                    <a  id="dropdown-text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil" ></span><br>Textos</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-text">
+                        <a href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <li><i class="fa fa-pencil"></i> Mis textos</li></a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
+                    </ul>
+                </li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
+                    <li class="active ">
+                {% else %}
+                    <li class="desactive ">
+                {% endif %}
+                    <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa-home"></span><br>Principal</a>
+                </li>
+
+
+
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-xs">
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
+                <li class="active ">
+                {% else %}
+                <li class="desactive ">
+                {% endif %}
+                    <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa-home"></span><br>Principal</a>
+                </li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
+                <li  class="dropdown active ">
+                {% else %}
+                <li  class="dropdown desactive ">
+                    {% endif %}
+                    <a  id="dropdown-text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil" ></span><br>Textos</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-text">
+                        <a href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <li><i class="fa fa-pencil"></i> Mis textos</li></a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
+                    </ul>
+                </li>
+                <li class="desactive ">
+                    <a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a>
+                </li>
+                <li class="">
+                    <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
+                </li>
+                <li class="desactive ">
+                    <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-user">
+                        <a href="{{ path('ds_facyt_infrastructure_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

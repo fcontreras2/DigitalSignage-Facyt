@@ -2,7 +2,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
     function ($scope, $filter,textService, $modal, $alert) {
 
         $scope.data = data;
-
+        $scope.btnAction = 'fa fa-trash';
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
 
@@ -13,17 +13,19 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 placement: 'top',
                 type: 'info',
                 show: false,
-                container:'#empty-table'
+                container:'#box-alert'
             });
 
-        checkEmptyData(alertEmptyData);        
+        if (checkEmptyData(alertEmptyData))
+            alertEmptyData.$promise.then(function() {alertEmptyData.show();});
 
 
         function checkEmptyData(alertEmptyData) {
             if (!$scope.data.length ) {
-                $scope.data = [];
-                alertEmptyData.$promise.then(function() {alertEmptyData.show();});
+                $scope.data = [];            
+                return true;
             }
+            return false;
         }
 
         var myOtherModal = $modal({scope: $scope, template: 'modal-deleteText.tpl', show: false});
@@ -34,9 +36,24 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         }
 
 
+        var alertDeleteSuccess = $alert(
+            {
+                title: "Publicación Eliminada",
+                content: 'Se ha eliminado correctamente el texto',
+                placement: 'top',
+                type: 'success',
+                show: false,
+                container:'#box-alert'
+            });
+
+
         $scope.deleteText = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
             var data = angular.toJson({"text_id": $scope.data[indexData].text_id}); 
+            $scope.btnAction = 'fa fa-spinner fa-pulse';
+
+
+            
             $.ajax({
                 method: 'POST',
                 data: data,                
@@ -44,9 +61,13 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 success: function(data) {
                     $scope.data.splice(indexData, 1);                    
                     myOtherModal.$promise.then(myOtherModal.hide);
-                    checkEmptyData();
+                    if (checkEmptyData())
+                        alertEmptyData.$promise.then(function() {alertEmptyData.show();});
+                    else
+                        alertDeleteSuccess.$promise.then(function() {alertDeleteSuccess.show();});
                 }
             });
+            $scope.btnAction = 'fa fa-trash';
         }
 
     }]);

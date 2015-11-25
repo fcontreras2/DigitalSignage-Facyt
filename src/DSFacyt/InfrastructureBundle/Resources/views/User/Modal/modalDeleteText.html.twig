@@ -5,8 +5,9 @@
                 <div class="modal-content">
                     <div class="modal-header" >
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+                            <div class="col-xs-12">
+
+                                <button type="button" class="close" aria-label="Close" ng-click="$hide();btnAction='fa fa-trash'"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                                 <h4 class="modal-title" >
                                     <span class="fa fa-pencil"></span>
                                     Texto - {[{ data[indexPreview].title}]}
@@ -16,47 +17,47 @@
                     </div>
                     <div class="modal-body" style="font-size:16px">
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <label class="control-label">Título</label>
+                            <div class="col-xs-12">
+                                Título:
                                 <span>{[{data[indexPreview].title}]}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <label class="control-label">Hora a publicar</label>
+                            <div class="col-xs-12">
+                                Hora a publicar: 
                                 <span>{[{data[indexPreview].publish_time}]}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-5 col-xs-offset-1">
-                                <label class="control-label">Fecha de Publlicación</label>
+                            <div class="col-xs-12">
+                                Fecha de Publlicación:
                                 <span>{[{data[indexPreview].start_date}]}</span>
 
                             </div>
-                            <div class="col-xs-5 ">
-                                <label class="control-label">Fecha Final</label>
+                            <div class="col-xs-12">
+                                Fecha Final:
                                 <span>{[{data[indexPreview].end_date}]}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <b>Canales:</b>
+                            <div class="col-xs-12">
+                                Canales:
                                 <span ng-repeat="(key, value) in data[indexPreview].channels">
-                                    <label for="registerText_Channels_1">{[{ value.channel_name }]}</label>
+                                    {[{ value.channel_name }]}
                                 </span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <label class="control-label">Información:</label>
-                                <span> {[{data[indexPreview].info}]}</span>
+                        <div class="row" style="padding-top:15px    ">
+                            <div class="col-xs-12">
+                                <span style="font-weight:bold">Información </span>
+                                <p class="box-information"> {[{data[indexPreview].info}]}</p>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <button class="btn btn-primary" ng-click="deleteText(indexPreview)"><span class="fa fa-trash"></span> Eliminar</button>
+                            <div class="col-xs-11 col-xs-offset-1">
+                                <button class="btn btn-primary delete" ng-click="deleteText(indexPreview)"><span ng-class="btnAction"></span> Eliminar</button>
                                 <button type="button" class="btn btn-default" ng-click="$hide()">Cerrar</button>
                             </div>
                         </div>

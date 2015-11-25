@@ -28,6 +28,44 @@ body {
   -ms-transform: translateY(25%);
   transform: translateY(25%);
 }
+
+.modal {
+  font-family: 'AVENIR LT STD 55 ROMAN';
+  .modal-dialog {
+    margin-top: 15vh;
+  }
+  .modal-header {
+    padding-left: 6%;
+    padding-right: 6%;
+    background: $blue-dark;
+    color:white; 
+    .fa-close { color:white}
+  }
+
+  .modal-body {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+    padding-top: 2% !important;
+  }
+
+  .box-information {
+      border-radius: 5px !important;
+      background: $gray-light-two !important;
+      color: $gray-dark;
+      padding: 3%;
+      font-family: 'AVENIR LT STD 45 BOOK';
+    }
+
+    .modal-footer {
+      padding-left: 6%;
+      padding-right: 6%;
+      .delete {
+        background-color: $blue-dark;
+        border-color: $blue-ligth;
+      }
+    }
+}
+
 #body-login {
   background: $blue-dark;
 }
@@ -74,7 +112,7 @@ body {
   }
   li {
     padding: 1%;
-    width: 83px;
+    min-width: 83px !important; 
   }
 }
 
@@ -167,7 +205,12 @@ body {
     }
   }
 
+  @media (min-width: $screen-sm-min) {
+    .navbar-right { min-width: 450px !important; }
+  }
+
   .navbar-right {
+
     .dropdown-menu {
       a {
         li {

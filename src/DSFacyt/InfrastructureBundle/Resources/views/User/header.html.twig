@@ -22,7 +22,8 @@
                 {% endif %}
                     <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa-home"></span><br>Principal</a>
                 </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' %}
+
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
                     <li  class="dropdown active">
                 {% else %}
                     <li  class="dropdown desactive">
@@ -33,7 +34,7 @@
                       <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
                   </ul>
                 </li>
-                <li>
+                <li class="desactive">
                     <a href="#"><span class="fa fa-picture-o"></span> <br>Imágenes</a>
                 </li>
                 <li>

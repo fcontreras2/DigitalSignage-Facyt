@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="desactive">
-                    <a href="#"><i class="fa fa-question-circle"></i> Ayuda</a>
+                    <a href="#"><i class="fa fa-question-circle"></i><br> Ayuda</a>
                 </li>
                 {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' %}
@@ -24,18 +24,18 @@
                     {% else %}
                         <li class="desactive">
                     {% endif %}
-                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i> Registrate</a>
+                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrate</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_security_login' %}
                         <li class="active">
                     {% else %}
                         <li>
                     {% endif %}
-                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}" style="background-color:white"><i class="fa fa-user"></i> Entrar</a>
+                        <a href="{{ path('ds_facyt_infrastructure_security_login') }}" style="background-color:white"><i class="fa fa-user"></i><br> Entrar</a>
                     </li>
                 {% else %}
                     <li class="desactive">
-                        <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}"><i class="fa fa-list-alt"></i> Panel</a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}"><i class="fa fa-list-alt"></i><br> Panel</a>
                     </li class="desactive">
                                   <li>
                         <a href="{{ path('ds_facyt_infrastructure_security_logout') }}"><i class="fa fa-sign-out"></i><br>Salir </a>

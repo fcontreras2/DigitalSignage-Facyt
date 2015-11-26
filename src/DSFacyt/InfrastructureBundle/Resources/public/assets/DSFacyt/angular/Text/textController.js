@@ -12,12 +12,14 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 content: 'No tiene ninguna publicación de tipo texto',
                 placement: 'top',
                 type: 'info',
-                show: false,
+                show: true,
                 container:'#box-alert'
             });
 
-        if (checkEmptyData(alertEmptyData))
+        if (checkEmptyData(alertEmptyData)) {
             alertEmptyData.$promise.then(function() {alertEmptyData.show();});
+            
+        }
 
 
         function checkEmptyData(alertEmptyData) {
@@ -43,16 +45,13 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 placement: 'top',
                 type: 'success',
                 show: false,
-                container:'#box-alert'
+                container:'#box-alert'                
             });
 
 
         $scope.deleteText = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
             var data = angular.toJson({"text_id": $scope.data[indexData].text_id}); 
-            $scope.btnAction = 'fa fa-spinner fa-pulse';
-
-
             
             $.ajax({
                 method: 'POST',

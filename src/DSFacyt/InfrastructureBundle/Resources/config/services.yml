@@ -5,6 +5,10 @@ services:
         class: DSFacyt\InfrastructureBundle\Resources\Services\RepositoryFactory
         arguments: ["@doctrine.orm.entity_manager"]
 
+    Pagination:
+        class: DSFacyt\InfrastructureBundle\Resources\Services\Pagination
+        arguments: ["@service_container"]
+
 #Servicios de la Aplicación
     CommandBus:
         class: DSFacyt\Core\Application\Services\CommandBus

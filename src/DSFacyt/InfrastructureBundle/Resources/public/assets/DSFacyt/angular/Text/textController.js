@@ -1,5 +1,5 @@
-text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert',
-    function ($scope, $filter,textService, $modal, $alert) {
+text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert', '$timeout',
+    function ($scope, $filter,textService, $modal, $alert, $timeout) {
 
         $scope.data = data;
         $scope.btnAction = 'fa fa-trash';
@@ -12,7 +12,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 content: 'No tiene ninguna publicación de tipo texto',
                 placement: 'top',
                 type: 'info',
-                show: true,
+                show: false,
                 container:'#box-alert'
             });
 
@@ -48,7 +48,10 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 container:'#box-alert'                
             });
 
-
+        $timeout(function() {
+            $scope.deleteText(indexData);
+        },10000);
+                    
         $scope.deleteText = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
             var data = angular.toJson({"text_id": $scope.data[indexData].text_id}); 
@@ -58,15 +61,14 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 data: data,                
                 url: url,
                 success: function(data) {
-                    $scope.data.splice(indexData, 1);                    
+                    $scope.data.splice(indexData, 1);
                     myOtherModal.$promise.then(myOtherModal.hide);
                     if (checkEmptyData())
                         alertEmptyData.$promise.then(function() {alertEmptyData.show();});
                     else
                         alertDeleteSuccess.$promise.then(function() {alertDeleteSuccess.show();});
-                }
-            });
-            $scope.btnAction = 'fa fa-trash';
+                }                
+            });            
         }
 
     }]);

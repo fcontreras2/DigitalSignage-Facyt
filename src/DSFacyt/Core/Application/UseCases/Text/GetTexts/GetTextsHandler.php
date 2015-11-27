@@ -6,7 +6,7 @@ use DSFacyt\Core\Application\Contract\Handler;
 use DSFacyt\Core\Application\Contract\Command;
 use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
-
+use DSFacyt\InfrastructureBundle\Resources\Services\Pagination;
 /**
  * Clase para ejecutar el caso de uso GetTexts
  * @author Freddy Contreras <freddycontreras3@gmail.com>
@@ -40,25 +40,29 @@ class GetTextsHandler implements Handler
         $texts = $rpText->findAllByUser($command->getUser());
 
         $response = array();
+        if ($texts) {
 
-        foreach ($texts as $currentTexts) {
-            $auxText = array();
-            $auxText['text_id'] = $currentTexts->getId();
-            $auxText['start_date'] = $currentTexts->getStartDate()->format('d/m/Y');
-            $auxText['end_date'] = $currentTexts->getEndDate()->format('d/m/Y');
-            $auxText['publish_time'] = $currentTexts->getPublishTime()->format('h:i:s A');
-            $auxText['title'] = $currentTexts->getTitle();
-            $auxText['info'] = $currentTexts->getInfo();
-            $auxText['status'] = $currentTexts->getStatus();
-            $auxText['channels'] = array();
+            $texts = Pagination::generate($texts,1);
 
-            foreach ($currentTexts->getChannels() as $currentChannel) {
-                $auxChannel = array();
-                $auxChannel['channel_id'] = $currentChannel->getId();
-                $auxChannel['channel_name'] = $currentChannel->getName();
-                array_push($auxText['channels'], $auxChannel);
+            foreach ($texts as $currentTexts) {
+                $auxText = array();
+                $auxText['text_id'] = $currentTexts->getId();
+                $auxText['start_date'] = $currentTexts->getStartDate()->format('d/m/Y');
+                $auxText['end_date'] = $currentTexts->getEndDate()->format('d/m/Y');
+                $auxText['publish_time'] = $currentTexts->getPublishTime()->format('h:i:s A');
+                $auxText['title'] = $currentTexts->getTitle();
+                $auxText['info'] = $currentTexts->getInfo();
+                $auxText['status'] = $currentTexts->getStatus();
+                $auxText['channels'] = array();
+
+                foreach ($currentTexts->getChannels() as $currentChannel) {
+                    $auxChannel = array();
+                    $auxChannel['channel_id'] = $currentChannel->getId();
+                    $auxChannel['channel_name'] = $currentChannel->getName();
+                    array_push($auxText['channels'], $auxChannel);
+                }
+                array_push($response, $auxText);
             }
-            array_push($response, $auxText);
         }
 
         return new ResponseCommandBus(201, 'Ok', $response);

@@ -21,12 +21,18 @@ class GetTextsCommand implements Command
     protected $user;
 
     /**
+    * @var Representa la página a cargar al momento de hacer la paginación
+    */
+    protected $page;
+
+    /**
      *   Constructor de la clase
      *   @param $user User
      */
-    public function __construct(User $user = null )
+    public function __construct(User $user = null, $page = null )
     {
         $this->user = $user;
+        $this->page = $page;
     }
 
     /**
@@ -39,7 +45,8 @@ class GetTextsCommand implements Command
     public function getRequest()
     {
         return array(
-            'user' => $this->user
+            'user' => $this->user,
+            'page' => $this->page
         );
     }
 
@@ -57,5 +64,21 @@ class GetTextsCommand implements Command
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * @param integer $page
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
     }
 }

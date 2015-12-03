@@ -17,7 +17,15 @@ use DSFacyt\Core\Application\Contract\ResponseCommandBus;
  */
 class CommandBus
 {
+    /**
+    * @var servicio de repositorios
+    */
     private $rf;
+
+    /**
+    * @var servicio de paginación
+    */
+    private $pagination;
 
      /**
      * Create a new CommandBus
@@ -25,9 +33,10 @@ class CommandBus
      * @param Container $container
      * @return void
      */
-    public function __construct($rf)
+    public function __construct($rf, $pagination)
     { 
-        $this->rf=$rf;
+        $this->rf = $rf;
+        $this->pagination = $pagination;
     }
  
     /**
@@ -40,7 +49,9 @@ class CommandBus
     {
         $handler = $this->handler($command);
         if($handler!=null)
-        {
+        {   
+            if (property_exists($handler, 'pagination'))
+                $handler->setPagination($this->pagination);
             return $handler->handle($command,$this->rf);
         }else{
             return new ResponseCommandBus(404,'Handler not Found');

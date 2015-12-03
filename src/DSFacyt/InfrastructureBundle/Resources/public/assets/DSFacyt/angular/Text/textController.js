@@ -1,11 +1,12 @@
 text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert', '$timeout',
     function ($scope, $filter,textService, $modal, $alert, $timeout) {
 
-        $scope.data = data;
+        $scope.data = data.texts;
+        $scope.pagination = data.pagination;
         $scope.btnAction = 'fa fa-trash';
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
-
+        
         var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',
@@ -20,7 +21,6 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             alertEmptyData.$promise.then(function() {alertEmptyData.show();});
             
         }
-
 
         function checkEmptyData(alertEmptyData) {
             if (!$scope.data.length ) {
@@ -37,7 +37,6 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             myOtherModal.$promise.then(myOtherModal.show);
         }
 
-
         var alertDeleteSuccess = $alert(
             {
                 title: "Publicación Eliminada",
@@ -48,10 +47,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 container:'#box-alert'                
             });
 
-        $timeout(function() {
-            $scope.deleteText(indexData);
-        },10000);
-                    
+        
         $scope.deleteText = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
             var data = angular.toJson({"text_id": $scope.data[indexData].text_id}); 
@@ -69,6 +65,10 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                         alertDeleteSuccess.$promise.then(function() {alertDeleteSuccess.show();});
                 }                
             });            
+        }
+
+        $scope.generatePagination = function(pagination) {
+            $scope.urlPagination = Routing.generate('ds_facyt_infrastructure_user_text_homepage',{ page : pagination});
         }
 
     }]);

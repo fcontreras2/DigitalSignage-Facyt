@@ -1,6 +1,8 @@
 ds_facyt_infrastructure_user_text_homepage:
-  path:   /panel/text
-  defaults: { _controller: DSFacytInfrastructureBundle:User\Text:index }
+  path:   /panel/text/{page}
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Text:index, page : 1 }
+  options:
+      expose: true
 
 ds_facyt_infrastructure_user_text_new:
   path:   /panel/text/new

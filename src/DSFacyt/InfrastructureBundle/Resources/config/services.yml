@@ -12,4 +12,4 @@ services:
 #Servicios de la Aplicación
     CommandBus:
         class: DSFacyt\Core\Application\Services\CommandBus
-        arguments: ["@RepositoryFactory"]
+        arguments: ["@RepositoryFactory","@Pagination"]

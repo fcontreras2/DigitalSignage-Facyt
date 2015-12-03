@@ -10,5 +10,12 @@ namespace DSFacyt\Core\Application\Contract;
  */
 interface PaginationInterface
 {
-    
+	/**
+    * La siguiente función aplica la paginación de un conjunto de datos
+    * 
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 02/12/2015
+    * @return array 
+    */
+    public function generate(&$data, $numberPage);    
 }

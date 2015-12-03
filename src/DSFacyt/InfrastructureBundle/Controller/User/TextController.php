@@ -32,13 +32,14 @@ class TextController extends Controller
      * @version 31/08/2015
      * @return Response
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $command = new GetTextsCommand();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $command->setUser($user);
+        $command->setPage($page);
 
         $response = $this->get('CommandBus')->execute($command);
 

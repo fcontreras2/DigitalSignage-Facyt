@@ -34,3 +34,14 @@ var text = angular.module("TextModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
             startWeek: 1
         })});
 
+    text.filter('range', function() {
+      return function(input, init, total) {
+        total = parseInt(total);
+
+        for (var i=init; i<=total; i++) {
+          input.push(i);
+      }
+      return input;
+  };
+});
+

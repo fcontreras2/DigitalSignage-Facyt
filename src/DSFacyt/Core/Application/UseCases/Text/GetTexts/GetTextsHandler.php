@@ -27,6 +27,27 @@ class GetTextsHandler implements Handler
     private $rf;
 
     /**
+    * @var La variable contiene el servicio de paginación
+    */
+    private $pagination;
+
+    /**
+    * @var Método set del servicio de paginación
+    */
+    public function setPagination($pagination)
+    {
+        $this->pagination = $pagination;
+    }
+
+    /**
+    * @var Método get del servicio de paginación
+    */
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
+
+    /**
      * Ejecuta el caso de uso 'Obtener todas los textos publicados por un usuario'
      *
      * @param Command $command Objeto Command contenedor de la solicitud del usuario
@@ -37,12 +58,16 @@ class GetTextsHandler implements Handler
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
         $rpText = $rf->get('Text');
-        $texts = $rpText->findAllByUser($command->getUser());
 
+        //todos los textos encontrados del usuario
+        $texts = $rpText->findAllByUser($command->getUser());
+        //array de respuesta
         $response = array();
+
         if ($texts) {
 
-            $texts = Pagination::generate($texts,1);
+            $responseText = array();
+            $response['pagination'] = $this->pagination->generate($texts,$command->getPage());
 
             foreach ($texts as $currentTexts) {
                 $auxText = array();
@@ -61,8 +86,9 @@ class GetTextsHandler implements Handler
                     $auxChannel['channel_name'] = $currentChannel->getName();
                     array_push($auxText['channels'], $auxChannel);
                 }
-                array_push($response, $auxText);
+                array_push($responseText, $auxText);
             }
+             $response['texts'] = $responseText;
         }
 
         return new ResponseCommandBus(201, 'Ok', $response);

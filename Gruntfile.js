@@ -98,6 +98,11 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textModule.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textController.js"
+                  ],                                    //Js: funcionalidades de las publicaciones tipo Texto
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-image.js": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Image/imageModule.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Image/imageService.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Image/imageController.js"
                   ],
                   //Js: de FileInput
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js" : [

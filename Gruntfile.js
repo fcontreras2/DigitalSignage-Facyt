@@ -54,14 +54,13 @@ module.exports = function(grunt) {
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/angular.css": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/angular-motion.css",
                   ],
-                  // Css de template del panel del usuario
-                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template-panel.css": [
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/metisMenu/*.css",
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/startbootstrap-sb-admin-2/*.css"
-                  ],
                   // Css del datePicker
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css"
+                  ],
+                  // Css del Fileinput                 
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/fileinput.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/fileinput.css"
                   ]
               }
           }
@@ -90,11 +89,6 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-strap.tpl.js"
                   ],
                   //Js del template del Panel
-                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js": [
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/metisMenu.js",
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/sb-admin-2.js"
-                  ],
-                  //Js del template del Panel
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.es.min.js"
@@ -104,6 +98,10 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textModule.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Text/textController.js"
+                  ],
+                  //Js: de FileInput
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js" : [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/fileinput.js"
                   ]
               }
           }

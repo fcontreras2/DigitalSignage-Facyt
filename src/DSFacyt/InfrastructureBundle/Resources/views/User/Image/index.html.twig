@@ -2,18 +2,11 @@
 
 {% block stylesheets %}
     {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/metisMenu/metisMenu.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>        
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/startbootstrap-sb-admin-2/timeline.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/startbootstrap-sb-admin-2/sb-admin-2.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/ng-table.css') }}"/>
-
-
     {% else %}
         {% stylesheets
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template-panel.css'
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
 
         %}
@@ -26,13 +19,20 @@
 
 {% block body %}
 {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+
+<div id="body-user">
+    <div class="container" >
 	
 	<div ng-app="ImageModule" ng-controller="ImageController" id="page-wrapper" style="min-height: 311px;">
-		<div class="row">
-	        <div class="col-xs-12 ">
-	            <h1 class="page-header ">  <span class="fa fa-photo"></span> Mis Imagenes</h1>
-	        </div>
-	    </div>
+        <div class="row">
+            <div class="col-xs-12" style="color:white">
+                <br>
+                <h1>  <span class="fa fa-picture-o"></span> Imágenes</h1>
+                <h4> A continuación podrás ver tus publicaciones de tipo imágines</h4>
+                <br>
+                <br>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="btn-group">
@@ -47,7 +47,7 @@
             <br>
             <div class="col-xs-12" >
                 <div id="empty-table"></div>
-                <table class="table table-bordered table-hover " >
+                <table class="table table-bordered table-hover table-content" >
                     <thead>
                         <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
                         <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
@@ -72,13 +72,15 @@
                             <td>{[{ currentText.title}]}</td>
                             <td>{[{ currentText.status}]}</td>
                             <td style="text-align: center">
-                                <a href="{{ app.request.getBaseURL()  }}/panel/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
+                                <a href="{{ app.request.getBaseURL()  }}/panel/image/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
                                 </td>
                                 <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+            </div>
             </div>
 	{{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteText.html.twig") }}
 {% endblock %}
@@ -107,19 +109,15 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/imageService.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/imageController.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-table.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>        
     {% else %}
 
         {% javascripts
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
         "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js"
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js"
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js"        
         "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

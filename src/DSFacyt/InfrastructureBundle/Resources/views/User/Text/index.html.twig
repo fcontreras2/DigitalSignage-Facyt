@@ -1,122 +1,121 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-    {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
+{% if app.environment == "dev" %}
+<link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+<link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
 
-    {% else %}
-        {% stylesheets
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
+{% else %}
+{% stylesheets
+    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
+    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
 
 
-        %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
-        {% endstylesheets %}
+    {% endstylesheets %}
     {% endif %}
 
-{% endblock %}
+    {% endblock %}
 
-{% block body %}
-{% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
-<div id="body-user">
-    <div class="container" >
-    <div ng-app="TextModule" ng-controller="TextController" id="page-wrapper" style="min-height: 311px;">
-        <div class="row">
-            <div class="col-xs-12" style="color:white">
-            <br>
-                <h1>  <span class="fa fa-pencil"></span> Textos</h1>
-                <h4> A continuación podrás ver tus publicaciones de tipo texto</h4>
-                <br>
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="btn-group">
-                    <a href="{{ path('ds_facyt_infrastructure_user_text_new') }}" class="btn btn-default btn-sm " type="button" >
-                        <span class="fa fa-plus"></span> &nbsp; Texto nuevo
-                    </a>
+    {% block body %}
+    {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+    <div id="body-user">
+        <div class="container" >
+            <div ng-app="TextModule" ng-controller="TextController" id="page-wrapper" style="min-height: 311px;">
+                <div class="row">
+                    <div class="col-xs-12" style="color:white">
+                        <br>
+                        <h1>  <span class="fa fa-pencil"></span> Textos</h1>
+                        <h4> A continuación podrás ver tus publicaciones de tipo texto</h4>
+                        <br>
+                        <br>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="btn-group">
+                            <a href="{{ path('ds_facyt_infrastructure_user_text_new') }}" class="btn btn-default btn-sm " type="button" >
+                                <span class="fa fa-plus"></span> &nbsp; Texto nuevo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 ">           
+                        <ul class="pagination pull-right" style="margin: 0 0">                    
+                            <li ng-show="pagination.current != pagination.firstPageInRange">
+
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                            </li>
+                            <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)">{[{ pagination.firstPageInRange + $index }]}</a>
+                            </li>
+                            <li ng-show="pagination.current != pagination.lastPageInRange">
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+                            </li>
+                        </ul>
+                    </div>            
+                </div>
+
+                <div class="row">
+                    <br>
+                    <div class="col-xs-12" >
+                        <div id="box-alert"></div>
+                        <table class="table table-bordered table-hover table-content" >
+                            <thead>
+                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
+                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
+                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
+                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
+                                <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Titulo</a></th>
+                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
+                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Editar</a></th>
+                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Eliminar</a></th>
+                            </thead>
+                            <tbody>
+
+                                <tr ng-show="data.length == 0">
+                                    <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
+                                </tr>
+
+                                <tr ng-repeat="currentText in data" ng-if="data.length > 0">
+                                    <td>{[{ $index  + 1 + (pagination.current * 10)  }]}</td>
+                                    <td>{[{ currentText.publish_time}]}</td>
+                                    <td>{[{ currentText.start_date}]}</td>
+                                    <td>{[{ currentText.end_date}]}</td>
+                                    <td>{[{ currentText.title}]}</td>
+                                    <td>{[{ currentText.status}]}</td>
+                                    <td style="text-align: center">
+                                        <a href="{{ app.request.getBaseURL()  }}/panel/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
+                                        </td>
+                                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteText.html.twig") }}
+                </div>
+
             </div>
-            <div class="col-xs-8 ">           
-                <ul class="pagination pull-right" style="margin: 0 0">                    
-                    <li>
-                    
-                        <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
-                    </li>
-                    <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
-                        <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)">{[{ pagination.firstPageInRange + $index }]}</a>
-                    </li>
-                    <li>
-                            <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
-                    </li>
-                    
-                </ul>
-            </div>            
         </div>
 
-        <div class="row">
-            <br>
-            <div class="col-xs-12" >
-                <div id="box-alert"></div>
-                <table class="table table-bordered table-hover table-content" >
-                    <thead>
-                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
-                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
-                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
-                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
-                    <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Titulo</a></th>
-                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
-                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Editar</a></th>
-                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Eliminar</a></th>
-                    </thead>
-                    <tbody>
 
-                        <tr ng-show="data.length == 0">
-                            <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
-                        </tr>
+        {% endblock %}
 
-                        <tr ng-repeat="currentText in data" ng-if="data.length > 0">
-                            <td>{[{ $index  + 1 + (pagination.current * 10)  }]}</td>
-                            <td>{[{ currentText.publish_time}]}</td>
-                            <td>{[{ currentText.start_date}]}</td>
-                            <td>{[{ currentText.end_date}]}</td>
-                            <td>{[{ currentText.title}]}</td>
-                            <td>{[{ currentText.status}]}</td>
-                            <td style="text-align: center">
-                                <a href="{{ app.request.getBaseURL()  }}/panel/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
-                            </td>
-                            <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        {% block footer %}
+        {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+        {% endblock footer %}
 
-        {{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteText.html.twig") }}
-    </div>
-
-    </div>
-    </div>
-
-
-{% endblock %}
-
-{% block footer %}
-    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
-{% endblock footer %}
-
-{% block javascripts%}
-    <!-- Tomando variables enviadas desde el servidor -->
-    <script type="text/javascript">
-        var data = "{{ data }}";
-        var div = document.createElement('div');
-        div.innerHTML = data;
-        data = div.firstChild.nodeValue;
+        {% block javascripts%}
+        <!-- Tomando variables enviadas desde el servidor -->
+        <script type="text/javascript">
+            var data = "{{ data }}";
+            var div = document.createElement('div');
+            div.innerHTML = data;
+            data = div.firstChild.nodeValue;
         //console.log( div.firstChild.nodeValue);
         data = JSON.parse(data);
 
@@ -127,30 +126,30 @@
 
     {% if app.environment == "dev" %}
 
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textModule.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textService.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textController.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textModule.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textService.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textController.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/metisMenu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/sb-admin-2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
     {% else %}
 
-        {% javascripts
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js"
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
-        %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts
+    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
+    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js"
+    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
 
-        {% endjavascripts %}
+    {% endjavascripts %}
     {% endif %}
 
     <script type="text/javascript">
@@ -162,4 +161,4 @@
         });
         $('.dropdown-toggle').dropdown()
     </script>
-{% endblock %}
+    {% endblock %}

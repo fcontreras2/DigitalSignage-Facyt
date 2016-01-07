@@ -1,0 +1,380 @@
+/** 
+  El siguiente archivo contiene todas declaraciones scss comunes en todas
+  las vista del sistema:
+    
+    ** Tipo de fuentes
+    ** Uso de Bootsrap
+    ** Variables
+    ** Declaraciones de clases y etiquestas css
+
+  Se debe ordenar alfabeticamente las declaraciones de todo código scss
+  en su respectiva sección.  
+**/
+
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+
+// PRE-IMPORT font-variant: ABLES
+$fa-font-path:   "/fonts/font-awesome";
+
+/** IMPORT SASS DEL SISTEMA **/
+@import "variables_system";
+@import "avenir_font";
+
+/** IMPORT VENDOR SASS **/
+@import "../../vendor/sass/bootstrap-sass-official/bootstrap";
+@import "../../vendor/sass/font-awesome-sass/font-awesome";
+
+/**  ETIQUETAS HTML **/
+body {
+  font-family:'Avenir LT Std 45 Book';font-weight:normal;  
+}
+
+// ===== CLASES CSS ======
+
+.div-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    min-height: 115px;
+    color:white;  
+    background-color: $gray-dark;
+    .row {
+      padding: 2%;
+    }        
+}
+
+.modal {
+  font-family: 'AVENIR LT STD 55 ROMAN';
+  .modal-dialog {
+    margin-top: 15vh;
+  }
+  .modal-header {
+    padding-left: 6%;
+    padding-right: 6%;
+    background: $blue-dark;
+    color:white; 
+    .fa-close { color:white}
+  }
+
+  .modal-body {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+    padding-top: 2% !important;
+  }
+
+  .box-information {
+    border-radius: 5px !important;
+    background: $gray-light-two !important;
+    color: $gray-dark;
+    padding: 3%;
+    font-family: 'AVENIR LT STD 45 BOOK';
+  }
+
+  .modal-footer {
+    padding-left: 6%;
+    padding-right: 6%;
+    .delete {
+      background-color: $blue-dark;
+      border-color: $blue-ligth;
+    }
+  }
+}
+
+.panel {
+  .panel-heading {
+    font-family: 'Avenir LT Std 85 Heavy';
+    background: $green;
+    color:white;
+    text-align: right;
+  }
+  .panel-footer {
+    button {
+      background:$blue-ligth;      
+    }
+  }
+}
+
+.panel-items {
+  .panel-body {
+    background: white;
+    color:$blue-dark;
+  }
+}
+
+.panel-perfil {
+  .panel-body {
+    background: $green;
+    color:white;
+  }
+}
+
+.table-content{
+   
+  border: 1px solid $blue-dark !important;
+  thead {
+    background: $green; 
+    th {
+      border: 1px solid $gray-dark!important;
+    }
+    a { color:#ffffff; }
+  }
+  tbody {
+    tr:hover {
+      td { background: $gray-light; color:$blue-dark}
+    }
+    td {
+      background: $gray-light-two;
+      border: 1px solid $gray-dark !important;
+    }    
+  }
+}
+
+.table-content tr td:first-child, .table-content thead tr th:first-child {
+  border-left: 1px solid $blue-dark !important;
+}
+ 
+ .table-content tr td:last-child, .table-content thead tr th:last-child {
+  border-right: 1px solid $blue-dark !important;
+}   
+          
+.table-content tr:last-child td {
+  border-bottom: 1px solid $blue-dark !important;
+}
+
+.table-content tr:last-child td:first-child {
+    -moz-border-radius-bottomleft:5px;
+    -webkit-border-bottom-left-radius:5px;
+    border-bottom-left-radius:5px;
+    border-left: transparent !important;
+
+
+}
+
+.table-content tr:last-child td:last-child {
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-bottom-right-radius:5px;
+    border-bottom-right-radius:5px;
+    border-right: transparent !important;
+}
+
+.top-navbar-panel {
+  .fa {
+    color:$green;
+  }
+  li {
+    padding: 1%;
+    min-width: 83px !important; 
+  }
+}
+
+.triangle-footer {
+    background: gray !important;    
+}
+
+// ===== FIN CLASES CSS =====
+
+
+// ===== ETIQUETAS CSS =====
+
+#body {
+  min-height:100% !important;
+  position: relative;
+}
+
+#body-login {
+  background: $blue-dark;
+}
+
+#body-user {
+  background: $blue-dark;
+  min-height: 100vh;  
+  margin-top: 58px;  
+}
+
+#home-channels {
+  #info-channels {
+    background: $blue-dark;
+    color:white;
+  }
+  
+  .container-triangle {
+    background: $blue-ligth;
+    height: 48px;
+    border-top: 62px solid $blue-dark;
+    width: 100%;
+  }
+
+  .container-triangle2 { 
+    background: $blue-dark;
+    height: 48px;
+    border-top: 62px solid $blue-ligth;
+    width: 100%;
+  }  
+
+  .box-channels {
+      background:$blue-ligth;
+      color:white;
+      img {
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
+        border-radius: 100%; width: 80%;height:auto;
+      }
+  }
+
+  .box-channels2 {
+      background:$blue-dark;
+      color:white;
+      img {
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
+        border-radius: 100%; width: 80%;height: auto;
+      }
+  } 
+}
+
+#home-channels:last-child {
+  background: gray;
+}
+
+#top-navbar  {
+  .navbar-toggle:hover, .navbar-toggle:focus {
+    background: $gray-light ;
+    border-color: $blue-dark;
+  }
+  .navbar-toggle {
+    border-color: $blue-dark;
+    .icon-bar {
+      background: $blue-dark;
+    }  
+  }
+  
+  background: white;
+  border-color: #EAEAEA;
+  padding: 1%;
+  a {
+    background: white;
+    color: #7C7C7C; 
+    font-weight: bold;
+    line-height: 1.42857;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  li {
+    a {
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+      background: white;
+      border-bottom: none !important;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .navbar-right { min-width: 70% !important; }
+    li { float:right;}
+  }
+
+  .navbar-right {
+
+    .dropdown-menu {
+      a {
+        li {
+          padding-left: 20px !important;
+          text-align: left !important;
+        }
+      }
+    }
+    .active { 
+      border-bottom: 4px solid $blue-dark;
+    }
+
+    .desactive {
+      border-bottom: 4px solid white;
+    }
+    .desactive:hover {
+      border-bottom: 4px solid $gray-light;
+    }
+  }
+  
+  #logo-facyt {
+    width: 50px !important;  
+  }
+}
+
+#register_text_checkbox {
+  label { margin-right: 3% !important;}
+}
+
+// ===== FIN EITQUETAS CSS =====
+
+
+
+/* ====== MEDIA QUERY - OTROS */
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(25%);
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+}
+
+@media (min-width: $screen-sm-min) {
+  .dropdown-menu {
+    margin-top:17.7px !important;
+    li {
+      width: 100% !important;
+      padding: 5%;      
+      text-align: left !important;      
+      
+    }
+    
+    li:hover {
+      background-color: $gray-light !important;
+      color:white !important;
+    
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  #top-navbar {
+
+      li {
+        width: 100% !important;         
+        text-align: left !important;
+        
+      } 
+      .desactive {
+        border-bottom: none !important;
+        a {
+          background: white !important;
+        }
+      }
+
+      .active {
+       border-bottom: none !important;
+       background: $gray-light  !important; 
+       a {
+        background: $gray-light;
+       }
+      }
+
+      a {
+        text-align: left !important; 
+      }
+
+      .active:hover, .desactive:hover  {
+        background: $gray-light;        
+        a:hover {
+          background: $gray-light !important;
+        }
+      }
+      a:hover{
+        background: $gray-light;        
+      }
+    }
+  }

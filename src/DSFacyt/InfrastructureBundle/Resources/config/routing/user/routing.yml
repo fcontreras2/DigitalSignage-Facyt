@@ -1,0 +1,20 @@
+#Los archivos de routing referentes a la seguridad del sistema para los usuarios(login, login_check, loguot)
+ds_facyt_infrastructure_user_module_security:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/security/security.yml"
+
+# Rutas de gestion de textos publicado
+ds_facyt_infrastructure_user_text:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/text.yml"
+
+# Rutas de gestion de imágenes
+ds_facyt_infrastructure_user_image:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/image.yml"
+
+# Rutas de gestion de videos 
+ds_facyt_infrastructure_user_video:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/video.yml"
+
+# Rutas de gestion de textos publicado
+ds_facyt_infrastructure_user_homepage:
+    path:   /
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Default:indexPanel }

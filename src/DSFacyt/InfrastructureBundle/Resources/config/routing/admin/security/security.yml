@@ -1,0 +1,24 @@
+#Conjunto de rutas donde se verifican las sesion del administrador
+
+#La ruta de la vista del login
+ds_facyt_infrastructure_admin_security_login:
+    path: /login
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:login }
+
+#Ruta de redireccionamiento hacia login
+ds_facyt_infrastructure_admin_ecurity_login_redirect:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: ds_facyt_infrastructure_admin_security_login
+        permanent: true
+
+#Recibe la petición de los datos del usuario al momento de inicial sesión
+ds_facyt_infrastructure_admin_security_check:
+    path: /login_check
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:check }
+
+#Salir de sesión
+ds_facyt_infrastructure_admin_security_logout:
+    path: /logout
+    defaults: { _controller: DSFacytInfrastructureBundle:Security\Security:logout }

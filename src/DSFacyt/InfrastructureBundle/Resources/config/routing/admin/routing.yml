@@ -1,0 +1,7 @@
+# Los archivos de routing de la seguridad del modulo de administrador
+ds_facyt_infrastructure_admin_module_security:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/security/security.yml"
+
+ds_facyt_infrastructure_admin_homepage:
+    path:    /
+    defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }

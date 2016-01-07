@@ -74,7 +74,9 @@ class GetTextsHandler implements Handler
                 $auxText['text_id'] = $currentTexts->getId();
                 $auxText['start_date'] = $currentTexts->getStartDate()->format('d/m/Y');
                 $auxText['end_date'] = $currentTexts->getEndDate()->format('d/m/Y');
-                $auxText['publish_time'] = $currentTexts->getPublishTime()->format('h:i:s A');
+                $auxTime = (new \DateTime($currentTexts->getPublishTime()))->format('h:i A');
+
+                $auxText['publish_time'] = $auxTime;
                 $auxText['title'] = $currentTexts->getTitle();
                 $auxText['info'] = $currentTexts->getInfo();
                 $auxText['status'] = $currentTexts->getStatus();

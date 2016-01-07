@@ -1,17 +1,17 @@
 <nav class="navbar navbar-inverse navbar-fixed-top top-navbar-panel" role="navigation" id="top-navbar">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{path('ds_facyt_infrastructure_homepage')}}">
+            <img src="{{ asset('images/logo-facyt.png')}}" id="logo-facyt">
+        </a>
+    </div>
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{path('ds_facyt_infrastructure_user_homepage')}}">
-                <img src="{{ asset('images/logo-facyt.png')}}" id="logo-facyt">
-            </a>
-        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right hidden-xs">
@@ -19,7 +19,7 @@
                 <li class="desactive ">
                     <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <a href="{{ path('ds_facyt_infrastructure_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
                     </ul>
                 </li>
                 <li class="desactive">
@@ -91,7 +91,7 @@
                 <li class="desactive ">
                     <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <a href="{{ path('ds_facyt_infrastructure_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
                     </ul>
                 </li>
             </ul>

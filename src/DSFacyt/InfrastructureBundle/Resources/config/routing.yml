@@ -1,28 +1,35 @@
-#Los archivos de routing referentes a la seguridad del sistema (login, login_check, loguot)
-ds_facyt_infrastructure_security:
-    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/security/security.yml"
+# ====RUTAS DE MODULOS DE USUARIOS (ADMIN /  USUARIOS DEL SISTEMA) ===
 
-ds_facyt_infrastructure_user_text:
-    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/text.yml"
+# Las rutas referentes a los usuarios registrados
+ds_facyt_infrastructure_module_user:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/routing.yml"
+    prefix: "{extension}"
+    requirements:
+        extension: "%extension_user%"
+    defaults:
+        extension: "%extension_user%"
 
-ds_facyt_infrastructure_user_iage:
-    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/image.yml"
+ds_facyt_infrastructure_module_admin:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/routing.yml"
+    prefix: "{extension}"
+    requirements:
+        extension: %extension_admin%
+    defaults:
+        extension: "%extension_admin%"
 
-ds_facyt_infrastructure_user_video:
-    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/video.yml"
+# === RUTAS DE MODULOS DE USUARIOS  INVITADOS ===
 
-ds_facyt_infrastructure_user_homepage:
-    path:   /panel
-    defaults: { _controller: DSFacytInfrastructureBundle:User\Default:indexPanel }
-
+# HomePage del sistema
 ds_facyt_infrastructure_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Default:index }
 
+# Ruta de registrar un usuario
 ds_facyt_infrastructure_register:
     path:    /register
     defaults: { _controller: DSFacytInfrastructureBundle:Default:register }
 
+# Ruta de validación del proceso de registro
 ds_facyt_infrastructure_validate_register:
     path:   /register/validate
     defaults: { _controller: DSFacytInfrastructureBundle:Default:registerValidation}

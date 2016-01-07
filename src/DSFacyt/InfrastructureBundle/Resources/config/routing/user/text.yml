@@ -1,32 +1,38 @@
+#La siguiente ruta obtiene el lista de los textos publicados dado una paginación
 ds_facyt_infrastructure_user_text_homepage:
-  path:   /panel/text/{page}
+  path:   /text/{page}
   defaults: { _controller: DSFacytInfrastructureBundle:User\Text:index, page : 1 }
   requirements:
       page: "\d+"
   options:
       expose: true
 
+#La siguiente ruta de crear un texto nuevo
 ds_facyt_infrastructure_user_text_new:
-  path:   /panel/text/new
+  path:   /text/new
   defaults: { _controller: DSFacytInfrastructureBundle:User\Text:publishNew }
 
+#La siguiente ruta en donde se validan los datos de creación de un texto nuevo
 ds_facyt_infrastructure_user_text_new_validate:
-    path:   /panel/text/new_validate
+    path:   /text/new_validate
     defaults: { _controller: DSFacytInfrastructureBundle:User\Text:validateNew }
 
+#La ruta de edición de un texto publicado
 ds_facyt_infrastructure_user_text_edit:
-  path:   /panel/text/edit/{textId}
+  path:   /text/edit/{textId}
   defaults: { _controller: DSFacytInfrastructureBundle:User\Text:edit }
 
+#La ruta de validación de un texto previamente editado
 ds_facyt_infrastructure_user_text_edit_validate:
-    path:   /panel/text/edit_validate/{textId}
+    path:   /text/edit_validate/{textId}
     defaults: { _controller: DSFacytInfrastructureBundle:User\Text:validateEdit }
 
+
+#La ruta de eliminar un texto 
 ds_facyt_infrastructure_user_text_delete:
-    path:   /panel/text/delete
+    path:   /text/delete
     defaults: { _controller: DSFacytInfrastructureBundle:User\Text:delete }
     options:
       expose: true
     requirements:
       { _format: (xml | json), _method: POST}
-

@@ -2,13 +2,13 @@
 
 {% block stylesheets %}
      {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/fileinput.css') }}"/>
 
     {% else %}
        {% stylesheets
-       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/fileinput.css'
 

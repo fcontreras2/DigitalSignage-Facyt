@@ -10,16 +10,27 @@ DSFacyt\Core\Domain\Model\Entity\User:
     fields:
         last_name:
             type: string
-            nullable: false
+            nullable: true
+            options:
+                default: null
 
         indentity_card:
             type: integer
+            nullable: true
+            options:
+                default: null
 
         name:
             type: string
+            nullable: true
+            options:
+                default: null
 
         phone:
             type: string
+            nullable: true
+            options:
+                default: null
 
     oneToMany:
         images:

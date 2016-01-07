@@ -30,7 +30,8 @@ module.exports = function(grunt) {
               "js/metisMenu.js": "metisMenu/dist/metisMenu.js",
               "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
               "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js",
-              "js/fileinput.js" : "bootstrap-fileinput/js/fileinput.js"
+              "js/fileinput.js" : "bootstrap-fileinput/js/fileinput.js",
+              "js/bootstrap-timepicker.js" : "bootstrap-timepicker/js/bootstrap-timepicker.js"              
           }
       },      
       folders: {
@@ -38,7 +39,8 @@ module.exports = function(grunt) {
               "sass/bootstrap-sass-official": "bootstrap-sass-official/assets/stylesheets/*",
               "css/startbootstrap-sb-admin-2": "startbootstrap-sb-admin-2/dist/css/*",
               "css/metisMenu":"metisMenu/dist/metisMenu.css",
-              "sass/font-awesome-sass": "font-awesome/scss/*"                            
+              "sass/font-awesome-sass": "font-awesome/scss/*",
+              "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less"
           }
       }
     },
@@ -47,8 +49,8 @@ module.exports = function(grunt) {
           stylesheets: {
               files: {
                   // Css screen contiene bootstrap, y la declaración css
-                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css": [
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/screen.css"
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/template.css"
                   ],
                   // Css de angular
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/angular.css": [
@@ -56,8 +58,9 @@ module.exports = function(grunt) {
                   ],
                   // Css del datePicker
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css": [
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css"
-                  ],
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/bootstrap-datepicker.css",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/timepicker.css"
+                  ],                  
                   // Css del Fileinput                 
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/fileinput.css": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/fileinput.css"

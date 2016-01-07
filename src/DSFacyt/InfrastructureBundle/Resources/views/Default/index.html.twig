@@ -2,10 +2,10 @@
 
 {% block stylesheets %}
     {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
     {% else %}
 
-        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'   %}
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'   %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}    

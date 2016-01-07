@@ -12,7 +12,7 @@ class RegisterTextType extends AbstractType
     {
         $builder
             ->add('title','text',array('label' => 'Título', 'constraints' => array(new NotBlank())))
-            ->add('publish_time','time',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank())))
+            ->add('publish_time','text',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank()),'attr' => array('id' => 'timepicker1')))
             ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
             ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
             ->add('info','textarea',array('label' => 'Información a publicar', 'constraints' => array(new NotBlank())))

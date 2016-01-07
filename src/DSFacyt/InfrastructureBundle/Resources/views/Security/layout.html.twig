@@ -2,9 +2,9 @@
 
 {% block stylesheets %}
     {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/screen.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
     {% else %}
-        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/screen.css'  %}
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'  %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
         {% endstylesheets %}
@@ -16,7 +16,7 @@
     <div id="body-login">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-        <a href="{{ path('ds_facyt_infrastructure_security_logout') }}">
+        <a href="{{ path('ds_facyt_infrastructure_user_security_logout') }}">
             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
         </a>
     {% else %}

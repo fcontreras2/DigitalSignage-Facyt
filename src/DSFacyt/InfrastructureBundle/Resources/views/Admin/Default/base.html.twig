@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}        
+    </head>
+    <body>
+        <div id="body" >
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+
+    <footer>        
+        {% block footer %}
+        {% endblock footer %}    
+    </footer>
+</html>

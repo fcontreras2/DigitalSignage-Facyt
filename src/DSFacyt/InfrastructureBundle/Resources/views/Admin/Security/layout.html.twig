@@ -1,0 +1,61 @@
+{% extends "DSFacytInfrastructureBundle:Admin/Default:base.html.twig" %}
+
+{% block stylesheets %}
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/admin.css') }}"/>
+    {% else %}
+        {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'  %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+
+{% block body%}
+    <div id="body-login">
+    {% if app.user %}
+
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('ds_facyt_infrastructure_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+    
+
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}    
+
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+    </div>
+{% endblock %}
+
+{% block javascripts%}
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+
+    {% else  %}
+        {% javascripts
+            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+    <script>
+       $(function () {
+        $('.tabs a:last').tab('show')
+    });
+    </script>
+{% endblock %}

@@ -79,7 +79,12 @@ body {
     }
   }
 }
-
+.pagination {
+  .active {
+    background: $gray-light;
+    color:$blue-dark;
+  }
+}
 .panel {
   .panel-heading {
     font-family: 'Avenir LT Std 85 Heavy';

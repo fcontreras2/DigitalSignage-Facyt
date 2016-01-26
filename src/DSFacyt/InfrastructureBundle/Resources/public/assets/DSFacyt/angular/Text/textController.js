@@ -6,7 +6,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         $scope.btnAction = 'fa fa-trash';
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
-        
+        textService.checkStatus($scope.data);
         var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',

@@ -49,7 +49,8 @@
                                 <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
                             </li>
                             <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
-                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)">{[{ pagination.firstPageInRange + $index }]}</a>
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
                             </li>
                             <li ng-show="pagination.current != pagination.lastPageInRange">
                                 <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
@@ -85,7 +86,7 @@
                                     <td>{[{ currentText.start_date}]}</td>
                                     <td>{[{ currentText.end_date}]}</td>
                                     <td>{[{ currentText.title}]}</td>
-                                    <td>{[{ currentText.status}]}</td>
+                                    <td><center><span ng-class="currentText.classStatus"></span></center></td>
                                     <td style="text-align: center">
                                         <a href="{{ app.request.getBaseURL()  }}/user/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
                                         </td>

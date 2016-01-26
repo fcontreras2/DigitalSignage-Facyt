@@ -85,7 +85,7 @@ class TextController extends Controller
             $user = $security = $this->container->get('security.context')->getToken()->getUser();
 
             $text->setUser($user);
-            $text->setStatus('Pendiente');
+            $text->setStatus(0);
 
             $validator = $this->get('validator');
             $errors = $validator->validate($text);

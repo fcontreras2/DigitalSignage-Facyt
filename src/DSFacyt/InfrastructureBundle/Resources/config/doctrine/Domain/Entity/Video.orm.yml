@@ -25,7 +25,9 @@ DSFacyt\Core\Domain\Model\Entity\Video:
             type: string
 
         status:
-            type: string
+            type: integer
+            options:
+                default: 0
 
     manyToOne:
         user:

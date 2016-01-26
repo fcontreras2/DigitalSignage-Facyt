@@ -23,13 +23,3 @@ ds_facyt_infrastructure_module_admin:
 ds_facyt_infrastructure_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Default:index }
-
-# Ruta de registrar un usuario
-ds_facyt_infrastructure_register:
-    path:    /register
-    defaults: { _controller: DSFacytInfrastructureBundle:Default:register }
-
-# Ruta de validación del proceso de registro
-ds_facyt_infrastructure_validate_register:
-    path:   /register/validate
-    defaults: { _controller: DSFacytInfrastructureBundle:Default:registerValidation}

@@ -14,6 +14,16 @@ ds_facyt_infrastructure_user_image:
 ds_facyt_infrastructure_user_video:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/video.yml"
 
+# Ruta de registrar un usuario
+ds_facyt_infrastructure_register:
+    path:    /register
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:register }
+
+# Ruta de validación del proceso de registro
+ds_facyt_infrastructure_validate_register:
+    path:   /register/validate
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:registerValidation}
+
 # Rutas de gestion de textos publicado
 ds_facyt_infrastructure_user_homepage:
     path:   /

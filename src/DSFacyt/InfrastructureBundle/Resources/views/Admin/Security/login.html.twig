@@ -1,0 +1,42 @@
+{% extends "DSFacytInfrastructureBundle:Admin/Security:layout.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4" style="margin-top:10%;height:100vh">
+            <form action="{{ path("ds_facyt_infrastructure_admin_security_check") }}" class="form-signin" role="form" method="post">
+                <div class="panel panel-default" id="panel-login">
+                    <div class="panel-heading" ><b>ADMIN - INICIAR SESIÓN</b></div>
+                    <div class="panel-content">
+                        
+                        <div class="tab-pane active panel-body" id="login">
+                            {% if error %}
+                            <span style="color:#DB2929">
+                                <span class="fa fa-warning"></span> Datos incorrectos
+                            </span>
+                            <br>
+                            <br>
+                            {% endif %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <label ><span class="fa fa-user"></span> Nombre de Administrador</label>
+                            <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Introduce tu Nombre de Usuario">
+                            <br>
+                            <label><span class="fa fa-lock"></span> Constraseña</label>
+                            <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Ingresar</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body%}

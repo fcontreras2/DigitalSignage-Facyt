@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use DSFacyt\Core\Domain\Model\Entity\Document;
 use DSFacyt\Core\Domain\Model\Entity\User;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterType;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Class DefaultController
@@ -81,9 +82,41 @@ class DefaultController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('ds_facyt_infrastructure_homepage');
+            $this->login($user->getUsername(),$user->getPassword());
+
+            return $this->redirect($this->generateUrl('ds_facyt_infrastructure_user_homepage'));
+            
         }
 
         return $this->render('DSFacytInfrastructureBundle:Security:register.html.twig',array('form' => $form->createView()));
+    }
+
+    /**
+     * La siguiente función verifica que un usuario se encuentre registrado y 
+     * inicia la sesión del usario automatica
+     * 
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param string $username
+     * @param string $password
+     * @return boolean
+     */
+    private function login($username, $password)
+    {
+        $user_manager = $this->get('fos_user.user_manager');
+        $factory = $this->get('security.encoder_factory');
+
+        //Se busca al usuario por su username
+        $user = $user_manager->loadUserByUsername($username);
+
+        $encoder = $factory->getEncoder($user);
+
+        //Se verifica si password corresponde
+        //Si el password corresponde se inicia la sesión
+        if ($encoder->isPasswordValid($user->getPassword(),$password,$user->getSalt())) {
+            $token = new UsernamePasswordToken($user, null, "user", $user->getRoles());
+            $this->get("security.context")->setToken($token); 
+            return true;
+        }        
+        return false;
     }
 }

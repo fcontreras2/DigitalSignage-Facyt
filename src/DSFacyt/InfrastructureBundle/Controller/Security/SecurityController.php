@@ -86,6 +86,7 @@ class SecurityController extends Controller
             }           
 
         } else if ('ds_facyt_infrastructure_admin_security_login' === $route) {
+            
             if ($security->isGranted('ROLE_ADMIN')) {
 
                 return $this->redirect(

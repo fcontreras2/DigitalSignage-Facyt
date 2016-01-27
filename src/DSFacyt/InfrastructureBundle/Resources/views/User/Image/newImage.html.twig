@@ -4,6 +4,7 @@
      {% if app.environment == "dev" %}
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/timepicker.css') }}"/> 
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/fileinput.css') }}"/>
 
     {% else %}
@@ -67,7 +68,10 @@
                                     <div class="col-xs-4">
 
                                         {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        {{ form_widget(form.publish_time, {'attr': {'class': 'form-control'}}) }}
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}                                    
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        </div>                                        
                                     </div>
                                     <div class="col-xs-4">
 
@@ -141,7 +145,8 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/fileinput.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>       
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>       
 
 
     {% else %}
@@ -172,6 +177,17 @@
             browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
         });
         
+    </script>
+
+    <script type="text/javascript">
+        $('#registerImage_publish_time').timepicker(
+        {
+            defaultTime: '7:00 AM',
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        });
     </script>
 
 

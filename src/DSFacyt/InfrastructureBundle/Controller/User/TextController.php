@@ -156,7 +156,7 @@ class TextController extends Controller
 
         if ($form->isValid()) {
             $text = $command->getEntityText();
-            $text->setStatus('Pendiente');
+            $text->setStatus(0);
 
             $validator = $this->get('validator');
             $errors = $validator->validate($text);

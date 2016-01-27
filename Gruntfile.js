@@ -94,7 +94,8 @@ module.exports = function(grunt) {
                   //Js del template del Panel
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.js",
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.es.min.js"
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-datepicker.es.min.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap-timepicker.js",
                   ],
                   //Js: funcionalidades de las publicaciones tipo Texto
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js": [

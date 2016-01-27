@@ -28,6 +28,10 @@ DSFacyt\Core\Domain\Model\Entity\Text:
             type: integer
             options:
                 default: 0
+        date_create:
+            type: datetime
+            nullable: true
+
     manyToOne:
         user:
             targetEntity: User

@@ -69,9 +69,16 @@ class QuickNote
      */
     private $user;
 
+    /**
+     * Fecha de creación de la publicación
+     * @var \DateTime
+     */
+    private $date_create;
+
     public function __construct() 
     { 
-        $this->channels = new ArrayCollection();        
+        $this->channels = new ArrayCollection();
+        $this->date_create = new  \DateTime();
     }
 
 
@@ -254,5 +261,28 @@ class QuickNote
     public function getChannels()
     {
         return $this->channels;
+    }
+
+    /**
+     * Set date_create
+     *
+     * @param \DateTime $dateCreate
+     * @return QuickNote
+     */
+    public function setDateCreate($dateCreate)
+    {
+        $this->date_create = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * Get date_create
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreate()
+    {
+        return $this->date_create;
     }
 }

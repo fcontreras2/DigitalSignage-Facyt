@@ -25,6 +25,10 @@ DSFacyt\Core\Domain\Model\Entity\QuickNote:
             type: integer
             options:
                 default: 0
+        date_create:
+            type: datetime
+            nullable: true
+
 
     manyToOne:
         user:

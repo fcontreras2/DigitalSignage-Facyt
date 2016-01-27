@@ -83,9 +83,17 @@ class Image
      */
     private $user;
 
+    /**
+     * Fecha de creación de la publicación
+     *
+     * @var \DateTime
+     */
+    private $date_create;
+
     public function __construct() 
     { 
-        $this->channels = new ArrayCollection();        
+        $this->channels = new ArrayCollection();
+        $this->date_create = new  \DateTime();        
     }
 
 
@@ -314,5 +322,28 @@ class Image
     public function getChannels()
     {
         return $this->channels;
+    }
+   
+    /**
+     * Set date_create
+     *
+     * @param \DateTime $dateCreate
+     * @return Image
+     */
+    public function setDateCreate($dateCreate)
+    {
+        $this->date_create = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * Get date_create
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreate()
+    {
+        return $this->date_create;
     }
 }

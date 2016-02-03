@@ -6,12 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterImageType;
 use DSFacyt\Core\Domain\Model\Entity\Image;
 use DSFacyt\Core\Domain\Model\Entity\Document;
-use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
 
+use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;
+use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 
 
 /**
@@ -32,16 +34,18 @@ class ImageController extends Controller
      *
      * @author Freddy Contreras <freddycontreras3@gmail.com>
      * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $page
      * @version 31/08/2015
      * @return Response
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $command = new GetImagesCommand();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $command->setUser($user);
+        $command->setPage($page);
 
         $response = $this->get('CommandBus')->execute($command);
 
@@ -115,5 +119,33 @@ class ImageController extends Controller
 
         return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView()));
 
+    }
+
+    /**
+    * La siguiente función se encarga de eliminar una imagen
+    * dado un json que contiene el id de la imagen a eliminar
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    * @version 02/02/2015
+    * @return Response
+    */
+    public function deleteAction( Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+
+            $command = new DeleteImageCommand();
+            $command->setTextId($data['image_id']);
+
+            $response = $this->get('CommandBus')->execute($command);
+
+            if ($response->getStatusCode() == 201)
+                return new Response('Ok', 201);    
+            else
+                return new Response('Bad Request', 401);
+            
+        }
+        return new Response('Not Found',404);        
     }
 }

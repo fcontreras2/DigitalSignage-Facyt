@@ -29,6 +29,7 @@ class TextController extends Controller
      *
      * @author Freddy Contreras <freddycontreras3@gmail.com>
      * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $page
      * @version 31/08/2015
      * @return Response
      */

@@ -34,3 +34,13 @@ var image = angular.module("ImageModule", ['angular-repeat-n', 'mgcrea.ngStrap']
             startWeek: 1
         })});
 
+image.filter('range', function() {
+      return function(input, init, total) {
+        total = parseInt(total);
+
+        for (var i=init; i<=total; i++) {
+          input.push(i);
+      }
+      return input;
+  };
+});

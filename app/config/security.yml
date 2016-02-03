@@ -11,6 +11,18 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: ds_facyt_infrastructure_user_security_login
+                check_path: ds_facyt_infrastructure_user_security_check
+                default_target_path: ds_facyt_infrastructure_user_homepage
+            logout: 
+                path:   ds_facyt_infrastructure_user_security_logout
+                target: ds_facyt_infrastructure_user_security_login
+            anonymous: true
     #Seguridad del usuarios
         user:
             pattern: ^/%extension_user%
@@ -36,18 +48,6 @@ security:
             logout: 
                 path:   ds_facyt_infrastructure_admin_security_logout
                 target: ds_facyt_infrastructure_admin_security_login
-            anonymous: true
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_provider: form.csrf_provider
-                login_path: ds_facyt_infrastructure_user_security_login
-                check_path: ds_facyt_infrastructure_user_security_check
-                default_target_path: ds_facyt_infrastructure_user_homepage
-            logout: 
-                path:   ds_facyt_infrastructure_user_security_logout
-                target: ds_facyt_infrastructure_user_security_login
             anonymous: true
 
     access_control:

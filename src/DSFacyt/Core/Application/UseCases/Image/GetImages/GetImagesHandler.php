@@ -6,6 +6,7 @@ use DSFacyt\Core\Application\Contract\Handler;
 use DSFacyt\Core\Application\Contract\Command;
 use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
+use DSFacyt\InfrastructureBundle\Resources\Services\Pagination;
 
 /**
  * Clase para ejecutar el caso de uso GetImages
@@ -20,6 +21,27 @@ class GetImagesHandler implements Handler
      * @var Representa el comando de la clase
      */
     private $command;
+
+        /**
+    * @var La variable contiene el servicio de paginación
+    */
+    private $pagination;
+
+    /**
+    * @var Método set del servicio de paginación
+    */
+    public function setPagination($pagination)
+    {
+        $this->pagination = $pagination;
+    }
+
+    /**
+    * @var Método get del servicio de paginación
+    */
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
 
     /**
      * @var Representa la RepositorioFactory de la clase
@@ -41,24 +63,31 @@ class GetImagesHandler implements Handler
 
         $response = array();
 
-        foreach ($images as $currentImage) {
-            $auxImage = array();
-            $auxImage['text_id'] = $currentImage->getId();
-            $auxImage['start_date'] = $currentImage->getStartDate()->format('d/m/Y');
-            $auxImage['end_date'] = $currentImage->getEndDate()->format('d/m/Y');
-            $auxImage['publish_time'] = $currentImage->getPublishTime()->format('h:i:s A');
-            $auxImage['title'] = $currentImage->getTitle();
-            $auxImage['status'] = $currentImage->getStatus();
-            $auxImage['url_image'] = $currentImage->getDocument()->getFileName();
-            $auxImage['channels'] = array();
+        if ($images) {
 
-            foreach ($currentImage->getChannels() as $currentChannel) {
-                $auxChannel = array();
-                $auxChannel['channel_id'] = $currentChannel->getId();
-                $auxChannel['channel_name'] = $currentChannel->getName();
-                array_push($auxImage['channels'], $auxChannel);
+            $responseImage = array();
+            $response['pagination'] = $this->pagination->generate($images,$command->getPage());
+
+            foreach ($images as $currentImage) {
+                $auxImage = array();
+                $auxImage['text_id'] = $currentImage->getId();
+                $auxImage['start_date'] = $currentImage->getStartDate()->format('d/m/Y');
+                $auxImage['end_date'] = $currentImage->getEndDate()->format('d/m/Y');
+                $auxImage['publish_time'] = $currentImage->getPublishTime()->format('h:i:s A');
+                $auxImage['title'] = $currentImage->getTitle();
+                $auxImage['status'] = $currentImage->getStatus();
+                $auxImage['url_image'] = $currentImage->getDocument()->getFileName();
+                $auxImage['channels'] = array();
+
+                foreach ($currentImage->getChannels() as $currentChannel) {
+                    $auxChannel = array();
+                    $auxChannel['channel_id'] = $currentChannel->getId();
+                    $auxChannel['channel_name'] = $currentChannel->getName();
+                    array_push($auxImage['channels'], $auxChannel);
+                }
+                array_push($responseImage, $auxImage);
             }
-            array_push($response, $auxImage);
+            $response['images'] = $responseImage;
         }
 
         return new ResponseCommandBus(201, 'Ok', $response);

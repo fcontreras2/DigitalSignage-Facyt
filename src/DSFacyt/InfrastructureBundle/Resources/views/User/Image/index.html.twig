@@ -34,13 +34,28 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-4">
                 <div class="btn-group">
                     <a href="{{ path('ds_facyt_infrastructure_user_image_new') }}" class="btn btn-default btn-sm " type="button" >
                     <span class="fa fa-plus"></span> &nbsp; Imagen Nueva
                     </a>
                 </div>
             </div>
+            <div class="col-xs-8 ">           
+                        <ul class="pagination pull-right" style="margin: 0 0">                    
+                            <li ng-show="pagination.current != pagination.firstPageInRange">
+
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                            </li>
+                            <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+                            </li>
+                            <li ng-show="pagination.current != pagination.lastPageInRange">
+                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+                            </li>
+                        </ul>
+                    </div>              
         </div>
 	
         <div class="row">
@@ -70,19 +85,21 @@
                             <td>{[{ currentText.start_date}]}</td>
                             <td>{[{ currentText.end_date}]}</td>
                             <td>{[{ currentText.title}]}</td>
-                            <td>{[{ currentText.status}]}</td>
+                            <td><center><span ng-class="currentText.classStatus"></span></center></td>
                             <td style="text-align: center">
                                 <a href="{{ app.request.getBaseURL()  }}/panel/image/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
                                 </td>
-                                <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
+                                <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteImage($index)"> <span class="fa fa-trash" ></span></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            {{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteImage.html.twig") }}
             </div>
+
             </div>
-	{{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteText.html.twig") }}
+	       
 {% endblock %}
 
 {% block javascripts%}
@@ -130,7 +147,6 @@
             language: "es",
             format: 'dd/mm/yyyy',
             startDate: '-3d',
-
         });
     </script>
 {% endblock %}

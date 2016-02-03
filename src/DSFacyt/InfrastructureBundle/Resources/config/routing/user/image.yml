@@ -1,6 +1,10 @@
 ds_facyt_infrastructure_user_image_homepage:
-    path:   /image
-    defaults: { _controller: DSFacytInfrastructureBundle:User\Image:index }
+    path:   /image/{page}
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Image:index , page : 1 }
+    requirements:
+        page: "\d+"
+    options:
+        expose: true
 
 ds_facyt_infrastructure_user_image_new:
     path:   /image/new
@@ -9,3 +13,12 @@ ds_facyt_infrastructure_user_image_new:
 ds_facyt_infrastructure_user_image_new_validate:
     path:   /image/new_validate
     defaults: { _controller: DSFacytInfrastructureBundle:User\Image:validateNew }
+
+#La ruta de eliminar un imagen
+ds_facyt_infrastructure_user_image_delete:
+    path:   /image/delete
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Image:delete }
+    options:
+      expose: true
+    requirements:
+      { _format: (xml | json), _method: POST}

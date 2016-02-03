@@ -1,6 +1,6 @@
 text.service('textService', function(){
 
-        this.checkStatus = function(data) {
+    this.checkStatus = function(data) {
         $.each(data, function (index, value) {
             switch (value.status) {
                 case 0:

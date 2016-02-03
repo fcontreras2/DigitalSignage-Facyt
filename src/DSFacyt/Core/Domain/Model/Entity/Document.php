@@ -230,7 +230,9 @@ class Document
             case 'image':
                 $response  = '/uploads/images/';
                 break;
-            
+            case 'video':
+                $response = '/uplods/videos/';
+                break;            
             default:
                 $response  = '/uploads/images/';
                 break;
@@ -313,5 +315,11 @@ class Document
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    public function removeFile($type = 'image')
+    {
+        $pathDocument = $_SERVER['DOCUMENT_ROOT'].$this->getPathTypeFile($type).$this->getFileName();
+        unlink($pathDocument);
     }
 }

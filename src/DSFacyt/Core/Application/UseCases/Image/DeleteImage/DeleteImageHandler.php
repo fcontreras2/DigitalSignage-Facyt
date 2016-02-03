@@ -42,10 +42,10 @@ class DeleteImageHandler implements Handler
         if ($image) {
 
             try {
-                $image->getDocument()->removeFile('video');   
+                $image->getDocument()->removeFile('image');   
                 $rpImage->delete($image);
                 return new ResponseCommandBus(201, 'Ok');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return new ResponseCommandBus(500,'Internal Server Error','No se pudo eliminar');
             }
         }

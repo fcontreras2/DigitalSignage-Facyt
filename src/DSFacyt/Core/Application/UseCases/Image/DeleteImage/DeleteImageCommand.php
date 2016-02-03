@@ -48,7 +48,7 @@ class DeleteImageCommand implements Command
      */
     public function getImageId()
     {
-        return $this->textId;
+        return $this->imageId;
     }
 
     /**

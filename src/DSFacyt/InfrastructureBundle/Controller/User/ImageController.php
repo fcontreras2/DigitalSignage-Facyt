@@ -136,7 +136,7 @@ class ImageController extends Controller
             $data = json_decode($request->getContent(),true);
 
             $command = new DeleteImageCommand();
-            $command->setTextId($data['image_id']);
+            $command->setImageId($data['image_id']);
 
             $response = $this->get('CommandBus')->execute($command);
 

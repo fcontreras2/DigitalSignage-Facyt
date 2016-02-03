@@ -34,6 +34,18 @@ class DbImageRepository extends EntityRepository implements
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
     }
+
+    /**
+    * La siguiente función  elimina una imagen
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 06/10/2015
+    */
+    public function delete(Image $image)
+    {
+        $this->getEntityManager()->remove($image);
+        $this->getEntityManager()->flush();
+    }
+
     /**
      * Almacena en la BD una imagen
      *

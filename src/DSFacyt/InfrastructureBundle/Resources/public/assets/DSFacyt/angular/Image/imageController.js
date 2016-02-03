@@ -12,7 +12,17 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
             placement: 'top',
             type: 'info',
             show: false,
-            container:'#empty-table'
+            container:'#box-alert'
+        });
+
+        var errorDelete = $alert(
+        {
+            title: 'Error al eliminar',
+            content: 'No se pudo eliminar la imagen',
+            placement: 'top',
+            type: 'danger',
+            show: false,
+            container:'#box-alert-danger'
         });
 
         checkEmptyData(alertEmptyData);        
@@ -28,8 +38,19 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
 
         $scope.modalDeleteImage = function(image_id) {
             $scope.indexPreview = image_id;
+            errorDelete.$promise.then(function() {errorDelete.hide();});
             myOtherModal.$promise.then(myOtherModal.show);
         }
+
+        var alertDeleteError = $alert(
+            {
+                title: "Publicación Eliminada",
+                content: 'Se ha eliminado correctamente la imagen',
+                placement: 'top',
+                type: 'success',
+                show: false,
+                container:'#box-alert'                
+            });
 
         $scope.deleteImage = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_image_delete');
@@ -46,7 +67,10 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
                         alertEmptyData.$promise.then(function() {alertEmptyData.show();});
                     else
                         alertDeleteSuccess.$promise.then(function() {alertDeleteSuccess.show();});
-                }                
+                },
+                error: function() {
+                    errorDelete.$promise.then(function() {errorDelete.show();});
+                }
             });            
         }
     }]);

@@ -31,7 +31,10 @@ module.exports = function(grunt) {
               "js/angular-strap.js": "angular-strap/dist/angular-strap.js",
               "js/angular-strap.tpl.js": "angular-strap/dist/angular-strap.tpl.js",
               "js/fileinput.js" : "bootstrap-fileinput/js/fileinput.js",
-              "js/bootstrap-timepicker.js" : "bootstrap-timepicker/js/bootstrap-timepicker.js"              
+              "js/bootstrap-timepicker.js" : "bootstrap-timepicker/js/bootstrap-timepicker.js",
+              "js/ng-file-upload.js": "ng-file-upload/ng-file-upload.js",
+              "js/ng-file-upload-shim.js": "ng-file-upload/ng-file-upload-shim.js",
+              "js/ng-img-crop.js": "ng-img-crop/compile/minified/ng-img-crop.js"
           }
       },      
       folders: {
@@ -40,7 +43,8 @@ module.exports = function(grunt) {
               "css/startbootstrap-sb-admin-2": "startbootstrap-sb-admin-2/dist/css/*",
               "css/metisMenu":"metisMenu/dist/metisMenu.css",
               "sass/font-awesome-sass": "font-awesome/scss/*",
-              "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less"
+              "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less",
+              "sass/_ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css"
           }
       }
     },

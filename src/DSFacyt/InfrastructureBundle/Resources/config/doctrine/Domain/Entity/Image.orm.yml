@@ -16,7 +16,7 @@ DSFacyt\Core\Domain\Model\Entity\Image:
             type: date
 
         publish_time:
-            type: time
+            type: string
 
         title:
             type: string

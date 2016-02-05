@@ -41,13 +41,13 @@ class UploadImageHandler implements Handler
         
         try {
             $image->getDocument()->setName($image->getTitle());
-            $image->setStatus('Pendiente');
+            $image->setStatus(0);
             $fileName = strtolower(str_replace(' ','_',$image->getTitle())).'_';
             $image->getDocument()->upload('image', $command->getIndentityFolderUser().'/',$fileName);            
             $rpImage->save($image);
 
         } catch(\Exception $e) {
-                throw new Exception('No se puede subir la imagen');
+            return new ResponseCommandBus(500, 'Error Server', $e->getMessage());
         }
 
         return new ResponseCommandBus(201, 'Ok');

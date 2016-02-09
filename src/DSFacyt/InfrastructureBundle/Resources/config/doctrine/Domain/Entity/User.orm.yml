@@ -32,6 +32,13 @@ DSFacyt\Core\Domain\Model\Entity\User:
             options:
                 default: null
 
+    oneToOne:
+        image_profile:
+            targetEntity: Document
+            inversedBy: user_image_profile
+            joinColumn:
+                name: image_profile_id
+                referencedColumnName: id
     oneToMany:
         images:
             targetEntity: Image

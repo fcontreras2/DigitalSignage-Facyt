@@ -370,4 +370,32 @@ class User extends BaseUser
     {
         return $this->school;
     }    
+    /**
+     * @var \DSFacyt\Core\Domain\Model\Entity\Document
+     */
+    private $image_profile;
+
+
+    /**
+     * Set image_profile
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\Document $imageProfile
+     * @return User
+     */
+    public function setImageProfile(\DSFacyt\Core\Domain\Model\Entity\Document $imageProfile = null)
+    {
+        $this->image_profile = $imageProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get image_profile
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\Document 
+     */
+    public function getImageProfile()
+    {
+        return $this->image_profile;
+    }
 }

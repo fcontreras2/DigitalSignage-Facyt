@@ -2,6 +2,7 @@
 
 namespace DSFacyt\InfrastructureBundle\Controller\User;
 
+use DSFacyt\Core\Application\UseCases\User\GetProfile\GetProfileCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -38,6 +39,28 @@ class DefaultController extends Controller
 
         $response = $this->get('CommandBus')->execute($command);
 
-        return $this->render('DSFacytInfrastructureBundle:User:index.html.twig', array('data' => $response->getData()));
+        return $this->render('DSFacytInfrastructureBundle:User:index.html.twig',
+            array('data' => $response->getData()));
+    }
+
+    /**
+     * La siguiente funciton retorna los datos de un usuario
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 02/02/2016
+     * @return Response
+     */
+    public function getProfileAction()
+    {
+        $command = new GetProfileCommand();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $command->setUser($user);
+
+        $response = $this->get('CommandBus')->execute($command);
+
+        return $this->render('DSFacytInfrastructureBundle:User:profile.html.twig',
+            array('data' => json_encode($response->getData())));
     }
 }

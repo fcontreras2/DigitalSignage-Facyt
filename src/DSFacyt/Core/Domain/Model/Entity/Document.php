@@ -322,4 +322,32 @@ class Document
         $pathDocument = $_SERVER['DOCUMENT_ROOT'].$this->getPathTypeFile($type).$this->getFileName();
         unlink($pathDocument);
     }
+    /**
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $image_profile;
+
+
+    /**
+     * Set image_profile
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $imageProfile
+     * @return Document
+     */
+    public function setImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $imageProfile = null)
+    {
+        $this->image_profile = $imageProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get image_profile
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User 
+     */
+    public function getImageProfile()
+    {
+        return $this->image_profile;
+    }
 }

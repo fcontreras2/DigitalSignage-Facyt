@@ -1,0 +1,119 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+    {% else %}
+        {% stylesheets
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
+        %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+        {% endstylesheets %}
+    {% endif %}
+
+{% endblock %}
+
+ {% block body %}
+
+     {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+     <div id="body-user" >
+         <div class="container" ng-app="UserModule" ng-controller="UserController" >
+             <br>
+             <br>
+             <br>
+             <div  id="page-wrapper" style="min-height: 311px;">
+             <div class="row">
+                 <div class="col-xs-8 col-xs-offset-2">
+                 <div class="panel panel-default">
+                    <div class="panel-heading"> <h5> DATOS DEL USUARIO </h5></div>
+                        <div class="panel-body">
+                             <div class="col-xs-3">
+                                 <img src="{[{data.profile_image}]}" style="width: 100%">
+                             </div>
+                             <div class="col-xs-9">
+                             <div class="row">
+                                <div class="col-xs-6">
+                                    <b>Nombre de Usuario</b> {[{ data.user_name }]}
+                                </div>
+                                 <div class="col-xs-6 ">
+                                     <b>Cedula</b> {[{data.identity_card}]}<b class="pull-right"><i class="fa fa-pencil"></i></b>
+                                 </div>
+                                 <br>
+                                <hr>
+                                <div class="col-xs-6">
+                                    <b>Nombre</b> {[{ data.name }]} <b class="pull-right"><i class="fa fa-pencil"></i></b>
+                                </div>
+                                <div class="col-xs-6">
+                                    <b>Apellido</b> {[{ data.name }]} <b class="pull-right"><i class="fa fa-pencil"></i></b>
+                                </div>
+                                 <br><br>
+                                 <div class="col-xs-6">
+                                    <b>Escuela</b> {[{ data.school }]} <b class="pull-right"><i class="fa fa-pencil"></i></b>
+                                </div>
+                                 <div class="col-xs-6">
+                                     <b>Télefono</b> {[{ data.phone }]} <b class="pull-right"><i class="fa fa-pencil"></i></b>
+                                 </div>
+                                 <br>
+                             </div>
+                            </div>
+                            <br>
+                            <hr>
+                            <div class="col-xs-12">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <button type="submit" id="_submit" name="_submit" class="btn btn-sm btn-primary btn-block col-xs-4" > <i class="fa fa-lock" ></i> &nbsp; Cambiar Contraseña</button>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <input type="checkbox"> <b> Recibir notificaciones</b> Recibirás correos al momento que tus publicaciones cambien de estado
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+             </div>
+         </div>
+     </div>
+
+{% endblock body %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
+
+{% block javascripts%}
+
+
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+{% endblock javascripts %}

@@ -28,3 +28,8 @@ ds_facyt_infrastructure_validate_register:
 ds_facyt_infrastructure_user_homepage:
     path:   /
     defaults: { _controller: DSFacytInfrastructureBundle:User\Default:indexPanel }
+
+# Ruta trae los datos de el usuario
+ds_facyt_infrastructure_user_profile:
+    path:   /profile
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Default:getProfile }

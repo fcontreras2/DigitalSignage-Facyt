@@ -14,6 +14,10 @@ DSFacyt\Core\Domain\Model\Entity\Document:
         fileName:
             type: string
 
+    oneToOne:
+        image_profile:
+            targetEntity: User
+            mappedBy: image_profile
     oneToMany:
         images:
             targetEntity: Image

@@ -39,6 +39,7 @@ DSFacyt\Core\Domain\Model\Entity\User:
             joinColumn:
                 name: image_profile_id
                 referencedColumnName: id
+            cascade: ["persist"]
     oneToMany:
         images:
             targetEntity: Image

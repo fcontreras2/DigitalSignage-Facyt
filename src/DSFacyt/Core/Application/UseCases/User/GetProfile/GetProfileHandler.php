@@ -54,6 +54,15 @@ class GetProfileHandler implements Handler
                 $user->getImageProfile()->getFileName() : '/images/avatar.jpg';
             $response['school'] = $user->getSchool()->getName();
 
+            $response['all_school'] = [];
+            $schools  =  $rf->get('School')->findBy(array(), array('name' => 'ASC'));
+            foreach ($schools as $currentSchool) {
+                $auxSchool = [];
+                $auxSchool['id'] = $currentSchool->getId();
+                $auxSchool['name'] = $currentSchool->getName();
+                array_push($response['all_school'], $auxSchool);
+            }
+
             return new ResponseCommandBus(201, 'Ok', $response);
         } else
             return new ResponseCommandBus(404,'Not Found');

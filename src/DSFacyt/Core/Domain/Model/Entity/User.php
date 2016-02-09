@@ -80,15 +80,26 @@ class User extends BaseUser
      */
     private $school;
 
+    /**
+     * La imagen de perfil de un establecimiento
+     *
+     * @var \DSFacyt\Core\Domain\Model\Entity\Document
+     */
+    private $image_profile;
 
-    public function __construct() 
-    { 
+
+    public function __construct()
+    {
         parent::__construct();
 
         $this->images = new ArrayCollection();
         $this->quick_notes = new ArrayCollection();
         $this->texts = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $imageProfile = new Document();
+        $imageProfile->setName('');
+        $imageProfile->setFileName('/images/avatar.jpg');
+        $this->image_profile = $imageProfile;
     }
 
 
@@ -370,11 +381,6 @@ class User extends BaseUser
     {
         return $this->school;
     }    
-    /**
-     * @var \DSFacyt\Core\Domain\Model\Entity\Document
-     */
-    private $image_profile;
-
 
     /**
      * Set image_profile

@@ -350,4 +350,32 @@ class Document
     {
         return $this->image_profile;
     }
+    /**
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $user_image_profile;
+
+
+    /**
+     * Set user_image_profile
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $userImageProfile
+     * @return Document
+     */
+    public function setUserImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $userImageProfile = null)
+    {
+        $this->user_image_profile = $userImageProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get user_image_profile
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User 
+     */
+    public function getUserImageProfile()
+    {
+        return $this->user_image_profile;
+    }
 }

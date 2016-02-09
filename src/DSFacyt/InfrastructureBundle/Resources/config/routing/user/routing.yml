@@ -33,3 +33,11 @@ ds_facyt_infrastructure_user_homepage:
 ds_facyt_infrastructure_user_profile:
     path:   /profile
     defaults: { _controller: DSFacytInfrastructureBundle:User\Default:getProfile }
+
+ds_facyt_infrastructure_user_edit_profile:
+    path:   /profile/edit
+    defaults:   { _controller: DSFacytInfrastructureBundle:User\Default:editProfile }
+    options:
+        expose: true
+    requirements:
+        { _format: (xml | json), _method: POST}

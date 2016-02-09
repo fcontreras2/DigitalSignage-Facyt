@@ -15,9 +15,10 @@ DSFacyt\Core\Domain\Model\Entity\Document:
             type: string
 
     oneToOne:
-        image_profile:
+        user_image_profile:
             targetEntity: User
             mappedBy: image_profile
+            inversedBy: image_profile
     oneToMany:
         images:
             targetEntity: Image

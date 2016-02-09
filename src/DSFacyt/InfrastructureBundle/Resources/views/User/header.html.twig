@@ -16,7 +16,11 @@
         <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right hidden-xs">
 
-                <li class="desactive ">
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
+                    <li class="active ">
+                {% else %}
+                    <li class="desactive ">
+                {% endif %}
                     <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
                         <a href="{{ path('ds_facyt_infrastructure_user_profile')}}"> <li><i class="fa fa-user"></i> Perfil </li></a>
@@ -89,7 +93,11 @@
                 <li class="">
                     <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
                 </li>
-                <li class="desactive ">
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
+                    <li class="active ">
+                {% else %}
+                    <li class="desactive ">
+                {% endif %}
                     <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
                         <a href="{{ path('ds_facyt_infrastructure_user_image_homepage')}}"> <li><i class="fa fa-user"></i> Perfil</li></a>

@@ -4,6 +4,8 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 
 use DSFacyt\Core\Application\UseCases\User\GetProfile\GetProfileCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use DSFacyt\Core\Application\UseCases\User\BasicInformation\BasicInformationCommand;
@@ -62,5 +64,16 @@ class DefaultController extends Controller
 
         return $this->render('DSFacytInfrastructureBundle:User:profile.html.twig',
             array('data' => json_encode($response->getData())));
+    }
+
+
+    public function editProfileAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            return new JsonResponse(null,200);
+        }
+
+        return new JsonResponse(null,400);
     }
 }

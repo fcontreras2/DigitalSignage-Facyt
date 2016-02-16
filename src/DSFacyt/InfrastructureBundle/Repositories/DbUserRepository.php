@@ -3,7 +3,6 @@
 namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\EntityManager;
 use DSFacyt\Core\Domain\Model\Entity\User;
 use DSFacyt\Core\Domain\Repository\UserRepository;
 
@@ -19,5 +18,14 @@ use DSFacyt\Core\Domain\Repository\UserRepository;
 class DbUserRepository extends EntityRepository implements 
     UserRepository  
 {
-    
+    /**
+     * La siguiente función  registra un usuario
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 06/10/2015
+     */
+    public function save(User $user)
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
 }

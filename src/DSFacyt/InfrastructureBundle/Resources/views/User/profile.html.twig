@@ -61,13 +61,13 @@
                                                 <br>
                                                 <b>Nombre</b> <i ng-show="profile_data_text">{[{ data.name }]}</i>
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                                <input type="text" ng-show="!profile_data_text" value="{[{data.name}]}" class="form-control" ng-modal="editData.name">
+                                                <input type="text" ng-show="!profile_data_text" value="{[{data.name}]}" class="form-control" ng-model="editData.name">
                                             </div>
                                             <div class="col-xs-12 col-md-6">
                                                 <br>
                                                 <b>Apellido</b> <i ng-show="profile_data_text">{[{ data.last_name }]}</i>
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                                <input type="text" ng-show="!profile_data_text" value="{[{data.last_name}]}" class="form-control" ng-modal="editData.last_name">
+                                                <input type="text" ng-show="!profile_data_text" value="{[{data.last_name}]}" class="form-control" ng-model="editData.last_name">
                                             </div>
                                             <br>
                                             <br>
@@ -75,19 +75,19 @@
                                                 <br>
                                                 <b>Escuela</b> <i ng-show="profile_data_text">{[{ data.school }]}</i>
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                                <select  class="form-control" ng-show="!profile_data_text" ng-model="editData.school">
-                                                    <option ng-repeat="current_school in data.all_school" ng-modal="editData.school_id" value="{[{current_school.id }]}" ng-selected="current_school.name == data.school">{[{ current_school.name }]}</option>
+                                                <select  class="form-control" ng-show="!profile_data_text">
+                                                    <option ng-repeat="current_school in data.all_school" ng-model="editData.school_index" value="$index" ng-selected="current_school.name == data.school">{[{ current_school.name }]}</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-12 col-md-6">
                                                 <br>
                                                 <b>Télefono</b> <i ng-show="profile_data_text">{[{ data.phone }]}</i>
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                                <input type="text" ng-show="!profile_data_text" value="{[{data.phone}]}" class="form-control" ng-modal="editData.phone">
+                                                <input type="text" ng-show="!profile_data_text" value="{[{data.phone}]}" class="form-control" ng-model="editData.phone">
                                             </div>
 
                                         <div class="col-xs-12 col-md-6">
-                                            <br>
+o                                            <br>
                                             <button class="btn btn-sm btn-primary btn-block col-xs-4" ng-show="!profile_data_text" ng-click="sendEditData();"> <i class="fa fa-check" ></i> &nbsp; Actualizar Datos</button>
                                         </div>
                                         <div class="col-xs-12 col-md-6">

@@ -6,6 +6,7 @@ user.service('userService', function(){
         editData.name = originalData.name;
         editData.last_name = originalData.last_name;
         editData.school = originalData.school;
+        editData.school_id = originalData.school_id;
         editData.phone = originalData.phone;
     }
 });

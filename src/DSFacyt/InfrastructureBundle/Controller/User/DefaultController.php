@@ -2,6 +2,7 @@
 
 namespace DSFacyt\InfrastructureBundle\Controller\User;
 
+use DSFacyt\Core\Application\UseCases\User\EditProfile\EditProfileCommand;
 use DSFacyt\Core\Application\UseCases\User\GetProfile\GetProfileCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -66,12 +67,33 @@ class DefaultController extends Controller
             array('data' => json_encode($response->getData())));
     }
 
-
+    /**
+     * La siguiente función recibe los datos de editar un usuario
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param Request $request
+     * @version 12/02/2016
+     *
+     * @return JsonResponse
+     */
     public function editProfileAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
+
             $data = json_decode($request->getContent(),true);
-            return new JsonResponse(null,200);
+
+            $command = new EditProfileCommand();
+            $command->setUser($this->get('security.token_storage')->getToken()->getUser());
+            $command->setData($data);
+
+            $response = $this->get('CommandBus')->execute($command);
+
+            if ($response->getStatusCode() == 200)
+                return new JsonResponse(null,200);
+            else
+                return new JsonResponse($response->getMessage(),$response->getStatusCode());
+
+
         }
 
         return new JsonResponse(null,400);

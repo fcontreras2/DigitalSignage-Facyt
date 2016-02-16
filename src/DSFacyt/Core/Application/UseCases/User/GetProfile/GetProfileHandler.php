@@ -8,7 +8,7 @@ use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
 
 /**
- * Clase para ejecutar el caso de uso GetTexts
+ * Clase para ejecutar el caso de uso GetProfile
  * @author Freddy Contreras <freddycontreras3@gmail.com>
  * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
  * @version 03/09/2015
@@ -53,6 +53,7 @@ class GetProfileHandler implements Handler
             $response['profile_image'] = $user->getImageProfile() ?
                 $user->getImageProfile()->getFileName() : '/images/avatar.jpg';
             $response['school'] = $user->getSchool()->getName();
+            $response['school_id'] = $user->getSchool()->getId();
 
             $response['all_school'] = [];
             $schools  =  $rf->get('School')->findBy(array(), array('name' => 'ASC'));

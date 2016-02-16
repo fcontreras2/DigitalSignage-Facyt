@@ -25,12 +25,17 @@ user.controller('UserController', ['$scope','$filter', 'userService', '$modal', 
         $scope.sendEditData = function() {
             var url = Routing.generate('ds_facyt_infrastructure_user_edit_profile');
             var data = angular.toJson($scope.editData);
+
             $.ajax({
                 method: 'POST',
                 data: data,
                 url: url,
                 success: function(data) {
-                    alert("Listo");
+
+                    userService.resetValues($scope.editData,$scope.data);
+                    console.log('editData',$scope.editData);
+                    console.log('data',$scope.data);
+                    $scope.profile_data_text = true;
                 }
             });
         }

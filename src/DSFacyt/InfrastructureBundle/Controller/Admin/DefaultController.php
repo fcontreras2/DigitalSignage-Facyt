@@ -28,8 +28,8 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
-    {   
-        return new Response("Hola");
+    {
+        return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig');
         //return $this->render('DSFacytInfrastructureBundle:Default:index.html.twig');
     }
 }

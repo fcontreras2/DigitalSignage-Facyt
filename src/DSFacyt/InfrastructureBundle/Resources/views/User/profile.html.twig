@@ -87,7 +87,7 @@
                                             </div>
 
                                         <div class="col-xs-12 col-md-6">
-o                                            <br>
+                                            <br>
                                             <button class="btn btn-sm btn-primary btn-block col-xs-4" ng-show="!profile_data_text" ng-click="sendEditData();"> <i class="fa fa-check" ></i> &nbsp; Actualizar Datos</button>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
@@ -198,12 +198,14 @@ o                                            <br>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
     {% else %}
         {% javascripts
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js',
-        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js",
-        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-user.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-user.js"
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
 
         {% endjavascripts %}
     {% endif %}
+
 {% endblock javascripts %}

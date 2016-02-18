@@ -30,6 +30,5 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig');
-        //return $this->render('DSFacytInfrastructureBundle:Default:index.html.twig');
     }
 }

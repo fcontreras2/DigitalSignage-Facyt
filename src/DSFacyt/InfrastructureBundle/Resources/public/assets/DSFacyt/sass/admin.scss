@@ -1,6 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+
+// PRE-IMPORT font-variant: ABLES
+$fa-font-path:   "/fonts/font-awesome";
+
+/** IMPORT SASS DEL SISTEMA **/
+@import "variables_system";
+@import "avenir_font";
+
+/** IMPORT VENDOR SASS **/
+@import "../../vendor/sass/bootstrap-sass-official/bootstrap";
+@import "../../vendor/sass/font-awesome-sass/font-awesome";
 
 /* Toggle Styles */
 #wrapper {
+  font-family:'Avenir LT Std 45 Book';font-weight:normal;
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -9,10 +22,34 @@
   .fa {
     display: inline !important;
   }
+  .sidebar-nav > li > .active {
+    background: $gray-dark !important;
+    color:white !important;
+    }
+
+  .list-group-submenu > .list-group-item {
+    color: $blue-ligth !important;
+    background: $gray-light;
+  }
+
+  .toggle-tag {
+    float:right !important;
+    padding: 12.5px !important;
+  }
+  .list-group-item {
+    padding: 0px !important;
+    background-color: $gray-light !important;
+    border-radius: 0px !important;
+    color: blue !important;
+  }
 }
 
 #wrapper.toggled {
   padding-left: 250px;
+}
+
+a {
+  color: $blue-dark !important;
 }
 
 #sidebar-wrapper {
@@ -28,6 +65,7 @@
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  background: $gray-light;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -83,6 +121,7 @@
   font-size: 18px;
   line-height: 60px;
   border-bottom: 1px solid;
+  background: $gray-light-two !important;
 }
 
 .sidebar-nav > .sidebar-brand a {

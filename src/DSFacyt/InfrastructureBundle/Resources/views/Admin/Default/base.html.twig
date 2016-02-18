@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/admin.css') }}"/>
 
     </head>
@@ -17,9 +16,24 @@
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
             <script>
+
                 $("#menu-toggle").click(function(e) {
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
+                });
+
+                $('.sidebar-nav > li > a').click(function(){
+                    var childToggleTag = $(this).children('.toggle-tag');
+
+                    if (childToggleTag.hasClass('fa-angle-left')) {
+                        childToggleTag.removeClass('fa-angle-left');
+                        childToggleTag.addClass('fa-angle-down');
+                        $(this).addClass('active');
+                    } else {
+                        childToggleTag.removeClass('fa-angle-down');
+                        childToggleTag.addClass('fa-angle-left');
+                        $(this).removeClass('active');
+                    }
                 });
             </script>
         {% endblock %}

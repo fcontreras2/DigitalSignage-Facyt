@@ -5,6 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use DSFacyt\Core\Application\UseCases\Admin\GetResumen\GetResumenCommand;
 
 /**
  * Class DefaultController
@@ -29,6 +30,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $command = new GetResumenCommand();
+        $response = $this->get('CommandBus')->execute($command);
+
+        var_dump(json_encode($response->getData()));
+
         return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig');
     }
 }

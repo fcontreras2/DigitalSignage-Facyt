@@ -20,4 +20,14 @@ interface TextRepository
      * @version 01/09/2015
      */
     public function findAllByUser($user);
+
+    /**
+     * Consigue las publicaciones que se publicaran en un rango de fecha
+     *
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStartDateEndDate($startDate, $endDate);
 }

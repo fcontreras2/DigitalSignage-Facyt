@@ -35,6 +35,28 @@ class DbTextRepository extends EntityRepository implements
     }
 
     /**
+     * Consigue las publicaciones que se publicaran en un rango de fecha
+     *
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStartDateEndDate($startDate, $endDate)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('
+                (t.start_date <= :startDate and :startDate <= t.end_date) or
+                (t.start_date <= :endDate and :endDate <= t.end_date)
+            ')
+            ->setParameters([
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ])
+            ->getQuery()->getResult();
+    }
+
+    /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015

@@ -1,73 +1,78 @@
 {% extends "DSFacytInfrastructureBundle:Admin/Default:base.html.twig" %}
 
+{% block title_notifications %}
+    <span class="fa fa-home"></span> Bienvenido.
+{% endblock title_notifications %}
+
 {% block body %}
-    <div id="wrapper">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-2">
+                    Fecha Inicial <input class="form form-control">
+                </div>
+                <div class="col-xs-2">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        <b>DSFacyt - Admin</b>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                         <span class="fa fa-bell-o"></span>  Publicaciones
-                    </a>
-                </li>
-                <li>
-                    <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
-                        <span class="fa fa-calendar"></span>  Programación <span class="toggle-tag fa fa-angle-left"></span>
-                    </a>
-                    <div class="collapse list-group-submenu" id="SubMenu1">
-                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-                        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
-                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
-                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
-                        </div>
-                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="fa fa-desktop"></span>  Canales
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-user"></span>  Usuarios</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="fa fa-gears"></span>  Configuraciones
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('ds_facyt_infrastructure_admin_security_logout') }}">
-                        <span class="fa fa-sign-out"></span>  Salir
-                    </a>
-                </li>
-            </ul>
+                    Fecha Final <input class="form form-control">
+                </div>
+            </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+        <div class="col-xs-12">
+            <h4><span class="fa fa-bell-o"></span> Publicaciones </h4>
+            Publicaciones realizadas por los usuarios
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                    	  <div class="panel-heading">
+                    			<h3 class="panel-title"><span class="fa fa-pencil"></span> Textos</h3>
+                    	  </div>
+                    	  <div class="panel-body">
+                    			Nuevo 2
+                    	  </div>
+                    </div>
+                </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span class="fa fa-camera"></span> Imágenes</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel body
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span class="fa fa-play"></span> Videos</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel body
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
 
+        <div class="col-xs-12">
+            <h4> <span class="fa fa-desktop"></span> Canales</h4>
+            Medios donde se realizaran publicaciones
+            <div class="row">
+                {% for i in 1..3 %}
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                    	  <div class="panel-heading">
+                    			<h3 class="panel-title">Nombre del Canal</h3>
+                    	  </div>
+                    	  <div class="panel-body">
+                    			Panel body
+                    	  </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+
 {% endblock body %}

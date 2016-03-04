@@ -1,0 +1,66 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                <b>DSFacyt - Admin</b>
+            </a>
+        </li>
+        <li >
+            <a href="#" class="active">
+                <span class="fa fa-home"></span> Principal
+            </a>
+        </li>
+        <li>
+            <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
+                <span class="fa fa-bell-o"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left"></span>
+            </a>
+            <div class="collapse list-group-submenu" id="SubMenu1">
+                <a style="margin-left: 6px" href="#" class="list-group-item" data-parent="#SubMenu1">
+                    <span class="fa fa-pencil"> </span> Textos
+                    <span style="float: right;padding-right: 10px">10</span>
+                </a>
+                <a style="margin-left: 6px" class="list-group-item" data-parent="#SubMenu1">
+                    <span class="fa fa-camera"> </span> Imágenes
+                    <span style="float: right;padding-right: 10px">3</span>
+                </a>
+                <a style="margin-left: 6px" class="list-group-item" data-parent="#SubMenu1">
+                    <span class="fa fa-play"> </span> Videos
+                    <span style="float: right;padding-right: 10px">4</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <a href="#SubMenu2"  data-toggle="collapse" data-parent="#SubMenu2">
+                <span class="fa fa-calendar"></span>  Programación <span class="toggle-tag fa fa-angle-left"></span>
+            </a>
+            <div class="collapse list-group-submenu" id="SubMenu2">
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+                <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+                <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                    <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+                    <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+                </div>
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="fa fa-desktop"></span>  Canales
+            </a>
+        </li>
+        <li>
+            <a href="#"><span class="fa fa-user"></span>  Usuarios</a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="fa fa-gears"></span>  Configuraciones
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('ds_facyt_infrastructure_admin_security_logout') }}">
+                <span class="fa fa-sign-out"></span>  Salir
+            </a>
+        </li>
+</div>

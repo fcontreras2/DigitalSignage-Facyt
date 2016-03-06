@@ -1,0 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+
+// PRE-IMPORT font-variant: ABLES
+$fa-font-path:   "/fonts/font-awesome";
+
+/** IMPORT SASS DEL SISTEMA **/
+@import "variables_system";
+@import "avenir_font";
+
+/** IMPORT VENDOR SASS **/
+@import "../../vendor/sass/bootstrap-sass-official/bootstrap";
+
+
+.container-display {
+  font-family:'Avenir LT Std 45 Book';font-weight:normal;
+}

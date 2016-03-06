@@ -9,6 +9,7 @@ ds_facyt_infrastructure_module_user:
     defaults:
         extension: "%extension_user%"
 
+# Rutas del administrador
 ds_facyt_infrastructure_module_admin:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/routing.yml"
     prefix: "{extension}"
@@ -16,6 +17,10 @@ ds_facyt_infrastructure_module_admin:
         extension: %extension_admin%
     defaults:
         extension: "%extension_admin%"
+# Rutas de vista de las pantallas
+ds_facyt_infrastructure_module_display:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/display/routing.yml"
+    prefix: "display"
 
 # === RUTAS DE MODULOS DE USUARIOS  INVITADOS ===
 

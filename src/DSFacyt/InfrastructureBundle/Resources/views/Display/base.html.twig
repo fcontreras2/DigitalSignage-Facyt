@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Display{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body style="margin: 0px !important;">
+<div>
+    {% block body %}{% endblock %}
+</div>
+
+{% block javascripts %}{% endblock %}
+</body>
+
+<footer>
+    <div class="div-footer" style="marin">
+        {% block footer %}
+        {% endblock footer %}
+    </div>
+</footer>
+</html>

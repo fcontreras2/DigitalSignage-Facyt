@@ -1,0 +1,3 @@
+ds_facyt_display_index:
+    path:   /
+    defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:index"}

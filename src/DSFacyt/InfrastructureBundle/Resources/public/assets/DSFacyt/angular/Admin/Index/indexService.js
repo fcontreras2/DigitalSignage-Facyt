@@ -1,0 +1,3 @@
+indexModule.service('indexService', function(){
+
+});

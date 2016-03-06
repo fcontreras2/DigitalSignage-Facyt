@@ -56,7 +56,7 @@ class Text
     private $info;
 
     /**
-     * Esta propiedad refleja el estado de la publicación (activa, revisión, en espera, cancelada)
+     * Esta propiedad refleja el estado de la publicación (Pendiente 0, Corregir Publicación 1, Aceptada 2, Cancelada 3, Finalizada 4)
      * 
      * @var String
      */

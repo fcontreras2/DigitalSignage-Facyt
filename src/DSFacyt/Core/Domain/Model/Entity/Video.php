@@ -63,7 +63,7 @@ class Video
     private $status;
 
     /**
-     * Esta propiedad representa al usuario al que le pertenece la publicación
+     * Esta propiedad refleja el estado de la publicación (Pendiente 0, Corregir Publicación 1, Aceptada 2, Cancelada 3, Finalizada 4)
      *
      * @var \DSFacyt\Core\Domain\Model\Entity\User
      */

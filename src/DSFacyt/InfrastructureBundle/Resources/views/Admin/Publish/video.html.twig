@@ -1,0 +1,43 @@
+{% extends "@DSFacytInfrastructure/Admin/Publish/base.htmll.twig" %}
+
+{% block title %} Videos {% endblock title %}
+
+{% block title_notifications %}
+    <span class="fa fa-play"></span> Videos
+{% endblock title_notifications %}
+
+{% block table %}
+    <br>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Usuario</th>
+                    <th>Fecha Inicial</th>
+                    <th>Fecha Final</th>
+                    <th>Título</th>
+                    <th><span class="fa fa-eye"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="currentPublish in publish">
+                    <td style="width: 3%;">
+                        {[{ $index + 1 }]}
+                    </td>
+                    <td style="width: 17%"> {[{ currentPublish.user_name }]}</td>
+                    <td> {[{ currentPublish.start_date}]}</td>
+                    <td> {[{ currentPublish.end_date }]}</td>
+                    <td> {[{ currentPublish.title }]}</td>
+                    <td> <a href="#">Ver + </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock table %}
+
+{% block javascripts%}
+    {{ parent() }}
+{% endblock javascripts %}

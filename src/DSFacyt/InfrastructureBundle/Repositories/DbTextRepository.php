@@ -57,6 +57,31 @@ class DbTextRepository extends EntityRepository implements
     }
 
     /**
+     * Retorna las publicaciones dado un estado y un rango de fecha
+     *
+     * @param $status
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStatusStartDateEndDate($status, $startDate, $endDate)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('
+                t.status = :status and
+                ((t.start_date <= :startDate and :startDate <= t.end_date) or
+                (t.start_date <= :endDate and :endDate <= t.end_date))
+            ')
+            ->setParameters([
+                'status' => $status,
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ])
+            ->getQuery()->getResult();
+    }
+
+    /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015

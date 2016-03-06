@@ -1,22 +1,36 @@
 {% extends "DSFacytInfrastructureBundle:Admin/Default:base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>
+    {% endif %}
+{% endblock stylesheets %}
 {% block title_notifications %}
     <span class="fa fa-home"></span> Bienvenido.
 {% endblock title_notifications %}
 
 {% block body %}
-    <div class="row">
+    <div class="row" ng-app="IndexModule" ng-controller="IndexController">
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-2">
-                    Fecha Inicial <input class="form form-control">
+                    <b>Fecha Inicial</b>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input class="form-control input-small" ng-model="start_date">
+                    </div>
                 </div>
                 <div class="col-xs-2">
-
-                    Fecha Final <input class="form form-control">
+                    <b>Fecha Final</b>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input class="form-control input-small" ng-model="end_date">
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="col-xs-12">
             <h4><span class="fa fa-bell-o"></span> Publicaciones </h4>
             Publicaciones realizadas por los usuarios
@@ -27,7 +41,11 @@
                     			<h3 class="panel-title"><span class="fa fa-pencil"></span> Textos</h3>
                     	  </div>
                     	  <div class="panel-body">
-                    			Nuevo 2
+                    			<a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}"> Nuevo {[{data['publish']['texts'][0]}]} </a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 1}) }}"> Editar {[{data['publish']['texts'][1]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 2}) }}"> Aceptada {[{data['publish']['texts'][2]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 3}) }}"> Cancelada {[{data['publish']['texts'][3]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 4}) }}"> Finalizada {[{data['publish']['texts'][3]}]}</a>
                     	  </div>
                     </div>
                 </div>
@@ -38,7 +56,11 @@
                             <h3 class="panel-title"><span class="fa fa-camera"></span> Imágenes</h3>
                         </div>
                         <div class="panel-body">
-                            Panel body
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}"> Nuevo {[{data['publish']['images'][0]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image','status':1}) }}"> Editar {[{data['publish']['images'][1]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image','status':2}) }}"> Aceptada {[{data['publish']['images'][2]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image','status':3}) }}"> Cancelada {[{data['publish']['images'][3]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image','status':4}) }}"> Finalizada {[{data['publish']['images'][3]}]}</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +70,11 @@
                             <h3 class="panel-title"><span class="fa fa-play"></span> Videos</h3>
                         </div>
                         <div class="panel-body">
-                            Panel body
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Nuevo {[{data['publish']['videos'][0]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Editar {[{data['publish']['videos'][1]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Aceptada {[{data['publish']['videos'][2]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Cancelada {[{data['publish']['videos'][3]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Finalizada {[{data['publish']['videos'][3]}]}</a>
                         </div>
                     </div>
                 </div>
@@ -76,3 +102,37 @@
     </div>
 
 {% endblock body %}
+
+{% block javascripts%}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+    </script>
+{% endblock javascripts %}

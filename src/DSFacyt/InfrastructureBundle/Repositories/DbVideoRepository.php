@@ -56,4 +56,29 @@ class DbVideoRepository extends EntityRepository implements
             ])
             ->getQuery()->getResult();
     }
+
+    /**
+     * Retorna las publicaciones dado un estado y un rango de fecha
+     *
+     * @param $status
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStatusStartDateEndDate($status, $startDate, $endDate)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('
+                v.status = :status and
+                ((v.start_date <= :startDate and :startDate <= v.end_date) or
+                (v.start_date <= :endDate and :endDate <= v.end_date))
+            ')
+            ->setParameters([
+                'status' => $status,
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ])
+            ->getQuery()->getResult();
+    }
 }

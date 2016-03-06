@@ -30,4 +30,15 @@ interface VideoRepository
      * @return array
      */
     public function findByStartDateEndDate($startDate, $endDate);
+
+    /**
+     * Retorna las publicaciones dado un estado y un rango de fecha
+     *
+     * @param $status
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStatusStartDateEndDate($status, $startDate, $endDate);
 }

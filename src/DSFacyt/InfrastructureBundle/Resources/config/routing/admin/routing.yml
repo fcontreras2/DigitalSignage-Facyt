@@ -2,6 +2,11 @@
 ds_facyt_infrastructure_admin_module_security:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/security/security.yml"
 
+# Rutas del modulo de publicaciones del administrador
+ds_facyt_infrastructure_admin_module_publish:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/routing.yml"
+    prefix: /publish
+
 ds_facyt_infrastructure_admin_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }

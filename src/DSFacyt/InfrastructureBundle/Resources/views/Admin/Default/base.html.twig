@@ -55,6 +55,19 @@
 
 
         {% block javascripts %}
+
+            <!-- Tomando variables enviadas desde el servidor -->
+            {% if data is defined %}
+            <script type="text/javascript">
+                var data = "{{ data }}";
+                var div = document.createElement('div');
+                div.innerHTML = data;
+                data = div.firstChild.nodeValue;
+                //console.log( div.firstChild.nodeValue);
+                data = JSON.parse(data);
+            </script>
+            {% endif %}
+
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
             <script>

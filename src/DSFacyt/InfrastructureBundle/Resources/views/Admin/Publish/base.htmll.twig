@@ -1,0 +1,72 @@
+{% extends "@DSFacytInfrastructure/Admin/Default/base.html.twig" %}
+
+{% block body %}
+<div ng-app="PublishModule" ng-controller="PublishController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    Las siguientes publicaciones son de tipo {% block title %} {% endblock %}
+                </div>
+             </div>
+            <br>
+             <div class="row">
+                <div class="col-xs-4 col-md-2">
+                    <b>Fecha Inicial</b>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input class="form-control input-small" ng-model="start_date">
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                    <b>Fecha Final</b>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input class="form-control input-small" ng-model="end_date">
+                    </div>
+                </div>
+
+                <div class="col-xs-4 col-md-2 pull-right">
+                    <b>Estado</b>
+                    <select name="name" id="inputID" class="form-control">
+                        <option value="0"> -- Selecione -- </option>
+                        <option value="1">Pendiente </option>
+                        <option value="2"> En Correción </option>
+                        <option value="3"> Aceptada </option>
+                        <option value="4"> Finalizada </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% block table %} {% endblock table %}
+    </div>
+</div>
+{% endblock body %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Publish/publishModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Publish/publishService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Publish/publishController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+    {% endif %}
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+    </script>
+{% endblock javascripts %}

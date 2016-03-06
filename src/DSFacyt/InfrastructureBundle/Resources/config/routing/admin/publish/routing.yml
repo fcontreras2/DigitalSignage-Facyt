@@ -1,0 +1,8 @@
+ds_facyt_infrastructure_get_publish_type_status:
+  path: /{type}/{status}
+  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}
+
+# Modulo de publicaciones del adminstrador
+ds_facyt_infrastructure_module_admin_text:
+  resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/text.yml"
+  prefix: text

@@ -27,6 +27,20 @@ class GetResumenHandler implements Handler
     private $rf;
 
     /**
+     * @var array  Array con los distintos tipos de estados
+     * (Pendiente (0), Corregir Publicación (1), Aceptada (2), Cancelada (3), Finalizada (4)
+     */
+    private $initialArray = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        for ($i = 0; $i < 5 ;$i++)
+            $this->initialArray[$i] = 0;
+    }
+    /**
      * Ejecuta el caso de uso 'Eliminar la imagen'
      *
      * @param Command $command Objeto Command contenedor de la solicitud del usuario
@@ -58,9 +72,9 @@ class GetResumenHandler implements Handler
     public function getPublish($startDate, $endDate)
     {
         $response = [
-            'texts' => [0 => 0 ,1 => 0, 2 => 0, 3 => 0],
-            'images' => [0 => 0 ,1 => 0, 2 => 0, 3 => 0],
-            'videos' => [0 => 0 ,1 => 0, 2 => 0, 3 => 0],
+            'texts' => $this->initialArray,
+            'images' => $this->initialArray,
+            'videos' => $this->initialArray
         ];
 
         $rpText = $this->rf->get('Text');
@@ -88,9 +102,6 @@ class GetResumenHandler implements Handler
             $index = $currentVideo->getStatus();
             $response['videos'][$index] ++;
         }
-
-        //$response['images'] = $rpImage->findByStartDateEndDate($startDate, $endDate);
-        //$response['video'] = $rpVideo->findByStartDateEndDate($startDate, $endDate);
 
         return $response;
     }

@@ -5,27 +5,33 @@
                 <b>DSFacyt - Admin</b>
             </a>
         </li>
-        <li >
-            <a href="#" class="active">
+        <li>
+            {%  if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_admin_homepage' %}
+                <a href="{{ path('ds_facyt_infrastructure_admin_homepage') }}" class="active">
+            {% else %}
+                <a href="{{ path('ds_facyt_infrastructure_admin_homepage') }}">
+            {% endif %}
                 <span class="fa fa-home"></span> Principal
             </a>
         </li>
         <li>
-            <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
-                <span class="fa fa-bell-o"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left"></span>
+            {% if ('/publish/' in app.request.uri) %}
+                <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1" class="active">
+            {% else %}
+                <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
+            {% endif %}
+                <span class="fa fa-bell-o"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
             </a>
-            <div class="collapse list-group-submenu" id="SubMenu1">
-                <a style="margin-left: 6px" href="#" class="list-group-item" data-parent="#SubMenu1">
+            <div class="collapse list-group-submenu" id="SubMenu1" >
+                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" data-parent="#SubMenu1">
                     <span class="fa fa-pencil"> </span> Textos
-                    <span style="float: right;padding-right: 10px">10</span>
                 </a>
-                <a style="margin-left: 6px" class="list-group-item" data-parent="#SubMenu1">
+                <a style="margin-left: 6px"
+             href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu1">
                     <span class="fa fa-camera"> </span> Imágenes
-                    <span style="float: right;padding-right: 10px">3</span>
                 </a>
-                <a style="margin-left: 6px" class="list-group-item" data-parent="#SubMenu1">
+                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}" class="list-group-item" data-parent="#SubMenu1">
                     <span class="fa fa-play"> </span> Videos
-                    <span style="float: right;padding-right: 10px">4</span>
                 </a>
             </div>
         </li>

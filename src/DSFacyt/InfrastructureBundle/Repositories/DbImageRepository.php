@@ -58,6 +58,31 @@ class DbImageRepository extends EntityRepository implements
     }
 
     /**
+     * Retorna las publicaciones dado un estado y un rango de fecha
+     *
+     * @param $status
+     * @param $startDate
+     * @param $endDate
+     *
+     * @return array
+     */
+    public function findByStatusStartDateEndDate($status, $startDate, $endDate)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('
+                i.status = :status and
+                ((i.start_date <= :startDate and :startDate <= i.end_date) or
+                (i.start_date <= :endDate and :endDate <= i.end_date))
+            ')
+            ->setParameters([
+                'status' => $status,
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ])
+            ->getQuery()->getResult();
+    }
+
+    /**
     * La siguiente función  elimina una imagen
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015

@@ -33,8 +33,8 @@ class DefaultController extends Controller
         $command = new GetResumenCommand();
         $response = $this->get('CommandBus')->execute($command);
 
-        var_dump(json_encode($response->getData()));
-
-        return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig');
+        return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig',
+            ['data' => json_encode($response->getData())]
+        );
     }
 }

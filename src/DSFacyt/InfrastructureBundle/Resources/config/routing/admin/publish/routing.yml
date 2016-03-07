@@ -1,8 +1,12 @@
+ds_facyt_infrastructure_api_get_publish_type_status:
+  path: /getPublish/async
+  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:apiGetPublishStatus"}
+  options:
+      expose: true
+  requirements:
+      { _format: (xml |json), _method: POST }
+
 ds_facyt_infrastructure_get_publish_type_status:
   path: /{type}/{status}
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}
 
-# Modulo de publicaciones del adminstrador
-ds_facyt_infrastructure_module_admin_text:
-  resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/text.yml"
-  prefix: text

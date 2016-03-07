@@ -5,6 +5,8 @@ namespace DSFacyt\InfrastructureBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
@@ -36,9 +38,35 @@ class PublishController extends Controller
                 $typeEntity = 'Video';
                 break;
         }
-        $response = ['type' => $type, 'status' =>  $status];
+        $response = ['type' => $typeEntity, 'status' =>  $status];
         $command = new GetPublishStatusCommand($typeEntity,$status);
         $response['data'] = $this->get('CommandBus')->execute($command)->getData();
         return $this->render($template,['data' => json_encode($response)]);
+    }
+
+    /**
+     * Retorna las publicaciones vía Ajax
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function apiGetPublishStatusAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            $command = new GetPublishStatusCommand(
+                $data['type'],
+                $data['status'],
+                null,
+                null,
+                $data['page']
+            );
+
+            $response = $this->get('CommandBus')->execute($command);
+            return new JsonResponse($response->getData(), 200);
+        }
+
+        return new JsonResponse('Error', 503);
     }
 }

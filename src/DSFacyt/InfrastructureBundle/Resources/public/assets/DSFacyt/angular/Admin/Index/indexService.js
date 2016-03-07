@@ -1,3 +1,3 @@
-indexModule.service('indexService', function(){
+index.service('indexService', function(){
 
 });

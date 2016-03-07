@@ -28,12 +28,13 @@
 
                 <div class="col-xs-4 col-md-2 pull-right">
                     <b>Estado</b>
-                    <select name="name" id="inputID" class="form-control">
-                        <option value="0"> -- Selecione -- </option>
-                        <option value="1">Pendiente </option>
-                        <option value="2"> En Correción </option>
-                        <option value="3"> Aceptada </option>
-                        <option value="4"> Finalizada </option>
+                    <select name="name" id="inputID" class="form-control" ng-model="status_select">
+                        <option value="-1" ng-selected="status == -1"> -- Selecione -- </option>
+                        <option value="0" ng-selected="status == 0"> Pendiente </option>
+                        <option value="1" ng-selected="status == 1"> Corregir </option>
+                        <option value="2" ng-selected="status == 2"> Aceptada </option>
+                        <option value="3" ng-selected="status == 3"> Cancelada </option>
+                        <option value="4" ng-selected="status == 4"> Finalizada </option>
                     </select>
                 </div>
             </div>

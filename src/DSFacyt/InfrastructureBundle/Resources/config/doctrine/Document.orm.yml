@@ -1,0 +1,31 @@
+DSFacyt\InfrastructureBundle\Entity\Document:
+    type: entity
+    table: document
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbDocumentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        fileName:
+            type: string
+
+    oneToOne:
+        user_image_profile:
+            targetEntity: User
+            mappedBy: image_profile
+            inversedBy: image_profile
+    oneToMany:
+        images:
+            targetEntity: Image
+            mappedBy: document
+            cascade: []
+        videos:
+            targetEntity: Video
+            mappedBy: documet
+
+    lifecycleCallbacks: {  }

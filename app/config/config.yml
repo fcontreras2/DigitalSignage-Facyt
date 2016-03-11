@@ -70,8 +70,9 @@ doctrine:
         # Mapping de las entidades del sistema que forman parte del Dominio del Sistema
             DSFacytDomain:
                 type: yml
-                prefix: DSFacyt\Core\Domain\Model\Entity
-                dir: %kernel.root_dir%/../src/DSFacyt/InfrastructureBundle/Resources/config/doctrine/Domain/Entity
+                prefix: DSFacyt\InfrastructureBundle\Entity
+                alias: DSFacytInfrastructureBundle
+                dir: %kernel.root_dir%/../src/DSFacyt/InfrastructureBundle/Resources/config/doctrine/
                 is_bundle: false
 
 
@@ -86,7 +87,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: DSFacyt\Core\Domain\Model\Entity\User
+    user_class: DSFacyt\InfrastructureBundle\Entity\User
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

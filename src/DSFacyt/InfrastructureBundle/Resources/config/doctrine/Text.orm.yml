@@ -1,0 +1,64 @@
+DSFacyt\InfrastructureBundle\Entity\Text:
+    type: entity
+    table: text
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbTextRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        start_date:
+            type: date
+
+        end_date:
+            type: date
+
+        publish_time:
+            type: string
+
+        title:
+            type: string
+
+        info:
+            type: string
+
+        status:
+            type: integer
+            options:
+                default: 0
+        date_create:
+            type: datetime
+            nullable: true
+
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: texts
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    manyToMany:
+        channels:
+            targetEntity: Channel
+            cascade: {  }
+            mappedBy: null
+            inversedBy: texts
+            joinTable:
+                name: channel_text
+                joinColumns:
+                    -
+                        name: text_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: channel_id
+                        referencedColumnName: id
+            orderBy: null
+
+    lifecycleCallbacks: {  }

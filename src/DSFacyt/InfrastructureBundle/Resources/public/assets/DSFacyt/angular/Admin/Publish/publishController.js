@@ -75,14 +75,21 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
 
         $scope.generatePagination = function (page)
         {
-            var start_date = moment($scope.start_date,'DD/MM/YYYY');
-            var end_date = moment($scope.start_date,'DD/MM/YYYY');
+            var start_date = null;
+            var end_date = null;
+
+            if ($scope.start_date != null)
+                var start_date = moment($scope.start_date,'DD/MM/YYYY').format('YYYY-MM-DD');
+
+            if ($scope.end_date != null)
+                var end_date = moment($scope.start_date,'DD/MM/YYYY').format('YYYY-MM-DD');
+
             var data = angular.toJson({
                 'status': $scope.status_select,
                 'type' : $scope.type,
                 'page' : 0,
-                'start_date' : start_date.format('YYYY-MM-DD'),
-                'end_date': end_date.format('YYYY-MM-DD'),
+                'start_date' : start_date,
+                'end_date': end_date,
                 'page': page
             })
 

@@ -23,6 +23,7 @@
     "font-awesome": "4.3.*",
     "ng-file-upload": "5.0.9",
     "ng-file-upload-shim": "5.0.9",
-    "ng-img-crop": "ngImgCrop#~0.3.2"
+    "ng-img-crop": "ngImgCrop#~0.3.2",
+    "moment": "~2.12.0"
   }
 }

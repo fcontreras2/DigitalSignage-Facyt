@@ -34,7 +34,8 @@ module.exports = function(grunt) {
               "js/bootstrap-timepicker.js" : "bootstrap-timepicker/js/bootstrap-timepicker.js",
               "js/ng-file-upload.js": "ng-file-upload/ng-file-upload.js",
               "js/ng-file-upload-shim.js": "ng-file-upload/ng-file-upload-shim.js",
-              "js/ng-img-crop.js": "ng-img-crop/compile/minified/ng-img-crop.js"
+              "js/ng-img-crop.js": "ng-img-crop/compile/minified/ng-img-crop.js",
+              "js/moment.js" : "moment/min/moment-with-locales.js"
           }
       },      
       folders: {

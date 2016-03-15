@@ -64,14 +64,13 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: false
+        auto_mapping: true
         mappings:
 
         # Mapping de las entidades del sistema que forman parte del Dominio del Sistema
             DSFacytDomain:
                 type: yml
                 prefix: DSFacyt\InfrastructureBundle\Entity
-                alias: DSFacytInfrastructureBundle
                 dir: %kernel.root_dir%/../src/DSFacyt/InfrastructureBundle/Resources/config/doctrine/
                 is_bundle: false
 

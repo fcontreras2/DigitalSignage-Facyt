@@ -58,8 +58,8 @@ class PublishController extends Controller
             $command = new GetPublishStatusCommand(
                 $data['type'],
                 $data['status'],
-                null,
-                null,
+                $data['start_date'],
+                $data['end_date'],
                 $data['page']
             );
 

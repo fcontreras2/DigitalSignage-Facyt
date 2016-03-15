@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-4 col-md-2 pull-right">
+                <div class="col-xs-4 col-md-2 pull-right" >
                     <b>Estado</b>
                     <select name="name" id="inputID" class="form-control" ng-model="status_select">
                         <option value="-1" ng-selected="status == -1"> -- Selecione -- </option>
@@ -41,6 +41,22 @@
         </div>
         </div>
         {% block table %} {% endblock table %}
+        <div class="col-xs-12 ">
+            <center>
+            <ul class="pagination" style="margin: 0 0">
+                <li ng-show="pagination.current != pagination.firstPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                </li>
+                <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+                </li>
+                <li ng-show="pagination.current != pagination.lastPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+                </li>
+            </ul>
+            </center>
+        </div>
     </div>
 </div>
 {% endblock body %}
@@ -53,6 +69,7 @@
     {% if app.environment == "dev" %}
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
@@ -68,6 +85,8 @@
             language: "es",
             format: 'dd/mm/yyyy',
             startDate: '-3d',
+            orientation: 'top',
+            autoclose: true
         });
     </script>
 {% endblock javascripts %}

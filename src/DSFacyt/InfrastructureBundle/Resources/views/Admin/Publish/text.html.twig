@@ -8,7 +8,12 @@
 
 {% block table %}
     <br>
-    <div class="row">
+    <div class="row" ng-if="publish == null">
+        <div class="col-xs-12" >
+            No existe publicaciones de este tipo
+        </div>
+    </div>
+    <div class="row" ng-if="publish != null">
         <div class="col-xs-12">
             <table class="table table-hover">
                 <thead>
@@ -22,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="currentPublish in publish">
+                <tr ng-repeat="currentPublish in publish" ng-cloak>
                     <td style="width: 3%;">
                         {[{ $index + 1 }]}
                     </td>

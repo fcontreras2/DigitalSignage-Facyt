@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacyt\Core\Domain\Model\Entity\Channel;
+use DSFacyt\InfrastructureBundle\Entity\Channel;
 
 /**
  * Clase LoadChannelData "DataFixtures".

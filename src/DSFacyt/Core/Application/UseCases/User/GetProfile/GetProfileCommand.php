@@ -3,7 +3,7 @@
 namespace DSFacyt\Core\Application\UseCases\User\GetProfile;
 
 use DSFacyt\Core\Application\Contract\Command;
-use DSFacyt\Core\Domain\Model\Entity\User;
+use DSFacyt\InfrastructureBundle\Entity\User;
 
 /**
  * Comando "Obtiene los datos del usuario"

@@ -27,9 +27,9 @@ class RegisterTextType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DSFacyt\Core\Domain\Model\Entity\Text',
+            'data_class' => 'DSFacyt\InfrastructureBundle\Entity\Text',
             'validation_groups' => array(
-                'DSFacyt\Core\Domain\Model\Entity\Text', 'determineValidationGroups'
+                'DSFacyt\InfrastructureBundle\Entity\Text', 'determineValidationGroups'
             ),
         ));
     }

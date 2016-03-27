@@ -14,48 +14,79 @@ class Document
 {
 
     /**
-     * @var integer
+     * Esta propiedad es usada como llave primaria dentro de la DB.
+     *
+     * @var Integer
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string
+     * Esta propiedad representa un nombre auxiliar del documento
+     *
+     * @var String
      */
-    private $name;
+    public $name;
 
     /**
-     * @var string
+     * Esta hace referencia al nombre del archivo
+     * con su extesión (.jpg, .png, .pdf, etc)
+     *
+     * @var String
      */
-    private $fileName;
+    public $fileName;
 
     /**
-     * @var \DSFacyt\InfrastructureBundle\Entity\User
+     * Esta propiedad hace referencia al archivo
+     *
      */
-    private $user_image_profile;
+    private $file;
+
+    /*
+     * Esta propiedad hace referencia al subDominio donde
+     * se almacenará la imagen (ej: /imagenes/.. )
+     */
+    private $subDir;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * constructor
      */
-    private $images;
+    public function __construct() { }
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $videos;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
+    public function setFile($file = null)
     {
-        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->videos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->file = $file;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set subDir
+     *
+     * @param string $subDir
+     * @return DocumentEntity
+     */
+    public function setSubDir($subDir = null)
+    {
+        $this->subDir = $subDir;
+    }
+
+    /**
+     * Get subDir
+     *
+     * @return String
+     */
+    public function getSubDir()
+    {
+        return $this->subDir;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,6 +97,7 @@ class Document
      * Set name
      *
      * @param string $name
+     *
      * @return Document
      */
     public function setName($name)
@@ -78,7 +110,7 @@ class Document
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -89,6 +121,7 @@ class Document
      * Set fileName
      *
      * @param string $fileName
+     *
      * @return Document
      */
     public function setFileName($fileName)
@@ -101,7 +134,7 @@ class Document
     /**
      * Get fileName
      *
-     * @return string 
+     * @return string
      */
     public function getFileName()
     {
@@ -109,35 +142,123 @@ class Document
     }
 
     /**
-     * Set user_image_profile
+     * La función retorna la dirección absoluta del archivo
      *
-     * @param \DSFacyt\InfrastructureBundle\Entity\User $userImageProfile
-     * @return Document
+     * @return string
      */
-    public function setUserImageProfile(\DSFacyt\InfrastructureBundle\Entity\User $userImageProfile = null)
+    public function getAbsolutePath()
     {
-        $this->user_image_profile = $userImageProfile;
-
-        return $this;
+        return null === $this->fileName
+            ? null
+            : $this->getUploadRootDir().'/'.$this->fileName;
     }
 
     /**
-     * Get user_image_profile
+     * La función retorna la dirección archivo
      *
-     * @return \DSFacyt\InfrastructureBundle\Entity\User 
+     * @return string
      */
-    public function getUserImageProfile()
+    public function getWebPath()
     {
-        return $this->user_image_profile;
+        return null === $this->fileName
+            ? null
+            : $this->getSubDir().'/'.$this->fileName;
     }
+
+    /**
+     * La función retorna la dirección absoluta del subdominio del archivo
+     *
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return $_SERVER['DOCUMENT_ROOT'].$this->getSubDir();
+    }
+
+    /**
+     * La función crea un documento en el directorio
+     *
+     * @param String $typeFile
+     * @param String $fileName
+     * @param String $subDir
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 25/06/2015
+     * @return Void
+     */
+    public function upload($typeFile = 'image', $subDir = '', $nameFile = null)
+    {
+
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $pathTypeFile = $this->getPathTypeFile($typeFile);
+        $this->setSubDir($pathTypeFile.$subDir);
+
+        // Si no existe el directorio se crea el directorio
+        if (!file_exists($this->getUploadRootDir())) {
+            mkdir($this->getUploadRootDir(),0755, true);
+        }
+
+        if (is_null($nameFile))
+            $nameFile = substr(time() + rand(), 0, 14);
+        else{
+            $nameFile = $nameFile.substr(time()+rand(), 0, 14);
+        }
+
+        $extension = $this->getFile()->guessExtension();
+        $path = $this->getUploadRootDir().$nameFile.'.'.$extension;
+
+
+        $this->setFileName($subDir.$nameFile.'.'.$extension);
+        move_uploaded_file($this->getFile(), $path);
+    }
+
+    /**
+     * La siguiente función retorna el directorio principal
+     * del documento según el tipo de documento (imagen, video, pdf, etc)
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 25/06/2015
+     */
+    private function getPathTypeFile($type)
+    {
+        $response = 'image';
+
+        switch ($type) {
+            case 'image':
+                $response  = '/uploads/images/';
+                break;
+            case 'video':
+                $response = '/uplods/videos/';
+                break;
+            default:
+                $response  = '/uploads/images/';
+                break;
+        }
+
+        return $response;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $images;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $videos;
+
 
     /**
      * Add images
      *
-     * @param \DSFacyt\InfrastructureBundle\Entity\Image $images
+     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
      * @return Document
      */
-    public function addImage(\DSFacyt\InfrastructureBundle\Entity\Image $images)
+    public function addImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
     {
         $this->images[] = $images;
 
@@ -147,9 +268,9 @@ class Document
     /**
      * Remove images
      *
-     * @param \DSFacyt\InfrastructureBundle\Entity\Image $images
+     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
      */
-    public function removeImage(\DSFacyt\InfrastructureBundle\Entity\Image $images)
+    public function removeImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
     {
         $this->images->removeElement($images);
     }
@@ -157,7 +278,7 @@ class Document
     /**
      * Get images
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImages()
     {
@@ -167,10 +288,10 @@ class Document
     /**
      * Add videos
      *
-     * @param \DSFacyt\InfrastructureBundle\Entity\Video $videos
+     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
      * @return Document
      */
-    public function addVideo(\DSFacyt\InfrastructureBundle\Entity\Video $videos)
+    public function addVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
     {
         $this->videos[] = $videos;
 
@@ -180,9 +301,9 @@ class Document
     /**
      * Remove videos
      *
-     * @param \DSFacyt\InfrastructureBundle\Entity\Video $videos
+     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
      */
-    public function removeVideo(\DSFacyt\InfrastructureBundle\Entity\Video $videos)
+    public function removeVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
     {
         $this->videos->removeElement($videos);
     }
@@ -190,10 +311,72 @@ class Document
     /**
      * Get videos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    public function removeFile($type = 'image')
+    {
+        $pathDocument = $_SERVER['DOCUMENT_ROOT'].$this->getPathTypeFile($type).$this->getFileName();
+        unlink($pathDocument);
+    }
+    /**
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $image_profile;
+
+
+    /**
+     * Set image_profile
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $imageProfile
+     * @return Document
+     */
+    public function setImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $imageProfile = null)
+    {
+        $this->image_profile = $imageProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get image_profile
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    public function getImageProfile()
+    {
+        return $this->image_profile;
+    }
+    /**
+     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    private $user_image_profile;
+
+
+    /**
+     * Set user_image_profile
+     *
+     * @param \DSFacyt\Core\Domain\Model\Entity\User $userImageProfile
+     * @return Document
+     */
+    public function setUserImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $userImageProfile = null)
+    {
+        $this->user_image_profile = $userImageProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get user_image_profile
+     *
+     * @return \DSFacyt\Core\Domain\Model\Entity\User
+     */
+    public function getUserImageProfile()
+    {
+        return $this->user_image_profile;
     }
 }

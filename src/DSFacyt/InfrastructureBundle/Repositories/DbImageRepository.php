@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
-use DSFacyt\Core\Domain\Model\Entity\Image;
+use DSFacyt\InfrastructureBundle\Entity\Image;
 use DSFacyt\Core\Domain\Repository\ImageRepository;
 
 /**

@@ -18,9 +18,9 @@ class RegisterDocumentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DSFacyt\Core\Domain\Model\Entity\Document',
+            'data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document',
             'validation_groups' => array(
-                'DSFacyt\Core\Domain\Model\Entity\Document', 'determineValidationGroups'
+                'DSFacyt\InfrastructureBundle\Entity\Document', 'determineValidationGroups'
             ),
         ));
     }

@@ -4,7 +4,7 @@ namespace Navicu\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacyt\Core\Domain\Model\Entity\Video;
+use DSFacyt\InfrastructureBundle\Entity\Video;
 
 /**
  * Clase LoadVideoData "DataFixtures".

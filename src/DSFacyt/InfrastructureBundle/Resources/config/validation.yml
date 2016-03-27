@@ -1,4 +1,4 @@
-DSFacyt\Core\Domain\Model\Entity\Text:
+DSFacyt\InfrastructureBundle\Entity\Text:
     properties:
         title:
             - NotBlank: ~

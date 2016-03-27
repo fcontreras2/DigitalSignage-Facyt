@@ -3,7 +3,7 @@
 namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
-use DSFacyt\Core\Domain\Model\Entity\User;
+use DSFacyt\InfrastructureBundle\Entity\User;
 use DSFacyt\Core\Domain\Repository\UserRepository;
 
 /**

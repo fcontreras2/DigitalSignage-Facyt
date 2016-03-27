@@ -33,9 +33,9 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {   
         $resolver->setDefaults(array(
-            'data_class' => 'DSFacyt\Core\Domain\Model\Entity\User',
+            'data_class' => 'DSFacyt\InfrastructureBundle\Entity\User',
             'validation_groups' => array(
-                'DSFacyt\Core\Domain\Model\Entity\User', 'determineValidationGroups'
+                'DSFacyt\InfrastructureBundle\Entity\User', 'determineValidationGroups'
             ),
         ));
     }

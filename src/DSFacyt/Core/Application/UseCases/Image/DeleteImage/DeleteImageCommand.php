@@ -3,7 +3,7 @@
 namespace DSFacyt\Core\Application\UseCases\Image\DeleteImage;
 
 use DSFacyt\Core\Application\Contract\Command;
-use DSFacyt\Core\Domain\Model\Entity\Image;
+use DSFacyt\InfrastructureBundle\Entity\Image;
 /**
  * Comando 'Eliminar los datos de una imagen'
  * @author Freddy Contreras <freddycontreras3@gmail.com>

@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterImageType;
-use DSFacyt\Core\Domain\Model\Entity\Image;
-use DSFacyt\Core\Domain\Model\Entity\Document;
+use DSFacyt\InfrastructureBundle\Entity\Image;
+use DSFacyt\InfrastructureBundle\Entity\Document;
 
 use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;

@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use DSFacyt\Core\Domain\Repository\TextRepository;
-use DSFacyt\Core\Domain\Model\Entity\Text;
+use DSFacyt\InfrastructureBundle\Entity\Text;
 
 /**
 * La clase se declaran los metodos y funciones que implementan

@@ -5,7 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use DSFacyt\Core\Domain\Model\Entity\Text;
+use DSFacyt\InfrastructureBundle\Entity\Text;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
 
 use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;

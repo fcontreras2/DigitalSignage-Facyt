@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
-use DSFacyt\Core\Domain\Model\Entity\Document;
+use DSFacyt\InfrastructureBundle\Entity\Document;
 use DSFacyt\Core\Domain\Repository\DocumentRepository;
 
 /**

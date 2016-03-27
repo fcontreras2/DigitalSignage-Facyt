@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DSFacyt\Core\Domain\Model\Entity\Document;
+use DSFacyt\InfrastructureBundle\Entity\Document;
 
 /**
  * Clase LoadDocumentData "DataFixtures".

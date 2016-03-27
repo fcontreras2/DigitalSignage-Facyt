@@ -25,7 +25,7 @@ class RegisterImageType extends AbstractType
                 'expanded' => true))
             ->add( 
                 $builder->create('document', 'form', 
-                    array('data_class' => 'DSFacyt\Core\Domain\Model\Entity\Document', 'label' => false))
+                    array('data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document', 'label' => false))
                     ->add('file', 'file', array('label' => 'Selecciona el archivo'))
             );
     }
@@ -33,9 +33,9 @@ class RegisterImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DSFacyt\Core\Domain\Model\Entity\Image',
+            'data_class' => 'DSFacyt\InfrastructureBundle\Entity\Image',
             'validation_groups' => array(
-                'DSFacyt\Core\Domain\Model\Entity\Image', 'determineValidationGroups'
+                'DSFacyt\InfrastructureBundle\Entity\Image', 'determineValidationGroups'
             ),
         ));
     }

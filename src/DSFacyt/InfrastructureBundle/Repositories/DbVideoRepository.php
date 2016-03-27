@@ -4,7 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
-use DSFacyt\Core\Domain\Model\Entity\Video;
+use DSFacyt\InfrastructureBundle\Entity\Video;
 use DSFacyt\Core\Domain\Repository\VideoRepository;
 
 /**

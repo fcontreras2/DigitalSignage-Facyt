@@ -3,7 +3,7 @@
 namespace DSFacyt\Core\Application\UseCases\User\BasicInformation;
 
 use DSFacyt\Core\Application\Contract\Command;
-use DSFacyt\Core\Domain\Model\Entity\User;
+use DSFacyt\InfrastructureBundle\Entity\User;
 
 /**
  * Comando 'Obtener la cantidad de publicaciones hechas por cada tipo de publicación'

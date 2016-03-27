@@ -2,7 +2,7 @@
 namespace DSFacyt\Core\Application\UseCases\Image\UploadImage;
 
 use DSFacyt\Core\Application\Contract\Command;
-use DSFacyt\Core\Domain\Model\Entity\Image;
+use DSFacyt\InfrastructureBundle\Entity\Image;
 
 /**
  * Comando 'Subir una imagen al sistema'

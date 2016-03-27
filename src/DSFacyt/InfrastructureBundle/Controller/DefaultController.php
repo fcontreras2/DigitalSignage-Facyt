@@ -4,8 +4,8 @@ namespace DSFacyt\InfrastructureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use DSFacyt\Core\Domain\Model\Entity\Document;
-use DSFacyt\Core\Domain\Model\Entity\User;
+use DSFacyt\InfrastructureBundle\Entity\Document;
+use DSFacyt\InfrastructureBundle\Entity\User;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 

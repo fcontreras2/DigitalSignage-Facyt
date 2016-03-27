@@ -3,7 +3,7 @@
 namespace DSFacyt\Core\Application\UseCases\Text\DeleteText;
 
 use DSFacyt\Core\Application\Contract\Command;
-use DSFacyt\Core\Domain\Model\Entity\Text;
+use DSFacyt\InfrastructureBundle\Entity\Text;
 /**
  * Comando 'Eliminar los datos de un texto'
  * @author Freddy Contreras <freddycontreras3@gmail.com>

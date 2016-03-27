@@ -7,6 +7,8 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
         textService.checkStatus($scope.data);
+        console.log($scope.data);
+
         var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',
@@ -30,9 +32,9 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             return false;
         }
 
-        var myOtherModal = $modal({scope: $scope, template: 'modal-deleteText.tpl', show: false});
+        var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
 
-        $scope.modalDeleteText = function(text_id) {
+        $scope.modalPreviewText = function(text_id) {
             $scope.indexPreview = text_id;
             myOtherModal.$promise.then(myOtherModal.show);
         }
@@ -69,6 +71,12 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         $scope.generatePagination = function(pagination) {
             $scope.urlPagination = Routing.generate('ds_facyt_infrastructure_user_text_homepage',{ page : pagination});
-        }
+        };
+
+        $scope.getUrlEdit = function(text_id) {
+            $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_user_text_edit',{
+                'textId' : text_id
+            });
+        };
 
     }]);

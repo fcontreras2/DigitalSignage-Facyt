@@ -63,47 +63,44 @@
                     <br>
                     <div class="col-xs-12" >
                         <div id="box-alert"></div>
-                        <table class="table table-bordered table-hover table-content" >
-                            <thead>
-                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
-                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
-                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
-                                <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
-                                <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Titulo</a></th>
-                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
-                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Editar</a></th>
-                                <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Eliminar</a></th>
-                            </thead>
-                            <tbody>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-content" >
+                                <thead>
+                                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
+                                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
+                                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
+                                    <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
+                                    <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Título</a></th>
+                                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
+                                    <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Detalle</a></th>
+                                </thead>
+                                <tbody>
 
-                                <tr ng-show="data.length == 0">
-                                    <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
-                                </tr>
-
-                                <tr ng-repeat="currentText in data" ng-if="data.length > 0">
-                                    <td>{[{ $index  + 1 + (pagination.current * 10)  }]}</td>
-                                    <td>{[{ currentText.publish_time}]}</td>
-                                    <td>{[{ currentText.start_date}]}</td>
-                                    <td>{[{ currentText.end_date}]}</td>
-                                    <td>{[{ currentText.title}]}</td>
-                                    <td><center><span ng-class="currentText.classStatus"></span></center></td>
-                                    <td style="text-align: center">
-                                        <a href="{{ app.request.getBaseURL()  }}/user/text/edit/{[{ currentText.text_id}]}"><span class="fa fa-edit" ></span>
-                                        </td>
-                                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalDeleteText($index)"> <span class="fa fa-trash" ></span></a></td>
+                                    <tr ng-show="data.length == 0">
+                                        <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
                                     </tr>
-                                </tbody>
-                            </table>
+
+                                    <tr ng-repeat="currentText in data" ng-if="data.length > 0" ng-cloak>
+                                        <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                                        <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                                        <td>{[{ currentText.publish_time}]}</td>
+                                        <td>{[{ currentText.start_date}]}</td>
+                                        <td>{[{ currentText.end_date}]}</td>
+                                        <td>{[{ currentText.title}]}</td>
+                                        <td><center><span ng-class="currentText.classStatus"></span></center></td>
+                                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalPreviewText($index);getUrlEdit(data[$index].text_id)"> <span class="fa fa-eye" ></span></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    {{ include("DSFacytInfrastructureBundle:User:Modal/modalDeleteImage.html.twig") }}
+                    {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreviewText.html.twig") }}
                 </div>
 
             </div>
         </div>
-
-
         {% endblock %}
 
         {% block footer %}

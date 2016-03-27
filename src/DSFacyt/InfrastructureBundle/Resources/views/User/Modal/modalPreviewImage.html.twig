@@ -1,4 +1,4 @@
-<script id="modal-deleteText.tpl" type="text/ng-template">
+<script id="modal-previewImage.tpl" type="text/ng-template">
     <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <form name="form" class="css-form" novalidate>
@@ -16,6 +16,11 @@
                         </div>
                     </div>
                     <div class="modal-body" style="font-size:16px">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="box-alert-danger"></div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Título:
@@ -49,17 +54,25 @@
                         </div>
                         <div class="row" style="padding-top:15px    ">
                             <div class="col-xs-12">
-                                <span style="font-weight:bold">Información </span>
-                                <p class="box-information"> {[{data[indexPreview].info}]}</p>
+                                <span style="font-weight:bold">Imagen </span>
+                                <div class="box-information" >
+                                    <center>
+                                        <img src="/uploads/images/{[{data[indexPreview].url_image}]}" style="width:100%">
+                                    </center>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-xs-11 col-xs-offset-1">
-                                <button class="btn btn-primary delete" ng-click="btnAction = 'fa fa-spinner fa-pulse';deleteText(indexPreview);btnAction = 'fa fa-trash'">
+                                <button class="btn btn-primary ">
+                                    <a href="{[{urlEdit}]}" style="text-decoration: none;color:white">
+                                        <span class="fa fa-edit" ></span> Editar
+                                    </a>
+                                </button>
+                                <button class="btn btn-primary delete" ng-click="btnAction = 'fa fa-spinner fa-pulse';deleteImage(indexPreview);btnAction = 'fa fa-trash'">
                                     <span ng-class="btnAction"></span> Eliminar</button>
-                                <button type="button" class="btn btn-default" ng-click="$hide()">Cerrar</button>
                             </div>
                         </div>
                     </div>

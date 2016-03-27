@@ -4,15 +4,14 @@ text.service('textService', function(){
         $.each(data, function (index, value) {
             switch (value.status) {
                 case 0:
-                value.classStatus = 'fa fa-circle';
-                break;
+                    value.classStatus = 'fa fa-circle';
+                    break;
                 case 1:
-                value.classStatus = 'fa fa-circle-o';
-                break;
-                case 1:
-                value.classStatus = 'fa fa-circle-thin';
-                break;
-
+                    value.classStatus = 'fa fa-circle-o';
+                    break;
+                case 2:
+                    value.classStatus = 'fa fa-circle-thin';
+                    break;
             }
         });
     }

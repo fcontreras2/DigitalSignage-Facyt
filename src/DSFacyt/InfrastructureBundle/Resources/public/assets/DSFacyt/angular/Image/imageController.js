@@ -1,8 +1,8 @@
 image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal', '$alert',
     function ($scope, $filter,imageService, $modal, $alert) {
 
-        $scope.data = data.images
-        $scope.pagination = data.pagination;;
+        $scope.data = data.images;
+        $scope.pagination = data.pagination;
         imageService.checkStatus($scope.data);
 
         var alertEmptyData = $alert(
@@ -34,7 +34,7 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
             }
         }
 
-        var myOtherModal = $modal({scope: $scope, template: 'modal-deleteImage.tpl', show: false});
+        var myOtherModal = $modal({scope: $scope, template: 'modal-previewImage.tpl', show: false});
 
         $scope.modalDeleteImage = function(image_id) {
             $scope.indexPreview = image_id;
@@ -73,4 +73,10 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
                 }
             });            
         }
+
+        $scope.getUrlEdit = function(image_id) {
+          $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_user_image_edit',{
+              'imageId' : image_id
+          });
+        };
     }]);

@@ -9,7 +9,7 @@ image.service('imageService', function(){
                 case 1:
                 value.classStatus = 'fa fa-circle-o';
                 break;
-                case 1:
+                case 2:
                 value.classStatus = 'fa fa-circle-thin';
                 break;
 

@@ -21,6 +21,8 @@ ds_facyt_infrastructure_user_text_new_validate:
 ds_facyt_infrastructure_user_text_edit:
   path:   /text/edit/{textId}
   defaults: { _controller: DSFacytInfrastructureBundle:User\Text:edit }
+  options:
+    expose: true
 
 #La ruta de validación de un texto previamente editado
 ds_facyt_infrastructure_user_text_edit_validate:

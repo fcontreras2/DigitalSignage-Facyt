@@ -14,6 +14,18 @@ ds_facyt_infrastructure_user_image_new_validate:
     path:   /image/new_validate
     defaults: { _controller: DSFacytInfrastructureBundle:User\Image:validateNew }
 
+ds_facyt_infrastructure_user_image_edit:
+  path:   /image/edit/{imageId}
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Image:edit }
+  options:
+    expose: true
+
+#La ruta de validación de una imagen previamente editado
+ds_facyt_infrastructure_user_image_edit_validate:
+    path:   /image/edit_validate/{imageId}
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Image:validateEdit }
+
+
 #La ruta de eliminar un imagen
 ds_facyt_infrastructure_user_image_delete:
     path:   /image/delete

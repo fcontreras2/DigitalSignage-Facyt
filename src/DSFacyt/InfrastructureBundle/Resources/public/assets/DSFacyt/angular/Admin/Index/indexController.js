@@ -1,5 +1,5 @@
-index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal', '$alert',
-    function ($scope, $filter,indexService, $modal, $alert) {
+index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal', '$alert', '$timeout',
+    function ($scope, $filter,indexService, $modal, $alert, $timeout) {
 
         $scope.data = data;
 

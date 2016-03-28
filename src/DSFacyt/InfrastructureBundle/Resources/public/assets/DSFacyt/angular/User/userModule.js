@@ -1,4 +1,4 @@
-var user = angular.module("UserModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
+var user = angular.module("UserModule", ['angular-repeat-n', 'mgcrea.ngStrap','ngImgCrop'])
 
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');

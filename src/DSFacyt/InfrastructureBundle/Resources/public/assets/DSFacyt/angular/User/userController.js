@@ -1,5 +1,5 @@
-user.controller('UserController', ['$scope','$filter', 'userService', '$modal', '$alert',
-    function ($scope, $filter,userService, $modal, $alert) {
+user.controller('UserController', ['$scope','$filter', 'userService',
+    function ($scope, $filter,userService) {
 
         $scope.data = data;
         $scope.profile_data_text = true;
@@ -39,4 +39,19 @@ user.controller('UserController', ['$scope','$filter', 'userService', '$modal', 
                 }
             });
         }
+
+        $scope.myImage='';
+        $scope.myCroppedImage= data.profile_image;
+
+        var handleFileSelect=function(evt) {
+            var file=evt.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                $scope.$apply(function($scope){
+                    $scope.myImage=evt.target.result;
+                });
+            };
+            reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
     }]);

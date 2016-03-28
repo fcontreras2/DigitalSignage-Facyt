@@ -87,7 +87,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             var data = angular.toJson({
                 'status': $scope.status_select,
                 'type' : $scope.type,
-                'page' : 0,
+                'page' : page,
                 'start_date' : start_date,
                 'end_date': end_date,
                 'page': page

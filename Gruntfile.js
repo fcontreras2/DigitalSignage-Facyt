@@ -45,7 +45,7 @@ module.exports = function(grunt) {
               "css/metisMenu":"metisMenu/dist/metisMenu.css",
               "sass/font-awesome-sass": "font-awesome/scss/*",
               "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less",
-              "sass/_ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css"
+              "css/ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css"
           }
       }
     },

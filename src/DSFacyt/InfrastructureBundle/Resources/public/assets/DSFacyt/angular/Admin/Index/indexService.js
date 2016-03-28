@@ -1,0 +1,3 @@
+index.service('indexService', function() {
+
+});

@@ -28,9 +28,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="currentPublish in publish" ng-cloak>
-                    <td style="width: 3%;">
-                        {[{ $index + 1 }]}
-                    </td>
+                    <td style="width:3%" ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                    <td style="width:3%" ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
                     <td style="width: 17%"> {[{ currentPublish.user_name }]}</td>
                     <td> {[{ currentPublish.start_date}]}</td>
                     <td> {[{ currentPublish.end_date }]}</td>

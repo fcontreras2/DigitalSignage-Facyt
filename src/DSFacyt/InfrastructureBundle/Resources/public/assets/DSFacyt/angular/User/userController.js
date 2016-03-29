@@ -1,5 +1,5 @@
-user.controller('UserController', ['$scope','$filter', 'userService',
-    function ($scope, $filter,userService) {
+user.controller('UserController', ['$scope','$filter', 'userService','$modal',
+    function ($scope, $filter,userService, $modal) {
 
         $scope.data = data;
         $scope.profile_data_text = true;
@@ -38,20 +38,18 @@ user.controller('UserController', ['$scope','$filter', 'userService',
                     $scope.profile_data_text = true;
                 }
             });
-        }
-
-        $scope.myImage='';
-        $scope.myCroppedImage= data.profile_image;
-
-        var handleFileSelect=function(evt) {
-            var file=evt.currentTarget.files[0];
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                $scope.$apply(function($scope){
-                    $scope.myImage=evt.target.result;
-                });
-            };
-            reader.readAsDataURL(file);
         };
-        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+        var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});
+        $scope.cropper = {};
+        $scope.cropper.sourceImage = null;
+        $scope.cropper.croppedImage   = null;
+        $scope.bounds = {};
+        $scope.bounds.left = 0;
+        $scope.bounds.right = 0;
+        $scope.bounds.top = 0;
+        $scope.bounds.bottom = 0;
+        $scope.showCropImageModal = function() {
+            cropImageModal.$promise.then(cropImageModal.show);
+        }
     }]);

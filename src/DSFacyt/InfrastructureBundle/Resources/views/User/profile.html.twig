@@ -121,12 +121,8 @@
                                             <br>
                                             <div class="row">
                                                 <div class="col-xs-12 col-md-4 ">
-                                                    <div>Select an image file: <input type="file" id="fileInput" /></div>
-                                                    <div class="cropArea">
-                                                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-                                                    </div>
-                                                    <div>Cropped Image:</div>
-                                                    <div><img ng-src="{[{myCroppedImage}]}" /></div>
+                                                    <input type="file" img-cropper-fileread image="cropper.sourceImage" onchange="angular.element(this).scope().showCropImageModal(this)" />
+                                                    <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" /></div>
                                                 </div>
                                                 <div class="col-xs-12 col-md-8">
                                                     <p>
@@ -185,6 +181,7 @@
                  </div>
              </div>
              </div>
+             {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
          </div>
      </div>
 {% endblock body %}
@@ -214,9 +211,7 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-img-crop.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userModule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userService.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userController.js') }}"></script>

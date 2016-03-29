@@ -1,0 +1,32 @@
+<script id="modal-uploadImage.tpl" type="text/ng-template">
+    <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form name="form" class="css-form" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <button type="button" class="close" aria-label="Close" ng-click="$hide();btnAction='fa fa-trash'"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                                <h4 class="modal-title" >
+                                    <span class="fa fa-pencil"></span>
+                                    <Pencil></Pencil>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body" style="font-size:16px">
+                        <canvas width="500" height="300" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="100" crop-height="100" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <button class="btn btn-primary delete" ng-click="btnAction = 'fa fa-spinner fa-pulse';deleteText(indexPreview);btnAction = 'fa fa-trash'">
+                                <span ng-class="btnAction"></span> Recortar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

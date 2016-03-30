@@ -121,11 +121,17 @@
                                             <br>
                                             <div class="row">
                                                 <div class="col-xs-12 col-md-4 ">
-                                                    <label class="col-md-3 button img-rounded img-default drop-box" style="text-align:center;">
-                                                        <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button" style="color:#DDD; text-align:center;"></span>
-                                                        <input type="file" img-cropper-fileread image="cropper.sourceImage" onchange="angular.element(this).scope().showCropImageModal(this)" style="display: none;" />
-                                                        </label>
-                                                    <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" /></div>
+                                                    <div class="row">
+                                                        <div class="col-xs-10 col-xs-offset-1" style="border:1px solid black;min-height: 25vh;">
+                                                            <center>
+                                                            <label class="button img-rounded img-default drop-box" style="text-align:center;">
+                                                                <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button" style="margin-top:100%;color:#DDD; text-align:center;"></span>
+                                                                <input type="file" img-cropper-fileread image="cropper.sourceImage" onchange="angular.element(this).scope().showCropImageModal(this)" style="display: none;" />
+                                                            </label>
+                                                            <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"/></div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-xs-12 col-md-8">
                                                     <p>

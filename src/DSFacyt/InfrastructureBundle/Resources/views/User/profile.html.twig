@@ -19,14 +19,7 @@
  {% block body %}
 
      {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
-     <style>
-         .cropArea {
-             background: #E4E4E4;
-             overflow: hidden;
-             width:500px;
-             height:350px;
-         }
-     </style>
+   
      <div id="body-user" >
          <div class="container" ng-app="UserModule" ng-controller="UserController" >
              <br>
@@ -106,15 +99,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <style>
-                                    .cropArea {
-                                        background: #E4E4E4;
-                                        overflow: hidden;
-                                        width:100%;
-                                        height:auto;
-                                    }
-
-                                </style>
                                 <div class="tab-pane active" id="2">
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -122,10 +106,14 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-md-4 ">
                                                     <div class="row">
-                                                        <div class="col-xs-10 col-xs-offset-1" style="border:1px solid black;min-height: 25vh;">
+                                                        <div class="col-xs-10 col-xs-offset-1" style="border:1px solid #7C7C7C;min-height: 25vh;">
                                                             <center>
                                                             <label class="button img-rounded img-default drop-box" style="text-align:center;">
-                                                                <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button" style="margin-top:100%;color:#DDD; text-align:center;"></span>
+                                                                <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button" style="margin-top:74%;color:#DDD; text-align:center;cursor:pointer"></span>
+                                                                <center ng-if="!cropper.sourceImage"><h6>Subir imagen</h6></center>
+                                                                <center ng-if="cropper.sourceImage != null" style="width: 100%;position: absolute;z-index: 100;background: #7c7c7c;margin-left: -50%;margin-top: 76%;cursor: pointer;opacity:0.8;">
+                                                                    <h6 style="color: white;font-weight: bold;">Cambiar</h6>
+                                                                </center>
                                                                 <input type="file" img-cropper-fileread image="cropper.sourceImage" onchange="angular.element(this).scope().showCropImageModal(this)" style="display: none;" />
                                                             </label>
                                                             <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"/></div>

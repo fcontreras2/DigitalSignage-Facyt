@@ -41,3 +41,11 @@ ds_facyt_infrastructure_user_edit_profile:
         expose: true
     requirements:
         { _format: (xml | json), _method: POST}
+
+ds_facyt_infrastructure_user_upload_image:
+    path:   /profile/uploadImage
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Default:uploadImage }
+    options:
+        expose: true
+    requirements:
+        { _method: POST }

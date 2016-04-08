@@ -1,4 +1,4 @@
-var user = angular.module("UserModule", ['angular-repeat-n', 'mgcrea.ngStrap','angular-img-cropper'])
+var user = angular.module("UserModule", ['ngFileUpload','angular-repeat-n', 'mgcrea.ngStrap','angular-img-cropper'])
 
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');

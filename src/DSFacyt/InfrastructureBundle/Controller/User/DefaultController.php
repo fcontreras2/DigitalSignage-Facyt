@@ -98,4 +98,10 @@ class DefaultController extends Controller
 
         return new JsonResponse(null,400);
     }
+
+    public function uploadImageAction(Request $request)
+    {
+        var_dump($request->files->get('file'));
+        
+    }
 }

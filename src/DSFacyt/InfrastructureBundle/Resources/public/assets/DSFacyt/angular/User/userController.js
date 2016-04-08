@@ -1,12 +1,15 @@
-user.controller('UserController', ['$scope','$filter', 'userService','$modal',
-    function ($scope, $filter,userService, $modal) {
+user.controller('UserController', ['$scope','Upload','$filter', 'userService','$modal',
+    function ($scope, Upload, $filter,userService, $modal) {
 
         $scope.data = data;
         $scope.profile_data_text = true;
         $scope.editData = {};
         $scope.change_password = false;
+        $scope.icon_loading = false;
+        var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});
 
         userService.resetValues($scope.data, $scope.editData);
+        userService.resetCropper(cropImageModal, $scope, $modal);
 
 
         $scope.editProfile = function() {
@@ -40,16 +43,25 @@ user.controller('UserController', ['$scope','$filter', 'userService','$modal',
             });
         };
 
-        var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});
-        $scope.cropper = {};
-        $scope.cropper.sourceImage = null;
-        $scope.cropper.croppedImage   = null;
-        $scope.bounds = {};
-        $scope.bounds.left = 0;
-        $scope.bounds.right = 0;
-        $scope.bounds.top = 0;
-        $scope.bounds.bottom = 0;
-        $scope.showCropImageModal = function() {
-            cropImageModal.$promise.then(cropImageModal.show);
+        $scope.hideModal = function() {
+            userService.resetCropper(cropImageModal, $scope, $modal);
+        }
+
+        $scope.uploadFile = function() {
+            
+            $scope.icon_loading = true;
+            cropImageModal.$promise.then(cropImageModal.hide);
+            
+            Upload.upload({
+                url: Routing.generate('ds_facyt_infrastructure_user_upload_image'),
+                data: {file: $scope.file}
+            }).then(function (resp) {
+                
+            }, function (resp) {
+
+            }, function (evt) {
+
+            });           
+
         }
     }]);

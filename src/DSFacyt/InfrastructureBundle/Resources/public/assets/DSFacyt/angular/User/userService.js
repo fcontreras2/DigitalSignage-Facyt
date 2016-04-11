@@ -18,9 +18,7 @@ user.service('userService', function(){
         $scope.bounds.left = 0;
         $scope.bounds.right = 0;
         $scope.bounds.top = 0;
-        $scope.bounds.bottom = 0;
-        $scope.showCropImageModal = function() {
-            cropImageModal.$promise.then(cropImageModal.show);
-        }    	
+        $scope.bounds.bottom = 0;        
+        cropImageModal.$promise.then(cropImageModal.show);        
     }
 });

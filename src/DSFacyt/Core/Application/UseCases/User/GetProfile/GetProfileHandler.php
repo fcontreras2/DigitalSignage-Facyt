@@ -43,6 +43,7 @@ class GetProfileHandler implements Handler
 
         if ($user) {
             $response['id'] = $user->getId();
+            $response['profile_image'] = $user->getImageProfile()->getFileName();
             $response['user_name'] = $user->getUserName();
             $response['identity_card'] = $user->getIndentityCard();
             $response['email'] = $user->getEmail();

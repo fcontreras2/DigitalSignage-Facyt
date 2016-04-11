@@ -8,8 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 use DSFacyt\Core\Application\UseCases\User\BasicInformation\BasicInformationCommand;
+use DSFacyt\Core\Application\UseCases\User\SetImageProfile\SetImageProfileCommand;
 
 /**
  * Class DefaultController
@@ -101,7 +104,18 @@ class DefaultController extends Controller
 
     public function uploadImageAction(Request $request)
     {
-        var_dump($request->files->get('file'));
         
+        if ($request->isXmlHttpRequest()) {
+            
+            if ($request->files->get('file')) {
+                $file = new File($request->files->get('file'));
+            } 
+            
+            $command = new SetImageProfileCommand($file, $this->get('security.context')->getToken()->getUser());            
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }        
+        return new JsonResponse(null,400);
     }
 }

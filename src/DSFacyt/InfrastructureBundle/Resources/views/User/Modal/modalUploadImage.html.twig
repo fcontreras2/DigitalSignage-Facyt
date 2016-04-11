@@ -16,10 +16,10 @@
                     </div>
                     <div class="modal-body" style="font-size:16px">
                         <canvas width="500" height="300" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="100" crop-height="100" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" min-width="1000"></canvas>
-                    </div>
+                        </div>
                     <div class="modal-footer">
                         <div class="row">
-                            <button class="btn btn-primary delete" ng-click="uploadFile()">
+                            <button class="btn btn-primary delete" ng-click="uploadFile(cropper.sourceImage)">
                                 <span class="fa fa-cut"></span> Recortar
                             </button>
                         </div>

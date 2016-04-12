@@ -173,6 +173,37 @@ body {
     background: gray !important;    
 }
 
+.uploadImage {
+  border:1px solid $gray-light;
+  min-height: 25vh;
+  .fa-camera {
+    margin-top:74%;
+    color:$gray-light;
+    text-align:center;
+    cursor:pointer
+  }
+
+  #change-image {
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    background: #7c7c7c;
+    margin-left: -50%;
+    margin-top: 76%;
+    cursor: pointer;
+    opacity:0.8;
+  }
+
+  .fa-circle-o-notch {
+    top:44%;
+    position:absolute;
+    left:44%;
+    font-size:26px;
+  }
+  img { width: 100% !important;}
+
+}
+
 // ===== FIN CLASES CSS =====
 
 

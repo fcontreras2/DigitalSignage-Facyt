@@ -34,12 +34,13 @@
                     <td> {[{ currentPublish.start_date}]}</td>
                     <td> {[{ currentPublish.end_date }]}</td>
                     <td> {[{ currentPublish.title }]}</td>
-                    <td> <a href="#">Ver + </a></td>
+                    <td> <a href="#" ng-click="modalPreviewText($index);">Ver + </a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    {{ include("DSFacytInfrastructureBundle:Admin/Publish/Modal:modalPreviewText.html.twig") }}
 {% endblock table %}
 
 {% block javascripts%}

@@ -32,6 +32,10 @@ DSFacyt\InfrastructureBundle\Entity\Image:
             type: datetime
             nullable: true
 
+        important:
+            type: boolean
+            options:
+                default: false
 
     manyToOne:
         user:

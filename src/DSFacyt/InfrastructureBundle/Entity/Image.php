@@ -70,6 +70,11 @@ class Image
     private $channels;
 
     /**
+     * @var string la publicación se considera importante o no
+     */
+    private $important = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -326,4 +331,5 @@ class Image
     {
         return $this->channels;
     }
+   
 }

@@ -3,6 +3,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
     {
         $scope.pagination = data.data.pagination;
         $scope.publish = data.data.publish;
+        console.log($scope.publish);
         $scope.status = data.status;
         $scope.type = data.type;
         $scope.status_select = 0;
@@ -96,7 +97,15 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             publishService.ajaxGetPublish(data, $scope);
         };
 
+        var modalText = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
+        
+        $scope.modalPreviewText = function(text_id) {
+            $scope.indexPreview = text_id;
+            modalText.$promise.then(modalText.show);
+        }
 
         $timeout(function() { initializing = true; });
     }
+
+
 ]);

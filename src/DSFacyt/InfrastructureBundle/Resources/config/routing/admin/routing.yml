@@ -7,6 +7,17 @@ ds_facyt_infrastructure_admin_module_publish:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/routing.yml"
     prefix: /publish
 
+# Rutas del modulo de canales del sistema
+ds_facyt_infrastructure_admin_module_channel:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/channel.yml"
+    prefix: /channel
+
+# Rutas del modulo de usuarios del sistema
+ds_facyt_infrastructure_admin_module_user:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/user.yml"
+    prefix: /user
+
 ds_facyt_infrastructure_admin_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }
+

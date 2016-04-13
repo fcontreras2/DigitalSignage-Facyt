@@ -1,0 +1,30 @@
+ds_facyt_admin_channel:
+    path:     /
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:index" }
+
+ds_facyt_admin_channel_show:
+    path:     /{id}/show
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:show" }
+
+ds_facyt_admin_channel_new:
+    path:     /new
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:new" }
+
+ds_facyt_admin_channel_create:
+    path:     /create
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:create" }
+    methods:  POST
+
+ds_facyt_admin_channel_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:edit" }
+
+ds_facyt_admin_channel_update:
+    path:     /{id}/update
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:update" }
+    methods:  [POST, PUT]
+
+ds_facyt_admin_channel_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Channel:delete" }
+    methods:  [POST, DELETE]

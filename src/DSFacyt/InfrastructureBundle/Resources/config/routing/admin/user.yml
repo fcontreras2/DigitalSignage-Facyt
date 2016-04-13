@@ -1,0 +1,30 @@
+ds_facyt_admin_user:
+    path:     /
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:index" }
+
+ds_facyt_admin_user_show:
+    path:     /{id}/show
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:show" }
+
+ds_facyt_admin_user_new:
+    path:     /new
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:new" }
+
+ds_facyt_admin_user_create:
+    path:     /create
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:create" }
+    methods:  POST
+
+ds_facyt_admin_user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:edit" }
+
+ds_facyt_admin_user_update:
+    path:     /{id}/update
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:update" }
+    methods:  [POST, PUT]
+
+ds_facyt_admin_user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:delete" }
+    methods:  [POST, DELETE]

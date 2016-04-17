@@ -43,7 +43,6 @@ class GetProfileHandler implements Handler
 
         if ($user) {
             $response['id'] = $user->getId();
-            $response['profile_image'] = $user->getImageProfile()->getFileName();
             $response['user_name'] = $user->getUserName();
             $response['identity_card'] = $user->getIndentityCard();
             $response['email'] = $user->getEmail();
@@ -52,7 +51,7 @@ class GetProfileHandler implements Handler
             $response['phone'] = $user->getPhone();
             $response['rol'] = $user->getRoles();
             $response['profile_image'] = $user->getImageProfile() ?
-                $user->getImageProfile()->getFileName() : '/images/avatar.jpg';
+                $user->getImageProfile()->getFileName() : null;
             $response['school'] = $user->getSchool()->getName();
             $response['school_id'] = $user->getSchool()->getId();
 

@@ -122,7 +122,13 @@ module.exports = function(grunt) {
                   //Js: de FileInput
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js" : [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/fileinput.js"
-                  ]
+                  ],
+                  //JS: Upload
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileUpload.js" : [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-img-cropper.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/ng-file-upload-shim.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/ng-file-upload.js"
+                  ],
               }
           }
       }

@@ -26,7 +26,7 @@ class RegisterImageType extends AbstractType
             ->add( 
                 $builder->create('document', 'form', 
                     array('data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document', 'label' => false))
-                    ->add('file', 'file', array('label' => 'Selecciona el archivo'))
+                    ->add('file', 'file', array('label' => false))
             );
     }
 

@@ -136,11 +136,12 @@ class ImageController extends Controller
         $command->setImageId($imageId);
         $response = $this->get('CommandBus')->execute($command);
         if ($response->getStatusCode() == 201) {
-            $form = $this->createForm(new RegisterImageType(), $command->getEntityImage(),
+            $form = $this->createForm(new RegisterImageType(), $command->getEntityImage(),            
                 array(
                     'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_edit_validate',array('imageId' => $imageId)),
                     'method' => 'POST'));
-            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView()));
+            $pathImage = $command->getEntityImage()->getDocument()->getFileName();            
+            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'pathImage' => $pathImage));
         }
 
         return $this->redirect('ds_facyt_infrastructure_user_image_homepage');

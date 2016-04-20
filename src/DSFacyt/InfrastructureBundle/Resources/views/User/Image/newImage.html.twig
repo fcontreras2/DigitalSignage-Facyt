@@ -119,19 +119,18 @@
                                             </center>
                                             <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
                                             {{ form_errors(form.document) }}
-                                            {{ form_label(form.document,  null, {'label_attr': {'class': 'control-label'}}) }}
-                                            <br>                                 
+                                            {{ form_label(form.document,  null, {'label_attr': {'class': 'control-label'}}) }}                                            
                                             {{ form_label(form.document.file,  null) }}
                                             {{ form_widget(form.document.file, {'attr': {
-                                                'class': 'file',
                                                 'img-cropper-fileread': '',
                                                 'onchange': 'angular.element(this).scope().showCropImageModal(this)',
                                                 'result-image-size': '10',
                                                 'style':'display:none',
+                                                'image': 'cropper.sourceImage',
                                                 'ng-model': 'file'
-                                            }})}}
+                                            }})}}                                            
                                         </label>
-                                        <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"/></div>
+                                        <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
                                     </center>
                                 </div>
                                 <br>
@@ -157,14 +156,16 @@
 {% endblock %}
 
 {% block javascripts%}
+    
+    <!-- Tomando variables enviadas desde el servidor -->
     <script type="text/javascript">
-        var pathImage = "{{ pathImage }}";
+        var data = "{{ data }}";
         var div = document.createElement('div');
-        div.innerHTML = pathImage;
+        div.innerHTML = data;
         data = div.firstChild.nodeValue;
         //console.log( div.firstChild.nodeValue);
-        pathImage = JSON.parse(pathImage);
-    </script>    
+        data = JSON.parse(data);
+    </script>
     {% if app.environment == "dev" %}
 
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>        
@@ -176,8 +177,6 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>       
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>                
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageModule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageService.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageController.js') }}"></script>

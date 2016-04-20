@@ -2,46 +2,40 @@
 
 {% block body -%}
     <h1>User list</h1>
-
-    <table class="records_list">
+    <br>
+    <a href="{{ path('ds_facyt_admin_user_new') }}">
+        <button type="button" class="btn btn-default">Crear nuevo</button>
+    </a>
+    <br><br>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Last_name</th>
-                <th>Indentity_card</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Actions</th>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Télefono</th>
+                <th>Mostrar</th>
+                <th>Editar</th>
+
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+            {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('ds_facyt_admin_user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.lastname }}</td>
-                <td>{{ entity.indentitycard }}</td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.phone }}</td>
+                <td> {{ loop.index}} </td>
+                <td> {{ entity.name }}</td>
+                <td> {{ entity.lastname }} </td>
+                <td> {{ entity.indentitycard }} </td>
+                <td> {{ entity.phone }} </td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('ds_facyt_admin_user_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('ds_facyt_admin_user_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <a href="{{ path('ds_facyt_admin_user_show', { 'id': entity.id }) }}">ver</a>
                 </td>
+                <td>
+                    <a href="{{ path('ds_facyt_admin_user_edit', { 'id': entity.id }) }}">Editar</a>
+                </td>                    
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('ds_facyt_admin_user_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+    </table>   
+{% endblock %}

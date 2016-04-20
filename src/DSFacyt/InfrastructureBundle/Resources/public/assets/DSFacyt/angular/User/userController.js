@@ -50,8 +50,6 @@ user.controller('UserController', ['$scope','Upload','$filter', 'userService','$
                 success: function(data) {
 
                     userService.resetValues($scope.editData,$scope.data);
-                    console.log('editData',$scope.editData);
-                    console.log('data',$scope.data);
                     $scope.profile_data_text = true;
                 }
             });

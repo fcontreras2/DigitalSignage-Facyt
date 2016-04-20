@@ -69,7 +69,8 @@ class ImageController extends Controller
                 'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_new_validate'),
                 'method' => 'POST'));
 
-        return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView()));
+        return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array(
+            'form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
     }
 
      /**
@@ -141,7 +142,7 @@ class ImageController extends Controller
                     'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_edit_validate',array('imageId' => $imageId)),
                     'method' => 'POST'));
             $pathImage = $command->getEntityImage()->getDocument()->getFileName();            
-            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'pathImage' => $pathImage));
+            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => $pathImage])));
         }
 
         return $this->redirect('ds_facyt_infrastructure_user_image_homepage');

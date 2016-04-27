@@ -1,3 +1,4 @@
+# Obtiene las publicaciones vía asincrona dado un tipo y un estado
 ds_facyt_infrastructure_api_get_publish_type_status:
   path: /getPublish/async
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:apiGetPublishStatus"}
@@ -6,6 +7,12 @@ ds_facyt_infrastructure_api_get_publish_type_status:
   requirements:
       { _format: (xml |json), _method: POST }
 
+# Modulo de CRUD de los textos del sistema
+ds_facyt_infrastructure_admin_module_publish_text:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/text.yml"
+    prefix: /text
+
+# Obtener una publicación dado un estado y un tipo de la publicación
 ds_facyt_infrastructure_get_publish_type_status:
   path: /{type}/{status}
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}

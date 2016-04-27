@@ -9,6 +9,8 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         $scope.status_select = 0;
         var initializing = false;
 
+        $scope.urlNewPublish = Routing.generate('ds_facyt_infrastructure_admin_new_'+data.type.toLowerCase());
+
         $scope.$watch('status_select', function() {
             if (initializing) {
 
@@ -102,6 +104,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         $scope.modalPreviewText = function(text_id) {
             $scope.indexPreview = text_id;
             modalText.$promise.then(modalText.show);
+            $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_admin_edit_text', { 'textId' : $scope.publish[text_id].id });            
         }
 
         $timeout(function() { initializing = true; });

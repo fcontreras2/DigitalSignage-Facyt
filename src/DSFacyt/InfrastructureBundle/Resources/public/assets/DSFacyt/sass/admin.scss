@@ -64,7 +64,7 @@ a {
 }
 
 #sidebar-wrapper {
-  z-index: 1000;
+  z-index: 9;
   position: fixed;
   left: 250px;
   width: 0;
@@ -187,6 +187,43 @@ a {
     background-color: #f7f7f7;
     height: 30px;
     width: 30px;
-    z-index: 6000000 !important;
+    z-index: 10 !important;
+  }
+}
+
+.modal {
+  font-family: 'AVENIR LT STD 55 ROMAN';
+  .modal-dialog {
+    margin-top: 15vh;
+  }
+  .modal-header {
+    padding-left: 6%;
+    padding-right: 6%;
+    background: $blue-dark;
+    color:white; 
+    .fa-close { color:white}
+  }
+
+  .modal-body {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+    padding-top: 2% !important;
+  }
+
+  .box-information {
+    border-radius: 5px !important;
+    background: $gray-light-two !important;
+    color: $gray-dark;
+    padding: 3%;
+    font-family: 'AVENIR LT STD 45 BOOK';
+  }
+
+  .modal-footer {
+    padding-left: 6%;
+    padding-right: 6%;
+    .delete {
+      background-color: $blue-dark;
+      border-color: $blue-ligth;
+    }
   }
 }

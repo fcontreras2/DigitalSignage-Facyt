@@ -25,17 +25,28 @@
                         <input class="form-control input-small" ng-model="end_date">
                     </div>
                 </div>
-
-                <div class="col-xs-4 col-md-2 pull-right" >
-                    <b>Estado</b>
-                    <select name="name" id="inputID" class="form-control" ng-model="status_select">
-                        <option value="-1" ng-selected="status == -1"> -- Selecione -- </option>
-                        <option value="0" ng-selected="status == 0"> Pendiente </option>
-                        <option value="1" ng-selected="status == 1"> Corregir </option>
-                        <option value="2" ng-selected="status == 2"> Aceptada </option>
-                        <option value="3" ng-selected="status == 3"> Cancelada </option>
-                        <option value="4" ng-selected="status == 4"> Finalizada </option>
-                    </select>
+                <div class="col-xs-4 col-md-4 pull-right" >
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <br>
+                            <a href="{[{urlNewPublish}]}">
+                                <button type="button" class="btn btn-default pull-right">
+                                    <span class="fa fa-plus"></span> Crear Nuevo
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <b>Estado</b>
+                            <select name="name" id="inputID" class="form-control" ng-model="status_select">
+                                <option value="-1" ng-selected="status == -1"> -- Selecione -- </option>
+                                <option value="0" ng-selected="status == 0"> Pendiente </option>
+                                <option value="1" ng-selected="status == 1"> Corregir </option>
+                                <option value="2" ng-selected="status == 2"> Aceptada </option>
+                                <option value="3" ng-selected="status == 3"> Cancelada </option>
+                                <option value="4" ng-selected="status == 4"> Finalizada </option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -69,6 +69,13 @@ class Text
      */
     private $important = false;
 
+    /**
+     * Obersavaciones realizadas por el admin en la publicación
+     *
+     * @var string
+     */
+    private $observation;
+
 
     /**
      * Constructor
@@ -304,4 +311,50 @@ class Text
     {
         return $this->channels;
     }   
+
+    /**
+     * Set important
+     *
+     * @param boolean $important
+     * @return Text
+     */
+    public function setImportant($important)
+    {
+        $this->important = $important;
+
+        return $this;
+    }
+
+    /**
+     * Get important
+     *
+     * @return boolean 
+     */
+    public function getImportant()
+    {
+        return $this->important;
+    }
+    
+    /**
+     * Set observation
+     *
+     * @param string $observation
+     * @return Text
+     */
+    public function setObservation($observation)
+    {
+        $this->observation = $observation;
+
+        return $this;
+    }
+
+    /**
+     * Get observation
+     *
+     * @return string 
+     */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
 }

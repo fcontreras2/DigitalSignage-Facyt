@@ -332,4 +332,27 @@ class Image
         return $this->channels;
     }
    
+
+    /**
+     * Set important
+     *
+     * @param boolean $important
+     * @return Image
+     */
+    public function setImportant($important)
+    {
+        $this->important = $important;
+
+        return $this;
+    }
+
+    /**
+     * Get important
+     *
+     * @return boolean 
+     */
+    public function getImportant()
+    {
+        return $this->important;
+    }
 }

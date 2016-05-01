@@ -18,3 +18,8 @@ ds_facyt_infrastructure_admin_edit_text:
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:editText" }
     options:
         expose: true
+
+ds_facyt_infrastructure_admin_text_edit_validate:
+  path: /text/{textId}/validate
+  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:validateEdit"}
+

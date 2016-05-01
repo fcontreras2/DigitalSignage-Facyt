@@ -1,3 +1,11 @@
+ds_facyt_infrastructure_admin_publish_delete:
+  path: /delete
+  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:deletePublish"}
+  options:
+      expose: true
+  requirements:
+      { _format: (xml |json), _method: POST }
+
 # Obtiene las publicaciones vía asincrona dado un tipo y un estado
 ds_facyt_infrastructure_api_get_publish_type_status:
   path: /getPublish/async
@@ -16,4 +24,3 @@ ds_facyt_infrastructure_admin_module_publish_text:
 ds_facyt_infrastructure_get_publish_type_status:
   path: /{type}/{status}
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}
-

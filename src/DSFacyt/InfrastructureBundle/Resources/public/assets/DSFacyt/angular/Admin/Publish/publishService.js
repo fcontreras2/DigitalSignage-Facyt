@@ -13,4 +13,15 @@ publish.service('publishService', function(){
         });
     };
 
+    this.getCurrentModalPreview = function($modal, $scope) {
+
+        var currentModal = null;
+        switch ($scope.type) {
+            case 'Text':
+                currentModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
+                break;
+        }
+
+        return currentModal;        
+    }
 });

@@ -3,11 +3,11 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
     {
         $scope.pagination = data.data.pagination;
         $scope.publish = data.data.publish;
-        console.log($scope.publish);
         $scope.status = data.status;
         $scope.type = data.type;
         $scope.status_select = 0;
         var initializing = false;
+        console.log($scope.publish);
 
         $scope.urlNewPublish = Routing.generate('ds_facyt_infrastructure_admin_new_'+data.type.toLowerCase());
 
@@ -99,16 +99,33 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             publishService.ajaxGetPublish(data, $scope);
         };
 
-        var modalText = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
+
+        var currentModal = publishService.getCurrentModalPreview($modal, $scope);
         
         $scope.modalPreviewText = function(text_id) {
             $scope.indexPreview = text_id;
-            modalText.$promise.then(modalText.show);
+            currentModal.$promise.then(currentModal.show);
             $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_admin_edit_text', { 'textId' : $scope.publish[text_id].id });            
         }
 
         $timeout(function() { initializing = true; });
-    }
 
-
-]);
+        $scope.deletePublish = function(publishIndex) {
+            
+            var url = Routing.generate('ds_facyt_infrastructure_admin_publish_delete');
+            var data = angular.toJson({
+                "publish_id": $scope.publish[publishIndex].id,
+                "type": $scope.type
+            }); 
+            
+            $.ajax({
+                method: 'POST',
+                data: data,                
+                url: url,
+                success: function(data) {
+                    $scope.publish.splice(publishIndex, 1);
+                    currentModal.$promise.then(currentModal.hide)                    
+                }                
+            });            
+        }
+}]);

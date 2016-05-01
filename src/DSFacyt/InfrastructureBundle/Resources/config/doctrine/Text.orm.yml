@@ -35,6 +35,9 @@ DSFacyt\InfrastructureBundle\Entity\Text:
             type: boolean
             options:
                 default: false
+        observation:
+            type: string
+            nullable: true
 
     manyToOne:
         user:

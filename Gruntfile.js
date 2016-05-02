@@ -119,6 +119,12 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userController.js"
                   ],
+                  //Js: Publicaciones Admin
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/adminIndex.js" : [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexModule.js'",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexService.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexController.js"
+                  ],
                   //Js: de FileInput
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js" : [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/fileinput.js"

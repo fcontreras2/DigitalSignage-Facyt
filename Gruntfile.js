@@ -70,6 +70,10 @@ module.exports = function(grunt) {
                   // Css del Fileinput                 
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/fileinput.css": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/css/fileinput.css"
+                  ],
+                  // Css del Admin
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/admin.css": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/stylesheets/admin.css"
                   ]
               }
           }

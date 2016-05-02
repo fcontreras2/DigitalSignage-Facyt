@@ -2,12 +2,6 @@
 
 {% block title %} Bienvenido - Panel Admin {% endblock title %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {% if app.environment == "dev" %}
-        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>
-    {% endif %}
-{% endblock stylesheets %}
 {% block title_notifications %}
     <span class="fa fa-home"></span> Bienvenido.
 {% endblock title_notifications %}

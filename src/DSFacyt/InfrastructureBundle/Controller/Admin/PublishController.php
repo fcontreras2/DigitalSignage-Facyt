@@ -11,6 +11,7 @@ use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishS
 use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
 use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
+use DSFacyt\Core\Application\UseCases\Admin\Publish\UpdateImportant\UpdateImportantCommand;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
 
 
@@ -51,6 +52,30 @@ class PublishController extends Controller
         $command = new GetPublishStatusCommand($typeEntity,$status);
         $response['data'] = $this->get('CommandBus')->execute($command)->getData();
         return $this->render($template,['data' => json_encode($response)]);
+    }
+
+    /**
+    * La siguiente función cambiar la importanción de una publicación
+    * 
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function updateImportantAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            $command = new UpdateImportantCommand(
+                $data['type'],
+                $data['important'],
+                $data['publish_id']
+            );
+
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());
+        }
+
+        return new JsonResponse('Bad Request', 400);
     }
 
     /**

@@ -20,7 +20,7 @@
             {% else %}
                 <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
             {% endif %}
-                <span class="fa fa-bell-o"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
+                <span class="fa fa-bell"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
             </a>
             <div class="collapse list-group-submenu" id="SubMenu1" >
                 <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" data-parent="#SubMenu1">
@@ -58,7 +58,10 @@
             </a>
         </li>
         <li>
-            <a href="{{ path('ds_facyt_admin_user') }}"><span class="fa fa-user"></span>  Usuarios</a>
+            <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}"><span class="fa fa-paper-plane"></span>  Notas rápidas </a>
+        </li>
+        <li>
+            <a href="{{ path('ds_facyt_admin_user') }}"><span class="fa fa-group"></span>  Usuarios</a>
         </li>
         <li>
             <a href="#">

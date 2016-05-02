@@ -52,6 +52,7 @@
         </div>
         </div>
         {% block table %} {% endblock table %}
+        {{ include("DSFacytInfrastructureBundle:Admin/Publish/Modal:modalInfo.html.twig") }}
         <div class="col-xs-12 ">
             <center>
             <ul class="pagination" style="margin: 0 0">
@@ -67,7 +68,7 @@
                 </li>
             </ul>
             </center>
-        </div>
+        </div>        
     </div>
 </div>
 {% endblock body %}

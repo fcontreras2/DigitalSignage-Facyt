@@ -73,6 +73,10 @@ class GetPublishStatusHandler implements Handler
                 $auxPublish['title'] = $currentPublish->getTitle();
                 $auxPublish['user_name'] = $currentPublish->getUser()->getUserName();
                 $auxPublish['channels'] = [];
+                $auxPublish['important'] = $currentPublish->getImportant();
+
+                if ($data['type'] == 'Text')
+                    $auxPublish['info'] = $currentPublish->getInfo();
                 
                 foreach ($currentPublish->getChannels() as $currentChannel) {
                     $auxChannel = [];

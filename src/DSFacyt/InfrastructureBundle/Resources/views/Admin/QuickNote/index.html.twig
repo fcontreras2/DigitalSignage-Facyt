@@ -1,0 +1,43 @@
+{% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
+
+{% block title %}Notas rápidas{% endblock title %}
+
+{% block title_notifications %} <span class="fa fa-paper-plane"></span>  Notas rápidas {% endblock title_notifications %}
+
+{% block body %}
+    <h1>Notas rápidas</h1>
+
+    <a href="{{ path('ds_facyt_infrastructure_admin_quicknote_new') }}">
+            <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
+    </a>
+    <br><br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fecha inicial</th>
+                <th>Fecha final</th>
+                <th>Título</th>
+                <th>Información</th>
+                <th>Estado</th>                
+                <th>Mostrar</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.startdate %}{{ entity.startdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.enddate %}{{ entity.enddate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.title }}</td>
+                <td>{{ entity.info }}</td>
+                <td>{{ entity.status }}</td>
+                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_show', { 'id': entity.id }) }}">show</a></td>
+                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_edit', { 'id': entity.id }) }}">edit</a></td>                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+ds_facyt_infrastructure_admin_quicknote:
+    path:     /
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:index" }
+
+ds_facyt_infrastructure_admin_quicknote_show:
+    path:     /{id}/show
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:show" }
+
+ds_facyt_infrastructure_admin_quicknote_new:
+    path:     /new
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:new" }
+
+ds_facyt_infrastructure_admin_quicknote_create:
+    path:     /create
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:create" }
+    methods:  POST
+
+ds_facyt_infrastructure_admin_quicknote_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:edit" }
+
+ds_facyt_infrastructure_admin_quicknote_update:
+    path:     /{id}/update
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:update" }
+    methods:  [POST, PUT]
+
+ds_facyt_infrastructure_admin_quicknote_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:delete" }
+    methods:  [POST, DELETE]

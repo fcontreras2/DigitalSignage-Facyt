@@ -1,7 +1,3 @@
-ds_facyt_infrastructure_channel:
-    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/channel.yml"
-    prefix:   /channel
-
 # ====RUTAS DE MODULOS DE USUARIOS (ADMIN /  USUARIOS DEL SISTEMA) ===
 
 # Las rutas referentes a los usuarios registrados

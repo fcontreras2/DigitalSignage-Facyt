@@ -1,3 +1,13 @@
+# Ruta de destacar una publición
+ds_facyt_infrastructure_admin_update_important:
+  path: /update/important
+  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:updateImportant"}
+  options:
+      expose: true
+  requirements:
+      { _format: (xml |json), _method: POST }
+
+# Ruta de elimincación de una publicación
 ds_facyt_infrastructure_admin_publish_delete:
   path: /delete
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:deletePublish"}

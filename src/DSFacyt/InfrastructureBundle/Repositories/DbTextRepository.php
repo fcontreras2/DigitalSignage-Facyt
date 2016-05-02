@@ -91,4 +91,16 @@ class DbTextRepository extends EntityRepository implements
         $this->getEntityManager()->remove($text);
         $this->getEntityManager()->flush();
     }
+
+    /**
+    * Almacena en Bd un objecto de tipo Text
+    *
+    * @author Freddy Contreras <fredycontreras3@gmail.com>
+    * @param Text $text
+    */
+    public function save(Text $text)
+    {
+        $this->getEntityManager()->persist($text);
+        $this->getEntityManager()->flush($text);
+    }
 }

@@ -7,7 +7,8 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         $scope.type = data.type;
         $scope.status_select = 0;
         var initializing = false;
-        console.log($scope.publish);
+        var modalInfo = $modal({scope: $scope, template: 'modal-info.tpl', show: false });
+        var currentModal = publishService.getCurrentModalPreview($modal, $scope);
 
         $scope.urlNewPublish = Routing.generate('ds_facyt_infrastructure_admin_new_'+data.type.toLowerCase());
 
@@ -98,9 +99,6 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
 
             publishService.ajaxGetPublish(data, $scope);
         };
-
-
-        var currentModal = publishService.getCurrentModalPreview($modal, $scope);
         
         $scope.modalPreviewText = function(text_id) {
             $scope.indexPreview = text_id;
@@ -128,4 +126,37 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 }                
             });            
         }
+
+        $scope.updateImportant = function(publishIndex) {
+
+            var important = null;
+
+            if ($scope.publish[publishIndex].important == true)
+                important = false;
+            else 
+                important = true;
+
+            var url = Routing.generate('ds_facyt_infrastructure_admin_update_important');
+            var data = angular.toJson({
+                "publish_id": $scope.publish[publishIndex].id,
+                "type": $scope.type,
+                "important": important
+            }); 
+            
+            $.ajax({
+                method: 'POST',
+                data: data,                
+                url: url,
+                success: function(data) {
+                    $scope.publish[publishIndex].important = important;
+                    currentModal.$promise.then(currentModal.hide);
+                    /*$scope.requestMessage = 'Asignación correcta';
+                    modalInfo.$promise.then(modalInfo.show);
+                    $timeout( function(){
+                        modalInfo.$promise.then(modalInfo.hide);                        
+                    },2000);*/
+                    $scope.$apply();
+                }                
+            });
+        }       
 }]);

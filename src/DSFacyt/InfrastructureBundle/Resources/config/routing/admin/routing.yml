@@ -12,6 +12,11 @@ ds_facyt_infrastructure_admin_module_channel:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/channel.yml"
     prefix: /channel
 
+# Modulo de notas rapidas
+ds_facyt_infrastructure_quicknote:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/quicknote.yml"
+    prefix:   /quicknote
+
 # Rutas del modulo de usuarios del sistema
 ds_facyt_infrastructure_admin_module_user:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/user.yml"

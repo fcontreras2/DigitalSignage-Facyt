@@ -1,10 +1,14 @@
 {% extends '@DSFacytInfrastructure/Admin/Default/base.html.twig' %}
 
+{% block title %} Usuarios {% endblock title %}
+
+{% block title_notifications %} <span class="fa fa-group"></span>  Usuarios {% endblock title_notifications %}
+
 {% block body -%}
-    <h1>User list</h1>
+    <h1>Lista de usuarios</h1>
     <br>
     <a href="{{ path('ds_facyt_admin_user_new') }}">
-        <button type="button" class="btn btn-default">Crear nuevo</button>
+        <button type="button" class="btn btn-default"><span class="fa fa-plus"></span> Crear nuevo</button>
     </a>
     <br><br>
     <table class="table table-hover">

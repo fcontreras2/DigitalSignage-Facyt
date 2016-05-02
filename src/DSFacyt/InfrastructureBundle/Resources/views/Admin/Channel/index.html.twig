@@ -1,12 +1,14 @@
 {% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
 
+{% block title %} Canales {% endblock title %}
+
 {% block title_notifications %} <span class="fa fa-desktop"></span>  Canales {% endblock title_notifications %}
 
 {% block body -%}
     <h1>Canales disponibles</h1>
     <br>
     <a href="{{ path('ds_facyt_admin_channel_new') }}">
-        <button type="button" class="btn btn-default">Crear nuevo</button>
+        <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
     </a>
     <br><br>
     <table class="table table-hover">

@@ -57,6 +57,11 @@
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-xs-11 col-xs-offset-1">
+                                <button class="btn btn-primary " ng-click="updateImportant(indexPreview);">
+                                        <span class="fa fa-star" style="color:yellow" ng-if="publish[indexPreview].important"></span>
+                                        <span class="fa fa-star" ng-if="!publish[indexPreview].important"></span>
+                                        Destacar
+                                </button>
                                 <button class="btn btn-primary ">
                                     <a href="{[{urlEdit}]}" style="text-decoration: none;color:white">
                                         <span class="fa fa-edit" ></span> Editar

@@ -16,7 +16,7 @@ DSFacyt\InfrastructureBundle\Entity\Channel:
             type: string
 
         status:
-            type: integer
+            type: integer   
 
     manyToMany:
         images:

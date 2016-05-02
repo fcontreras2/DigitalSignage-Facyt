@@ -14,8 +14,6 @@ use DSFacyt\Core\Domain\Adapter\ArrayCollection;
  */
 class User extends BaseUser
 {
-
-
     /**
      * @var string
      */
@@ -71,10 +69,30 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->roles = array();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->quick_notes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->texts = new \Doctrine\Common\Collections\ArrayCollection();
         $this->videos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Implementación de una lista de roles para los usuarios 
+     * 
+     * @throws Exception
+     * @param Rol $rol 
+     */
+    public function addRole($rol)
+    {
+        switch($rol){
+            case 0:
+                array_push($this->roles, 'ROLE_ADMIN');
+                break;            
+            default:
+                array_push($this->roles, 'ROLE_USER');
+                break;
+        }
     }
 
     /**

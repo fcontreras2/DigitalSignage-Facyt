@@ -80,8 +80,24 @@
             </script>
             {% endif %}
 
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+            {% if app.environment == "dev" %}
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+            {% else %}
+                {% javascripts
+                    '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'        
+                    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
+                    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
+                %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+
+                {% endjavascripts %}
+            {% endif %}
+
             <script>
 
                 $("#menu-toggle").click(function(e) {

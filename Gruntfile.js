@@ -124,7 +124,7 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userController.js"
                   ],
                   //Js: Publicaciones Admin
-                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/adminIndex.js" : [
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-admin-index.js" : [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexModule.js'",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexController.js"

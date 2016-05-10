@@ -25,10 +25,19 @@ class ChannelController extends Controller
 
         $entities = $em->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
 
+        foreach ($entities as $currentChannel) {
+            if ($currentChannel->getStatus())
+                $currentChannel->setStatus('Activo');
+            else
+                $currentChannel->setStatus('Inactivo');
+        }        
+
         return $this->render('DSFacytInfrastructureBundle:Admin/Channel:index.html.twig', array(
             'entities' => $entities,
         ));
     }
+
+
     /**
      * Creates a new Channel entity.
      *
@@ -128,8 +137,7 @@ class ChannelController extends Controller
 
         return $this->render('DSFacytInfrastructureBundle:Admin/Channel:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form'   => $editForm->createView()
         ));
     }
 
@@ -147,7 +155,7 @@ class ChannelController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
     }

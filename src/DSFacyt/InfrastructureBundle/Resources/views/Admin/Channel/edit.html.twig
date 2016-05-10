@@ -1,16 +1,84 @@
 {% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
 
+{% block title %} Editar Canal {% endblock title %}
+
+{% block title_notifications %} <span class="fa fa-desktop"></span>  Editar Canal {% endblock title_notifications %}
+
 {% block body -%}
-    <h1>Channel edit</h1>
 
-    {{ form(edit_form) }}
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">            
+        {{ form_start(edit_form ,{attr: {novalidate: 'novalidate'}}) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Editar Canal</h4>
+            </div>
+            <div class="panel-body">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('ds_facyt_admin_channel') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{ form_label(edit_form.name, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(edit_form.name, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                    <div class="col-xs-6">
+                        {{ form_label(edit_form.status, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(edit_form.status, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <br>
+                        {{ form_label(edit_form.description, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(edit_form.description, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-16">
+                        <center>
+                            {{ form_label(edit_form.submit, null, {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(edit_form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                        </center>
+                    </div>
+                </div>                    
+            </div>
+            {{ form_rest(edit_form)}}
+        </div>            
+    </div>
+</div>
+
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexModule.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexService.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Index/indexController.js')}}"></script>
+    {% else %}
+        {% javascripts
+            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+    </script>
+{% endblock javascripts %}

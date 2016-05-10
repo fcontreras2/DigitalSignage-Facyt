@@ -18,8 +18,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Estado</th>
-                <th>Mostrar</th>
-                <th>Editar</th>
+                <th><span class="fa fa-pencil"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -28,12 +27,9 @@
                 <td><a href="{{ path('ds_facyt_admin_channel_show', { 'id': entity.id }) }}">{{ loop.index }}</a></td>                
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{{ entity.status }}</td>
+                <td>{{ entity.status }}</td>                
                 <td>
-                   <a href="{{ path('ds_facyt_admin_channel_show', { 'id': entity.id }) }}">show</a>
-                </td>
-                <td>
-                    <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}">edit</a>
+                    <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}"> Editar</a>
                 </td>
             </tr>
             {% endfor %}
@@ -41,3 +37,21 @@
     </table>    
         
     {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+    {% else %}
+        {% javascripts
+            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}   
+
+{% endblock javascripts %}
+

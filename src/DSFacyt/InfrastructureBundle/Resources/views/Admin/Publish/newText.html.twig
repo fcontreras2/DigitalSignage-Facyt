@@ -112,9 +112,41 @@
 
 {% block javascripts %}
     {{parent()}}
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+
+    {% if app.environment == "dev" %}
+       <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>
-}
-}
+
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+    </script>
+    <script type="text/javascript">
+        $('#registerText_publish_time').timepicker(
+        {
+            defaultTime: '7:00 AM',
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        });
+    </script>
+
 {% endblock javascripts %}

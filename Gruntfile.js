@@ -93,8 +93,8 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/jquery.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/bootstrap.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular.js",
-                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js"
-
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/angular-repeat-n.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/vendor/js/moment.js"
                   ],
                   // Js de angular-strap
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js": [

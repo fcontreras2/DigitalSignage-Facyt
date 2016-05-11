@@ -19,9 +19,7 @@
                 <th>Apellido</th>
                 <th>Cedula</th>
                 <th>Télefono</th>
-                <th>Mostrar</th>
-                <th>Editar</th>
-
+                <th style="width:6%">Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -33,10 +31,7 @@
                 <td> {{ entity.indentitycard }} </td>
                 <td> {{ entity.phone }} </td>
                 <td>
-                    <a href="{{ path('ds_facyt_admin_user_show', { 'id': entity.id }) }}">ver</a>
-                </td>
-                <td>
-                    <a href="{{ path('ds_facyt_admin_user_edit', { 'id': entity.id }) }}">Editar</a>
+                    <center><a href="{{ path('ds_facyt_admin_user_edit', { 'id': entity.id }) }}"><span class="fa fa-eye"></span></a></center>
                 </td>                    
             </tr>
             {% endfor %}

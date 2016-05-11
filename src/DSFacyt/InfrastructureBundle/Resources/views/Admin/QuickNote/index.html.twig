@@ -5,11 +5,26 @@
 {% block title_notifications %} <span class="fa fa-paper-plane"></span>  Notas rápidas {% endblock title_notifications %}
 
 {% block body %}
-    <h1>Notas rápidas</h1>
-
-    <a href="{{ path('ds_facyt_infrastructure_admin_quicknote_new') }}">
-            <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
-    </a>
+    <h3>Notas rápidas</h3>
+    <h4>Listado de notas rápidas</h4>
+    <br>
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="{{ path('ds_facyt_infrastructure_admin_quicknote_new') }}">
+                    <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
+                </a>
+            </div>
+            <div class=" col-xs-9">
+                <div class="pull-right">
+                    <ol class="breadcrumb">
+                      <li><span class="fa fa-circle status-active"></span> Activo</li>
+                      <li><span class="fa fa-circle status-desactive"></span> Inactivo</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>    
     <br><br>
     <table class="table table-hover">
         <thead>
@@ -19,22 +34,29 @@
                 <th>Fecha final</th>
                 <th>Título</th>
                 <th>Información</th>
-                <th>Estado</th>                
-                <th>Mostrar</th>
-                <th>Editar</th>
+                <th><center>Estado</center></th>                
+                <th style="width:6%">Editar</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.startdate %}{{ entity.startdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.enddate %}{{ entity.enddate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.startdate %}{{ entity.startdate|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.enddate %}{{ entity.enddate|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.info }}</td>
-                <td>{{ entity.status }}</td>
-                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_show', { 'id': entity.id }) }}">show</a></td>
-                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_edit', { 'id': entity.id }) }}">edit</a></td>                
+                <td>
+                    <center>
+                    {% if entity.status == '1' %}
+                        <span class="fa fa-circle status-active"></span>
+                    {% else %}
+                        <span class="fa fa-circle status-desactive"></span>
+                    {% endif %}
+                    </center>
+                </td>
+                
+                <td><center><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_edit', { 'id': entity.id }) }}"> <span class="fa fa-eye"></span></a></center></td>
             </tr>
         {% endfor %}
         </tbody>

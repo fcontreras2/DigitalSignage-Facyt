@@ -123,11 +123,16 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userController.js"
                   ],
-                  //Js: Publicaciones Admin
+                  //Js: Admin - Homepage
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-admin-index.js" : [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexModule.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Index/indexController.js"
+                  ],
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-admin-publish.js" : [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Publish/publishModule.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Publish/publishService.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Admin/Publish/publishController.js"
                   ],
                   //Js: de FileInput
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js" : [

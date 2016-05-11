@@ -83,6 +83,7 @@ class Text
     public function __construct()
     {
         $this->channels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->date_create = new \DateTime();
     }
 
     /**

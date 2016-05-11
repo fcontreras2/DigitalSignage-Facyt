@@ -20,7 +20,7 @@
                             <div class="col-xs-12">
                                 Título:
                                 <span>{[{publish[indexPreview].title}]}</span>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
@@ -41,10 +41,15 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                Canales:
+                                Canales: <span ng-show="publish[indexPreview].channels.length == 0" class="status-desactive"> N/A </span>
                                 <span ng-repeat="(key, value) in publish[indexPreview].channels">
                                     {[{ value.channel_name }]}
                                 </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Estado: <span class="fa fa-circle" ng-class="color_status_preview"> Nuevo
                             </div>
                         </div>
                         <div class="row" style="padding-top:15px    ">
@@ -63,12 +68,12 @@
                                         Destacar
                                 </button>
                                 <button class="btn btn-primary ">
-                                    <a href="{[{urlEdit}]}" style="text-decoration: none;color:white">
+                                    <a href="{[{urlEdit}]}" style="text-decoration: none;color:white !important">
                                         <span class="fa fa-edit" ></span> Editar
                                     </a>
                                 </button>
                                 <button class="btn btn-primary delete" ng-click="deletePublish(indexPreview);">
-                                    <span ng-class="btnAction"></span> Eliminar
+                                    <span class="fa fa-trash"></span> Eliminar
                                 </button>
                             </div>
                         </div>

@@ -46,7 +46,7 @@ class DeleteImageHandler implements Handler
                 $rpImage->delete($image);
                 return new ResponseCommandBus(201, 'Ok');
             } catch (\Exception $e) {
-                return new ResponseCommandBus(500,'Internal Server Error','No se pudo eliminar');
+                return new ResponseCommandBus(500,$e->getmessage(),'No se pudo eliminar');
             }
         }
 

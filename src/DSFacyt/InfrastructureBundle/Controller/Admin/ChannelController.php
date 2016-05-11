@@ -25,13 +25,6 @@ class ChannelController extends Controller
 
         $entities = $em->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
 
-        foreach ($entities as $currentChannel) {
-            if ($currentChannel->getStatus())
-                $currentChannel->setStatus('Activo');
-            else
-                $currentChannel->setStatus('Inactivo');
-        }        
-
         return $this->render('DSFacytInfrastructureBundle:Admin/Channel:index.html.twig', array(
             'entities' => $entities,
         ));
@@ -159,6 +152,7 @@ class ChannelController extends Controller
 
         return $form;
     }
+    
     /**
      * Edits an existing Channel entity.
      *
@@ -180,7 +174,7 @@ class ChannelController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ds_facyt_admin_channel_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ds_facyt_admin_channel', array('id' => $id)));
         }
 
         return $this->render('DSFacytInfrastructureBundle:Admin/Channel:edit.html.twig', array(

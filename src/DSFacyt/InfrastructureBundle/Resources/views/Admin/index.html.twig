@@ -36,12 +36,12 @@
                     	  <div class="panel-heading">
                     			<h3 class="panel-title"><span class="fa fa-pencil"></span> Textos</h3>
                     	  </div>
-                    	  <div class="panel-body">
-                    			<a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}"> Nuevo {[{data['publish']['texts'][0]}]} </a>
-                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 1}) }}"> Corregir {[{data['publish']['texts'][1]}]}</a>
-                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 2}) }}"> Aceptada {[{data['publish']['texts'][2]}]}</a>
-                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 3}) }}"> Cancelada {[{data['publish']['texts'][3]}]}</a>
-                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 4}) }}"> Finalizada {[{data['publish']['texts'][3]}]}</a>
+                    	  <div class="panel-body" ng-cloak>
+                    			<a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" ng-cloak> Nuevo {[{data['publish']['texts'][0]}]} </a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 1}) }}" ng-cloak> Corregir {[{data['publish']['texts'][1]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 2}) }}" ng-cloak> Aceptada {[{data['publish']['texts'][2]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 3}) }}" ng-cloak> Cancelada {[{data['publish']['texts'][3]}]}</a>
+                                <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 4}) }}" ng-cloak> Finalizada {[{data['publish']['texts'][3]}]}</a>
                     	  </div>
                     </div>
                 </div>

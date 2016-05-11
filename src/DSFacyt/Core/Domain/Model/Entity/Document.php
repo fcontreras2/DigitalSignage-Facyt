@@ -320,7 +320,8 @@ class Document
     public function removeFile($type = 'image')
     {
         $pathDocument = $_SERVER['DOCUMENT_ROOT'].$this->getPathTypeFile($type).$this->getFileName();
-        unlink($pathDocument);
+        if (file_exists($pathDocument))
+            unlink($pathDocument);
     }
     /**
      * @var \DSFacyt\Core\Domain\Model\Entity\User

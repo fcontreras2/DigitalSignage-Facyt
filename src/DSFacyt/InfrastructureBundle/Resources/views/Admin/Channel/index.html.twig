@@ -6,10 +6,26 @@
 
 {% block body -%}
     <h1>Canales disponibles</h1>
+    <h4>Listado de los canales del sistema</h4>
     <br>
-    <a href="{{ path('ds_facyt_admin_channel_new') }}">
-        <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
-    </a>
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="{{ path('ds_facyt_admin_channel_new') }}">
+                    <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
+                </a>
+            </div>
+            <div class=" col-xs-9">
+                <div class="pull-right">
+                    <span>Estados </span>
+                    <ol class="breadcrumb">
+                      <li><span class="fa fa-circle status-active"></span> Activo</li>
+                      <li><span class="fa fa-circle status-desactive"></span> Inactivo</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
     <br><br>
     <table class="table table-hover">
         <thead>
@@ -17,8 +33,8 @@
                 <th> # </th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Estado</th>
-                <th><span class="fa fa-pencil"></span></th>
+                <th style="width:6%">Estado</th>
+                <th style="width:6%">Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +43,20 @@
                 <td><a href="{{ path('ds_facyt_admin_channel_show', { 'id': entity.id }) }}">{{ loop.index }}</a></td>                
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{{ entity.status }}</td>                
                 <td>
-                    <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}"> Editar</a>
+                    <center>
+                    {% if entity.status == '1' %}
+                        <span class="fa fa-circle status-active"></span>
+                    {% else %}
+                        <span class="fa fa-circle status-desactive"></span>
+                    {% endif %}
+                    </center>
+                    
+                </td>                
+                <td>
+                    <center>
+                    <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}"> <span class="fa fa-pencil"></span></a>
+                    </center>
                 </td>
             </tr>
             {% endfor %}

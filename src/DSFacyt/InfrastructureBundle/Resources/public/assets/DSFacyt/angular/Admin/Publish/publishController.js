@@ -1,20 +1,22 @@
 publish.controller('PublishController', ['$scope','$filter', 'publishService', '$modal', '$alert', '$timeout',
     function ($scope, $filter,publishService, $modal, $alert, $timeout)
     {
+        var initializing = false;
         $scope.pagination = data.data.pagination;
         $scope.publish = data.data.publish;
         $scope.status = data.status;
         $scope.type = data.type;
-        $scope.status_select = 0;
+        $scope.status_select = data.status;
+        $scope.alert_message = false;
         var initializing = false;
         var modalInfo = $modal({scope: $scope, template: 'modal-info.tpl', show: false });
         var currentModal = publishService.getCurrentModalPreview($modal, $scope);
-
+        $scope.color_status = publishService.setColorStatus($scope.status_select);
         $scope.urlNewPublish = Routing.generate('ds_facyt_infrastructure_admin_new_'+data.type.toLowerCase());
 
-        $scope.$watch('status_select', function() {
+        $scope.$watch('status_select', function() {            
             if (initializing) {
-
+                $scope.alert_message = 1;
                 var start_date = null;
                 var end_date = null;
 
@@ -24,6 +26,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 if ($scope.end_date)
                     end_date = moment($scope.end_date, 'DD/MM/YYYY').format('YYYY-MM-DD');
 
+                $scope.color_status = publishService.setColorStatus($scope.status_select);
 
                 var data = angular.toJson({
                     'status': $scope.status_select,
@@ -34,12 +37,14 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 });
 
                 publishService.ajaxGetPublish(data, $scope);
+                $timeout(function() { $scope.alert_message = false;}, 1500);
+                
             }
         });
 
         $scope.$watch('start_date', function() {
             if (initializing) {
-
+                $scope.alert_message = true;
                 var start_date = moment($scope.start_date, 'DD/MM/YYYY');
                 if (!$scope.end_date)
                     $scope.end_date = start_date.add(7, 'days').format('DD/MM/YYYY');
@@ -58,11 +63,13 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 })
 
                 publishService.ajaxGetPublish(data, $scope);
+                $timeout(function() { $scope.alert_message = false;}, 1500);
             }
         });
 
         $scope.$watch('end_date', function(){
             if (initializing) {
+                $scope.alert_message = true;
 
                 if (!$scope.start_date) {
                     $scope.start_date = moment($scope.end_date, 'DD/MM/YYYY').subtract(7,'days').format('DD/MM/YYYY');
@@ -74,6 +81,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                         $scope.start_date = end_date.subtract(1,'days').format('DD/MM/YYYY');
 
                 }
+                $timeout(function() { $scope.alert_message = false;}, 1500);
             }
         });
 
@@ -81,6 +89,8 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         {
             var start_date = null;
             var end_date = null;
+
+            $scope.alert_message = 1;
 
             if ($scope.start_date != null)
                 var start_date = moment($scope.start_date,'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -98,15 +108,23 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             })
 
             publishService.ajaxGetPublish(data, $scope);
+
+            $timeout( function(){
+                $scope.alert_message = false;
+            },1500);
         };
         
-        $scope.modalPreviewText = function(text_id) {
-            $scope.indexPreview = text_id;
+        $scope.modalPreviewPublish = function(publish_id) {
+            $scope.indexPreview = publish_id;
+            $scope.color_status_preview = publishService.setColorStatus($scope.publish[publish_id].status);
             currentModal.$promise.then(currentModal.show);
-            $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_admin_edit_text', { 'textId' : $scope.publish[text_id].id });            
+            var publish_type = data.type.toLowerCase();
+            var auxUrl = 'ds_facyt_infrastructure_admin_edit_'+publish_type;
+            var auxPublishId = publish_type+'_Id';
+            $scope.urlEdit = Routing.generate( auxUrl, {auxPublishId : $scope.publish[publish_id].id });
         }
 
-        $timeout(function() { initializing = true; });
+        
 
         $scope.deletePublish = function(publishIndex) {
             
@@ -115,6 +133,8 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 "publish_id": $scope.publish[publishIndex].id,
                 "type": $scope.type
             }); 
+
+            $scope.alert_message = 4;
             
             $.ajax({
                 method: 'POST',
@@ -123,6 +143,10 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 success: function(data) {
                     $scope.publish.splice(publishIndex, 1);
                     currentModal.$promise.then(currentModal.hide)                    
+                      $timeout( function(){
+                        $scope.alert_message = false;
+                    },3000);
+                    
                 }                
             });            
         }
@@ -130,11 +154,14 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         $scope.updateImportant = function(publishIndex) {
 
             var important = null;
-
-            if ($scope.publish[publishIndex].important == true)
+            
+            if ($scope.publish[publishIndex].important == true) {
                 important = false;
-            else 
+                $scope.alert_message = 3;                
+            } else {
                 important = true;
+                $scope.alert_message = 2;                
+            }
 
             var url = Routing.generate('ds_facyt_infrastructure_admin_update_important');
             var data = angular.toJson({
@@ -142,7 +169,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 "type": $scope.type,
                 "important": important
             }); 
-            
+
             $.ajax({
                 method: 'POST',
                 data: data,                
@@ -150,13 +177,16 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 success: function(data) {
                     $scope.publish[publishIndex].important = important;
                     currentModal.$promise.then(currentModal.hide);
-                    /*$scope.requestMessage = 'Asignación correcta';
-                    modalInfo.$promise.then(modalInfo.show);
+                    
                     $timeout( function(){
-                        modalInfo.$promise.then(modalInfo.hide);                        
-                    },2000);*/
+                        $scope.alert_message = false;
+                    },3000);
+                    
                     $scope.$apply();
                 }                
             });
-        }       
+        }
+
+        $timeout(function() { initializing = true; $scope.$apply();});
+
 }]);

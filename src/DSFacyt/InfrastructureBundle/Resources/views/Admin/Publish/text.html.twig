@@ -7,12 +7,6 @@
 {% endblock title_notifications %}
 
 {% block table %}
-    <br>
-    <div class="row" ng-if="publish == null">
-        <div class="col-xs-12" >
-            No existe publicaciones de este tipo
-        </div>
-    </div>
     <div class="row" ng-if="publish != null">
         <div class="col-xs-12">
             <table class="table table-hover">
@@ -23,18 +17,18 @@
                     <th>Fecha Inicial</th>
                     <th>Fecha Final</th>
                     <th>Título</th>
-                    <th><span class="fa fa-eye"></span></th>
+                    <th style="width:6%">Detalle</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="currentPublish in publish" ng-cloak>
-                    <td style="width:3%" ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
-                    <td style="width:3%" ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                    <td style="width: 17%"> {[{ currentPublish.user_name }]}</td>
+                    <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                    <td  ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                    <td > {[{ currentPublish.user_name }]}</td>
                     <td> {[{ currentPublish.start_date}]}</td>
                     <td> {[{ currentPublish.end_date }]}</td>
                     <td> {[{ currentPublish.title }]}</td>
-                    <td> <a href="#" ng-click="modalPreviewText($index);">Ver + </a></td>
+                    <td> <center><a href="#" ng-click="modalPreviewPublish($index);"><span class="fa fa-eye"></span></a></center></td>
                 </tr>
                 </tbody>
             </table>

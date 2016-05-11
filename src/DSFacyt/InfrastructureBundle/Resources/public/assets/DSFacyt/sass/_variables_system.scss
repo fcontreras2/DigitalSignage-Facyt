@@ -7,9 +7,19 @@
 //Colores del sistema
 $blue-dark: #122644;
 $blue-ligth:  #18304c;
+$blue-white: #3683DC;
 
 $green: #63a047;
 
 $gray-dark: #777777;
 $gray-light: #e2e2e2;
 $gray-light-two: #EAEAEA;
+
+$red : #FD5D5D;
+$yellow: #EFE02B;
+
+.status-active { color: $green}
+.status-change { color: $yellow}
+.status-desactive, .status-canceled { color: $red}
+.status-finish { color: $gray-light}
+.status-new { color: $blue-white}

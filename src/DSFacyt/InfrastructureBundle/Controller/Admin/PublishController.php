@@ -250,9 +250,10 @@ class PublishController extends Controller
                     $command = new DeleteTextCommand();
                     $command->setTextId($data['publish_id']);
                     break;
-                case 'image':
+                case 'Image':
                     $command = new DeleteImageCommand();
-                    $command->setImageId($data['image_id']);                
+                    $command->setImageId($data['publish_id']);                
+                    break;
                 default:
                     $command = null;
                     break;
@@ -261,10 +262,11 @@ class PublishController extends Controller
             if ($command) {
                 $response = $this->get('CommandBus')->execute($command);
                 if ($response->getStatusCode() == 201)
-                    return new JsonResponse('Ok', 201);                   
-            }
-
-            return new JsonResponse('Bad Request', 401);            
+                    return new JsonResponse('Ok', 201);
+                else 
+                    return new JsonResponse($response->getMessage(), $response->getStatusCode());
+            }            
+            return new JsonResponse('Bad Request',400);        
         }
 
         return new JsonResponse('Not Found',404);        

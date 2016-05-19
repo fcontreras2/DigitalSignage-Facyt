@@ -120,8 +120,16 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             currentModal.$promise.then(currentModal.show);
             var publish_type = data.type.toLowerCase();
             var auxUrl = 'ds_facyt_infrastructure_admin_edit_'+publish_type;
-            var auxPublishId = publish_type+'_Id';
-            $scope.urlEdit = Routing.generate( auxUrl, {auxPublishId : $scope.publish[publish_id].id });
+            
+            switch (publish_type) {
+                case 'text':
+                    $scope.urlEdit = Routing.generate( auxUrl, {'textId' : $scope.publish[publish_id].id });
+                    break;
+                case 'image':
+                    $scope.urlEdit = Routing.generate( auxUrl, {'imageId' : $scope.publish[publish_id].id });
+                    break;
+            }
+            
         }
 
         

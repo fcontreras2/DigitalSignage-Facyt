@@ -36,7 +36,8 @@ module.exports = function(grunt) {
               "js/ng-file-upload-shim.js": "ng-file-upload/ng-file-upload-shim.js",
               "js/ng-img-crop.js": "ng-img-crop/compile/minified/ng-img-crop.js",
               "js/moment.js" : "moment/min/moment-with-locales.js",
-              'js/angular-img-cropper.js' : 'angular-img-cropper/dist/angular-img-cropper.min.js'
+              'js/angular-img-cropper.js' : 'angular-img-cropper/dist/angular-img-cropper.min.js',
+              'js/angular-clock.js' : 'angular-ui-clock/dist/angular-clock.js'
           }
       },      
       folders: {
@@ -46,7 +47,8 @@ module.exports = function(grunt) {
               "css/metisMenu":"metisMenu/dist/metisMenu.css",
               "sass/font-awesome-sass": "font-awesome/scss/*",
               "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less",
-              "css/ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css"
+              "css/ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css",
+              "css/angular-clock.css" : "angular-ui-clock/dist/angular-clock.css"
           }
       }
     },

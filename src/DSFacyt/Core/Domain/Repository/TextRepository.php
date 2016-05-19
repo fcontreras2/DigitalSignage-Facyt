@@ -41,4 +41,13 @@ interface TextRepository
      * @return array
      */
     public function findByStatusStartDateEndDate($status, $startDate, $endDate);
+
+    /**
+    * Obtiene los datos de los textos que se encuentren publicados por un canal
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param $channelId integer id del canal a buscar
+    * @return Array Object
+    **/
+    public function findActiveByChannel($channelId);
 }

@@ -19,5 +19,5 @@ use DSFacyt\Core\Domain\Repository\QuickNoteRepository;
 class DbQuickNoteRepository extends EntityRepository implements 
     QuickNoteRepository 
 {
-    
+
 }

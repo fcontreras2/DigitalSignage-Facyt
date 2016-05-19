@@ -20,6 +20,10 @@ DSFacyt\InfrastructureBundle\Entity\Channel:
             options:
                 default: 1
 
+        slug:
+            type: string
+            nullable: true
+
     manyToMany:
         images:
             targetEntity: Image
@@ -53,4 +57,5 @@ DSFacyt\InfrastructureBundle\Entity\Channel:
             joinTable: null
             orderBy: null
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [ generatePublicId ]

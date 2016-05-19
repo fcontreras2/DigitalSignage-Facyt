@@ -1,3 +1,9 @@
+# Vista del listado de los canales disponibles
 ds_facyt_display_index:
     path:   /
     defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:index"}
+
+# Vista donde se transmite un canal disponible dado un slug
+ds_facyt_display_show:
+    path: /{slug}
+    defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:showChannel"}

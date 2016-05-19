@@ -6,7 +6,7 @@ use DSFacyt\Core\Application\Contract\Handler;
 use DSFacyt\Core\Application\Contract\Command;
 use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
-use Proxies\__CG__\DSFacyt\InfrastructureBundle\Entity\Text;
+use DSFacyt\InfrastructureBundle\Entity\Text;
 
 /**
  * Clase para ejecutar el caso de uso EditText

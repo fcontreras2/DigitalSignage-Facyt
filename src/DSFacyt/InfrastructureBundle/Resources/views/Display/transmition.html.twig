@@ -1,0 +1,139 @@
+{% extends "DSFacytInfrastructureBundle:Display:base.html.twig" %}
+
+{% block stylesheets %}
+    {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/display.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/angular-clock.css') }}"/>
+    {% else %}
+        {% stylesheets
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
+        %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+        {% endstylesheets %}
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container-display" ng-app="TransmitionModule" ng-controller="TransmitionController" style="height: 100vh !important;width: 100%;background: blue" >
+        <div class="block-media" style="background:green;height: 93vh;width: 64.9%;float: left;border-right: 1px solid black;position: relative">
+            <img style="height:612px;width: 100%" src="http://www.facyt.uc.edu.ve/sites/default/files/aviso%20web%20cronograma%20de%20Acto%20JUL-2015.jpg">
+        </div>
+        <div class="block-info" style="background: yellow;height: 93vh;width: 35%;float: left">
+            <div class="block-info" style="height: 20vh;border-bottom: 1px solid black;">
+                <div class="block-time" style="margin: 10px">
+                    <div class="time pull-left" >
+                        <ds-widget-clock show-digital digital-format="'hh:mm:ss a '">></ds-widget-clock>
+                    </div>
+                    <br>
+
+                    <div class="date pull-left">
+                        <ds-widget-clock show-digital digital-format="'EEEE MMMM d'">></ds-widget-clock>
+                    </div>
+                </div>
+            </div>
+            <div class="block-text" style="height: 70vh">
+                <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="panel panel-default" style="height: 25.0vh !important;border-bottom: 1px solid black;margin: 0px" ng-repeat-n='3'>
+                                <div class="panel-heading">
+                                    <b>{[{ texts[$index].title }]}</b> <span style="float: right"> 10:10 AM</span>
+                                </div>
+                                <div class="panel-body" style="font-size: 120%">
+                                    {[{ texts[$index].info }]}
+                                </div>
+                            </div>                        
+                        </div>
+                        <div class="item" ng-repeat-n="amountTexts-1">
+                            <div class="panel panel-default" style="height: 25.0vh !important;border-bottom: 1px solid black;margin: 0px" ng-repeat-n="3">
+                                <div class="panel-heading">
+                                    <b>Suspención de Parcial</b> <span style="float: right"> 10:10 AM</span>
+                                </div>
+                                <div class="panel-body" style="font-size: 120%">
+                                    Se cambia la fecha del parcial de Algoritmos 2 para el día 12/03/2017
+                                </div>
+                            </div>                        
+                        </div>
+                        <div class="item">
+                            <div class="panel panel-default" style="height: 25.0vh !important;border-bottom: 1px solid black;margin: 0px">
+                                <div class="panel-heading">
+                                    <b>Suspención de Parcial</b> <span style="float: right"> 10:10 AM</span>
+                                </div>
+                                <div class="panel-body" style="font-size: 120%">
+                                    Se cambia la fecha del parcial de Algoritmos 2 para el día 12/03/2017
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="block-info" style="background: black;height: 7vh;width: 100%;float: left;color: white;font-size: 20px">
+            <div id="carousel-quick-notes" class="carousel slide carousel-fade " data-ride="carousel" data-pause="false">
+                <div class="carousel-inner">                    
+                    <div class="item active">
+                        {[{quickNotes[0].info}]}
+                    </div>
+                    <div ng-repeat-n="amountQuickNotes-1" class="item">
+                        {[{quickNotes[$index + 1].info}]}
+                    </div>
+                </div>                    
+            </div>
+            
+        </div>-->
+    </div>
+{% endblock body %}
+
+{% block javascripts%}
+    {{ parent() }}
+    
+    {% if data is defined %}
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        data = JSON.parse(data);
+    </script>
+    {% endif %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/moment.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-clock.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Display/Transmition/TransmitionModule.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Display/Transmition/TransmitionService.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Display/Transmition/TransmitionController.js') }}"></script>
+    
+    {% endif %}
+
+    <script type="text/javascript">
+
+        $('.carousel-sync').on('slide.bs.carousel', function(ev) {
+            var dir = ev.direction == 'right' ? 'prev' : 'next';
+            $('.carousel-sync').not('.sliding').addClass('sliding').carousel(dir);
+        });
+        $('.carousel-sync').on('slid.bs.carousel', function(ev) {
+            $('.carousel-sync').removeClass('sliding');
+        });
+        jQuery(function($) {
+            $('#carousel-texts').carousel({
+                interval: 3000
+            });            
+        });
+        jQuery(function($) {
+        $('#carousel-quick-notes').carousel({
+                interval:5000
+            });
+        });
+        
+    </script>
+
+{% endblock javascripts %}

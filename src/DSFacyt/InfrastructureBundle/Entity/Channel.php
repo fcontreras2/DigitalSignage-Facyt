@@ -3,6 +3,7 @@
 namespace DSFacyt\InfrastructureBundle\Entity;
 
 use \DSFacyt\Core\Domain\Adapter\ArrayCollection;
+use DSFacyt\Core\Domain\Model\ValueObject\Slug;
 
 /**
 * La clase se encarga del manejo de los canales donde se publicaran las noticias
@@ -53,6 +54,11 @@ class Channel
      * @var \Doctrine\Common\Collections\Collection
      */
     private $videos;
+
+    /**
+     * @var string
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -274,5 +280,37 @@ class Channel
     public function getVideos()
     {
         return $this->videos;
+    }
+    
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Channel
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+    *  @var string generate el slug unico para el canal
+    */
+    public function generatePublicId()
+    {
+        $objectSlug = new Slug($this->name);
+        $this->slug = $objectSlug->getSlug();
     }
 }

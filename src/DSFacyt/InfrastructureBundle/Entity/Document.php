@@ -255,10 +255,10 @@ class Document
     /**
      * Add images
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     * @param \DSFacyt\InfrastructureBundle\Entity\Image $images
      * @return Document
      */
-    public function addImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    public function addImage(\DSFacyt\InfrastructureBundle\Entity\Image $images)
     {
         $this->images[] = $images;
 
@@ -268,9 +268,9 @@ class Document
     /**
      * Remove images
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Image $images
+     * @param \DSFacyt\InfrastructureBundle\Entity\Image $images
      */
-    public function removeImage(\DSFacyt\Core\Domain\Model\Entity\Image $images)
+    public function removeImage(\DSFacyt\InfrastructureBundle\Entity\Image $images)
     {
         $this->images->removeElement($images);
     }
@@ -288,10 +288,10 @@ class Document
     /**
      * Add videos
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
+     * @param \DSFacyt\InfrastructureBundle\Entity\Video $videos
      * @return Document
      */
-    public function addVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
+    public function addVideo(\DSFacyt\InfrastructureBundle\Entity\Video $videos)
     {
         $this->videos[] = $videos;
 
@@ -301,9 +301,9 @@ class Document
     /**
      * Remove videos
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\Video $videos
+     * @param \DSFacyt\InfrastructureBundle\Entity\Video $videos
      */
-    public function removeVideo(\DSFacyt\Core\Domain\Model\Entity\Video $videos)
+    public function removeVideo(\DSFacyt\InfrastructureBundle\Entity\Video $videos)
     {
         $this->videos->removeElement($videos);
     }
@@ -325,7 +325,7 @@ class Document
             unlink($pathDocument);
     }
     /**
-     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     * @var \DSFacyt\InfrastructureBundle\Entity\User
      */
     private $image_profile;
 
@@ -333,10 +333,10 @@ class Document
     /**
      * Set image_profile
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\User $imageProfile
+     * @param \DSFacyt\InfrastructureBundle\Entity\User $imageProfile
      * @return Document
      */
-    public function setImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $imageProfile = null)
+    public function setImageProfile(\DSFacyt\InfrastructureBundle\Entity\User $imageProfile = null)
     {
         $this->image_profile = $imageProfile;
 
@@ -346,14 +346,14 @@ class Document
     /**
      * Get image_profile
      *
-     * @return \DSFacyt\Core\Domain\Model\Entity\User
+     * @return \DSFacyt\InfrastructureBundle\Entity\User
      */
     public function getImageProfile()
     {
         return $this->image_profile;
     }
     /**
-     * @var \DSFacyt\Core\Domain\Model\Entity\User
+     * @var \DSFacyt\InfrastructureBundle\Entity\User
      */
     private $user_image_profile;
 
@@ -361,10 +361,10 @@ class Document
     /**
      * Set user_image_profile
      *
-     * @param \DSFacyt\Core\Domain\Model\Entity\User $userImageProfile
+     * @param \DSFacyt\InfrastructureBundle\Entity\User $userImageProfile
      * @return Document
      */
-    public function setUserImageProfile(\DSFacyt\Core\Domain\Model\Entity\User $userImageProfile = null)
+    public function setUserImageProfile(\DSFacyt\InfrastructureBundle\Entity\User $userImageProfile = null)
     {
         $this->user_image_profile = $userImageProfile;
 
@@ -374,7 +374,7 @@ class Document
     /**
      * Get user_image_profile
      *
-     * @return \DSFacyt\Core\Domain\Model\Entity\User
+     * @return \DSFacyt\InfrastructureBundle\Entity\User
      */
     public function getUserImageProfile()
     {

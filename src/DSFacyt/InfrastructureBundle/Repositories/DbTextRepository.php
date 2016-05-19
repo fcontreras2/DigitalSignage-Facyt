@@ -82,6 +82,27 @@ class DbTextRepository extends EntityRepository implements
     }
 
     /**
+    * Obtiene los datos de los textos que se encuentren publicados por un canal
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param $channelId integer id del canal a buscar
+    * @return Array Object
+    **/
+    public function findActiveByChannel($channelId)
+    {
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.channels', 'c')
+            ->where('
+                c.id = :channelId and
+                t.status = 2                
+            ')
+            ->setParameters([
+                'channelId' => $channelId
+            ])
+            ->getQuery()->getResult();    
+    }
+
+    /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015

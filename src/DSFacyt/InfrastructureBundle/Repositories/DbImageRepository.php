@@ -83,6 +83,18 @@ class DbImageRepository extends EntityRepository implements
     }
 
     /**
+    * Obtiene los datos de las imagenes que se encuentren publicados por un canal
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param $channelId integer id del canal a buscar
+    * @return Array Object
+    **/
+    public function findActiveByChannel($channelId)
+    {
+        return [];
+    }
+
+    /**
     * La siguiente función  elimina una imagen
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015

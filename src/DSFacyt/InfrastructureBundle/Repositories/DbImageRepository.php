@@ -91,7 +91,16 @@ class DbImageRepository extends EntityRepository implements
     **/
     public function findActiveByChannel($channelId)
     {
-        return [];
+        return $this->createQueryBuilder('i')
+            ->innerJoin('i.channels', 'c')
+            ->where('
+                c.id = :channelId and
+                i.status = 0 
+            ')
+            ->setParameters([
+                'channelId' => $channelId
+            ])
+            ->getQuery()->getResult();
     }
 
     /**

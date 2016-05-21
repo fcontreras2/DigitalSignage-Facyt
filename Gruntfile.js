@@ -37,7 +37,13 @@ module.exports = function(grunt) {
               "js/ng-img-crop.js": "ng-img-crop/compile/minified/ng-img-crop.js",
               "js/moment.js" : "moment/min/moment-with-locales.js",
               'js/angular-img-cropper.js' : 'angular-img-cropper/dist/angular-img-cropper.min.js',
-              'js/angular-clock.js' : 'angular-ui-clock/dist/angular-clock.js'
+              'js/angular-clock.js' : 'angular-ui-clock/dist/angular-clock.js',            
+              'js/angular-sanitize.min.js' : 'angular-sanitize/angular-sanitize.min.js',
+              'js/videogular.js' : 'videogular/videogular.js',
+              'js/vg-controls.js' : 'videogular-controls/vg-controls.js',
+              'js/vg-overlay-play.js' : 'videogular-overlay-play/vg-overlay-play.js',
+              'js/vg-poster.js' : 'videogular-poster/vg-poster.js',
+              'js/vg-buffering.js' : 'videogular-buffering/vg-buffering.js'
           }
       },      
       folders: {
@@ -48,7 +54,9 @@ module.exports = function(grunt) {
               "sass/font-awesome-sass": "font-awesome/scss/*",
               "css/timepicker.less" : "bootstrap-timepicker/css/timepicker.less",
               "css/ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css",
-              "css/angular-clock.css" : "angular-ui-clock/dist/angular-clock.css"
+              "css/angular-clock.css" : "angular-ui-clock/dist/angular-clock.css",
+              "css/videogular.css" : "videogular-themes-default/videogular.css",
+              "css/fonts/" : "videogular-themes-default/fonts/*"
           }
       }
     },

@@ -67,6 +67,8 @@ class GetDataTransmitionHandler implements Handler
             $auxResponse['title'] = $currentText->getTitle();
             $auxResponse['start_date'] = $currentText->getStartDate()->format('d-m-Y');
             $auxResponse['user_full_name'] = $currentText->getUser()->getName().' '.$currentText->getUser()->getLastName();
+            $imageProfile = $currentText->getUser()->getImageProfile();
+            $auxResponse['image_profile'] = $imageProfile ? $imageProfile->getFileName() : null;
 
             $response[] = $auxResponse;
         }
@@ -88,7 +90,8 @@ class GetDataTransmitionHandler implements Handler
             $auxResponse['image_url'] = $currentImage->getDocument()->getFileName();
             $auxResponse['title'] = $currentImage->getTitle();
             $auxResponse['start_date'] = $currentImage->getStartDate();
-            $auxResponse['user_full_name'] = $currentImage->getUser()->getFullName();
+            $auxResponse['image_url'] = $currentImage->getDocument()->getFileName();
+            $auxResponse['user_full_name'] = $currentImage->getUser()->getName().' '.$currentImage->getUser()->getLastName();
 
             $response[] = $auxResponse;
         }

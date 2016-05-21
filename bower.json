@@ -26,6 +26,13 @@
     "ng-img-crop": "ngImgCrop#^0.3.2",
     "moment": "~2.12.0",
     "angular-img-cropper": "^1.1.0",
-    "angular-ui-clock": "^0.5.1"
+    "angular-ui-clock": "^0.5.1",
+    "videogular": "^1.4.3",
+    "videogular-themes-default": "^1.4.3",
+    "videogular-controls": "^1.4.3",
+    "videogular-buffering": "^1.4.3",
+    "videogular-overlay-play": "^1.4.3",
+    "videogular-poster": "^1.4.3",
+    "videogular-ima-ads": "^1.4.3"
   }
 }

@@ -19,16 +19,16 @@
 {% block body %}
     <div class="container-display" ng-app="TransmitionModule" ng-controller="TransmitionController as controller" style="height: 100vh !important;width: 100%;background: blue" >
         <div class="block-media" style="background:green;height: 93vh;width: 69.9%;float: left;border-right: 1px solid black;position: relative">
-            <div id="carousel-images" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" ng-show="showImages">
-                <div class="carousel-inner">
-                    <div class="item" ng-repeat="n in [] | range:images.length" ng-class="{'active':!$index}">
-                        <img style="height:612px;width: 100%" src="/uploads/images/{[{images[$index].image_url}]}">
-                    </div>
+        <div id="carousel-images" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" ng-if="showImages">
+            <div class="carousel-inner">
+                <div class="item" ng-repeat="n in [] | range:images.length" ng-class="{'active':!$index}">
+                    <img style="max-height:93vh;width: 100%" src="/uploads/images/{[{images[$index].image_url}]}">
                 </div>
             </div>
-         <videogular vg-theme="controller.config.theme" vg-auto-play="true" vg-start-time="true" ng-show="showVideos">
+        </div>
+         <videogular vg-theme="controller.config.theme" ng-if="showVideos" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
             <vg-media vg-src="controller.config.sources"
-                    vg-tracks="controller.config.tracks" vg-plays-inline="true">
+                     vg-plays-inline="true">
             </vg-media>
  
             <vg-controls>
@@ -47,7 +47,7 @@
  
             <vg-overlay-play></vg-overlay-play>
             <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
-        </videogular>
+        </videogular>        
         </div>
         <div class="block-info" style="background: yellow;height: 93vh;width: 30%;float: left">
             <div class="block-info" style="height: 20vh;border-bottom: 1px solid black;">
@@ -142,13 +142,13 @@
         });
         jQuery(function($) {
             $('#carousel-images').carousel({
-                interval: 8000
+                interval: 1000
             });            
         });
 
         jQuery(function($) {
         $('#carousel-quick-notes').carousel({
-                interval: 5000
+                interval: 1000
             });
         });
         

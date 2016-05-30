@@ -60,7 +60,8 @@ class GetPublishStatusHandler implements Handler
         $data = $command->getRequest();
         $rpFactory = $rf->get($data['type']);
         $response = [];
-        $publish = $rpFactory->findByStatusStartDateEndDate($data['status'], $data['start_date'], $data['end_date']);
+
+        $publish = $rpFactory->findByData($data);
 
         if ($publish) {
             $response['pagination'] = $this->pagination->generate($publish, $data['page']);

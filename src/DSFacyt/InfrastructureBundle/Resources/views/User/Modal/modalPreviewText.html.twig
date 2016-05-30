@@ -10,7 +10,7 @@
                                 <button type="button" class="close" aria-label="Close" ng-click="$hide();btnAction='fa fa-trash'"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                                 <h4 class="modal-title" >
                                     <span class="fa fa-pencil"></span>
-                                    Texto - {[{ data[indexPreview].title}]}
+                                    Texto - {[{ publish[indexPreview].title}]}
                                 </h4>
                             </div>
                         </div>
@@ -19,38 +19,41 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 Título:
-                                <span>{[{data[indexPreview].title}]}</span>
+                                <span>{[{publish[indexPreview].title}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Hora a publicar: 
-                                <span>{[{data[indexPreview].publish_time}]}</span>
+                                <span>{[{publish[indexPreview].publish_time}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Fecha de Publlicación:
-                                <span>{[{data[indexPreview].start_date}]}</span>
+                                <span>{[{publish[indexPreview].start_date}]}</span>
 
                             </div>
                             <div class="col-xs-12">
                                 Fecha Final:
-                                <span>{[{data[indexPreview].end_date}]}</span>
+                                <span>{[{publish[indexPreview].end_date}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Canales:
-                                <span ng-repeat="(key, value) in data[indexPreview].channels">
+                                <span ng-repeat="(key, value) in publish[indexPreview].channels">
                                     {[{ value.channel_name }]}
+                                </span>
+                                <span ng-show="publish[indexPreview].channels.length== 0" class="status-desactive">
+                                N/A
                                 </span>
                             </div>
                         </div>
                         <div class="row" style="padding-top:15px    ">
                             <div class="col-xs-12">
                                 <span style="font-weight:bold">Información </span>
-                                <p class="box-information"> {[{data[indexPreview].info}]}</p>
+                                <p class="box-information"> {[{publish[indexPreview].info}]}</p>
                             </div>
                         </div>
                     </div>
@@ -62,8 +65,8 @@
                                         <span class="fa fa-edit" ></span> Editar
                                     </a>
                                 </button>
-                                <button class="btn btn-primary delete" ng-click="btnAction = 'fa fa-spinner fa-pulse';deleteText(indexPreview);btnAction = 'fa fa-trash'">
-                                    <span ng-class="btnAction"></span> Eliminar
+                                <button class="btn btn-primary delete" ng-click="deleteText(indexPreview);">
+                                    <span class="fa fa-spinner"></span> Eliminar
                                 </button>
                             </div>
                         </div>

@@ -82,6 +82,46 @@ class DbTextRepository extends EntityRepository implements
     }
 
     /**
+    * 
+    */
+    public function findByData($data)
+    {
+        $where = null;
+        $parameters = [];
+
+        if (isset($data['status']) and !is_null($data['status'])) {
+            $where = 't.status = :status';
+            $parameters['status'] = $data['status'];
+        } else {
+            $where = ' t.status > -1';
+        }
+
+        if (isset($data['start_date']) and !is_null($data['start_date'])) {
+            $where = $where.' and ((t.start_date <= :startDate and :startDate <= t.end_date) or
+                (t.start_date <= :endDate and :endDate <= t.end_date))';
+
+            $parameters['startDate'] = $data['start_date'];
+            $parameters['endDate'] = $data['end_date'];
+        }
+
+        if (isset($data['user']) and !is_null($data['user']) and $data['user']->hasRole('ROLE_USER')) {
+            $where = $where. ' and t.user = :userId ';
+            $parameters['userId'] = $data['user']->getId();
+        }
+        
+        $query = $this->createQueryBuilder('t')
+            ->where($where)->setParameters($parameters);
+        if (isset($data['filter']) and !is_null($data['filter'])) {
+            if (isset($data['order']) and !is_null($data['order']))
+                $query->orderBy('t.'.$data['filter'], $data['order']);
+            else
+                $query->orderBy('t.'.$data['filter'], 'ASC');
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
     * Obtiene los datos de los textos que se encuentren publicados por un canal
     *
     * @author Freddy Contreras <freddycontreras3@gmail.com>

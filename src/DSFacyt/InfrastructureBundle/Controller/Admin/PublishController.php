@@ -88,13 +88,19 @@ class PublishController extends Controller
     public function apiGetPublishStatusAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
+            
             $data = json_decode($request->getContent(),true);
+            $startDate = isset($data['start_date']) ? $data['start_date'] : null;
+            $endDate = isset($data['end_date']) ? $data['end_date'] : null;
+            $user =  $this->container->get('security.context')->getToken()->getUser();
+            
             $command = new GetPublishStatusCommand(
                 $data['type'],
                 $data['status'],
                 $data['start_date'],
                 $data['end_date'],
-                $data['page']
+                $data['page'],
+                $user
             );
 
             $response = $this->get('CommandBus')->execute($command);

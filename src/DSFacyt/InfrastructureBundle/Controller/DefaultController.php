@@ -4,9 +4,12 @@ namespace DSFacyt\InfrastructureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use DSFacyt\InfrastructureBundle\Entity\Document;
 use DSFacyt\InfrastructureBundle\Entity\User;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterType;
+use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -118,5 +121,44 @@ class DefaultController extends Controller
             return true;
         }        
         return false;
+    }
+
+    /**
+     * Retorna las publicaciones vía Ajax de un usuario
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function apiGetPublishStatusAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            
+            $data = json_decode($request->getContent(),true);
+            $startDate = isset($data['start_date']) ? $data['start_date'] : null;
+            $endDate = isset($data['end_date']) ? $data['end_date'] : null;
+            $status = isset($data['status']) ? $data['status'] : null;
+            $user =  $this->container->get('security.context')->getToken()->getUser();
+
+            $command = new GetPublishStatusCommand(
+                $data['type'],
+                $status,
+                $startDate,
+                $endDate,
+                $data['page'],
+                $user
+            );
+
+            if (isset($data['filter']))
+                $command->setFilter($data['filter']);
+
+            if (isset($data['order']))
+                $command->setOrder($data['order']);
+
+            $response = $this->get('CommandBus')->execute($command);
+            return new JsonResponse($response->getData(), 200);
+        }
+
+        return new JsonResponse('Error', 503);
     }
 }

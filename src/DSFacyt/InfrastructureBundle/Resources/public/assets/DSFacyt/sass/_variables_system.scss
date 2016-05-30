@@ -10,6 +10,7 @@ $blue-ligth:  #18304c;
 $blue-white: #3683DC;
 
 $green: #63a047;
+$green-white: #098A74;
 
 $gray-dark: #777777;
 $gray-light: #e2e2e2;
@@ -18,6 +19,7 @@ $gray-light-two: #EAEAEA;
 $red : #FD5D5D;
 $yellow: #EFE02B;
 
+.status-accepted { color: $green-white }
 .status-active { color: $green}
 .status-change { color: $yellow}
 .status-desactive, .status-canceled { color: $red}

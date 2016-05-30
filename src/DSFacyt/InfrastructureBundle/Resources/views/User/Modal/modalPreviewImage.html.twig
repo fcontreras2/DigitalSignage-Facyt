@@ -10,7 +10,7 @@
                                 <button type="button" class="close" aria-label="Close" ng-click="$hide();btnAction='fa fa-trash'"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                                 <h4 class="modal-title" >
                                     <span class="fa fa-picture-o"></span>
-                                    Imagen - {[{ data[indexPreview].title}]}
+                                    Imagen - {[{ publish[indexPreview].title}]}
                                 </h4>
                             </div>
                         </div>
@@ -24,31 +24,34 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 Título:
-                                <span>{[{data[indexPreview].title}]}</span>
+                                <span>{[{publish[indexPreview].title}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Hora a publicar: 
-                                <span>{[{data[indexPreview].publish_time}]}</span>
+                                <span>{[{publish[indexPreview].publish_time}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Fecha de Publlicación:
-                                <span>{[{data[indexPreview].start_date}]}</span>
+                                <span>{[{publish[indexPreview].start_date}]}</span>
 
                             </div>
                             <div class="col-xs-12">
                                 Fecha Final:
-                                <span>{[{data[indexPreview].end_date}]}</span>
+                                <span>{[{publish[indexPreview].end_date}]}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 Canales:
-                                <span ng-repeat="(key, value) in data[indexPreview].channels">
+                                <span ng-repeat="(key, value) in publish[indexPreview].channels">
                                     {[{ value.channel_name }]}
+                                </span>
+                                <span ng-show="publish[indexPreview].channels.length== 0" class="status-desactive">
+                                N/A
                                 </span>
                             </div>
                         </div>
@@ -57,7 +60,7 @@
                                 <span style="font-weight:bold">Imagen </span>
                                 <div class="box-information" >
                                     <center>
-                                        <img src="/uploads/images/{[{data[indexPreview].url_image}]}" style="width:100%">
+                                        <img src="/uploads/images/{[{publish[indexPreview].url_image}]}" style="width:100%">
                                     </center>
                                 </div>
                             </div>
@@ -71,8 +74,8 @@
                                         <span class="fa fa-edit" ></span> Editar
                                     </a>
                                 </button>
-                                <button class="btn btn-primary delete" ng-click="btnAction = 'fa fa-spinner fa-pulse';deleteImage(indexPreview);btnAction = 'fa fa-trash'">
-                                    <span ng-class="btnAction"></span> Eliminar</button>
+                                <button class="btn btn-primary delete" ng-click="deleteImage(indexPreview);">
+                                    <span class="fa fa-trash"></span> Eliminar</button>
                             </div>
                         </div>
                     </div>

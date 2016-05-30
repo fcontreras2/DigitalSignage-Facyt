@@ -1,13 +1,15 @@
 text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert', '$timeout',
     function ($scope, $filter,textService, $modal, $alert, $timeout) {
 
-        $scope.data = data.texts;
+        $scope.publish = data.texts;
         $scope.pagination = data.pagination;
-        $scope.btnAction = 'fa fa-trash';
         $scope.selectedDate = {date: new Date("2012-09-01")};
         $scope.indexEditText = null;
-        textService.checkStatus($scope.data);
-        console.log($scope.data);
+        $scope.filter = null;
+        $scope.order = null;
+        $scope.status = -1;
+        $scope.alert_message = false;
+        var initializing = false;
 
         var alertEmptyData = $alert(
             {
@@ -20,13 +22,12 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             });
 
         if (checkEmptyData(alertEmptyData)) {
-            alertEmptyData.$promise.then(function() {alertEmptyData.show();});
-            
+            alertEmptyData.$promise.then(function() {alertEmptyData.show();});            
         }
 
         function checkEmptyData(alertEmptyData) {
-            if (!$scope.data.length ) {
-                $scope.data = [];            
+            if (!$scope.publish.length ) {
+                $scope.publish= [];            
                 return true;
             }
             return false;
@@ -52,14 +53,14 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         
         $scope.deleteText = function(indexData) {
             var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
-            var data = angular.toJson({"text_id": $scope.data[indexData].text_id}); 
+            var data = angular.toJson({"text_id": $scope.publish[indexData].id}); 
             
             $.ajax({
                 method: 'POST',
                 data: data,                
                 url: url,
                 success: function(data) {
-                    $scope.data.splice(indexData, 1);
+                    $scope.publish.splice(indexData, 1);
                     myOtherModal.$promise.then(myOtherModal.hide);
                     if (checkEmptyData())
                         alertEmptyData.$promise.then(function() {alertEmptyData.show();});
@@ -78,5 +79,67 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
                 'textId' : text_id
             });
         };
+
+        $scope.$watch('status_select', function() {
+            if (initializing) {
+                $scope.alert_message = 1;                
+                $scope.color_status = textService.setColorStatus($scope.status_select);
+                var status = $scope.status_select >= 0 ? $scope.status_select : null;
+
+                var data = angular.toJson({
+                    'status': status,
+                    'type': 'Text',
+                    'page': 0,
+                    'filter': $scope.filter,
+                    'order' : $scope.order
+                });
+
+                textService.ajaxGetPublish(data, $scope);
+                $timeout(function() { $scope.alert_message = false;}, 1500);            
+            }
+        });
+
+        $scope.setFiler = function(filter) 
+        {
+            $scope.alert_message = 1;
+            if (filter == $scope.filter)
+                $scope.order = textService.setOrder($scope.order);
+            else{
+                $scope.filter = filter;
+                $scope.order = 'DESC';
+            }
+
+            var data = angular.toJson({
+                'status': $scope.status_select,
+                'type': 'Text',
+                'page': 0,
+                'filter': $scope.filter,
+                'order' : $scope.order
+            });
+
+            textService.ajaxGetPublish(data, $scope);
+            $timeout(function() { $scope.alert_message = false;}, 1500);
+        }
+
+        $scope.generatePagination = function (page)
+        {
+            $scope.alert_message = 1;
+
+            var data = angular.toJson({
+                'status': $scope.status_select,
+                'type' : 'Text',
+                'page': page,
+                'filter': $scope.filter,
+                'order' : $scope.order
+            })
+
+            textService.ajaxGetPublish(data, $scope);
+            
+            $timeout( function(){
+                $scope.alert_message = false;
+            },1500);
+        };
+
+        $timeout(function() { initializing = true; $scope.$apply();});
 
     }]);

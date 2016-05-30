@@ -34,17 +34,39 @@ class GetPublishStatusCommand implements Command
     private $endDate;
 
     /**
+    * @var Representa el tipo de filtro a buscar
+    **/
+    private $filter;
+
+    /**
+    * @var Representa el orden de busqueda ASC/DESC
+    **/
+    private $order;
+
+    /**
+    * @var Representa el usuario
+    **/
+    private $user;    
+
+    /**
      * @var integer Paginación de la busqueda
      */
     private $page;
 
-    public function __construct($type, $status = 0, $startDate = null, $endDate = null, $page = 1)
+    public function __construct($type, $status = 0, $startDate = null, $endDate = null, $page = 1, $user = null)
     {
         $this->type = $type;
         $this->status = $status;
-        $this->startDate = !is_null($startDate) ? new \DateTime($startDate) : new \DateTime();
-        $this->endDate = !is_null($endDate) ? new \DateTime($endDate) : (new \DateTime())->modify('+7 days');
         $this->page = $page;
+
+        if ($user->hasRole('ROLE_ADMIN')){
+            $this->startDate = !is_null($startDate) ? new \DateTime($startDate) : new \DateTime();
+            $this->endDate = !is_null($endDate) ? new \DateTime($endDate) : (new \DateTime())->modify('+7 days');
+        } else {
+            $this->startDate = null;
+            $this->endDate = null;
+        }
+        $this->user = $user;        
     }
 
     /**
@@ -61,7 +83,10 @@ class GetPublishStatusCommand implements Command
             'status' => $this->status,
             'start_date' => $this->startDate,
             'end_date' => $this->endDate,
-            'page' => $this->page
+            'page' => $this->page,
+            'user' => $this->user,
+            'filter' => $this->filter,
+            'order' => $this->order
         ];
     }
 
@@ -143,5 +168,35 @@ class GetPublishStatusCommand implements Command
     public function setPage($page)
     {
         $this->page = $page;
+    }
+
+    public function getFilter()
+    {
+        return $this->filter;
+    }   
+
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
+
+    public function getUser()
+    {
+        return $user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }

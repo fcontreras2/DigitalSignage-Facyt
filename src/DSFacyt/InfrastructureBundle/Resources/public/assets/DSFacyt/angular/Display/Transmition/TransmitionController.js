@@ -45,6 +45,12 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             $scope.showVideos = false;
             $scope.showImages = true;
 
+            $('#carousel-images').carousel({
+                interval: 1000
+            });            
+        
+            TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos);
+
         } else {
             controller.setVideo(controller.currentVideo);
         }
@@ -57,7 +63,6 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         $timeout(controller.API.play.bind(controller.API), 100);
     };
 
-
-    $timeout(function() {$scope.showVideos = true; $scope.showImages = false}, 100);
-
+    $scope.showImages = false;
+    $scope.showVideos = true;
 }]);

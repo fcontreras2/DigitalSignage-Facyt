@@ -70,7 +70,7 @@ class GetImagesHandler implements Handler
 
             foreach ($images as $currentImage) {
                 $auxImage = array();
-                $auxImage['image_id'] = $currentImage->getId();
+                $auxImage['id'] = $currentImage->getId();
                 $auxImage['start_date'] = $currentImage->getStartDate()->format('d/m/Y');
                 $auxImage['end_date'] = $currentImage->getEndDate()->format('d/m/Y');
                 $auxImage['publish_time'] = (new \DateTime($currentImage->getPublishTime()))->format('h:i A');

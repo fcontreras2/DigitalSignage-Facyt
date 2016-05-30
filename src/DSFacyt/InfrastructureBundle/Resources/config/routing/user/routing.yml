@@ -14,6 +14,12 @@ ds_facyt_infrastructure_user_image:
 ds_facyt_infrastructure_user_video:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/user/video.yml"
 
+ds_facyt_infrastructure_get_publish_async:
+    path:   /publish/async
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:apiGetPublishStatus}
+    options:
+        expose: true
+
 # Ruta de registrar un usuario
 ds_facyt_infrastructure_register:
     path:    /register

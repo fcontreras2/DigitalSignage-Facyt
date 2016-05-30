@@ -41,23 +41,24 @@
                     </a>
                 </div>
             </div>
-            <div class="col-xs-8 ">           
-                        <ul class="pagination pull-right" style="margin: 0 0">                    
-                            <li ng-show="pagination.current != pagination.firstPageInRange">
-
-                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
-                            </li>
-                            <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
-                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
-                                <a href="{[{urlPagination}]}" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
-                            </li>
-                            <li ng-show="pagination.current != pagination.lastPageInRange">
-                                <a href="{[{urlPagination}]}" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
-                            </li>
-                        </ul>
-                    </div>              
-        </div>
-	
+            <div class="col-xs-8">
+                <div class="pull-right">
+                    <b>Estado</b>       
+                    <div>
+                        <i class="fa fa-circle color_status" style="position:absolute;padding-left:10px;padding-top:10px;" ng-class="color_status" ng-if="status_select >= 0"></i>
+                        <select name="name" id="inputID" class="form-control" ng-model="status_select" style="padding-left:24px;" >
+                            <option value="-1" ng-selected="status == -1">  -- Selecione -- </option>
+                            <option value="0" ng-selected="status == 0"> Nuevo </option>
+                            <option value="1" ng-selected="status == 1"> Corregir </option>
+                            <option value="2" ng-selected="status == 2"> Aceptada </option>
+                            <option value="3" ng-selected="status == 3"> Activa </option>                                
+                            <option value="4" ng-selected="status == 4"> Finalizada </option>
+                            <option value="5" ng-selected="status == 5"> Cancelada </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>	
         <div class="row">
             <br>
             <div class="col-xs-12" >
@@ -66,20 +67,20 @@
                 <table class="table table-bordered table-hover table-content" >
                     <thead>
                         <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">#</a></th>
-                        <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('name',reverse)">Hora a publicar</a></th>
-                        <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('last_name',reverse)">Fecha de Inicio</a></th>
-                        <th style="width: 15%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Fecha Final</a></th>
-                        <th style="width: 30%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Título</a></th>
+                        <th style="width: 15%"><a href="" ng-click="setFiler('publish_time');">Hora a publicar</a></th>
+                        <th style="width: 15%"><a href="" ng-click="setFiler('start_date');">Fecha de Inicio</a></th>
+                        <th style="width: 15%"><a href="" ng-click="setFiler('end_date');">Fecha Final</a></th>
+                        <th style="width: 30%"><a href="" ng-click="setFiler('title');">Título</a></th>
                         <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)">Estado</a></th>
                         <th style="width: 5%"><a href="" ng-click="reverse=!reverse;order('age',reverse)"> Detalle </a></th>
                     </thead>
                     <tbody>
 
-                        <tr ng-show="data.length == 0">
+                        <tr ng-show="publish.length == 0">
                             <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
                         </tr>
 
-                        <tr ng-repeat="currentText in data" ng-if="data.length > 0" ng-cloak>
+                        <tr ng-repeat="currentText in publish" ng-if="publish.length > 0" ng-cloak>
                             <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                             <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
                             <td>{[{ currentText.publish_time}]}</td>
@@ -87,12 +88,27 @@
                             <td>{[{ currentText.end_date}]}</td>
                             <td>{[{ currentText.title}]}</td>
                             <td><center><span ng-class="currentText.classStatus"></span></center></td>
-                            <td style="text-align: center;"><a style="cursor: pointer" ng-click="modalDeleteImage($index);getUrlEdit(data[$index].image_id)"> <span class="fa fa-eye" ></span></a></td>
+                            <td style="text-align: center;"><a style="cursor: pointer" ng-click="modalDeleteImage($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            <div class="col-xs-12">                                       
+                            <ul class="pagination" style="margin: 0 0"> 
+                                <li ng-show="pagination.current > 1">
+                                    <a ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                                </li>
+                                <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                                    <a ng-click="generatePagination(currentPage-1)" ng-class="{'active': currentPage-1  == pagination.current}">{[{ pagination.firstPageInRange + $index }]}</a>
+                                </li>
+                                <li ng-show="pagination.current < pagination.lastPageInRange">
+                                    <a ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>                                    
+                                </li>
+                            </ul>                            
+                        </div> 
             </div>
+
+                           
             {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreviewImage.html.twig") }}
             </div>
 

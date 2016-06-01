@@ -40,10 +40,9 @@ class TextController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $command->setUser($user);
-        $command->setPage(0);
+        $command->setPage($page);
 
         $response = $this->get('CommandBus')->execute($command);
-        dump($response->getData());
         return $this->render('DSFacytInfrastructureBundle:User\Text:index.html.twig', array('data' => json_encode($response->getData())));
     }
 

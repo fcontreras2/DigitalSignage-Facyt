@@ -80,32 +80,43 @@
                             <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
                         </tr>
 
-                        <tr ng-repeat="currentText in publish" ng-if="publish.length > 0" ng-cloak>
-                            <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                        <tr ng-repeat="currentImage in publish" ng-if="publish.length > 0" ng-cloak>
+                            <td ng-if="pagination.current">{[{ $index  + 1 + (pagination.current  * 10)  }]}</td>
                             <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                            <td>{[{ currentText.publish_time}]}</td>
-                            <td>{[{ currentText.start_date}]}</td>
-                            <td>{[{ currentText.end_date}]}</td>
-                            <td>{[{ currentText.title}]}</td>
-                            <td><center><span ng-class="currentText.classStatus"></span></center></td>
+                            <td>{[{ currentImage.publish_time}]}</td>
+                            <td>{[{ currentImage.start_date}]}</td>
+                            <td>{[{ currentImage.end_date}]}</td>
+                            <td>{[{ currentImage.title}]}</td>
+                            <td>
+                                <center>
+                                    <span class="fa fa-circle" ng-class="{
+                                    'status-new': currentImage.status === 0,
+                                    'status-change': currentImage.status == 1,
+                                    'status-accepted': currentImage.status == 2,
+                                    'status-active': currentImage.status == 3,
+                                    'status-finish': currentImage.status == 4,
+                                    'status-canceled' : currentImage.status == 5}">
+                                    </span>
+                                </center>
+                            </td>
                             <td style="text-align: center;"><a style="cursor: pointer" ng-click="modalDeleteImage($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            <div class="col-xs-12">                                       
-                            <ul class="pagination" style="margin: 0 0"> 
-                                <li ng-show="pagination.current > 1">
-                                    <a ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
-                                </li>
-                                <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
-                                    <a ng-click="generatePagination(currentPage-1)" ng-class="{'active': currentPage-1  == pagination.current}">{[{ pagination.firstPageInRange + $index }]}</a>
-                                </li>
-                                <li ng-show="pagination.current < pagination.lastPageInRange">
-                                    <a ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>                                    
-                                </li>
-                            </ul>                            
-                        </div> 
+                <div class="col-xs-12">                                       
+                    <ul class="pagination" style="margin: 0 0"> 
+                        <li ng-show="pagination.current > 1">
+                            <a ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                        </li>
+                        <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                            <a ng-click="generatePagination(currentPage-1)" ng-class="{'active': currentPage-1  == pagination.current}">{[{ pagination.firstPageInRange + $index }]}</a>
+                        </li>
+                        <li ng-show="pagination.current < pagination.lastPageInRange">
+                            <a ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>                                    
+                        </li>
+                    </ul>                            
+                </div> 
             </div>
 
                            

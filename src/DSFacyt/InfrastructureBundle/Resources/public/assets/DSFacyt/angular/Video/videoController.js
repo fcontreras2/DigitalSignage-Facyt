@@ -1,10 +1,10 @@
-text.controller('TextController', ['$scope','$filter', 'textService', '$modal', '$alert', '$timeout',
-    function ($scope, $filter,textService, $modal, $alert, $timeout) {
+video.controller('VideoController', ['$scope','$filter', 'videoService', '$modal', '$alert', '$timeout',
+    function ($scope, $filter,videoService, $modal, $alert, $timeout) {
 
-        $scope.publish = data.texts;
+        $scope.publish = data.videos;
         $scope.pagination = data.pagination;
         $scope.selectedDate = {date: new Date("2012-09-01")};
-        $scope.indexEditText = null;
+        $scope.indexEditVideo = null;
         $scope.filter = null;
         $scope.order = null;
         $scope.status = -1;
@@ -14,7 +14,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         var alertEmptyData = $alert(
             {
                 title: 'Sin publicaciones',
-                content: 'No tiene ninguna publicación de tipo texto',
+                content: 'No tiene ninguna publicación de tipo videoo',
                 placement: 'top',
                 type: 'info',
                 show: false,
@@ -33,17 +33,17 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             return false;
         }
 
-        var myOtherModal = $modal({scope: $scope, template: 'modal-previewText.tpl', show: false});
+        var myOtherModal = $modal({scope: $scope, template: 'modal-previewVideo.tpl', show: false});
 
-        $scope.modalPreviewText = function(text_id) {
-            $scope.indexPreview = text_id;
+        $scope.modalPreviewVideo = function(video_id) {
+            $scope.indexPreview = video_id;
             myOtherModal.$promise.then(myOtherModal.show);
         }
 
         var alertDeleteSuccess = $alert(
             {
                 title: "Publicación Eliminada",
-                content: 'Se ha eliminado correctamente el texto',
+                content: 'Se ha eliminado correctamente el videoo',
                 placement: 'top',
                 type: 'success',
                 show: false,
@@ -51,9 +51,9 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             });
 
         
-        $scope.deleteText = function(indexData) {
-            var url = Routing.generate('ds_facyt_infrastructure_user_text_delete');
-            var data = angular.toJson({"text_id": $scope.publish[indexData].id}); 
+        $scope.deleteVideo = function(indexData) {
+            var url = Routing.generate('ds_facyt_infrastructure_user_video_delete');
+            var data = angular.toJson({"video_id": $scope.publish[indexData].id}); 
             
             $.ajax({
                 method: 'POST',
@@ -71,30 +71,30 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         }
 
         $scope.generatePagination = function(pagination) {
-            $scope.urlPagination = Routing.generate('ds_facyt_infrastructure_user_text_homepage',{ page : pagination});
+            $scope.urlPagination = Routing.generate('ds_facyt_infrastructure_user_video_homepage',{ page : pagination});
         };
 
-        $scope.getUrlEdit = function(text_id) {
-            $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_user_text_edit',{
-                'textId' : text_id
+        $scope.getUrlEdit = function(video_id) {
+            $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_user_video_edit',{
+                'videoId' : video_id
             });
         };
 
         $scope.$watch('status_select', function() {
             if (initializing) {
                 $scope.alert_message = 1;                
-                $scope.color_status = textService.setColorStatus($scope.status_select);
+                $scope.color_status = videoService.setColorStatus($scope.status_select);
                 var status = $scope.status_select >= 0 ? $scope.status_select : null;
 
                 var data = angular.toJson({
                     'status': status,
-                    'type': 'Text',
+                    'type': 'Video',
                     'page': 0,
                     'filter': $scope.filter,
                     'order' : $scope.order
                 });
 
-                textService.ajaxGetPublish(data, $scope);
+                videoService.ajaxGetPublish(data, $scope);
                 $timeout(function() { $scope.alert_message = false;}, 1500);            
             }
         });
@@ -103,7 +103,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         {
             $scope.alert_message = 1;
             if (filter == $scope.filter)
-                $scope.order = textService.setOrder($scope.order);
+                $scope.order = videoService.setOrder($scope.order);
             else{
                 $scope.filter = filter;
                 $scope.order = 'DESC';
@@ -111,13 +111,13 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
             var data = angular.toJson({
                 'status': $scope.status_select,
-                'type': 'Text',
+                'type': 'Video',
                 'page': 0,
                 'filter': $scope.filter,
                 'order' : $scope.order
             });
 
-            textService.ajaxGetPublish(data, $scope);
+            videoService.ajaxGetPublish(data, $scope);
             $timeout(function() { $scope.alert_message = false;}, 1500);
         }
 
@@ -127,13 +127,13 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
             var data = angular.toJson({
                 'status': $scope.status_select,
-                'type' : 'Text',
+                'type' : 'Video',
                 'page': page,
                 'filter': $scope.filter,
                 'order' : $scope.order
             })
 
-            textService.ajaxGetPublish(data, $scope);
+            videoService.ajaxGetPublish(data, $scope);
 
             console.log($scope.pagination);
             

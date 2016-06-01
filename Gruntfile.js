@@ -128,6 +128,11 @@ module.exports = function(grunt) {
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Image/imageService.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Image/imageController.js"
                   ],//Js: funcionalidades del profile Usuario
+                  "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-video.js": [
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Video/videoModule.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Video/videoService.js",
+                      "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/Video/videoController.js"
+                  ],
                   "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-user.js": [
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userModule.js",
                       "src/DSFacyt/InfrastructureBundle/Resources/public/assets/DSFacyt/angular/User/userService.js",

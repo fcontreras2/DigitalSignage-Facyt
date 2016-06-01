@@ -60,14 +60,12 @@ class GetImagesHandler implements Handler
     {
         $rpImage = $rf->get('Image');
         $images = $rpImage->findAllByUser($command->getUser());
-
         $response = array();
 
         if ($images) {
 
             $responseImage = array();
             $response['pagination'] = $this->pagination->generate($images,$command->getPage());
-
             foreach ($images as $currentImage) {
                 $auxImage = array();
                 $auxImage['id'] = $currentImage->getId();
@@ -87,6 +85,7 @@ class GetImagesHandler implements Handler
                 }
                 array_push($responseImage, $auxImage);
             }
+
             $response['images'] = $responseImage;
         }
 

@@ -10,9 +10,7 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
         $scope.status = -1;
         $scope.alert_message = false;
         var initializing = false;
-        imageService.checkStatus($scope.publish);
-
-
+        
         var alertEmptyData = $alert(
         {
             title: 'Sin publicaciones',

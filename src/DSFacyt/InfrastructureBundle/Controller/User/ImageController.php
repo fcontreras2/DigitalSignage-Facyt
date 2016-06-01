@@ -49,7 +49,6 @@ class ImageController extends Controller
         $command->setPage($page);
 
         $response = $this->get('CommandBus')->execute($command);
-
         return $this->render('DSFacytInfrastructureBundle:User\Image:index.html.twig', array('data' => json_encode($response->getData())));
     }
 

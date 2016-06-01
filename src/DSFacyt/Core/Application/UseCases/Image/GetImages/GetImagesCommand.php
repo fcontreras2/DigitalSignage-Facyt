@@ -46,7 +46,8 @@ class GetImagesCommand implements Command
     public function getRequest()
     {
         return array(
-            'user' => $this->user
+            'user' => $this->user,
+            'page' => $this->page
         );
     }
 

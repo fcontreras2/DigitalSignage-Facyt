@@ -12,7 +12,7 @@
 
 
     %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    <link rel="stylesheet" type="video/css" media="screen" href="{{ asset_url }}" />
 
     {% endstylesheets %}
     {% endif %}
@@ -23,12 +23,12 @@
     {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
     <div id="body-user">
         <div class="container" >
-            <div ng-app="TextModule" ng-controller="TextController" id="page-wrapper" style="min-height: 311px;">
+            <div ng-app="VideoModule" ng-controller="VideoController" id="page-wrapper" style="min-height: 311px;">
                 <div class="row">
                     <div class="col-xs-12" style="color:white">
                         <br>
-                        <h1>  <span class="fa fa-pencil"></span> Textos</h1>
-                        <h4> A continuación podrás ver tus publicaciones de tipo texto</h4>
+                        <h1>  <span class="fa fa-video-camera"></span> Videos</h1>
+                        <h4> A continuación podrás ver tus publicaciones de tipo video</h4>
                         <br>
                         <br>
                     </div>
@@ -51,8 +51,8 @@
                 <div class="row">
                     <div class="col-xs-4">
                         <div class="btn-group">
-                            <a href="{{ path('ds_facyt_infrastructure_user_text_new') }}" class="btn btn-default btn-sm " type="button" >
-                                <span class="fa fa-plus"></span> &nbsp; Texto nuevo
+                            <a href="{{ path('ds_facyt_infrastructure_user_video_new') }}" class="btn btn-default btn-sm " type="button" >
+                                <span class="fa fa-plus"></span> &nbsp; Video nuevo
                             </a>
                         </div>
                     </div>
@@ -93,23 +93,23 @@
                                     <tr ng-show="publish.length == 0">
                                         <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
                                     </tr>
-                                    <tr ng-repeat="currentText in publish" ng-if="publish.length > 0" ng-cloak>
+                                    <tr ng-repeat="currentVideo in publish" ng-if="publish.length > 0" ng-cloak>
                                         <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                                         <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                                        <td>{[{ currentText.publish_time}]}</td>
-                                        <td>{[{ currentText.start_date}]}</td>
-                                        <td>{[{ currentText.end_date}]}</td>
-                                        <td>{[{ currentText.title}]}</td>
+                                        <td>{[{ currentVideo.publish_time}]}</td>
+                                        <td>{[{ currentVideo.start_date}]}</td>
+                                        <td>{[{ currentVideo.end_date}]}</td>
+                                        <td>{[{ currentVideo.title}]}</td>
                                         <td>
                                             <center><span class="fa fa-circle" ng-class="{
-                                            'status-new': currentText.status === 0,
-                                            'status-change': currentText.status == 1,
-                                            'status-accepted': currentText.status == 2,
-                                            'status-active': currentText.status == 3,
-                                            'status-finish': currentText.status == 4,
-                                            'status-canceled' : currentText.status == 5}"></span></center>
+                                            'status-new': currentVideo.status === 0,
+                                            'status-change': currentVideo.status == 1,
+                                            'status-accepted': currentVideo.status == 2,
+                                            'status-active': currentVideo.status == 3,
+                                            'status-finish': currentVideo.status == 4,
+                                            'status-canceled' : currentVideo.status == 5}"></span></center>
                                         </td>
-                                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalPreviewText($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
+                                        <td style="video-align: center"><a style="cursor: pointer" ng-click="modalPreviewVideo($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -132,7 +132,7 @@
                     <br>
                     <br>
 
-                    {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreviewText.html.twig") }}
+                    {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreviewVideo.html.twig") }}
                 </div>
 
             </div>
@@ -145,7 +145,7 @@
 
     {% block javascripts%}
         <!-- Tomando variables enviadas desde el servidor -->
-        <script type="text/javascript">
+        <script type="video/javascript">
             var data = "{{ data }}";
             var div = document.createElement('div');
             div.innerHTML = data;
@@ -160,31 +160,31 @@
 
     {% if app.environment == "dev" %}
 
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textModule.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textService.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Text/textController.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>    
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoModule.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoService.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoController.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>    
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
     {% else %}
 
     {% javascripts
     '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
     "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/angular-strap.js"
-    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-text.js"
+    "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-video.js"
     "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
     %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script type="video/javascript" src="{{ asset_url }}"></script>
 
     {% endjavascripts %}
     {% endif %}
 
-    <script type="text/javascript">
+    <script type="video/javascript">
         $('.input-group.date').datepicker({
             language: "es",
             format: 'dd/mm/yyyy',

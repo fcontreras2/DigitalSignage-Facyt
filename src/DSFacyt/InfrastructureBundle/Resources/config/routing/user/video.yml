@@ -1,3 +1,13 @@
 ds_facyt_infrastructure_user_video_homepage:
   path:   /video
   defaults: { _controller: DSFacytInfrastructureBundle:User\Video:index }
+
+
+ds_facyt_infrastructure_user_video_new:
+  path:   /video/new
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Video:publishNew }
+
+
+ds_facyt_infrastructure_user_video_new_validate:
+    path:   /video/new_validate
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Video:validateNew }

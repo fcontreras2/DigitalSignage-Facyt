@@ -1,0 +1,216 @@
+ {% extends "base.html.twig" %}
+{% block title %} Video {% endblock title%}
+{% block stylesheets %}
+     {% if app.environment == "dev" %}
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>        
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/timepicker.css') }}"/> 
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/ng-img-crop.css') }}">
+        
+    {% else %}
+       {% stylesheets
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/datepicker.css'
+       '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/fileinput.css'
+
+       %}
+       <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+       {% endstylesheets %}
+    {% endif %}
+
+{% endblock stylesheets %}
+
+{% block body %}
+    {% include 'DSFacytInfrastructureBundle:User:header.html.twig' %}
+<div id="body-user" style="min-height: 311px;">
+    <div class="container" 
+    <div id="page-wrapper" style="min-height: 311px;">
+         <div class="row">
+            <div class="col-lg-12" style="color:white">
+                <br>
+                <h1>  <span class="fa fa-picture-o"></span> Agregar Imagen</h1>
+                <h4> Ingrasa los datos de tu Video a publicar</h4>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h5>INGRESA LOS DATOS DE LA PUBLICACIÓN</h5></div>
+
+                    <div class="panel-body">
+                        {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                {{ form_errors(form.title) }}
+                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
+                                <br>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row ">
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.publish_time) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.start_date) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.end_date) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row ">
+                                    <div class="col-xs-4">
+
+                                        {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-xs-4">
+
+                                        {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            {{ form_widget(form.start_date, {'attr': {'class': 'form-control'}}) }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            {{ form_widget(form.end_date, {'attr': {'class': 'form-control'}}) }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.Channels) }}
+                                {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.description) }}
+                                {{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1 " ng-app="UploadImageModule" ng-controller="UploadImageController">
+                                <br>
+                                Selecciona una Video
+                                <div class="uploadImage">
+                                    <center>
+                                        <label class="button img-rounded img-default drop-box" style="text-align:center;">
+                                            <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button"></span>
+                                            <center ng-if="!cropper.sourceImage"><h6>Subir Video</h6></center>
+                                            <center ng-if="cropper.sourceImage != null" id="change-Video" >
+                                                <h6 style="color: white;font-weight: bold;">Cambiar </h6>
+                                            </center>
+                                            <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
+                                            {{ form_errors(form.document) }}
+                                            {{ form_label(form.document,  null, {'label_attr': {'class': 'control-label'}}) }}                                            
+                                            {{ form_label(form.document.file,  null) }}
+                                            {{ form_widget(form.document.file, {'attr': {
+                                                'img-cropper-fileread': '',
+                                                'onchange': 'angular.element(this).scope().showCropImageModal(this)',
+                                                'result-Video-size': '10',
+                                                'style':'display:none',
+                                                'Video': 'cropper.sourceImage',
+                                                'ng-model': 'file'
+                                            }})}}                                            
+                                        </label>
+                                        <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
+                                    </center>
+                                </div>
+                                <br>
+                                {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
+                            </div>
+                                    
+                            </div>
+
+                             <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
+                                </button>
+                            </div>
+                        </div>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block javascripts%}
+    
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+    {% if app.environment == "dev" %}
+
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>       
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageController.js') }}"></script>
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js'
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/fileinput.js'
+
+        %}
+
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $('#registerVideo_publish_time').timepicker(
+        {
+            defaultTime: '7:00 AM',
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        });
+    </script>
+
+{% endblock %}

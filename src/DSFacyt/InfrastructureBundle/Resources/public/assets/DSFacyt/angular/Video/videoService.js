@@ -1,4 +1,4 @@
-image.service('imageService', function(){
+video.service('videoService', function(){
 
     this.checkStatus = function(data) {
         $.each(data, function (index, value) {

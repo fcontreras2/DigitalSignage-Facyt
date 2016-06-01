@@ -27,8 +27,16 @@
                         <a href="{{ path('ds_facyt_infrastructure_user_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
                     </ul>
                 </li>
-                <li class="desactive">
-                    <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_video_homepage' or ('panel/video/' in app.request.uri) %}
+                <li  class="dropdown active ">
+                {% else %}
+                <li  class="dropdown desactive ">
+                    {% endif %}
+                    <a  id="dropdown-video" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-video-camera" ></span><br>Textos</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-video">
+                        <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}}"> <li><i class="fa fa-video-camera"></i> Mis Videos</li></a>
+                        <a href="{{ path('ds_facyt_infrastructure_user_video_new')}}"><li><i class="fa fa-plus"></i> Video nuevo</li></a>
+                    </ul>
                 </li>
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_image_homepage' or ('panel/image/' in app.request.uri) %}                
                     <li  class="dropdown active ">
@@ -36,7 +44,7 @@
                     <li  class="dropdown desactive ">
                 {% endif %}
                     <a id="dropdown-image" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span class="fa fa-picture-o" ></span><br>Imágenes</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-images">
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-image">
                         <a href="{{ path('ds_facyt_infrastructure_user_image_homepage')}}"> <li><i class="fa fa-picture-o"></i> Mis imágenes</li></a>
                         <a href="{{ path('ds_facyt_infrastructure_user_image_new')}}"><li><i class="fa fa-plus"></i> Imagen nueva</li></a>
                     </ul>

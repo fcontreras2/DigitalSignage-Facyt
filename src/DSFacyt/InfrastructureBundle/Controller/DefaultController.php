@@ -10,6 +10,7 @@ use DSFacyt\InfrastructureBundle\Entity\Document;
 use DSFacyt\InfrastructureBundle\Entity\User;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterType;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
+use DSFacyt\Core\Application\UseCases\GetImportant\GetImportantCommand; 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -35,7 +36,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {   
-        return $this->render('DSFacytInfrastructureBundle:Default:index.html.twig');
+        $command = new GetImportantCommand();
+        $response = $this->get('CommandBus')->execute($command);
+        return $this->render('DSFacytInfrastructureBundle:Default:index.html.twig',['data' => $response->getData()]);
     }
 
     /**

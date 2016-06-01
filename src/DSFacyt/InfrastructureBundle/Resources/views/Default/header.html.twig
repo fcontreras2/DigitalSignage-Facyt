@@ -25,11 +25,11 @@
                 {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
 
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' %}
-                        <li class="active ">
+                        <li class="active">
                     {% else %}
                         <li class="desactive ">
                     {% endif %}
-                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrate</a>
+                        <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrarte</a>
                     </li>
 
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
@@ -60,12 +60,12 @@
                     {% endif %}
                     <a href="{{ path('ds_facyt_infrastructure_user_security_login') }}" style="background-color:white"><i class="fa fa-user"></i><br> Entrar                 </li>
 
-                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' %}
+                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' or  app.request.attributes.get('_route') == 'ds_facyt_infrastructure_validate_register' %}
                         <li class="active ">
                     {% else %}
                         <li class="desactive ">
                     {% endif %}
-                    <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrate</a>
+                    <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrarte</a>
                     </li>
                 {% else %}
                     <li class="desactive ">
@@ -75,9 +75,7 @@
                         <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}"><i class="fa fa-list-alt"></i><br> Panel</a>
                     </li>
                 {% endif %}
-                <li class="desactive ">
-                    <a href="#"><i class="fa fa-question-circle"></i><br> Ayuda</a>
-                </li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

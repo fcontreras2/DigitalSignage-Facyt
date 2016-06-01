@@ -411,3 +411,14 @@ body {
       }
     }
   }
+
+  .caption-slide-home {
+    z-index: 1000;
+    color: blue;
+    position: absolute;
+    margin-left: 300px;
+    margin-top:3%;
+    text-align: right;
+    float: right !important;
+    width: 60%;
+  }

@@ -142,6 +142,23 @@ class DbTextRepository extends EntityRepository implements
             ->getQuery()->getResult();    
     }
 
+    public function findLastImportant()
+    {
+        $date = new \DateTime();
+        $date->modify('-7 days');
+        
+        return $this->createQueryBuilder('t')
+            ->where('
+                t.start_date >= :date and
+                t.important = true and
+                (t.status >= 3 and t.status <=5)
+            ')
+            ->setParameters([
+                'date' => $date
+            ])
+            ->getQuery()->getResult();  
+    }
+
     /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>

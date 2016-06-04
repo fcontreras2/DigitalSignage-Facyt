@@ -25,14 +25,14 @@ class RegisterVideoType extends AbstractType
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true))
-            ->add( 
-                $builder->create('document', 'form', 
+            ->add(
+                $builder->create('document', 'form',
                     array('data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document', 'label' => false))
                     ->add('file', 'file', [
                         'required' => true,
                             'constraints' => [
                                 new File([
-                                    'maxSize' => '8M'                                    
+                                    'maxSize' => '40M'
                                 ])
                             ]
                     ])

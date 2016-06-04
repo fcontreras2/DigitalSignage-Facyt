@@ -199,7 +199,7 @@ class Document
 
         // Si no existe el directorio se crea el directorio
         if (!file_exists($this->getUploadRootDir())) {
-            mkdir($this->getUploadRootDir(),0755, true);
+            mkdir($this->getUploadRootDir(),0775, true);
         }
 
         if (is_null($nameFile))

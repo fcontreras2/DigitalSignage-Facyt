@@ -1,6 +1,10 @@
 ds_facyt_infrastructure_user_video_homepage:
-  path:   /video
-  defaults: { _controller: DSFacytInfrastructureBundle:User\Video:index }
+  path:   /video/{page}
+  defaults: { _controller: DSFacytInfrastructureBundle:User\Video:index , page : 1 }
+  requirements:
+    page: "\d+"
+  options:
+    expose: true
 
 
 ds_facyt_infrastructure_user_video_new:

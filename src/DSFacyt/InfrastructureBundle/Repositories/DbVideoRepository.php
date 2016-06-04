@@ -58,6 +58,27 @@ class DbVideoRepository extends EntityRepository implements
     }
 
     /**
+     * Obtiene los datos de las imagenes que se encuentren publicados por un canal
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param $channelId integer id del canal a buscar
+     * @return Array Object
+     **/
+    public function findActiveByChannel($channelId)
+    {
+        return $this->createQueryBuilder('v')
+            ->innerJoin('v.channels', 'c')
+            ->where('
+                c.id = :channelId and
+                v.status = 0
+            ')
+            ->setParameters([
+                'channelId' => $channelId
+            ])
+            ->getQuery()->getResult();
+    }
+
+    /**
      * Retorna las publicaciones dado un estado y un rango de fecha
      *
      * @param $status

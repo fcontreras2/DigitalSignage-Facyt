@@ -2,6 +2,7 @@
 
 namespace DSFacyt\InfrastructureBundle\Controller\User;
 
+use DSFacyt\Core\Application\UseCases\Video\GetVideos\GetVideosCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +33,9 @@ class VideoController extends Controller
      * @version 31/08/2015
      * @return Response
      */
-    public function indexAction()
+    public function indexAction($page)
     {
-/*        $command = new GetVideosCommand();
+       $command = new GetVideosCommand();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -42,8 +43,7 @@ class VideoController extends Controller
         $command->setPage($page);
 
         $response = $this->get('CommandBus')->execute($command);
-        return $this->render('DSFacytInfrastructureBundle:User\Video:index.html.twig', array('data' => json_encode($response->getData())));*/
-        return $this->render('DSFacytInfrastructureBundle:User\Video:index.html.twig',['data'=> json_encode(['videos' => [],'pagination' => []])]);
+        return $this->render('DSFacytInfrastructureBundle:User\Video:index.html.twig', array('data' => json_encode($response->getData())));
     }
 
     /**

@@ -27,5 +27,6 @@ DSFacyt\InfrastructureBundle\Entity\Document:
         videos:
             targetEntity: Video
             mappedBy: documet
+            cascade: []
 
     lifecycleCallbacks: {  }

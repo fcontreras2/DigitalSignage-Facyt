@@ -8,7 +8,7 @@ var video = angular.module("VideoModule", ['angular-repeat-n', 'mgcrea.ngStrap']
         $httpProvider.defaults.useXDomain = false;
         $httpProvider.defaults.headers.common['X-Requested-With']= 'XMLHttpRequest';
         var httpStatusCodeInterceptorFactory = function ($q) {
-            function onSucces   s(response){
+            function onSuccess(response){
                 if("success_condition"){
                     return response.data;
                 }

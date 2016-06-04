@@ -43,6 +43,7 @@ class GetDataTransmitionHandler implements Handler
             $this->channelId = $channel->getId();
             $response['publish']['texts'] = $this->getTexts();
             $response['publish']['images'] = $this->getImages();
+            $response['publish']['videos'] = $this->getVideos();
         
             $response['quickNotes'] = $this->getQuickNotes();
 
@@ -96,6 +97,27 @@ class GetDataTransmitionHandler implements Handler
             $response[] = $auxResponse;
         }
 
+        return $response;
+    }
+
+    private function getVideos()
+    {
+        $response = [];
+        $rpVideo = $this->rf->get('Video');
+
+        $videos = $rpVideo->findActiveByChannel($this->channelId);
+        $auxResponse = [];
+
+        foreach ($videos as $currentVideo) {
+            $auxResponse['id'] = $currentVideo->getId();
+            $auxResponse['image_url'] = $currentVideo->getDocument()->getFileName();
+            $auxResponse['title'] = $currentVideo->getTitle();
+            $auxResponse['start_date'] = $currentVideo->getStartDate();
+            $auxResponse['video_url'] = $currentVideo->getDocument()->getFileName();
+            $auxResponse['user_full_name'] = $currentVideo->getUser()->getName().' '.$currentVideo->getUser()->getLastName();
+
+            $response[] = $auxResponse;
+        }
         return $response;
     }
 

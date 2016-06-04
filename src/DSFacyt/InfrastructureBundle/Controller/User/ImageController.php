@@ -83,14 +83,14 @@ class ImageController extends Controller
     public function validateNewAction(Request $request)
     {
         $image = new Image();
-        
+
         /*if ($request->files->get('file')) {
             $currentImage = new File($request->files->get('file'));
             $document = new Document();
             $document->setFile($currentImage);
             $image->setDocument($document);
         }*/
-        
+
         $form = $this->createForm(new RegisterImageType(), $image);
 
 
@@ -108,7 +108,7 @@ class ImageController extends Controller
             $errors = $validator->validate($image);
 
             if (count($errors) > 0) {
-                return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+                return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $errors));
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -136,11 +136,11 @@ class ImageController extends Controller
         $command->setImageId($imageId);
         $response = $this->get('CommandBus')->execute($command);
         if ($response->getStatusCode() == 201) {
-            $form = $this->createForm(new RegisterImageType(), $command->getEntityImage(),            
+            $form = $this->createForm(new RegisterImageType(), $command->getEntityImage(),
                 array(
                     'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_edit_validate',array('imageId' => $imageId)),
                     'method' => 'POST'));
-            $pathImage = $command->getEntityImage()->getDocument()->getFileName();            
+            $pathImage = $command->getEntityImage()->getDocument()->getFileName();
             return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => $pathImage])));
         }
 

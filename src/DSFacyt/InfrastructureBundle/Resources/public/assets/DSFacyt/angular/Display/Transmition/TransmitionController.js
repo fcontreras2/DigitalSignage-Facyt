@@ -2,6 +2,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     $scope.publish = data.publish;
     $scope.texts = $scope.publish.texts;
     $scope.images = $scope.publish.images;
+    $scope.videos = $scope.publish.videos;
     $scope.amountTexts = Math.round($scope.publish.texts.length / 3);
     $scope.quickNotes = data.quickNotes;
     $scope.amountQuickNotes = $scope.quickNotes.length;
@@ -10,10 +11,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     controller.currentVideo = 0;
     controller.API = null;
 
-    controller.videos = [        
-        [{src: $sce.trustAsResourceUrl("http://digitalsignagefacyt.dev/uploads/videos/Como-funciona-el-Internet.mp4"), type: "video/mp4"}],
-        [{src: $sce.trustAsResourceUrl("http://digitalsignagefacyt.dev/uploads/videos/Chino_y_Nacho_-_Andas_En_Mi_Cabeza_ft_Daddy_Yankee(descargaryoutube.com).mp4"), type: "video/mp4"}]
-    ];
+    controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
 
     controller.config = {
         preload: "none",

@@ -42,7 +42,6 @@ class UploadVideoHandler implements Handler
             $video->getDocument()->setName($video->getTitle());
             $video->setStatus(0);
             $fileName = strtolower(str_replace(' ','_',$video->getTitle())).'_';
-            die();
             $video->getDocument()->upload('video', $command->getIndentityFolderUser().'/',$fileName);
             $rpVideo->save($video);
 

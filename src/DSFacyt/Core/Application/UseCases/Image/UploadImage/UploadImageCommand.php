@@ -45,7 +45,7 @@ class UploadImageCommand implements Command
     public function getRequest()
     {
         return array(
-            'image' => $this->user,
+            'image' => $this->image,
             'indentityFolderUser' => $this->indentityFolderUser
         );
     }

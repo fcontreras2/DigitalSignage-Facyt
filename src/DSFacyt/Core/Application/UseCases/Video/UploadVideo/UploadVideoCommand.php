@@ -45,7 +45,7 @@ class UploadVideoCommand implements Command
     public function getRequest()
     {
         return array(
-            'video' => $this->user,
+            'video' => $this->video,
             'indentityFolderUser' => $this->indentityFolderUser
         );
     }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {% if app.environment == "dev" %}
+            <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+        {% else %}
+
+            {% stylesheets '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'   %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+            {% endstylesheets %}
+        {% endif %}
+    {% endblock %}
+</head>
+<body>
+    {% include "@DSFacytInfrastructure/Resetting/header.html.twig" %}
+    {% block body %}{% endblock %}
+</body>
+
+<footer>
+    <div class="div-footer" style="marin">
+        {% block footer %}
+        {% endblock footer %}
+    </div>
+</footer>
+</html>

@@ -1,5 +1,6 @@
 {% extends "DSFacytInfrastructureBundle:Default:base.html.twig" %}
 
+{% block title %} Login {% endblock title %}
 {% block stylesheets %}
 {% if app.environment == "dev" %}
 <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
@@ -26,8 +27,7 @@
 
                 <i class="fa fa-check"></i> Gestiona tus publicaciones<br><br>
 
-                <i class="fa fa-check"></i> ¿No tienes cuenta? <a href="{{path('ds_facyt_infrastructure_register')}}"><b>Registrate</b></a><br><br>
-                <i class="fa fa-check"></i> ¿Olvidaste tu contraseña? <a href="{{path('ds_facyt_infrastructure_register')}}"><b>Recordar contraseña</b></a><br>
+                <i class="fa fa-check"></i> ¿Olvidaste tu contraseña? <a href="{{path('ds_facyt_infrastructure_resetting_request')}}"><b>Restablecer contraseña</b></a><br>
             </h3>
         </div>
         <div class="col-md-5">
@@ -40,7 +40,7 @@
             {% else %}
             <form action="{{ path("ds_facyt_infrastructure_user_security_check") }}" class="form-signin" role="form" method="post">
                 <div class="panel panel-default" id="panel-login">
-                    <div class="panel-heading" ><b>INICIAR SESIÓN</b></div>
+                    <div class="panel-heading" ><b>Inicio de Sesión</b></div>
                     <div class="panel-content">
                     
                         <div class="tab-pane active panel-body" id="login">

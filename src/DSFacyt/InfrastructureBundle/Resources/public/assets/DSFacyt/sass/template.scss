@@ -41,7 +41,7 @@ body {
 }
 
 .body-channel {
-  background: $blue-ligth;
+  background: $blue-ligth !important;
 }
 .modal {
   font-family: 'AVENIR LT STD 55 ROMAN';
@@ -163,15 +163,24 @@ body {
 }
 
 .top-navbar-panel {
+  background-color: white;
+  border-bottom: 2px solid $gray-light;
+  min-width: 80px !important;
+  padding: 0.5%;
   .fa {
     color:$green;
   }
-  li {
-    padding: 1%;
-    min-width: 83px !important; 
+  #logo-facyt { width: 52px;margin-top:-18px;}
+  li { border-bottom: 4px solid white;}
+  li:hover { border-bottom: 4px solid $gray-light;background-color: white}
+  .active { border-bottom: 4px solid $blue-ligth}
+  @media (max-width: $screen-sm-min) {
+    .active { border-bottom: 4px solid white !important;background-color: $gray-light}
   }
+
 }
 
+.divider-header-body { margin-bottom: 66px}
 .triangle-footer {
     background: gray !important;    
 }

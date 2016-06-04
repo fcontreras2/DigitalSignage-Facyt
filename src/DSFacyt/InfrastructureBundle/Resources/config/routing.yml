@@ -22,6 +22,12 @@ ds_facyt_infrastructure_module_display:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/display/routing.yml"
     prefix: "display"
 
+
+# Rutas de vista de Recuperar contraseña
+ds_facyt_infrastructure_module_resetting:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/resetting.yml"
+    prefix: "resetting"
+
 # === RUTAS DE MODULOS DE USUARIOS  INVITADOS ===
 
 # HomePage del sistema

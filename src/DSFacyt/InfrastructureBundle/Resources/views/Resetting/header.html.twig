@@ -16,20 +16,8 @@
                 <li class="hidden active">
                     <a href="#page-top"></a>
                 </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_display_index' %}
-                    <li class="active">
-                {% else %}
-                    <li>
-                {% endif %}
-                    <a class="page-scroll" href="{{ path('ds_facyt_display_index')}}"> <span class="fa fa-desktop"></span> Canales Online</a>
-                </li>
-                <li>
-                    <a href="{{path('ds_facyt_infrastructure_importants')}}">
-                        <i class="fa fa-star"></i> Destacados
-                    </a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact"> <span class="fa fa-question"></span> Ayuda</a>
+                <li class="active">
+                    <a class="page-scroll" href="{{ path('ds_facyt_display_index')}}"> <span class="fa fa-unlock"></span> Restablecer Contraseña</a>
                 </li>
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
                 <li class="active">

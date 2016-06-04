@@ -1,0 +1,35 @@
+{% extends "DSFacytInfrastructureBundle:Resetting:layoutResetting.html.twig" %}
+{% block title %} Restablecer contraseña {% endblock %}
+{% block body %}
+    <div id="body-login" style="min-height: 92vh">
+        <div class="container" style="color:white">
+        <br>
+        <br>
+            <div class="row">
+                <div class="col-xs-4" >
+                    <h2> Restablecer contraseña</h2>
+                    <h4> </h4>
+                    <form action="{{ path('ds_facyt_infrastructure_resetting_send_email') }}" method="POST" >
+                        <h4 class="form-extranet-heading" style="width: 330px;color:white"><b>Ingresa tu correo electronico</h4>
+                        {% if invalid_username is defined %}
+                            <div class="alert alert-danger">
+                                <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                <span>{{ 'share.message.resetting.invalid_username'|trans({'%username%': invalid_username}) }}</span>
+                            </div>
+                        {% endif %}
+                        <label for="password" class="sr-only">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                        <input type="text" id="username" name="username" class="form-control my-input" required="required" placeholder="Correo electrónico"/>
+                        <br>
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-md btn-primary btn-reset" style="width: 100%"><b>Enviar</b> </button>
+                    </form>
+                </div>
+                <div class="col-xs-6">
+                    <h3> <span class="fa fa-check"> Recibirás un correo</span></h3>
+                    <h3> <span class="fa fa-check"> Ingresa en el enlace </span></h3>
+                    <h3> <span class="fa fa-check"> Ingresa tu nueva contraseña </span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

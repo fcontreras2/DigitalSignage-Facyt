@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use DSFacyt\InfrastructureBundle\Entity\Video;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterVideoType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DSFacyt\Core\Application\UseCases\Video\UploadVideo\UploadVideoCommand;
 
@@ -101,7 +102,7 @@ class VideoController extends Controller
             return $this->redirectToRoute('ds_facyt_infrastructure_user_video_homepage');
         }
 
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView()));
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
 
     }
 

@@ -1,0 +1,71 @@
+{% extends "DSFacytInfrastructureBundle:Default:base.html.twig" %}
+
+{% block stylesheets %}
+{% if app.environment == "dev" %}
+<link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+{% else %}
+{% stylesheets
+ '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
+ %}
+ <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+ {% endstylesheets %}
+ {% endif %}
+
+ {% endblock %}
+ 
+{% block body %}
+{% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
+<div id="body-login">
+<div class="container" style=";min-height:100vh">
+
+	<div class="container">
+		<div class="col-xs-12" style="color:white">
+			<br>
+			<h2><span class="fa fa-star"></span> Destacados</h2>
+            
+            <br>
+                <h4> <i class="fa fa-check"></i> Información destacada de la semana. <br><br>
+                
+                </h4>
+                
+		</div>
+		<div class="col-xs-12" >			
+			<h3 style="color:white"><span class="fa fa-pencil"></span> Textos</h3>
+            <br>
+            <div class="row">
+            	{% for currentText in data.texts %}
+                        <div class="col-xs-12 col-md-3">
+                        <div class="panel panel-default" style="
+    min-height: 300px;
+    max-height: 300px;">
+                            <div class="panel-heading">
+                                <h4>{{currentText.title}}</h4>
+                            </div>
+                            <div class="panel-body" style="max-height:160px;min-height:160px;">
+                                <p style="font-size:16px;">
+                                    {{currentText.info}}
+                                    <br>
+                                    <br>
+                                    <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                </p>
+                            </div>
+                            <div class="panel-footer" style="min-height:78px">
+                                <b>
+                                    {{currentText.start_date}}<br>
+                                    Publicado por {{currentText.user_full_name}}
+                                </b>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+            </div>
+            <br>
+		</div>
+	</div>
+</div>
+{% endblock body %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}

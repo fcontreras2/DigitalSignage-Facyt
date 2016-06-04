@@ -12,7 +12,7 @@
 
 
     %}
-    <link rel="stylesheet" type="video/css" media="screen" href="{{ asset_url }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 
     {% endstylesheets %}
     {% endif %}
@@ -91,7 +91,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-show="publish.length == 0">
-                                        <td ng-repeat="i in [0,1,2,3,4,5,6,7]"> -</td>
+                                        <td ng-repeat="i in [0,1,2,3,4,5,6]"> -</td>
                                     </tr>
                                     <tr ng-repeat="currentVideo in publish" ng-if="publish.length > 0" ng-cloak>
                                         <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
@@ -131,21 +131,20 @@
                     </div>
                     <br>
                     <br>
-
                     {{ include("DSFacytInfrastructureBundle:User:Modal/modalPreviewVideo.html.twig") }}
                 </div>
-
             </div>
         </div>
-        {% endblock %}
 
-        {% block footer %}
-        {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
-        {% endblock footer %}
+    {% endblock %}
+
+    {% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+    {% endblock footer %}
 
     {% block javascripts%}
         <!-- Tomando variables enviadas desde el servidor -->
-        <script type="video/javascript">
+        <script type="text/javascript">
             var data = "{{ data }}";
             var div = document.createElement('div');
             div.innerHTML = data;
@@ -159,18 +158,17 @@
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     {% if app.environment == "dev" %}
-
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoModule.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoService.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoController.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>    
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
-    <script type="video/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/videoController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>    
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
     {% else %}
 
     {% javascripts
@@ -179,12 +177,12 @@
     "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/app-panel-video.js"
     "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
     %}
-    <script type="video/javascript" src="{{ asset_url }}"></script>
+    <script type="text/javascript" src="{{ asset_url }}"></script>
 
     {% endjavascripts %}
     {% endif %}
 
-    <script type="video/javascript">
+    <script type="text/javascript">
         $('.input-group.date').datepicker({
             language: "es",
             format: 'dd/mm/yyyy',

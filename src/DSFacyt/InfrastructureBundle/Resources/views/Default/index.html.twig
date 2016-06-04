@@ -15,45 +15,17 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <ul class="nav nav-tabs nav-justified" style="margin-top:7.4%;z-index:2;width:100%;">
-                    <li>
-                        <a href="#1" data-toggle="tab">
-                            <i class="fa fa-list"></i> Publicar
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2" data-toggle="tab">
-                            <i class="fa fa-desktop"></i> Canales Online
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2" data-toggle="tab">
-                            <i class="fa fa-star"></i> Destacados
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2" data-toggle="tab">
-                            <i class="fa fa-question-circle"></i> Ayuda
-                        </a>
-                    </li>
-                </ul>        
-            </div>
-        </div>
-    </div>
+    {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}    
     <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
           <!-- Indicators -->        
     
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">                
-                    <img src="http://www.facyt.uc.edu.ve/sites/default/files/c1.jpg" alt="..." style="width:40%;margin-left:20%;max-height:340px;">                    
+                    <img src="{{asset('images/homepage/home-page.jpg')}}" alt="..." style="width:40%;margin-left:20%;max-height:340px;">                    
                 </div>
                 <div class="item">                    
-                    <img src="http://portal.facyt.uc.edu.ve/investigacion/img/varias/cursoImagen2.jpg" alt="..." style="width:40%;margin-left:20%;max-height:340px;">
+                    <img src="{{asset('images/homepage/home-page2.jpg')}}" alt="..." style="width:40%;margin-left:20%;max-height:340px;">
                     
                 </div>
             </div>
@@ -79,7 +51,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-xs-5 col-xs-offset-1">
+                    <div class="col-xs-12 col-xs-offset-0 col-md-5 col-md-offset-1">
                         <span class="fa-stack fa-lg" style="font-size:30px">
                           <i class="fa fa-circle fa-stack-2x" style="color:#122644;"></i>
                           <i class="fa fa-desktop fa-stack-1x fa-inverse"></i>
@@ -94,7 +66,7 @@
                         </h4>
                         <h4><a href="#" style="color:#18304c;font-weight:bold;">Canales</a></h4>
                     </div>
-                    <div class="col-xs-5 ">
+                    <div class="col-xs-12 col-xs-offset-0 col-md-5">
                         <span class="fa-stack fa-lg" style="font-size:30px">
                           <i class="fa fa-circle fa-stack-2x" style="color:#122644;"></i>
                           <i class="fa fa-bullhorn fa-stack-1x fa-inverse"></i>
@@ -116,27 +88,36 @@
         <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2 style="color:#63a047; "> Destacados</h2>
-                <h4 style="color:#18304c">Publicaciones destacadas en la semana</h4>
                 <div class="row">
-                    {% for item in 1..4 %}
-                        <div class="col-xs-3">
-                        <div class="panel panel-default">
+                <div class="col-xs-12">
+                <h2 style="color:#63a047;"> Destacados</h2>
+                    <h4 style="color:#18304c">Publicaciones destacadas en la semana
+                    <span class="pull-right"><a href="#">Ver todos</a></span>
+                    </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for currentText in data.texts %}
+                        <div class="col-xs-12 col-md-3">
+                        <div class="panel panel-default" style="
+    min-height: 300px;
+    max-height: 300px;">
                             <div class="panel-heading">
-                                <h4>Suspensión de clases</h4>
+                                <h4>{{currentText.title}}</h4>
                             </div>
-                            <div class="panel-body">
-                                <h3>Suspención de clases</h3>
-                                <p>
-                                    Se suspenden las clases en la facultad, disturbios en el arco
+                            <div class="panel-body" style="max-height:160px;min-height:160px;">
+                                <p style="font-size:16px;">
+                                    {{currentText.info}}
                                     <br>
-                                    <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                    <a href="">
+                                    <br>
+                                    <span class="fa fa-circle"> </span> Ver publicación </a>
                                 </p>
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer" style="min-height:78px">
                                 <b>
-                                    12/05/2017 - 7:00 AM <br>
-                                    Publicado Freddy Contreras
+                                    {{currentText.start_date}}<br>
+                                    Publicado por {{currentText.user_full_name}}
                                 </b>
                             </div>
                         </div>

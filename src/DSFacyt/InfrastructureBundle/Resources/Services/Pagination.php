@@ -31,15 +31,15 @@ class Pagination implements PaginationInterface
     * @version 02/12/2015
     * @return array 
     */
-    public function generate(&$data, $numberPage)
+    public function generate(&$data, $numberPage, $numberItems = 10)
     {
 
-        if (count($data) > 10) {
+        if (count($data) > $numberItems) {
             $paginator  = $this->container->get('knp_paginator');
             $pagination = $paginator->paginate(
                 $data,
                 $numberPage/*page number*/,
-                10/*limit per page*/
+                $numberItems/*limit per page*/
             );
 
             $data = $pagination->getItems();

@@ -109,7 +109,7 @@ class GetDataTransmitionHandler implements Handler
         foreach ($quickNotes as $currentQuickNote) {
             
             $auxResponse['id'] = $currentQuickNote->getId();
-            $auxResponse['info'] = $currentQuickNote->getId();
+            $auxResponse['info'] = $currentQuickNote->getInfo();
             $response[] = $auxResponse;
         }
 

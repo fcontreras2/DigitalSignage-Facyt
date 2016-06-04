@@ -19,6 +19,27 @@ class GetImportantHandler implements Handler
     private $rf;
 
     /**
+     * @var La variable contiene el servicio de paginación
+     */
+    private $pagination;
+
+    /**
+     * @var Método set del servicio de paginación
+     */
+    public function setPagination($pagination)
+    {
+        $this->pagination = $pagination;
+    }
+
+    /**
+     * @var Método get del servicio de paginación
+     */
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
+
+    /**
      * Ejecuta el caso de uso 'Obtiene las publicaciones importante de la semana'
      *
      * @param Command $command Objeto Command contenedor de la solicitud del usuario
@@ -33,16 +54,20 @@ class GetImportantHandler implements Handler
         $rpImages = $rf->get('Image');
 
         $texts = $rpText->findLastImportant();
+        $this->pagination->generate($texts, 0, 4);
 
         foreach ($texts as $currentText) {
             $auxText = [];
             $auxText['id'] = $currentText->getId();
             $auxText['title'] = $currentText->getTitle();
             $auxText['info'] = $currentText->getInfo();
+            $auxText['start_date'] = $currentText->getStartDate()->format('Y-m-d');
+            $auxText['user_full_name'] = $currentText->getUser()->getName().' '.$currentText->getUser()->getLastName();
             $response['texts'][] = $auxText;
         }
 
         $images = $rpImages->findLastImportant();
+        $this->pagination->generate($images, 0,4);
 
         foreach ($images as $currentImage) {
             $auxImage = [];

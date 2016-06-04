@@ -45,14 +45,6 @@ class DbTextRepository extends EntityRepository implements
     public function findByStartDateEndDate($startDate, $endDate)
     {
         return $this->createQueryBuilder('t')
-            ->where('
-                (t.start_date <= :startDate and :startDate <= t.end_date) or
-                (t.start_date <= :endDate and :endDate <= t.end_date)
-            ')
-            ->setParameters([
-                'startDate' => $startDate,
-                'endDate' => $endDate
-            ])
             ->getQuery()->getResult();
     }
 
@@ -109,14 +101,14 @@ class DbTextRepository extends EntityRepository implements
             $parameters['userId'] = $data['user']->getId();
         }
         
-        $query = $this->createQueryBuilder('t')
-            ->where($where)->setParameters($parameters);
+        $query = $this->createQueryBuilder('t');
+            /*->where($where)->setParameters($parameters);
         if (isset($data['filter']) and !is_null($data['filter'])) {
             if (isset($data['order']) and !is_null($data['order']))
                 $query->orderBy('t.'.$data['filter'], $data['order']);
             else
                 $query->orderBy('t.'.$data['filter'], 'ASC');
-        }
+        }*/
 
         return $query->getQuery()->getResult();
     }
@@ -150,12 +142,13 @@ class DbTextRepository extends EntityRepository implements
         return $this->createQueryBuilder('t')
             ->where('
                 t.start_date >= :date and
-                t.important = true and
-                (t.status >= 3 and t.status <=5)
+                t.important = true 
+                
             ')
             ->setParameters([
                 'date' => $date
             ])
+            ->orderBy('t.start_date', 'DESC')
             ->getQuery()->getResult();  
     }
 

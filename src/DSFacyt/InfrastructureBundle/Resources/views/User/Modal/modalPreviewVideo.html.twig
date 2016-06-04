@@ -1,0 +1,78 @@
+<script id="modal-previewVideo.tpl" type="text/ng-template">
+    <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form name="form" class="css-form" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <button type="button" class="close" aria-label="Close" ng-click="$hide();btnAction='fa fa-trash'"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                                <h4 class="modal-title" >
+                                    <span class="fa fa-pencil"></span>
+                                    Texto - {[{ publish[indexPreview].title}]}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body" style="font-size:16px">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Título:
+                                <span>{[{publish[indexPreview].title}]}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Hora a publicar: 
+                                <span>{[{publish[indexPreview].publish_time}]}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Fecha de Publlicación:
+                                <span>{[{publish[indexPreview].start_date}]}</span>
+
+                            </div>
+                            <div class="col-xs-12">
+                                Fecha Final:
+                                <span>{[{publish[indexPreview].end_date}]}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Canales:
+                                <span ng-repeat="(key, value) in publish[indexPreview].channels">
+                                    {[{ value.channel_name }]}
+                                </span>
+                                <span ng-show="publish[indexPreview].channels.length== 0" class="status-desactive">
+                                N/A
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:15px    ">
+                            <div class="col-xs-12">
+                                <span style="font-weight:bold">Información </span>
+                                <p class="box-information"> {[{publish[indexPreview].info}]}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-xs-11 col-xs-offset-1">
+                                <button class="btn btn-primary ">
+                                    <a href="{[{urlEdit}]}" style="text-decoration: none;color:white">
+                                        <span class="fa fa-edit" ></span> Editar
+                                    </a>
+                                </button>
+                                <button class="btn btn-primary delete" ng-click="deleteText(indexPreview);">
+                                    <span class="fa fa-spinner"></span> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

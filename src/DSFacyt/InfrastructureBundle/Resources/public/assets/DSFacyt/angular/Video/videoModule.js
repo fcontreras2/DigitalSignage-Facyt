@@ -1,4 +1,4 @@
-var video = angular.module("videoModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
+var video = angular.module("VideoModule", ['angular-repeat-n', 'mgcrea.ngStrap'])
 
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -8,7 +8,7 @@ var video = angular.module("videoModule", ['angular-repeat-n', 'mgcrea.ngStrap']
         $httpProvider.defaults.useXDomain = false;
         $httpProvider.defaults.headers.common['X-Requested-With']= 'XMLHttpRequest';
         var httpStatusCodeInterceptorFactory = function ($q) {
-            function onSuccess(response){
+            function onSucces   s(response){
                 if("success_condition"){
                     return response.data;
                 }

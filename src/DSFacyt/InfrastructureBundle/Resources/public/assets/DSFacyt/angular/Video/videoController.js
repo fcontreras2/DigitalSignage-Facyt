@@ -135,8 +135,6 @@ video.controller('VideoController', ['$scope','$filter', 'videoService', '$modal
 
             videoService.ajaxGetPublish(data, $scope);
 
-            console.log($scope.pagination);
-            
             $timeout( function(){
                 $scope.alert_message = false;
             },1500);

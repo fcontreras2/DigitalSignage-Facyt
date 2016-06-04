@@ -81,4 +81,16 @@ class DbVideoRepository extends EntityRepository implements
             ])
             ->getQuery()->getResult();
     }
+
+    /**
+     * Almacena en la BD una videon
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param  Video $video
+     */
+    public function save(Video $video)
+    {
+        $this->getEntityManager()->persist($video);
+        $this->getEntityManager()->flush();
+    }
 }

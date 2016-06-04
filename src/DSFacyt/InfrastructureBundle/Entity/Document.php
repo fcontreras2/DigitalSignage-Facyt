@@ -210,8 +210,7 @@ class Document
 
         $extension = $this->getFile()->guessExtension();
         $path = $this->getUploadRootDir().$nameFile.'.'.$extension;
-
-
+   
         $this->setFileName($subDir.$nameFile.'.'.$extension);
         move_uploaded_file($this->getFile(), $path);
     }
@@ -226,13 +225,12 @@ class Document
     private function getPathTypeFile($type)
     {
         $response = 'image';
-
         switch ($type) {
             case 'image':
                 $response  = '/uploads/images/';
                 break;
             case 'video':
-                $response = '/uplods/videos/';
+                $response  = '/uploads/videos/';
                 break;
             default:
                 $response  = '/uploads/images/';

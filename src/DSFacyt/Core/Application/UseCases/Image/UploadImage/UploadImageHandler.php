@@ -43,7 +43,7 @@ class UploadImageHandler implements Handler
             $image->getDocument()->setName($image->getTitle());
             $image->setStatus(0);
             $fileName = strtolower(str_replace(' ','_',$image->getTitle())).'_';
-            $image->getDocument()->upload('image', $command->getIndentityFolderUser().'/',$fileName);            
+            $image->getDocument()->upload('image', $command->getIndentityFolderUser().'/',$fileName);
             $rpImage->save($image);
 
         } catch(\Exception $e) {

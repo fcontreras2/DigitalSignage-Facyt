@@ -50,35 +50,52 @@
                 {% endif %}
 
             </ul>
-            <ul class="nav navbar-nav navbar-right hidden-xs">
-                {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+            
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<div style="background:white" class="hidden-xs">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs nav-justified" style="margin-top:7.4%;z-index:2;width:100%;">
+                {% if app.request.attributes.get('_route') == 'ds_facyt_display_index' %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{{path('ds_facyt_display_index')}}" >
+                        <i class="fa fa-desktop"></i> Canales Online
+                    </a>
+                </li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_importants' %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                        <a href="{{path('ds_facyt_infrastructure_importants')}}">
+                            <i class="fa fa-star"></i> Destacados
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#2" data-toggle="tab">
+                            <i class="fa fa-question-circle"></i> Ayuda
+                        </a>
+                    </li>
 
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
                         <li class="active ">
                     {% else %}
                         <li class="desactive ">
                     {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_security_login') }}" style="background-color:white"><i class="fa fa-user"></i><br> Entrar                 </li>
-
-                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_register' or  app.request.attributes.get('_route') == 'ds_facyt_infrastructure_validate_register' %}
-                        <li class="active ">
-                    {% else %}
-                        <li class="desactive ">
-                    {% endif %}
-                    <a href="{{path('ds_facyt_infrastructure_register')}}" style="background-color:white"><i class="fa fa-sign-in"></i><br> Registrarte</a>
-                    </li>
-                {% else %}
-                    <li class="desactive ">
-                        <a href="{{ path('ds_facyt_infrastructure_user_security_logout') }}"><i class="fa fa-sign-out"></i><br>Salir </a>
-                    </li>
-                    <li class="desactive ">
-                        <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}"><i class="fa fa-list-alt"></i><br> Panel</a>
-                    </li>
-                {% endif %}
-
-            </ul>
+                    <a href="{{ path('ds_facyt_infrastructure_user_security_login')}}">
+                        <i class="fa fa-user"></i> Entrar
+                    </a>
+                </li>
+                </ul>        
+            </div>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
-</nav>
+</div>

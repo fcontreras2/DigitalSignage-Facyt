@@ -49,7 +49,8 @@ class PublishController extends Controller
         }
 
         $response = ['type' => $typeEntity, 'status' =>  $status];
-        $command = new GetPublishStatusCommand($typeEntity,$status);
+        $user =  $this->container->get('security.context')->getToken()->getUser();
+        $command = new GetPublishStatusCommand($typeEntity,$status, null,null,null, $user);
         $response['data'] = $this->get('CommandBus')->execute($command)->getData();
         return $this->render($template,['data' => json_encode($response)]);
     }

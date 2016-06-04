@@ -109,30 +109,9 @@
                             <div class="col-xs-10 col-xs-offset-1 " ng-app="UploadImageModule" ng-controller="UploadImageController">
                                 <br>
                                 Selecciona una Video
-                                <div class="uploadImage">
-                                    <center>
-                                        <label class="button img-rounded img-default drop-box" style="text-align:center;">
-                                            <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button"></span>
-                                            <center ng-if="!cropper.sourceImage"><h6>Subir Video</h6></center>
-                                            <center ng-if="cropper.sourceImage != null" id="change-Video" >
-                                                <h6 style="color: white;font-weight: bold;">Cambiar </h6>
-                                            </center>
-                                            <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
-                                            {{ form_errors(form.document) }}
-                                            {{ form_label(form.document,  null, {'label_attr': {'class': 'control-label'}}) }}                                            
-                                            {{ form_label(form.document.file,  null) }}
-                                            {{ form_widget(form.document.file, {'attr': {
-                                                'img-cropper-fileread': '',
-                                                'onchange': 'angular.element(this).scope().showCropImageModal(this)',
-                                                'result-Video-size': '10',
-                                                'style':'display:none',
-                                                'Video': 'cropper.sourceImage',
-                                                'ng-model': 'file'
-                                            }})}}                                            
-                                        </label>
-                                        <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
-                                    </center>
-                                </div>
+                                {{ form_errors(form.document) }}
+                                {{ form_label(form.document,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.document, {'attr': {'class': 'form-control'}}) }}
                                 <br>
                                 {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
                             </div>

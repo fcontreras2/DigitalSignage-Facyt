@@ -11,6 +11,7 @@ use DSFacyt\InfrastructureBundle\Entity\User;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterType;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
 use DSFacyt\Core\Application\UseCases\GetImportant\GetImportantCommand; 
+use DSFacyt\Core\Application\UseCases\GetImportantAll\GetImportantAllCommand; 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -163,5 +164,13 @@ class DefaultController extends Controller
         }
 
         return new JsonResponse('Error', 503);
+    }
+
+    public function getImportantAction()
+    {
+        $command = new GetImportantAllCommand();
+        $response = $this->get('CommandBus')->execute($command);
+
+        return $this->render("DSFacytInfrastructureBundle:Default:importants.html.twig", ['data' => $response->getData()]);
     }
 }

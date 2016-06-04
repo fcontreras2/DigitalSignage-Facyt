@@ -32,7 +32,7 @@ class GetResumenCommand implements Command
     public function __construct($startDate = null, $endDate = null)
     {
         $this->startDate = !is_null($startDate) ? new \DateTime($startDate) : new \DateTime();
-        $this->endDate = !is_null($endDate) ? new \DateTime($endDate) : (new \DateTime())->modify('+7 days');
+        $this->endDate = !is_null($endDate) ? new \DateTime($endDate) : (new \DateTime())->modify('+7 days');        
     }
 
     public function getRequest()

@@ -31,7 +31,7 @@ DSFacyt\InfrastructureBundle\Entity\Video:
         date_create:
             type: datetime
             nullable: true
-            
+
         important:
             type: boolean
             options:
@@ -49,7 +49,7 @@ DSFacyt\InfrastructureBundle\Entity\Video:
             orphanRemoval: false
         document:
             targetEntity: Document
-            cascade: {  }
+            cascade: ["persist"]
             mappedBy: null
             inversedBy: videos
             joinColumns:

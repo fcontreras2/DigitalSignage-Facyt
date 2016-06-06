@@ -16,6 +16,13 @@
                 <li class="hidden active">
                     <a href="#page-top"></a>
                 </li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_homepage')}}"> <span class="fa fa-list-alt"></span> Principal </a>
+                </li>
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' %}
                     <li class="active">
                 {% else %}
@@ -37,7 +44,7 @@
                 {% else %}
                     <li>
                 {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}} "> <span class="fa fa-play"></span> Videos</a>
+                    <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}} "> <span class="fa fa-play-circle-o"></span> Videos</a>
                 </li>
                 
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}

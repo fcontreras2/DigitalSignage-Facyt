@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-
+{% block title %} Textos {% endblock title %}
 {% block stylesheets %}
 {% if app.environment == "dev" %}
 <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
@@ -86,12 +86,11 @@
                                     <th style="width: 15%"><a href="" ng-click="setFiler('start_date');">Fecha de Inicio</a></th>
                                     <th style="width: 15%"><a href="" ng-click="setFiler('end_date');">Fecha Final</a></th>
                                     <th style="width: 30%"><a href="" ng-click="setFiler('title');">Título</a></th>
-                                    <th style="width: 5%"><a href="">Estado</a></th>
-                                    <th style="width: 5%"><a href="">Detalle</a></th>
+                                    <th style="width: 5%"><a href="">Estado</a></th>                                    
                                 </thead>
                                 <tbody>
                                     <tr ng-show="publish.length == 0">
-                                        <td ng-repeat="i in [0,1,2,3,4,5,6]"> -</td>
+                                        <td ng-repeat="i in [0,1,2,3,4,5]"> -</td>
                                     </tr>
                                     <tr ng-repeat="currentText in publish" ng-if="publish.length > 0" ng-cloak>
                                         <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
@@ -99,7 +98,7 @@
                                         <td>{[{ currentText.publish_time}]}</td>
                                         <td>{[{ currentText.start_date}]}</td>
                                         <td>{[{ currentText.end_date}]}</td>
-                                        <td>{[{ currentText.title}]}</td>
+                                        <td><a href="{[{urlEdit}]}" ng-click="getUrlEdit(currentText.id)">{[{ currentText.title}]}</a></td>
                                         <td>
                                             <center><span class="fa fa-circle" ng-class="{
                                             'status-new': currentText.status === 0,
@@ -108,9 +107,7 @@
                                             'status-active': currentText.status == 3,
                                             'status-finish': currentText.status == 4,
                                             'status-canceled' : currentText.status == 5}"></span></center>
-                                        </td>
-                                        <td style="text-align: center"><a style="cursor: pointer" ng-click="modalPreviewText($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
-                                        </tr>
+                                        </td>                                        
                                     </tbody>
                                 </table>
                             </div>

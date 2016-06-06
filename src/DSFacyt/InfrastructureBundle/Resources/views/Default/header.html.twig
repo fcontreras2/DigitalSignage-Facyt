@@ -23,7 +23,11 @@
                 {% endif %}
                     <a class="page-scroll" href="{{ path('ds_facyt_display_index')}}"> <span class="fa fa-desktop"></span> Canales Online</a>
                 </li>
-                <li>
+                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_importants' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                        {% endif %}
                     <a href="{{path('ds_facyt_infrastructure_importants')}}">
                         <i class="fa fa-star"></i> Destacados
                     </a>

@@ -32,12 +32,6 @@
         </div>
         <div class="col-md-5">
             
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            Menu administrativo<br>
-            <a href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
-            {% else %}
             <form action="{{ path("ds_facyt_infrastructure_user_security_check") }}" class="form-signin" role="form" method="post">
                 <div class="panel panel-default" id="panel-login">
                     <div class="panel-heading" ><b><h4>Inicio de Sesión</b></h4></div>
@@ -69,7 +63,6 @@
                     </div>
                 </div>
             </form>
-            {% endif %}
         </div>
     </div>
 </div>

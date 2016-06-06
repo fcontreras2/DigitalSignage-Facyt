@@ -31,13 +31,20 @@
                 <li>
                     <a class="page-scroll" href="#contact"> <span class="fa fa-question"></span> Ayuda</a>
                 </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
-                <li class="active">
-                    {% else %}
-                <li>
-                    {% endif %}
-                    <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_security_login') }}"> <span class="fa fa-user"></span> Entrar</a>
-                </li>
+                {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                    {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                        {% endif %}
+                        <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_security_login') }}"> <span class="fa fa-user"></span> Entrar</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_homepage') }}"> <span class="fa fa-list-alt"></span> Panel</a>
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

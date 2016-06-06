@@ -80,6 +80,7 @@ class VideoController extends Controller
         $form = $this->createForm(new RegisterVideoType(), $video);
 
         $form->handleRequest($request);
+        dump($request);
 
         if ($form->isValid()) {
 

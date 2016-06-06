@@ -29,6 +29,7 @@ class RegisterVideoType extends AbstractType
                 $builder->create('document', 'form',
                     array('data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document', 'label' => false))
                     ->add('file', 'file', [
+                        'label' => false,
                         'required' => true,
                             'constraints' => [
                                 new File([

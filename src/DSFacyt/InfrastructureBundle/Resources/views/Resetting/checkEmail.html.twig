@@ -1,0 +1,18 @@
+{% extends "DSFacytInfrastructureBundle:Resetting:layoutResetting.html.twig" %}
+{% block title %} Restablecer contraseña {% endblock %}
+{% block body %}
+
+<div id="body-login" style="min-height: 92vh">
+    <div class="container" style="color:white">
+    <br>
+    <br>
+        <div class="col-xs-4"> 
+            <h2> Revisa tu correo</h2>
+            <h4> <span class="fa fa-check"></span> Haz click en el enlace que te enviamos</h4>
+            <h4> <span class="fa fa-check"></span> Restable tu contraseña</h4>
+            <a href="{{ path('ds_facyt_infrastructure_user_security_login')}}"><button type="button" class="btn btn-primary col-xs-12">Volver</button></a>
+        </div>
+    </div>
+</div>
+    
+{% endblock body %}

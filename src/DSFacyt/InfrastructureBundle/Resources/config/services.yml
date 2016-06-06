@@ -13,3 +13,7 @@ services:
     CommandBus:
         class: DSFacyt\Core\Application\Services\CommandBus
         arguments: ["@RepositoryFactory","@Pagination"]
+
+    EmailService:
+        class: DSFacyt\InfrastructureBundle\Resources\Services\EmailService
+        arguments: ["@service_container"]

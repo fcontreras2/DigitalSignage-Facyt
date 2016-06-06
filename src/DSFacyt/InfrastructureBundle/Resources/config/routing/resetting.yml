@@ -1,12 +1,20 @@
 # Vista de petición de datos para el reinicio de contraseña
 ds_facyt_infrastructure_resetting_request:
-  path: /
-  defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:request}
+    path: /
+    defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:request}
 
 ds_facyt_infrastructure_resetting_send_email:
-    pattern:  /resetting/sendEmail
-    defaults: { _controller: NavicuInfrastructureBundle:Security\Resetting:sendEmail}
+    path:  /sendEmail
+    defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:sendEmail }
 
-ds_facyt_resetting_register_reset:
+ds_facyt_infrastructure_resetting_check_email:
+    path:  /checkEmail
+    defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:checkEmail }
 
-ds_facyt_resetting_register_check_email:
+ds_facyt_infrastructure_resetting_reset:
+    pattern:  /rest/{token}
+    defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:reset }
+
+ds_facyt_infrastructure_resetting_update_password_success:
+    pattern: /updatePasswordSuccess
+    defaults: { _controller: DSFacytInfrastructureBundle:Security/Resetting:passwordUpdateSuccess }

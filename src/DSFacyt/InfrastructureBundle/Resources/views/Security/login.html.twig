@@ -40,7 +40,7 @@
             {% else %}
             <form action="{{ path("ds_facyt_infrastructure_user_security_check") }}" class="form-signin" role="form" method="post">
                 <div class="panel panel-default" id="panel-login">
-                    <div class="panel-heading" ><b>Inicio de Sesión</b></div>
+                    <div class="panel-heading" ><b><h4>Inicio de Sesión</b></h4></div>
                     <div class="panel-content">
                     
                         <div class="tab-pane active panel-body" id="login">
@@ -52,8 +52,8 @@
                         <br>
                     {% endif %}
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                            <label ><span class="fa fa-user"></span> Nombre de Usuario</label>
-                            <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Introduce tu Nombre de Usuario">
+                            <label ><span class="fa fa-user"></span> Nombre de Usuario o correo electrónico</label>
+                            <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Nombre usuario / correo electrónico">
                             <br>
                             <label><span class="fa fa-lock"></span> Constraseña</label>
                             <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">

@@ -74,29 +74,7 @@ class SecurityController extends Controller
 
         $security = $this->container->get('security.context');
         $template = sprintf('DSFacytInfrastructureBundle:Security:login.html.twig');
-
-        if ('ds_facyt_infrastructure_user_security_login' === $route) {     
-
-
-            if ($security->isGranted('ROLE_USER')) {
-
-                return $this->redirect(
-                    $this->generateUrl('ds_facyt_infrastructure_user_homepage')
-                );
-            }           
-
-        } else if ('ds_facyt_infrastructure_admin_security_login' === $route) {
-            
-            if ($security->isGranted('ROLE_ADMIN')) {
-
-                return $this->redirect(
-                    $this->generateUrl('ds_facyt_infrastructure_admin_homepage')
-                );
-            }
-
-            $template = sprintf('DSFacytInfrastructureBundle:Admin\Security:login.html.twig');
-        }
-
+        
         return $this->container->get('templating')->renderResponse($template, $data);
     }
 }

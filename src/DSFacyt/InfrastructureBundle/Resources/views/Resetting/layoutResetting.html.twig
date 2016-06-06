@@ -18,12 +18,30 @@
 <body>
     {% include "@DSFacytInfrastructure/Resetting/header.html.twig" %}
     {% block body %}{% endblock %}
+
+    <footer>
+        <div class="div-footer" >
+        {% block footer %}
+        {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+        {% endblock footer %}
+        </div>
+    </footer>
+    {% block javascripts%}
+        {% if app.environment == "dev" %}
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>            
+        
+        {% else %}
+            {% javascripts
+                '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+                "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/template-panel.js"
+
+                %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+
+            {% endjavascripts %}
+        {% endif %}
+    {% endblock %}
 </body>
 
-<footer>
-    <div class="div-footer" style="marin">
-        {% block footer %}
-        {% endblock footer %}
-    </div>
-</footer>
 </html>

@@ -76,7 +76,7 @@ class EmailService implements EmailInterface
         //Chequea si se encuentra en producción se enviara los correos
         global $kernel;
 
-        if ($kernel->getEnvironment() == 'prod') {
+        //if ($kernel->getEnvironment() == 'prod') {
             if (!empty($parameters))
                 $this->setParameters($parameters);
 
@@ -95,7 +95,7 @@ class EmailService implements EmailInterface
             
             $message->setTo($this->recipients);
             $email->send($message);
-        }
+        //}
     }
 
     /**

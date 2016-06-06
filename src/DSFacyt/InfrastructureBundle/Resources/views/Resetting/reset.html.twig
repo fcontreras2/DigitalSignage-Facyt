@@ -1,0 +1,29 @@
+{% extends "DSFacytInfrastructureBundle:Resetting:layoutResetting.html.twig" %}
+{% block title %} Restablecer contraseña {% endblock %}
+{% block body %}
+    <div id="body-login" style="min-height: 92vh;color:white;">
+        <br>
+        <br>
+        <div class="container">
+            <form action="{{ path('ds_facyt_infrastructure_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="form-out" style="width:350px;">
+                <h2 class="form-extranet-heading"> Restablecer contraseña</h2>
+                <h4 class="form-extranet-heading"> Introduce tu nueva contraseña</h4>
+                {% for errorItem in form.plainPassword.first.vars.errors %}
+                    <div class="alert alert-danger">
+                        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span>  {{ errorItem.message|trans }}</span>
+                    </div>
+                {% endfor %}
+
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control my-input', 'placeholder': 'Contraseña nueva'}}) }}
+                <br>
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control my-input', 'placeholder': 'Repetir contraseña'}}) }}
+                <br>
+                <button type="submit"  class="btn btn-md btn-primary col-xs-12" > Actualizar </button>
+                {{ form_rest(form) }}
+            </form>
+        </div>
+    </div>
+
+{% endblock body %}

@@ -17,7 +17,6 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
             $scope.cropper.croppedImage = '/uploads/images/' + $scope.pathImage;
             $scope.cropper.sourceImage = true;
         }
-
         
         $scope.showCropImageModal = function() {
             UploadImageService.resetCropper(cropImageModal, $scope, $modal);
@@ -27,7 +26,13 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
             UploadImageService.resetCropper(cropImageModal, $scope, $modal);
         };
 
-        $scope.uploadFile = function($file) {
-            cropImageModal.$promise.then(cropImageModal.hide);
+        $scope.uploadFile = function() {
+
+            $scope.cropper.sourceImage = $scope.cropper.croppedImage;
+            return $scope.cropper;
         }
+
+        $scope.$watch('cropper.croppedImage', function(){
+            console.log("cambi{o", $scope.cropper);
+        });
     }]);

@@ -118,8 +118,7 @@ class ImageController extends Controller
             return $this->redirectToRoute('ds_facyt_infrastructure_user_image_homepage');
         }
 
-        return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView()));
-
+        return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathImage' => null])));
     }
 
     /**

@@ -43,6 +43,8 @@ $yellow: #EFE02B;
   z-index: 2;
 }
 
+.not-blank { font-weight: bold;font-style: italic;}
+
 .status-accepted { color: $green-white }
 .status-active { color: $green}
 .status-change { color: $yellow}

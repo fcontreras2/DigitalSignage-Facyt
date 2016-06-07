@@ -1,12 +1,45 @@
 DSFacyt\InfrastructureBundle\Entity\Text:
     properties:
         title:
-            - NotBlank: ~
+            - NotBlank: {'message':'* Título no debe estar vacío'}
             - Length:
                 min: 10
-                max: 20
+                max: 50
+
         info:
-            - NotBlank: ~
+            - NotBlank: {'message': '* La información no debe estar vacío'}
             - Length:
-                min: 20
-                max: 100
+                min: 50
+                max: 144
+
+        start_date:
+            - NotBlank: { 'message' : '* Fecha inicial no debe estar vacía'}
+
+        end_date:
+            - NotBlank: { 'message' : '* Fecha final no debe estar vacía'}
+
+        publish_time:
+            - NotBlank: { 'message' : '* Hora de publicación no debe estar vacía' }
+
+DSFacyt\InfrastructureBundle\Entity\Image:
+    properties:
+        title:
+            - NotBlank: {'message':'* Título no debe estar vacío'}
+            - Length:
+                min: 10
+                max: 50
+
+        start_date:
+            - NotBlank: { 'message' : '* Fecha inicial no debe estar vacía'}
+
+        end_date:
+            - NotBlank: { 'message' : '* Fecha final no debe estar vacía'}
+
+        publish_time:
+            - NotBlank: { 'message' : '* Hora de publicación no debe estar vacía' }
+
+        description:
+            - NotBlank: { 'message' : '* La descripción no debe estar vacía' }
+
+        document:
+            - NotBlank: { 'message' : '* Debe subir imagen' }

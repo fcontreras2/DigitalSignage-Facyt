@@ -1,5 +1,5 @@
  {% extends "base.html.twig" %}
-{% block title %} Imagen {% endblock title%}
+{% block title %} Nueva/Editar Imagen {% endblock title%}
 {% block stylesheets %}
      {% if app.environment == "dev" %}
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
@@ -44,8 +44,8 @@
                         {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
-                                {{ form_errors(form.title) }}
-                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_errors(form.title) }}<br>
+                                * {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
                                 {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
                                 <br>
                             </div>
@@ -65,25 +65,22 @@
 
                             <div class="col-xs-10 col-xs-offset-1">
                                 <div class="row ">
-                                    <div class="col-xs-4">
-
-                                        {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
+                                    <div class="col-xs-12 col-md-4">
+                                        * {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
                                         <div class="input-group bootstrap-timepicker timepicker">
                                             {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}                                    
                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                         </div>                                        
                                     </div>
-                                    <div class="col-xs-4">
-
-                                        {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                    <div class="col-xs-12 col-md-4">
+                                        * {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             {{ form_widget(form.start_date, {'attr': {'class': 'form-control'}}) }}
-
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                    <div class="col-xs-12 col-md-4">
+                                        *{{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             {{ form_widget(form.end_date, {'attr': {'class': 'form-control'}}) }}
@@ -97,12 +94,13 @@
                                 {{ form_errors(form.Channels) }}
                                 {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
                                 {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
+                                <br>
                             </div>
 
                             <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
-                                <br>
                                 {{ form_errors(form.description) }}
-                                {{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
+                                <br>
+                                *{{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
                                 {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                             </div>
 
@@ -124,21 +122,26 @@
                                             {{ form_widget(form.document.file, {'attr': {
                                                 'img-cropper-fileread': '',
                                                 'onchange': 'angular.element(this).scope().showCropImageModal(this)',
-                                                'result-image-size': '10',
                                                 'style':'display:none',
-                                                'image': 'cropper.sourceImage',
-                                                'ng-model': 'file'
+                                                'image': 'cropper.sourceImage'
                                             }})}}                                            
                                         </label>
-                                        <div ng-show="cropper.croppedImage!=null"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
+                                        <div ng-show="cropper.sourceImage"><img ng-src="{[{cropper.sourceImage}]}" style="width: 100%"></div>
                                     </center>
                                 </div>
                                 <br>
                                 {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
                             </div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <span class="not-blank">* Campos obligatorios</span>
+                                <br>
+                                <br>
+                            </div>
                                     
                             </div>
-
+                            </div>
+                        <div class="panel-footer">
+                            <div class="row">
                              <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
                                 <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
                                 </button>

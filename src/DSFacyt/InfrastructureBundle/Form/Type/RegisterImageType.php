@@ -12,11 +12,11 @@ class RegisterImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text',array('label' => 'Título', 'constraints' => array(new NotBlank())))
-            ->add('publish_time','text',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank())))
-            ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
-            ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
-            ->add('description','text',array('label' => 'Descripción de la imagen', 'constraints' => array(new NotBlank())))
+            ->add('title','text',array('label' => 'Título'))
+            ->add('publish_time','text',array('label' => 'Hora de publicación'))
+            ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy'))
+            ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy'))
+            ->add('description','text',array('label' => 'Descripción de la imagen'))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',
                 'class' => 'DSFacytDomain:Channel',

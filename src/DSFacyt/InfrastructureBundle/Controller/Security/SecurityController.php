@@ -72,8 +72,10 @@ class SecurityController extends Controller
         $requestAttributes = $this->container->get('request')->attributes;
         $route = $requestAttributes->get('_route');
 
-        $security = $this->container->get('security.context');
-        $template = sprintf('DSFacytInfrastructureBundle:Security:login.html.twig');
+        if ($route === 'ds_facyt_infrastructure_user_security_login')
+            $template = sprintf('DSFacytInfrastructureBundle:Security:login.html.twig');
+        else
+            $template = sprintf('DSFacytInfrastructureBundle:Admin/Security:login.html.twig');
         
         return $this->container->get('templating')->renderResponse($template, $data);
     }

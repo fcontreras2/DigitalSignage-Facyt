@@ -11,6 +11,7 @@ use DSFacyt\InfrastructureBundle\Form\Type\RegisterVideoType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DSFacyt\Core\Application\UseCases\Video\UploadVideo\UploadVideoCommand;
+use DSFacyt\Core\Application\UseCases\Video\EditVideo\EditVideoCommand;
 
 /**
  * Class VideoController
@@ -62,7 +63,7 @@ class VideoController extends Controller
                 'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_new_validate'),
                 'method' => 'POST'));
 
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathImage' => null])));
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathVideo' => null])));
     }
 
     /**
@@ -93,7 +94,7 @@ class VideoController extends Controller
             $errors = $validator->validate($video);
 
             if (count($errors) > 0) {
-                return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+                return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'errors' => $erros));
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -103,8 +104,70 @@ class VideoController extends Controller
             return $this->redirectToRoute('ds_facyt_infrastructure_user_video_homepage');
         }
 
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathVideo' => null])));
 
     }
 
+    public function editAction($videoId)
+    {
+        $command = new EditVideoCommand();
+        $command->setVideoId($videoId);
+        $response = $this->get('CommandBus')->execute($command);
+        if ($response->getStatusCode() == 201) {
+            $form = $this->createForm(new RegisterVideoType(), $command->getEntityVideo(),
+                array(
+                    'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_edit_validate',array('videoId' => $videoId)),
+                    'method' => 'POST'));
+            $pathVideo = $command->getEntityVideo()->getDocument()->getFileName();
+            return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathVideo' => $pathVideo])));
+        }
+
+        return $this->redirect('ds_facyt_infrastructure_user_video_homepage');
+    }
+
+        /**
+     * La siguiente función se encarga de mostrar el formulario de validar y persistir los datos
+     * del formulario de editar los datos del texto
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $textId
+     * @param Request $request
+     * @version 30/09/2015
+     * @return Response
+     */
+    public function validateEditAction($videoId, Request $request)
+    {
+        if (!$videoId) {
+            throw $this->createNotFoundException('Hubo un error a enviar el formulario');
+        }
+
+        $command = new EditVideoCommand();
+        $command->setVideoId($videoId);
+        $this->get('CommandBus')->execute($command);
+        $form = $this->createForm(new RegisterVideoType(), $command->getEntityVideo(),
+            array(
+                'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_edit_validate',array('videoId' => $videoId)),
+                'method' => 'POST'));
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $video = $command->getEntityVideo();
+            $video->setStatus(0);
+
+            $validator = $this->get('validator');
+            $errors = $validator->validate($video);
+
+            if (count($errors) > 0) {
+                return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'errors' => $erros,'data' => json_encode(['pathVideo' => $pathVideo])));
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+
+            return $this->redirectToRoute('ds_facyt_infrastructure_user_video_homepage');
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathVideo' => null])));
+    }
 }

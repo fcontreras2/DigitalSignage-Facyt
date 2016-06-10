@@ -62,14 +62,27 @@ class ImageController extends Controller
      */
     public function publishNewAction()
     {
-        $image = new Image();
+        /*$image = new Image();
         $form = $this->createForm(new RegisterImageType(), $image,
             array(
                 'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_new_validate'),
                 'method' => 'POST'));
+        */
+
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
+
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
 
         return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array(
-            'form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
+            'data' => json_encode($data)));
     }
 
      /**

@@ -15,3 +15,14 @@ ds_facyt_infrastructure_user_video_new:
 ds_facyt_infrastructure_user_video_new_validate:
     path:   /video/new_validate
     defaults: { _controller: DSFacytInfrastructureBundle:User\Video:validateNew }
+
+ds_facyt_infrastructure_user_video_edit:
+    path:   /video/edit/{videoId}
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Video:edit }
+    options:
+      expose: true
+
+#La ruta de validación de una videon previamente editado
+ds_facyt_infrastructure_user_video_edit_validate:
+    path:   /video/edit_validate/{videoId}
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Video:validateEdit }

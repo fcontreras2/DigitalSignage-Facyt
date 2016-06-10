@@ -87,11 +87,10 @@
                                     <th style="width: 15%"><a href="" ng-click="setFiler('end_date');">Fecha Final</a></th>
                                     <th style="width: 30%"><a href="" ng-click="setFiler('title');">Título</a></th>
                                     <th style="width: 5%"><a href="">Estado</a></th>
-                                    <th style="width: 5%"><a href="">Detalle</a></th>
                                 </thead>
                                 <tbody>
                                     <tr ng-show="publish.length == 0">
-                                        <td ng-repeat="i in [0,1,2,3,4,5,6]"> -</td>
+                                        <td ng-repeat="i in [0,1,2,3,4,5]"> -</td>
                                     </tr>
                                     <tr ng-repeat="currentVideo in publish" ng-if="publish.length > 0" ng-cloak>
                                         <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
@@ -99,7 +98,7 @@
                                         <td>{[{ currentVideo.publish_time}]}</td>
                                         <td>{[{ currentVideo.start_date}]}</td>
                                         <td>{[{ currentVideo.end_date}]}</td>
-                                        <td>{[{ currentVideo.title}]}</td>
+                                        <td><a href="{[{urlEdit}]}" ng-click="getUrlEdit(currentVideo.id)">{[{ currentVideo.title}]}</a></td>
                                         <td>
                                             <center><span class="fa fa-circle" ng-class="{
                                             'status-new': currentVideo.status === 0,
@@ -108,8 +107,7 @@
                                             'status-active': currentVideo.status == 3,
                                             'status-finish': currentVideo.status == 4,
                                             'status-canceled' : currentVideo.status == 5}"></span></center>
-                                        </td>
-                                        <td style="video-align: center"><a style="cursor: pointer" ng-click="modalPreviewVideo($index);getUrlEdit(publish[$index].id)"> <span class="fa fa-eye" ></span></a></td>
+                                        </td>                                        
                                         </tr>
                                     </tbody>
                                 </table>

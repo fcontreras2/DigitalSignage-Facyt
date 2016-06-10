@@ -1,9 +1,12 @@
 uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageService',
     function ($scope, $modal, UploadImageService) {
         
+        $scope.data = data;
         var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});
 
         $scope.pathImage = data.pathImage;
+        
+        $scope.bounds = {};
         $scope.cropper = {};
         $scope.cropper.sourceImage = null;
         $scope.cropper.croppedImage   = null;
@@ -11,7 +14,7 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         $scope.bounds.left = 0;
         $scope.bounds.right = 0;
         $scope.bounds.top = 0;
-        $scope.bounds.bottom = 0; 
+        $scope.bounds.bottom = 0;
 
         if ($scope.pathImage) {
             $scope.cropper.croppedImage = '/uploads/images/' + $scope.pathImage;
@@ -19,20 +22,22 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         }
         
         $scope.showCropImageModal = function() {
-            UploadImageService.resetCropper(cropImageModal, $scope, $modal);
+            cropImageModal.$promise.then(cropImageModal.show);        
         };
 
         $scope.hideModal = function() {
-            UploadImageService.resetCropper(cropImageModal, $scope, $modal);
+            cropImageModal.$promise.then(cropImageModal.show);
         };
 
         $scope.uploadFile = function() {
-
-            $scope.cropper.sourceImage = $scope.cropper.croppedImage;
-            return $scope.cropper;
+            document.getElementById("hidden_aux").filename = $scope.cropper.croppedImage;
         }
 
         $scope.$watch('cropper.croppedImage', function(){
             console.log("cambi{o", $scope.cropper);
         });
+
+        $scope.setData = function(){
+            
+        }
     }]);

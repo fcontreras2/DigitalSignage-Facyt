@@ -83,7 +83,9 @@
                 "database_password": "SYMFONY__DATABASE_PASSWORD",
                 "locale": "SYMFONY__LOCALE",
                 "extension_user": "EXTENSION_USER",
-                "extension_admin": "EXTENSION_ADMIN"
+                "extension_admin": "EXTENSION_ADMIN",
+                "email_account" : "EMAIL_ACCOUNT",
+                "email_password" : "EMAIL_PASSWORD"
             }
         },
         "heroku": {

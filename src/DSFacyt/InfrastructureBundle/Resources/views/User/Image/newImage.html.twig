@@ -38,12 +38,14 @@
         <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadImageModule" ng-controller="UploadImageController">
                 <div class="panel panel-default">
+                    <form name="setImage">
                     <div class="panel-heading"><h4>Ingresa los datos de la publicación</h4></div>
                     <div class="panel-body">                        
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <label class="control-label">* Título</label>
-                                <input type="text" name="title" id="input" class="form-control" ng-model="data.title" >
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true">
+                                <span class="error" ng-show="setImage.title.$invalid && !setImage.title.$pristine">Error</span>
                                 <br>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">
@@ -51,43 +53,45 @@
                                     <div class="col-xs-12 col-md-4">                        
                                         <label class="control-label">* Hora de publicación </label>
                                         <div class="input-group bootstrap-timepicker timepicker">
-                                            <input type="text" name="publish_time" id="input" class="form-control  input-small" id="registerImage_publish_time" ng-model="data.publis_time">
-                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                            <input type="text" name="publish_time"  class="form-control  input-small" id="registerImage_publish_time" ng-model="data.publish_time" ng-required="true">
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>                                            
                                         </div>                                        
+                                        <span class="error" ng-show="setImage.publish_time.$invalid">Error</span>
                                     </div>
                                     <div class="col-xs-12 col-md-4">
                                         <label class="control-label">* Fecha inicial </label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="start_date" id="input" class="form-control">
+                                            <input type="text" name="start_date" id="input" class="form-control" ng-model="data.start_date" ng-required="true">                                            
                                         </div>
+                                        <span class="error" ng-show="setImage.start_date.$invalid && !setImage.start_date.$pristine">Error</span>                                        
                                     </div>
                                     <div class="col-xs-12 col-md-4">
                                         <label class="control-label">* Fecha final </label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="end_date" id="input" class="form-control">
+                                            <input type="text" name="end_date" id="input" class="form-control" ng-model="data.end_date">
                                         </div>
+                                        <span class="error" ng-show="setImage.end_date.$invalid && !setImage.end_date.$pristine">Error</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
                                 <br>
                                 <label class="control-label">Canales a publicar </label>
-                                <div class="checkbox">
+                                <div class="checkbox" >
                                     <label ng-repeat="(key, value) in data.channels">
-                                        <input type="checkbox" value="{[{value.id}]}">
+                                        <input type="checkbox" value="{[{value.id}]}" ng-model="data.channels[key].value">
                                         {[{value.name}]}
                                     </label>
                                 </div>
-                                {#{{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
-                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}#}
                                 <br>
                             </div>
 
                             <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
                                 <label class="control-label">* Descripción</label>
-                                <input type="text" name="description" id="input" class="form-control">                                
+                                <input type="text" name="description" id="input" class="form-control" ng-model="data.description">
+                                <span class="error" ng-show="setImage.description.$invalid && !setImage.description.$pristine">Error</span>
                             </div>
 
                             <div class="col-xs-10 col-xs-offset-1 ">
@@ -102,11 +106,12 @@
                                                 <h6 style="color: white;font-weight: bold;">Cambiar </h6>
                                             </center>
                                             <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
-                                            <input type="file" name="image" img-cropper-fileread onchange="angular.element(this).scope().showCropImageModal(this)" style="display:none" image="cropper.sourceImage">                                
+                                            <input type="file" name="image" img-cropper-fileread onchange="angular.element(this).scope().showCropImageModal(this)" style="display:none" image="cropper.sourceImage">
                                         </label>
                                         <div ng-show="cropper.croppedImage"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
                                     </center>
                                 </div>
+                                <span class="error" ng-show="setImage.image.$invalid && !setImage.image.$pristine">Error</span>
                                 <br>
                                 {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
                             </div>
@@ -117,15 +122,16 @@
                             </div>
                                     
                             </div>
-                            </div>
+                        </div>
                         <div class="panel-footer">
                             <div class="row">
                              <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-click="setData()" ><b>Publicar</b>
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-click="setData(cropper.croppedImage)" ng-disabled="setImage.$invalid"><b>Publicar</b>
                                 </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -145,6 +151,10 @@
         //console.log( div.firstChild.nodeValue);
         data = JSON.parse(data);
     </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    
     {% if app.environment == "dev" %}
 
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>        
@@ -155,6 +165,8 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>       
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageModule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageService.js') }}"></script>

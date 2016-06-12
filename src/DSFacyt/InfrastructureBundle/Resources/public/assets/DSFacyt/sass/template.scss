@@ -43,6 +43,14 @@ body {
 .body-channel {
   background: $blue-ligth !important;
 }
+
+.checkbox {
+
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+}
 .modal {
   font-family: 'AVENIR LT STD 55 ROMAN';
   .modal-dialog {
@@ -201,9 +209,10 @@ body {
     z-index: 100;
     background: #7c7c7c;
     margin-left: -50%;
-    margin-top: 76%;
+    margin-top: 44%;
     cursor: pointer;
     opacity:0.8;
+    h6 { font-size: 16px;}
   }
 
   .fa-circle-o-notch {

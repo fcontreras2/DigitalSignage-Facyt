@@ -7,12 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\File\File;
 
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterImageType;
 use DSFacyt\InfrastructureBundle\Entity\Image;
 use DSFacyt\InfrastructureBundle\Entity\Document;
 
 use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
+use DSFacyt\Core\Application\UseCases\Image\SetImage\SetImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;
 use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 
@@ -231,5 +234,31 @@ class ImageController extends Controller
             
         }
         return new Response('Not Found',404);        
+    }
+
+    /**
+    * La función se encarga de crear y editar
+    * una publicación de tipo imagen vía ajax
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function setImageAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+
+            $data = json_decode($request->request->get('data'), true);
+            if ($request->files->get('file')) 
+                $file = new File($request->files->get('file'));
+
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+            $command = new SetImageCommand($file,$data, $user);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());
+
+        }
+
+        return new JsonResponse('Bad Request2222', 400);
     }
 }

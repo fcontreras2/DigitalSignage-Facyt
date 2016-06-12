@@ -34,3 +34,12 @@ ds_facyt_infrastructure_user_image_delete:
       expose: true
     requirements:
       { _format: (xml | json), _method: POST}
+
+
+ds_facyt_infrastructure_user_image_set:
+    path: /image/set
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Image:setImage}
+    options:
+      expose: true
+    requirements:
+      { _format: json, _method: POST }

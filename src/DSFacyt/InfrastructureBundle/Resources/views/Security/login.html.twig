@@ -47,7 +47,7 @@
                     {% endif %}
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                             <label ><span class="fa fa-user"></span> Nombre de Usuario o correo electrónico</label>
-                            <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Nombre usuario / correo electrónico">
+                            <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Nombre usuario / correo electrónico" autofocus>
                             <br>
                             <label><span class="fa fa-lock"></span> Constraseña</label>
                             <input type="password" class="form-control" name="_password" value="{{ last_username }}" placeholder="Introduce Contraseña">

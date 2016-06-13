@@ -358,4 +358,26 @@ class Text
     {
         return $this->observation;
     }
+
+     /**
+    * La función se encarga de actualizar la entidad
+    * dado un array de datos
+    **/
+    public function updateObject($data)
+    {
+        if (isset($data['title']))
+            $this->title = $data['title'];
+
+        if (isset($data['publish_time']))
+            $this->publish_time = $data['publish_time'];
+
+        if (isset($data['start_date']))
+            $this->start_date = \DateTime::createFromFormat('d/m/Y',$data['start_date']);
+
+        if (isset($data['end_date']))
+            $this->end_date = \DateTime::createFromFormat('d/m/Y',$data['end_date']);
+
+        if (isset($data['info']))
+            $this->info = $data['info'];
+    }
 }

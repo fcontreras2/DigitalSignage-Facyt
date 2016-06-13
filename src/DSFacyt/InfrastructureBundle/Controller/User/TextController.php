@@ -5,10 +5,13 @@ namespace DSFacyt\InfrastructureBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use DSFacyt\InfrastructureBundle\Entity\Text;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterTextType;
 
 use DSFacyt\Core\Application\UseCases\Text\GetTexts\GetTextsCommand;
+use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
+use DSFacyt\Core\Application\UseCases\Text\SetText\SetTextCommand;
 use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
 use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
 /**
@@ -57,12 +60,20 @@ class TextController extends Controller
     public function publishNewAction()
     {
         $text= new Text();
-        $form = $this->createForm(new RegisterTextType(), $text,
-            array(
-                'action' => $this->generateUrl('ds_facyt_infrastructure_user_text_new_validate'),
-                'method' => 'POST'));
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
-        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array(
+            'data' => json_encode($data)));        
     }
 
     /**
@@ -115,18 +126,15 @@ class TextController extends Controller
      */
     public function editAction($textId)
     {
-        $command = new EditTextCommand();
-        $command->setTextId($textId);
+        $command = new GetTextCommand($textId);
         $response = $this->get('CommandBus')->execute($command);
-        if ($response->getStatusCode() == 201) {
-            $form = $this->createForm(new RegisterTextType(), $command->getEntityText(),
-                array(
-                    'action' => $this->generateUrl('ds_facyt_infrastructure_user_text_edit_validate',array('textId' => $textId)),
-                    'method' => 'POST'));
-            return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array('form' => $form->createView()));
+        if ($response->getStatusCode() == 200) {           
+
+            return $this->render('DSFacytInfrastructureBundle:User\Text:newText.html.twig', array(
+            'data' => json_encode($response->getData())));
         }
 
-        return $this->redirect('ds_facyt_infrastructure_user_text_homepage');
+        return $this->redirect('ds_facyt_infrastructure_user_image_homepage');
     }
 
     /**
@@ -201,5 +209,28 @@ class TextController extends Controller
             
         }
         return new Response('Not Found',404);        
+    }
+
+    /**
+    * La función se encarga de crear y editar
+    * una publicación de tipo Texto vía ajax
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function setTextAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+
+            $data = json_decode($request->getContent(),true);
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+            $command = new SetTextCommand($data, $user);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());
+
+        }
+
+        return new JsonResponse('Bad Request', 400);
     }
 }

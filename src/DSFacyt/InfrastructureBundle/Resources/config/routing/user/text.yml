@@ -38,3 +38,12 @@ ds_facyt_infrastructure_user_text_delete:
       expose: true
     requirements:
       { _format: (xml | json), _method: POST}
+
+
+ds_facyt_infrastructure_user_text_set:
+    path: /text/set
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Text:setText}
+    options:
+      expose: true
+    requirements:
+      { _format: json, _method: POST }

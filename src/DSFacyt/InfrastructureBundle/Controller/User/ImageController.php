@@ -252,11 +252,10 @@ class ImageController extends Controller
             $command = new SetImageCommand($file,$data, $user);
             $response = $this->get('CommandBus')->execute($command);
 
-            die($response->getMessage());
             return new JsonResponse($response->getMessage(), $response->getStatusCode());
 
         }
 
-        return new JsonResponse('Bad Request2222', 400);
+        return new JsonResponse('Bad Request', 400);
     }
 }

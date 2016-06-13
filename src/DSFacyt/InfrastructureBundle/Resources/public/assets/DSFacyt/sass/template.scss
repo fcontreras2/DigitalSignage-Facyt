@@ -51,6 +51,7 @@ body {
     padding: 10px;
 
 }
+.error { font-weight: bold; color:$red}
 .modal {
   font-family: 'AVENIR LT STD 55 ROMAN';
   .modal-dialog {
@@ -189,6 +190,12 @@ body {
 }
 
 .divider-header-body { margin-bottom: 3%;}
+.modal-process { 
+    background: blue;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+  }
+
 .triangle-footer {
     background: gray !important;    
 }

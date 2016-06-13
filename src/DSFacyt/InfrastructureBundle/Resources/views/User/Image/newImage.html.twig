@@ -43,9 +43,8 @@
                     <div class="panel-body">                        
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <label class="control-label">* Título</label>
-                                <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true">
-                                <span class="error" ng-show="setImage.title.$invalid && !setImage.title.$pristine">Error</span>
+                                <label class="control-label">* Título</label> <span class="error" ng-show="setImage.title.$invalid && !setImage.title.$pristine" ng-cloak> de 10 a 30 caracteres</span>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">                                
                                 <br>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">
@@ -56,7 +55,7 @@
                                             <input type="text" name="publish_time"  class="form-control  input-small" id="registerImage_publish_time" ng-model="data.publish_time" ng-required="true">
                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>                                            
                                         </div>                                        
-                                        <span class="error" ng-show="setImage.publish_time.$invalid">Error</span>
+                                        <span class="error" ng-show="setImage.publish_time.$invalid" ng-cloak>*hora obligatoria</span>
                                     </div>
                                     <div class="col-xs-12 col-md-4">
                                         <label class="control-label">* Fecha inicial </label>
@@ -64,7 +63,7 @@
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input type="text" name="start_date" id="input" class="form-control" ng-model="data.start_date" ng-required="true">                                            
                                         </div>
-                                        <span class="error" ng-show="setImage.start_date.$invalid && !setImage.start_date.$pristine">Error</span>                                        
+                                        <span class="error" ng-show="setImage.start_date.$invalid && !setImage.start_date.$pristine">*fecha inicial obligatoria</span>
                                     </div>
                                     <div class="col-xs-12 col-md-4">
                                         <label class="control-label">* Fecha final </label>
@@ -72,7 +71,7 @@
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input type="text" name="end_date" id="input" class="form-control" ng-model="data.end_date">
                                         </div>
-                                        <span class="error" ng-show="setImage.end_date.$invalid && !setImage.end_date.$pristine">Error</span>
+                                        <span class="error" ng-show="setImage.end_date.$invalid && !setImage.end_date.$pristine" ng-cloak>*fecha final obligatoria</span>
                                     </div>
                                 </div>
                             </div>
@@ -90,8 +89,8 @@
 
                             <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
                                 <label class="control-label">* Descripción</label>
-                                <input type="text" name="description" id="input" class="form-control" ng-model="data.description">
-                                <span class="error" ng-show="setImage.description.$invalid && !setImage.description.$pristine">Error</span>
+                                <input type="text" name="description" id="input" class="form-control" ng-model="data.description" ng-required="true">
+                                <span class="error" ng-show="setImage.description.$invalid && !setImage.description.$pristine" ng-cloak>Error</span>
                             </div>
 
                             <div class="col-xs-10 col-xs-offset-1 ">
@@ -106,12 +105,12 @@
                                                 <h6 style="color: white;font-weight: bold;">Cambiar </h6>
                                             </center>
                                             <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
-                                            <input type="file" name="image" img-cropper-fileread onchange="angular.element(this).scope().showCropImageModal(this)" style="display:none" image="cropper.sourceImage">
+                                            <input type="file" name="image" img-cropper-fileread onchange="angular.element(this).scope().showCropImageModal(this)" style="display:none" image="cropper.sourceImage" ng-required="!cropper.croppedImage" valid-file ng-model="filename">
                                         </label>
                                         <div ng-show="cropper.croppedImage"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
                                     </center>
                                 </div>
-                                <span class="error" ng-show="setImage.image.$invalid && !setImage.image.$pristine">Error</span>
+                                <span class="error" ng-show="setImage.image.$invalid && !setImage.image.$pristine" ng-cloak>Error</span>
                                 <br>
                                 {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
                             </div>
@@ -127,18 +126,28 @@
                             <div class="row">
                              <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
                                 <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-click="setData(cropper.croppedImage)" ng-disabled="setImage.$invalid"><b>Publicar</b>
-                                </button>
+                                </button>                                
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <div class="alert alert-info pull-right" style="position:fixed;right:16px;bottom:0;z-index:100" ng-show="alert_message != false" ng-cloak>
+                <span ng-show="alert_message == 1">
+                    <span class="fa fa-spinner fa-spin" aria-hidden="true"></span> Publicando ... 
+                </span>                
+            </div>                                   
         </div>
+        
     </div>
 </div>
 </div>
-{% endblock %}
+{% endblock body %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
 
 {% block javascripts%}
     

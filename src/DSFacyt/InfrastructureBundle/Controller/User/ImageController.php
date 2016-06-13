@@ -17,6 +17,7 @@ use DSFacyt\InfrastructureBundle\Entity\Document;
 use DSFacyt\Core\Application\UseCases\Image\UploadImage\UploadImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\SetImage\SetImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImages\GetImagesCommand;
+use DSFacyt\Core\Application\UseCases\Image\GetImage\GetImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 
 
@@ -147,16 +148,12 @@ class ImageController extends Controller
      */
     public function editAction($imageId)
     {
-        $command = new EditImageCommand();
-        $command->setImageId($imageId);
+        $command = new GetImageCommand($imageId);
         $response = $this->get('CommandBus')->execute($command);
-        if ($response->getStatusCode() == 201) {
-            $form = $this->createForm(new RegisterImageType(), $command->getEntityImage(),
-                array(
-                    'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_edit_validate',array('imageId' => $imageId)),
-                    'method' => 'POST'));
-            $pathImage = $command->getEntityImage()->getDocument()->getFileName();
-            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => $pathImage])));
+        if ($response->getStatusCode() == 200) {           
+
+            return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array(
+            'data' => json_encode($response->getData())));
         }
 
         return $this->redirect('ds_facyt_infrastructure_user_image_homepage');
@@ -255,6 +252,7 @@ class ImageController extends Controller
             $command = new SetImageCommand($file,$data, $user);
             $response = $this->get('CommandBus')->execute($command);
 
+            die($response->getMessage());
             return new JsonResponse($response->getMessage(), $response->getStatusCode());
 
         }

@@ -45,7 +45,7 @@ class SetImageHandler implements Handler
         $rpChannel = $rf->get('Channel');
 
         if (isset($request['data']['id'])) {
-            $image = $rp->findOneBy(['id' => $request['data']['id']]);
+            $image = $rpImage->findOneBy(['id' => $request['data']['id']]);
             if (!$image)
                 return new ResponseCommandBus(404, 'Not Found');
         } else
@@ -70,7 +70,9 @@ class SetImageHandler implements Handler
             $image->setUser($request['user']);
 
             foreach ($request['data']['channels'] as $currentChannel) {
+
                 $channel = $rpChannel->findOneBy(['id' => $currentChannel['id']]);
+                $image->removeChannel($channel);
                 if ($channel) {
                     if (isset($currentChannel['value']) and $currentChannel['value'])
                         $image->addChannel($channel);
@@ -81,6 +83,7 @@ class SetImageHandler implements Handler
             
             $rpImage->save($image);
 
+            unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/images/'.$oldImage);
 
             return new ResponseCommandBus(201,'Created');
         }

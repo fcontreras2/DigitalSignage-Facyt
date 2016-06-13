@@ -1,9 +1,10 @@
-uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageService','Upload','$window',
-    function ($scope, $modal, UploadImageService,Upload,$window) {
+uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageService','Upload','$window','$timeout',
+    function ($scope, $modal, UploadImageService,Upload,$window, $timeout) {
         
         $scope.data = data;
         $scope.data.publish_time = '7:00 AM'
-        var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});
+        $scope.alert_message = null;
+        var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});    
 
         $scope.bounds = {};
         $scope.cropper = {};
@@ -15,10 +16,10 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         $scope.bounds.top = 0;
         $scope.bounds.bottom = 0;
 
-        /*if ($scope.pathImage) {
-            $scope.cropper.croppedImage = '/uploads/images/' + $scope.pathImage;
+        if ($scope.data.pathImage) {
+            $scope.cropper.croppedImage = '/uploads/images/' + $scope.data.pathImage;
             $scope.cropper.sourceImage = true;
-        }*/
+        }
         
         $scope.showCropImageModal = function() {
             cropImageModal.$promise.then(cropImageModal.show);        
@@ -31,13 +32,15 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         $scope.setData = function($file){
             var url = Routing.generate('ds_facyt_infrastructure_user_image_set');            
             var data = angular.toJson($scope.data);
+            
             Upload.upload({
                 url: url,
                 data: {file: Upload.dataUrltoBlob($file), data: data}
             }).progress(function (evt) {
-                $window.location.href = Routing.generate('ds_facyt_infrastructure_user_image_homepage');
+                $timeout(function() { $scope.alert_message = 1;}, 1500);
             }).success(function (request) {
-                console.log('exito');
+                $timeout(function() { $scope.alert_message = false;}, 1500);
+                $window.location.href = Routing.generate('ds_facyt_infrastructure_user_image_homepage');
             }).error(function (data, status, headers, config) {
                 console.log('error');
             });

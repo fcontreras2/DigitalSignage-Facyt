@@ -1,5 +1,5 @@
  {% extends "base.html.twig" %}
-{% block title %} Video {% endblock title%}
+{% block title %} Nuevo/Editar Video {% endblock title%}
 {% block stylesheets %}
      {% if app.environment == "dev" %}
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
@@ -35,107 +35,113 @@
                 <br>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="row">        
+            <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadVideoModule" ng-controller="UploadVideoController">
+            <form name="setVideo">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h5>INGRESA LOS DATOS DE LA PUBLICACIÓN</h5></div>
-
-                    <div class="panel-body">
-                        {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
-                        <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                {{ form_errors(form.title) }}
-                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
-                                {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
-                                <br>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <div class="row ">
-                                    <div class="col-xs-4">
-                                        {{ form_errors(form.publish_time) }}
-                                    </div>
-                                    <div class="col-xs-4">
-                                        {{ form_errors(form.start_date) }}
-                                    </div>
-                                    <div class="col-xs-4">
-                                        {{ form_errors(form.end_date) }}
-                                    </div>
+                    
+                        <div class="panel-heading"><h5>INGRESA LOS DATOS DE LA PUBLICACIÓN</h5></div>
+                        <div class="panel-body">                        
+                            <div class="row">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <label class="control-label">* Título</label> <span class="error" ng-show="setVideo.title.$invalid && !setVideo.title.$pristine" ng-cloak> de 10 a 30 caracteres</span>
+                                    <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30" autofocus/>
+                                    <br>
                                 </div>
-                            </div>
-
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <div class="row ">
-                                    <div class="col-xs-4">
-
-                                        {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        <div class="input-group bootstrap-timepicker timepicker">
-                                            {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}
-                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                        </div>                                        
-                                    </div>
-                                    <div class="col-xs-4">
-
-                                        {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            {{ form_widget(form.start_date, {'attr': {'class': 'form-control'}}) }}
-
+                                
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <div class="row ">
+                                        <div class="col-xs-12 col-md-4">
+                                        <br>
+                                            <label class="control-label">* Hora de publicación </label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input type="text" name="publish_time"  class="form-control  input-small" id="registerImage_publish_time" ng-model="data.publish_time" ng-required="true" />
+                                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>                                            
+                                            </div>                                        
+                                            <span class="error" ng-show="setVideo.publish_time.$invalid" ng-cloak>*hora obligatoria</span>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            {{ form_widget(form.end_date, {'attr': {'class': 'form-control'}}) }}
-
+                                        <div class="col-xs-12 col-md-4">
+                                        <br>
+                                            <label class="control-label">* Fecha inicial </label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" name="start_date" id="input" class="form-control" ng-model="data.start_date" ng-required="true" />
+                                            </div>
+                                            <span class="error" ng-show="setVideo.start_date.$invalid && !setVideo.start_date.$pristine">*fecha inicial obligatoria</span>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                        <br>
+                                            <label class="control-label">* Fecha final </label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" name="end_date" id="input" class="form-control" ng-model="data.end_date" />
+                                            </div>
+                                            <span class="error" ng-show="setVideo.end_date.$invalid && !setVideo.end_date.$pristine" ng-cloak>*fecha final obligatoria</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
-                                <br>
-                                {{ form_errors(form.Channels) }}
-                                {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
-                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
-                            </div>
+                                <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                    <br>
+                                    <label class="control-label">Canales a publicar </label>
+                                    <div class="checkbox" >
+                                        <label ng-repeat="(key, value) in data.channels">
+                                            <input type="checkbox" value="{[{value.id}]}" ng-model="data.channels[key].value" />
+                                            {[{value.name}]}
+                                        </label>
+                                    </div>
+                                    <br>
+                                </div>
 
-                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
-                                <br>
-                                {{ form_errors(form.description) }}
-                                {{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
-                                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                            </div>
+                                <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                    <br>
+                                    <label class="control-label">* Descripción</label>
+                                    <input type="text" name="info" id="input" class="form-control" ng-model="data.description" ng-required="true" />
+                                    <span class="error" ng-show="setVideo.description.$invalid && !setVideo.description.$pristine" ng-cloak>*información obligatoria</span>
+                                </div>
 
-                            <div class="col-xs-10 col-xs-offset-1 " ng-app="UploadImageModule" ng-controller="UploadImageController">
-                                <br>
-                                Selecciona una Video
-                                {{ form_errors(form.document) }}
-                                {{ form_widget(form.document, {'attr': {'class': 'form-control'}}) }}
-                                <br>
-                                {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
-                            </div>
-                                    
-                            </div>
-
-                             <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
-                                </button>
+                                <div class="col-xs-10 col-xs-offset-1 ">
+                                    <br>
+                                    <label class="control-label">* Seleccione video </label>
+                                        <div class="uploadImage">
+                                        <center>
+                                        <label class="button img-rounded img-default drop-box" style="text-align:center;">
+                                            <span ng-if="!cropper.sourceImage" class="fa fa-play-circle-o fa-3x camera button"></span>
+                                            <center ng-if="!cropper.sourceImage"><h6>Subir video</h6></center>
+                                            <center ng-if="cropper.sourceImage != null" id="change-image" >
+                                                <h6 style="color: white;font-weight: bold;">Cambiar </h6>
+                                            </center>                                            
+                                            <input type="file" name="video" style="display:none"  valid-file ng-model="file" ng-model="data">
+                                        </label>                                    
+                                    </center>
+                                </div>                                
                             </div>
                         </div>
-                        {{ form_rest(form) }}
-                        {{ form_end(form) }}
+                    
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                         <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                            <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-click="setData(file)" ng-disabled="setVideo.$invalid" ><b>Publicar</b>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>
 </div>
-</div>
-{% endblock %}
+
+{% endblock body %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
+
 
 {% block javascripts%}
     
-    <!-- Tomando variables enviadas desde el servidor -->
+    <!-- Tomando variables e    <!-- Tomando variables enviadas desde el servidor -->
     <script type="text/javascript">
         var data = "{{ data }}";
         var div = document.createElement('div');
@@ -144,6 +150,10 @@
         //console.log( div.firstChild.nodeValue);
         data = JSON.parse(data);
     </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    
     {% if app.environment == "dev" %}
 
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>        
@@ -154,10 +164,11 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>       
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageModule.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageService.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Image/UploadImageController.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoController.js') }}"></script>
     {% else %}
         {% javascripts
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'

@@ -200,17 +200,17 @@ body {
     background: gray !important;    
 }
 
-.uploadImage {
+.uploadImage, .uploadVideo {
   border:1px solid $gray-light;
   min-height: 25vh;
-  .fa-camera {
+  .fa-camera, .fa-play-circle-o {
     margin-top:74%;
-    color:$gray-light;
+    color:$blue-ligth;
     text-align:center;
     cursor:pointer
   }
 
-  #change-image {
+  #change-image , #change-video{
     width: 100%;
     position: absolute;
     z-index: 100;

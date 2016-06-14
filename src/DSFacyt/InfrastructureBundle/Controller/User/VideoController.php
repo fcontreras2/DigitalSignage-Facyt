@@ -6,12 +6,14 @@ use DSFacyt\Core\Application\UseCases\Video\GetVideos\GetVideosCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use DSFacyt\InfrastructureBundle\Entity\Video;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterVideoType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DSFacyt\Core\Application\UseCases\Video\UploadVideo\UploadVideoCommand;
 use DSFacyt\Core\Application\UseCases\Video\EditVideo\EditVideoCommand;
+use DSFacyt\Core\Application\UseCases\Video\SetVideo\SetVideoCommand;
 
 /**
  * Class VideoController
@@ -57,13 +59,20 @@ class VideoController extends Controller
      */
     public function publishNewAction()
     {
-        $video= new Video();
-        $form = $this->createForm(new RegisterVideoType(), $video,
-            array(
-                'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_new_validate'),
-                'method' => 'POST'));
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathVideo' => null])));
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array(
+            'data' => json_encode($data)));
     }
 
     /**
@@ -169,5 +178,32 @@ class VideoController extends Controller
         }
 
         return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathVideo' => null])));
+    }
+
+    /**
+    * La función se encarga de crear y editar
+    * una publicación de tipo video vía ajax
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function setVideoAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+
+            $data = json_decode($request->request->get('data'), true);
+            var_dump($data);
+            /*if ($request->files->get('file')) 
+                $file = new File($request->files->get('file'));
+
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+            $command = new SetVideoCommand($file,$data, $user);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());*/
+
+        }
+
+        return new JsonResponse('Bad Request', 400);
     }
 }

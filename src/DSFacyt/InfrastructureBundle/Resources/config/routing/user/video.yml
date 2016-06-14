@@ -26,3 +26,11 @@ ds_facyt_infrastructure_user_video_edit:
 ds_facyt_infrastructure_user_video_edit_validate:
     path:   /video/edit_validate/{videoId}
     defaults: { _controller: DSFacytInfrastructureBundle:User\Video:validateEdit }
+
+ds_facyt_infrastructure_user_video_set:
+    path: /video/set
+    defaults: { _controller: DSFacytInfrastructureBundle:User\Video:setVideo}
+    options:
+      expose: true
+    requirements:
+      { _format: json, _method: POST }

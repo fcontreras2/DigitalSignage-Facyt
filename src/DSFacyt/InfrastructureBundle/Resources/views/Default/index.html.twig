@@ -42,43 +42,47 @@
             </a>
         </div>
 
-        <div style="background:#e2e2e2">
+        <div id="aux-box-image">
             <div class="container">        
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2 style="color:#63a047; "> ¡Conoce la facultad!</h2>
+                        <h2> ¡Conoce la facultad!</h2>
                         <img src="http://entornovirtual.facyt.uc.edu.ve/pluginfile.php/1/theme_bcu/p1/1447361441/slide_ciencia-y-tecnologia%2B.jpg" width="100%">
                     </div>
                 </div>
+            </div>
+        </div>
+        <div id="aux-box-info">
+            <div class="container">
                 <br>
                 <div class="row">
-                    <div class="col-xs-12 col-xs-offset-0 col-md-5 col-md-offset-1">
-                        <span class="fa-stack fa-lg" style="font-size:30px">
+                    <div class="col-xs-12 col-xs-offset-0 col-md-6">
+                        <span class="fa-stack fa-lg icon" >
                           <i class="fa fa-circle fa-stack-2x" style="color:#122644;"></i>
                           <i class="fa fa-desktop fa-stack-1x fa-inverse"></i>
                         </span>                        
-                        <h3 style="color:#63a047;font-weight:bold;">Informate en directo</h3>
-                        <h4 style="color:#18304c;font-weight:bold;">Informarte de las novedades</h4>
+                        <h3 class="title">Informate en directo</h3>
+                        <h4 class="sub-title">Informarte de las novedades</h4>
                         <h4>
                             Puedes informarte de las novedades en FaCyT<br>
                             Eventos, suspensión de las actividades, pasantias,<br>
                             cursos, entre otros. Observa en directo <br>
-                            los canales de transmisión.<br>                        
+                            los canales de transmisión<br>
                         </h4>
                         <h4><a href="#" style="color:#18304c;font-weight:bold;">Canales</a></h4>
                     </div>
-                    <div class="col-xs-12 col-xs-offset-0 col-md-5">
-                        <span class="fa-stack fa-lg" style="font-size:30px">
+                    <div class="col-xs-12 col-xs-offset-0 col-md-6">
+                        <span class="fa-stack fa-lg icon" >
                           <i class="fa fa-circle fa-stack-2x" style="color:#122644;"></i>
                           <i class="fa fa-bullhorn fa-stack-1x fa-inverse"></i>
                         </span>                        
-                        <h3 style="color:#63a047;font-weight:bold;">Publica contenido</h3>
-                        <h4 style="color:#18304c;font-weight:bold;">¿Tienes información que compartir?</h4>
+                        <h3 class="title" >Publica contenido</h3>
+                        <h4 class="sub-title" >¿Tienes información que compartir?</h4>
                         <h4>
                             Ayudanos a mantener informados  a los<br>
                             estudiantes, profesores y personal de <br>
                             tu facultad. Publica contenido dinámicos <br>
-                            como textos, imágenes y videos. <br>
+                            como textos, imágenes y videos <br>
                         </h4>
                         <h4><a href="#" style="color:#18304c;font-weight:bold;">Publicar</a></h4>
                     </div>
@@ -86,13 +90,13 @@
             </div>
             <br>
         </div>
-        <div class="container">
+        <div class="container" id="box-importants">
         <div class="row">
             <div class="col-xs-12">
                 <div class="row">
                 <div class="col-xs-12">
-                <h2 style="color:#63a047;"> Destacados</h2>
-                    <h4 style="color:#18304c">Publicaciones destacadas en la semana
+                <h2 class="title"> Destacados</h2>
+                    <h4 class="sub-title">Publicaciones destacadas en la semana
                     <span class="pull-right"><a href="{{ path('ds_facyt_infrastructure_importants')}}">Ver todos</a></span>
                     </h4>
                     </div>
@@ -100,9 +104,7 @@
                 <div class="row">
                     {% for currentText in data.texts %}
                         <div class="col-xs-12 col-md-3">
-                        <div class="panel panel-default" style="
-    min-height: 300px;
-    max-height: 300px;">
+                        <div class="panel panel-default" style="min-height: 300px;max-height: 300px;">
                             <div class="panel-heading">
                                 <h4>{{currentText.title}}</h4>
                             </div>
@@ -110,9 +112,8 @@
                                 <p style="font-size:16px;">
                                     {{currentText.info}}
                                     <br>
-                                    <a href="">
-                                    <br>
-                                    <span class="fa fa-circle"> </span> Ver publicación </a>
+                                    <a href="" class="pull-right">
+                                    <span class="fa fa-circle "> </span> Ver publicación </a>
                                 </p>
                             </div>
                             <div class="panel-footer" style="min-height:78px">

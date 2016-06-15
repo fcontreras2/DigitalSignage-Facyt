@@ -37,7 +37,8 @@ body {
     width: 100%;
     min-height: 115px;
     color:white;  
-    background-color: $gray-dark;    
+    background-color: $blue-dark;
+    .title { color: $blue-ligth; border-bottom: 1px solid $blue-ligth}
 }
 
 .body-channel {
@@ -97,7 +98,7 @@ body {
 .panel {
   .panel-heading {
     font-family: 'Avenir LT Std 85 Heavy';
-    background: $green;
+    background: $blue-ligth;
     color:white;
     text-align: left;
   }
@@ -176,15 +177,19 @@ body {
   border-bottom: 2px solid $gray-light;
   min-width: 80px !important;
   padding: 0.5%;
+  a {color: $gray-dark !important;}
   .fa {
-    color:$green;
+    color:$gray-dark;
   }
   #logo-facyt { width: 52px;margin-top:-18px;}
   li { border-bottom: 4px solid white;}
-  li:hover { border-bottom: 4px solid $gray-light;background-color: white}
-  .active { border-bottom: 4px solid $blue-ligth}
+  li:hover { border-bottom: 2px solid $gray-light;background-color: white}
+  .active {
+    border-bottom: 2px solid $blue-ligth;
+    a, .fa{color:$blue-ligth !important;}
+  }
   @media (max-width: $screen-sm-min) {
-    .active { border-bottom: 4px solid white !important;background-color: $gray-light}
+    .active { border-bottom: 2px solid white !important;background-color: $gray-light}
   }
 
 }
@@ -236,6 +241,43 @@ body {
 
 
 // ===== ETIQUETAS CSS =====
+#aux-box-image {
+  background: $gray-light-two !important;
+  padding-bottom: 2%;
+  h2 { color: $blue-ligth;font-weight: bold}
+}
+
+#aux-box-info {
+  background: $gray-light !important;
+  padding-bottom: 2%;
+  .icon {
+    font-size: 30px;
+  }
+  .title {
+    font-size: 32px !important;
+    color:$blue-ligth !important;
+    font-weight: bold;
+  }
+  .sub-title {
+    font-size: 22px !important;
+    color:$blue-dark !important;
+    font-weight: bold;
+  }
+}
+
+#box-importants {
+  padding-bottom: 2%;
+  .title {
+    font-size: 32px !important;
+    color:$blue-ligth !important;
+    font-weight: bold;
+  }
+  .sub-title {
+    font-size: 22px !important;
+    color:$blue-dark !important;
+    font-weight: bold;
+  }
+}
 
 #body {
   min-height:100% !important;

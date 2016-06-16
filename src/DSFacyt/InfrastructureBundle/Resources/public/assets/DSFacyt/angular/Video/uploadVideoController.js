@@ -12,6 +12,7 @@ uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','
         $scope.setData = function($file){
             var url = Routing.generate('ds_facyt_infrastructure_user_video_set');            
             var data = angular.toJson($scope.data);
+            console.log($file);
             
             Upload.upload({
                 url: url,
@@ -20,7 +21,7 @@ uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','
                 $timeout(function() { $scope.alert_message = 1;}, 1500);
             }).success(function (request) {
                 $timeout(function() { $scope.alert_message = false;}, 1500);
-                $window.location.href = Routing.generate('ds_facyt_infrastructure_user_video_homepage');
+                //$window.location.href = Routing.generate('ds_facyt_infrastructure_user_video_homepage');
             }).error(function (data, status, headers, config) {
                 console.log('error');
             });

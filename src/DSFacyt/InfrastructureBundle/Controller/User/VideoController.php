@@ -59,20 +59,12 @@ class VideoController extends Controller
      */
     public function publishNewAction()
     {
-        $data = ['channels' => []];
-        $manager = $this->container->get('doctrine.orm.entity_manager');
-
-        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
-        $auxChannel = [];
-
-        foreach ($channels as $currentChannel) {
-            $auxChannel['id'] = $currentChannel->getId();
-            $auxChannel['name'] = $currentChannel->getName();
-            $data['channels'][] = $auxChannel;
-        }
-
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array(
-            'data' => json_encode($data)));
+                $video= new Video();
+        $form = $this->createForm(new RegisterVideoType(), $video,
+            array(
+                'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_new_validate'),
+                'method' => 'POST'));
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathImage' => null])));
     }
 
     /**
@@ -192,7 +184,13 @@ class VideoController extends Controller
         if($request->isXmlHttpRequest()) {
 
             $data = json_decode($request->request->get('data'), true);
-            var_dump($data);
+
+            if ($request->files->get('file')) {
+                $file = new File($request->files->get('file'));
+                var_dump($file);
+            }
+
+            die(var_dump($data));
             /*if ($request->files->get('file')) 
                 $file = new File($request->files->get('file'));
 

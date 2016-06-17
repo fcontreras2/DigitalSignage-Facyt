@@ -43,7 +43,7 @@ class SetTextHandler implements Handler
         $oldText = null;
         $rpText = $rf->get('Text');
         $rpChannel = $rf->get('Channel');
-
+        
         if (isset($request['data']['id'])) {
             $text = $rpText->findOneBy(['id' => $request['data']['id']]);
             if (!$text)

@@ -23,3 +23,10 @@ ds_facyt_infrastructure_admin_text_edit_validate:
   path: /text/{textId}/validate
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:validateEdit"}
 
+ds_facyt_infrastructure_admin_text_set:
+    path: /text/set
+    defaults: { _controller: DSFacytInfrastructureBundle:Admin\Publish:setText}
+    options:
+      expose: true
+    requirements:
+      { _format: json, _method: POST }

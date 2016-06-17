@@ -49,6 +49,8 @@ class GetTextHandler implements Handler
             $response['info'] = $text->getInfo();
             $response['start_date'] = $text->getStartDate()->format('d/m/Y');
             $response['end_date'] = $text->getEndDate()->format('d/m/Y');
+            $response['status'] = $text->getStatus();
+            $response['important'] = $text->getImportant();
             $response['publish_time'] = $text->getPublishTime();
 
             $response['channels'] = [];

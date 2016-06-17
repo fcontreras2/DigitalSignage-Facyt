@@ -17,17 +17,15 @@ class RegisterAdminTextType extends AbstractType
             ->add('publish_time','text',array('label' => 'Hora de publicación', 'constraints' => array(new NotBlank())))
             ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
             ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
-            ->add('info','textarea',array('label' => 'Información a publicar', 'constraints' => array(new NotBlank())))
+            ->add('info','textarea',array('label' => 'Información a publicar', 'constraints' => array(new NotBlank()),'required' => true))
             ->add('status', 'choice', array(
     			'choices'  => [
     				0 => 'Pendiente', 
-    				1 => 'Corregir', 
-    				2 => 'Aceptada',
-    				3 => 'Cancelar',
-    				4 => 'Finalizar'
+    				1 => 'Aceptada',
+    				2 => 'Cancelada',
+    				3 => 'Finalizada'
     			],'label' => 'Estado',
     			'required' => false))
-            ->add('observation', 'text', array('label' => 'Observaciones'))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',
                 'class' => 'DSFacytDomain:Channel',

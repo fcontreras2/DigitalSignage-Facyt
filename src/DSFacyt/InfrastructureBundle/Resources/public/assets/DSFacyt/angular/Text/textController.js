@@ -144,4 +144,4 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         $timeout(function() { initializing = true; $scope.$apply();});
 
-    }]);
+    }]);|

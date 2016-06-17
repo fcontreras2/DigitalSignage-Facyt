@@ -37,5 +37,7 @@ ds_facyt_infrastructure_admin_module_publish_image:
 
 # Obtener una publicación dado un estado y un tipo de la publicación
 ds_facyt_infrastructure_get_publish_type_status:
-  path: /{type}/{status}
-  defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}
+    path: /{type}/{status}
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:getPublishStatus", status: 0}
+    options:
+      expose: true  

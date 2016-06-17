@@ -8,9 +8,6 @@ DSFacyt\InfrastructureBundle\Entity\Text:
 
         info:
             - NotBlank: {'message': '* La información no debe estar vacío'}
-            - Length:
-                min: 50
-                max: 144
 
         start_date:
             - NotBlank: { 'message' : '* Fecha inicial no debe estar vacía'}

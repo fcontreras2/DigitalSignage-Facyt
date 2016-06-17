@@ -8,6 +8,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         $scope.type = data.type;
         $scope.status_select = data.status;
         $scope.alert_message = false;
+        $scope.urlEdit = null;
         var initializing = false;
         var modalInfo = $modal({scope: $scope, template: 'modal-info.tpl', show: false });
         var currentModal = publishService.getCurrentModalPreview($modal, $scope);
@@ -114,10 +115,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
             },1500);
         };
         
-        $scope.modalPreviewPublish = function(publish_id) {
-            $scope.indexPreview = publish_id;
-            $scope.color_status_preview = publishService.setColorStatus($scope.publish[publish_id].status);
-            currentModal.$promise.then(currentModal.show);
+        $scope.generateUrlEdit = function(publish_id) {
             var publish_type = data.type.toLowerCase();
             var auxUrl = 'ds_facyt_infrastructure_admin_edit_'+publish_type;
             
@@ -128,11 +126,8 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 case 'image':
                     $scope.urlEdit = Routing.generate( auxUrl, {'imageId' : $scope.publish[publish_id].id });
                     break;
-            }
-            
-        }
-
-        
+            }           
+        }        
 
         $scope.deletePublish = function(publishIndex) {
             

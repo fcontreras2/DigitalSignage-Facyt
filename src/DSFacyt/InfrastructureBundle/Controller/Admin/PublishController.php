@@ -13,6 +13,8 @@ use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\UpdateImportant\UpdateImportantCommand;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
+use DSFacyt\Core\Application\UseCases\Text\SetText\SetTextCommand;
+use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
 
 
 /**
@@ -27,6 +29,12 @@ use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
  */
 class PublishController extends Controller
 {
+
+    /**
+    * @var array posibles estados de una publicación
+    **/
+    private $status = ['Nuevo','Aceptada','Cancelada','Finalizada'];
+
     public function getPublishStatusAction($type, $status)
     {
         $template = null;
@@ -122,12 +130,22 @@ class PublishController extends Controller
     public function newTextAction()
     {
         $text= new Text();
-        $form = $this->createForm(new RegisterAdminTextType(), $text,
-            array(
-                'action' => $this->generateUrl('ds_facyt_infrastructure_admin_text_new_validate'),
-                'method' => 'POST'));
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
-        return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newText.html.twig', array('form' => $form->createView()));
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
+
+        $data['status'] = $this->status;
+
+        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newText.html.twig', array(
+            'data' => json_encode($data)));        
     }
 
     /**
@@ -179,18 +197,15 @@ class PublishController extends Controller
      */
     public function editTextAction($textId)
     {
-        $command = new EditTextCommand();
-        $command->setTextId($textId);
+        $command = new GetTextCommand($textId);
         $response = $this->get('CommandBus')->execute($command);
-        if ($response->getStatusCode() == 201) {
-            $form = $this->createForm(new RegisterAdminTextType(), $command->getEntityText(),
-                array(
-                    'action' => $this->generateUrl('ds_facyt_infrastructure_admin_text_edit_validate',array('textId' => $textId)),
-                    'method' => 'POST'));
-            return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newText.html.twig', array('form' => $form->createView()));
+        if ($response->getStatusCode() == 200) {           
+
+            return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newText.html.twig', array(
+            'data' => json_encode($response->getData())));
         }
 
-        return $this->redirectToRoute('ds_facyt_infrastructure_get_publish_type_status',['type' => 'text']);
+        return $this->redirect('ds_facyt_infrastructure_admin_homepage');
     }
 
     /**
@@ -277,5 +292,28 @@ class PublishController extends Controller
         }
 
         return new JsonResponse('Not Found',404);        
+    }
+
+    /**
+    * La función se encarga de crear y editar
+    * una publicación de tipo Texto vía ajax
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function setTextAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+
+            $data = json_decode($request->getContent(),true);
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+            $command = new SetTextCommand($data, $user);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());
+
+        }
+
+        return new JsonResponse('Bad Request', 400);
     }
 }

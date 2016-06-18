@@ -1,0 +1,175 @@
+{% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
+
+
+{% block title %} Imágenes {% endblock title %}
+
+{% block title_notifications %}
+    <span class="fa fa-camera"></span> Editar imagen
+{% endblock title_notifications %}
+
+{% block body %}
+        <div class="col-xs-12 col-md-8 col-md-offset-2"  ng-app="UploadImageModule" ng-controller="UploadImageController">
+                <div class="panel panel-default">
+                    <form name="setImage">
+                    <div class="panel-heading"> <h5>Ingresa los datos de la publicación <span class="pull-right fa fa-star" ng-if="data.important"> Destacada</span></h5> </div>
+                    <div class="panel-body">
+                        
+                        <div class="row">
+                            <div class="col-xs-5 col-xs-offset-1 ">                                
+                                <label class="control-label">* Título</label> <span class="error" ng-show="setImage.title.$invalid && !setImage.title.$pristine" ng-cloak> de 10 a 30 caracteres</span>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">                                
+                                <br>
+                            </div>
+                            <div class="col-xs-5">
+                                <label class="control-label">* Estado</label> 
+                                <br>
+                                <i class="fa fa-circle color_status circle-status" ng-class="color_status" ng-if="status_select != -1"></i>
+                                <select name="setImage.status" id="inputID" class="form-control select-status" ng-model="data.status" ng-init="data.status = 0" >
+                                <option value="0" ng-selected="data.status == 0"> Nuevo </option>
+                                <option value="1" ng-selected="data.status == 1"> Aceptada </option>
+                                <option value="2" ng-selected="data.status == 2"> Cancelada </option>
+                                <option value="3" ng-selected="data.status == 3"> Finalizada </option>
+                            </select>
+                            </div>                            
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-md-4">
+                                  <label class="control-label">* Hora de publicación </label>
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            <input type="text" name="publish_time"  class="form-control  input-small" id="registerImage_publish_time" ng-model="data.publish_time" ng-required="true">
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>                                            
+                                        </div>                                        
+                                        <span class="error" ng-show="setImage.publish_time.$invalid" ng-cloak>*hora obligatoria</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">* Fecha inicial </label>
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="start_date" id="input" class="form-control" ng-model="data.start_date" ng-required="true">                                            
+                                        </div>
+                                        <span class="error" ng-show="setImage.start_date.$invalid && !setImage.start_date.$pristine">*fecha inicial obligatoria</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">* Fecha final </label>
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="end_date" id="input" class="form-control" ng-model="data.end_date">
+                                        </div>
+                                        <span class="error" ng-show="setImage.end_date.$invalid && !setImage.end_date.$pristine" ng-cloak>*fecha final obligatoria</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1" id="register_image_checkbox">      
+                                                      
+                                <br>
+                                <label class="control-label">Canales a publicar </label>
+                                <div class="checkbox" >
+                                    <label ng-repeat="(key, value) in data.channels">
+                                        <input type="checkbox" value="{[{value.id}]}" ng-model="data.channels[key].value">
+                                        {[{value.name}]}
+                                    </label>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 ">
+                                <br>
+                                <label class="control-label">* Seleccione imagen </label>
+                                <div class="uploadImage">
+                                    <center>
+                                        <label class="button img-rounded img-default drop-box" style="text-align:center;">
+                                            <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button"></span>
+                                            <center ng-if="!cropper.sourceImage"><h6>Subir imagen</h6></center>
+                                            <center ng-if="cropper.sourceImage != null" id="change-image" >
+                                                <h6 style="color: white;font-weight: bold;">Cambiar </h6>
+                                            </center>
+                                            <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
+                                            <input type="file" name="image" img-cropper-fileread onchange="angular.element(this).scope().showCropImageModal(this)" style="display:none" image="cropper.sourceImage" ng-required="!cropper.croppedImage" valid-file ng-model="filename">
+                                        </label>
+                                        <div ng-show="cropper.croppedImage"><img ng-src="{[{cropper.croppedImage}]}" style="width: 100%"></div>
+                                    </center>
+                                </div>
+                                <span class="error" ng-show="setImage.image.$invalid && !setImage.image.$pristine" ng-cloak>Error</span>
+                                <br>
+                                {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <span class="not-blank">* Campos obligatorios</span>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 ">
+                             <div class="control-label required">&nbsp;</div>
+                            <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-disabled="setImage.$invalid" ng-click="setData(cropper.croppedImage)"><b>Publicar</b>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+        <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Image/UploadImageModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Image/UploadImageService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Image/UploadImageController.js') }}"></script>
+
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+        $('#registerImage_publish_time').timepicker(
+        {
+            defaultTime: '7:00 AM',
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        });
+    </script>
+
+{% endblock javascripts %}

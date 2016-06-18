@@ -66,12 +66,6 @@ class ImageController extends Controller
      */
     public function publishNewAction()
     {
-        /*$image = new Image();
-        $form = $this->createForm(new RegisterImageType(), $image,
-            array(
-                'action' => $this->generateUrl('ds_facyt_infrastructure_user_image_new_validate'),
-                'method' => 'POST'));
-        */
 
         $data = ['channels' => []];
         $manager = $this->container->get('doctrine.orm.entity_manager');

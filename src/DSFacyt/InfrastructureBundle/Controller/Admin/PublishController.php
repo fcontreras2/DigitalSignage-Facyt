@@ -15,6 +15,10 @@ use DSFacyt\Core\Application\UseCases\Admin\Publish\UpdateImportant\UpdateImport
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
 use DSFacyt\Core\Application\UseCases\Text\SetText\SetTextCommand;
 use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
+use Symfony\Component\HttpFoundation\File\File;
+
+use DSFacyt\Core\Application\UseCases\Image\SetImage\SetImageCommand;
+use DSFacyt\Core\Application\UseCases\Image\GetImage\GetImageCommand;
 
 
 /**
@@ -315,5 +319,81 @@ class PublishController extends Controller
         }
 
         return new JsonResponse('Bad Request', 400);
+    }
+
+
+    /**
+     * La siguiente Función se encarga de mostrar el formulario de
+     * las pubicaciones nuevas de tipo texto
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @version 02/09/2015
+     * @return Response
+     */
+    public function newImageAction()
+    {
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
+
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
+
+        $data['status'] = $this->status;
+
+        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newImage.html.twig', array(
+            'data' => json_encode($data)));        
+    }
+
+    /**
+    * La función se encarga de crear y editar
+    * una publicación de tipo imagen vía ajax
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @param Request $request
+    **/
+    public function setImageAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+
+            $data = json_decode($request->request->get('data'), true);
+            if ($request->files->get('file')) 
+                $file = new File($request->files->get('file'));
+
+            $user = $security = $this->container->get('security.context')->getToken()->getUser();
+            $command = new SetImageCommand($file,$data, $user);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getMessage(), $response->getStatusCode());
+
+        }
+
+        return new JsonResponse('Bad Request', 400);
+    }
+
+    /**
+     * La siguiente función se encarga de mostrar el formulario para editar los datos de un imagen
+     *
+     * @author Freddy Contreras <freddycontreras3@gmail.com>
+     * @param integer $imageId
+     * @version 30/09/2015
+     * @return Response
+     */
+    public function editImageAction($imageId)
+    {
+        $command = new GetImageCommand($imageId);
+        $response = $this->get('CommandBus')->execute($command);
+        if ($response->getStatusCode() == 200) {           
+
+            return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newImage.html.twig', array(
+            'data' => json_encode($response->getData())));
+        }
+
+        return $this->redirect('ds_facyt_infrastructure_admin_homepage');
     }
 }

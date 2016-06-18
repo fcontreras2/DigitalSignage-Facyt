@@ -50,6 +50,8 @@ class GetImageHandler implements Handler
             $response['start_date'] = $image->getStartDate()->format('d/m/Y');
             $response['end_date'] = $image->getEndDate()->format('d/m/Y');
             $response['publish_time'] = $image->getPublishTime();
+            $response['status'] = $image->getStatus();
+            $response['important'] = $image->getImportant();
 
             $response['channels'] = [];
             $auxChannel = [];

@@ -17,7 +17,7 @@
                     <th >Fecha Inicial</th>
                     <th >Fecha Final</th>
                     <th>Título</th>
-                    <th style="width:6%">Detalle</th>
+                    <th style="width:6%">Destacar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,8 +27,8 @@
                     <td > {[{ currentPublish.user_name }]}</td>
                     <td> {[{ currentPublish.start_date}]}</td>
                     <td> {[{ currentPublish.end_date }]}</td>
-                    <td> {[{ currentPublish.title }]}</td>
-                    <td> <center><a href="#" ng-click="modalPreviewPublish($index);"><span class="fa fa-eye"></span> </a></center></td>
+                    <td> <a ng-href="{[{urlEdit}]}" ng-click="generateUrlEdit($index)">{[{ currentPublish.title }]} </a></td>
+                    <td> <center><a ng-click="updateImportant($index);"><span class="fa fa-star" ng-class="{'status-change':currentPublish.important}"></span></a></center></td>
                 </tr>
                 </tbody>
             </table>

@@ -1,7 +1,7 @@
 # Crear texto
 ds_facyt_infrastructure_admin_new_image:
     path: /new
-    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:newText" }
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:newImage" }
     options:
         expose: true
 
@@ -14,12 +14,20 @@ ds_facyt_infrastructure_admin_image_new_validate:
 
 # Editar un texto
 ds_facyt_infrastructure_admin_edit_image:
-    path: /edit/{textId}
-    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:editText" }
+    path: /edit/{imageId}
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:editImage" }
     options:
         expose: true
 
 ds_facyt_infrastructure_admin_text_image_validate:
   path: /text/{textId}/validate
   defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:validateEdit"}
+
+ds_facyt_infrastructure_admin_image_set:
+    path: /text/set
+    defaults: { _controller: DSFacytInfrastructureBundle:Admin\Publish:setImage}
+    options:
+      expose: true
+    requirements:
+      { _format: json, _method: POST }
 

@@ -379,5 +379,8 @@ class Text
 
         if (isset($data['info']))
             $this->info = $data['info'];
+
+        if (isset($data['status']))
+            $this->status = $data['status'];
     }
 }

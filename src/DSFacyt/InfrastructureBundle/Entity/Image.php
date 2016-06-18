@@ -375,6 +375,9 @@ class Image
             $this->end_date = \DateTime::createFromFormat('d/m/Y',$data['end_date']);
 
         if (isset($data['description']))
-            $this->description = $data['description'];     
+            $this->description = $data['description'];
+
+        if (isset($data['status']))
+            $this->status = $data['status'];
     }
 }

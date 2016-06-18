@@ -82,8 +82,8 @@ class SetImageHandler implements Handler
             }
             
             $rpImage->save($image);
-
-            unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/images/'.$oldImage);
+            if ($oldImage)
+                unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/images/'.$oldImage);
 
             return new ResponseCommandBus(201,'Created');
         }

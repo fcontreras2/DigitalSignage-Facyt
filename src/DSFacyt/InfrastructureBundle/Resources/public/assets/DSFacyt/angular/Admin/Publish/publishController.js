@@ -117,6 +117,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         
         $scope.generateUrlEdit = function(publish_id) {
             var publish_type = data.type.toLowerCase();
+            console.log(publish_type);
             var auxUrl = 'ds_facyt_infrastructure_admin_edit_'+publish_type;
             
             switch (publish_type) {

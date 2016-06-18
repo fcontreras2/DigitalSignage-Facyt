@@ -364,6 +364,8 @@ class PublishController extends Controller
             $data = json_decode($request->request->get('data'), true);
             if ($request->files->get('file')) 
                 $file = new File($request->files->get('file'));
+            else
+                $file = null;
 
             $user = $security = $this->container->get('security.context')->getToken()->getUser();
             $command = new SetImageCommand($file,$data, $user);

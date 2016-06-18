@@ -5,7 +5,7 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         $scope.data.publish_time = '7:00 AM'
         $scope.alert_message = null;
         var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});    
-
+        
         $scope.bounds = {};
         $scope.cropper = {};
         $scope.cropper.sourceImage = null;

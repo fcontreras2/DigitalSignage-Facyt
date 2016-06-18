@@ -8,15 +8,16 @@ uploadImage.service('UploadImageService', function(){
                 break;
 
             case '1':
+                response = 'status-accepted';
+                break;
+            case '2':
                 response = 'status-active';
                 break;
-
-            case '2':
-                response = 'status-canceled';
-                break;
-
             case '3':
                 response = 'status-finish';
+                break;
+            case '4':
+                response = 'status-canceled';
                 break;
             default:
                 response = null;

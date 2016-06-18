@@ -63,30 +63,34 @@ class SetImageHandler implements Handler
             }
 
             $image->getDocument()->setName($image->getTitle());
-            $image->setStatus(0);
             $document->setFile($request['image']);
             $fileName = strtolower(str_replace(' ','_',$image->getTitle())).'_';
             $image->getDocument()->upload('image', $request['user']->getIndentityCard().'/',$fileName);
-            $image->setUser($request['user']);
 
-            foreach ($request['data']['channels'] as $currentChannel) {
-
-                $channel = $rpChannel->findOneBy(['id' => $currentChannel['id']]);
-                $image->removeChannel($channel);
-                if ($channel) {
-                    if (isset($currentChannel['value']) and $currentChannel['value'])
-                        $image->addChannel($channel);
-                    else
-                        $image->removeChannel($channel);
-                }
-            }
-            
-            $rpImage->save($image);
-            if ($oldImage)
-                unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/images/'.$oldImage);
-
-            return new ResponseCommandBus(201,'Created');
         }
+
+        if (!isset($request['data']['status'])) 
+            $image->setStatus(0);
+        $image->setUser($request['user']);
+
+        foreach ($request['data']['channels'] as $currentChannel) {
+
+            $channel = $rpChannel->findOneBy(['id' => $currentChannel['id']]);
+            $image->removeChannel($channel);
+            if ($channel) {
+                if (isset($currentChannel['value']) and $currentChannel['value'])
+                    $image->addChannel($channel);
+                else
+                    $image->removeChannel($channel);
+            }
+        }
+            
+        $rpImage->save($image);
+        if ($oldImage)
+            unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/images/'.$oldImage);
+
+        return new ResponseCommandBus(201,'Created');
+        
 
         return new ResponseCommandBus(404, 'Bad Request');
     }

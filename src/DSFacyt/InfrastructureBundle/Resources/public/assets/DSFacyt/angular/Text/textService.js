@@ -17,27 +17,25 @@ text.service('textService', function(){
     this.setColorStatus = function (status_select) {
 
         var response = 0;
-        switch (status_select) {
+        switch (parseInt(status_select)) {
             case 0:
                 response = 'status-new';
                 break;
-            case '1':
-                response = 'status-change';
-                break;
-            case '2':
+
+            case 1:
                 response = 'status-accepted';
                 break;
-            case '3':
-                response = 'status-active';                
+            case 2:
+                response = 'status-active';
                 break;
-            case '4':
+            case 3:
                 response = 'status-finish';
                 break;
-            case '5':
+            case 4:
                 response = 'status-canceled';
                 break;
             default:
-                response = 'status-new';
+                response = null;
                 break;
         }
 

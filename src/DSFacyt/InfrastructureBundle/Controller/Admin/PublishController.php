@@ -62,7 +62,7 @@ class PublishController extends Controller
 
         $response = ['type' => $typeEntity, 'status' =>  $status];
         $user =  $this->container->get('security.context')->getToken()->getUser();
-        $command = new GetPublishStatusCommand($typeEntity,$status, null,null,null, $user);
+        $command = new GetPublishStatusCommand($typeEntity,$status, null,null,1, $user);
         $response['data'] = $this->get('CommandBus')->execute($command)->getData();
         return $this->render($template,['data' => json_encode($response)]);
     }
@@ -104,7 +104,7 @@ class PublishController extends Controller
             
             $data = json_decode($request->getContent(),true);
             $startDate = isset($data['start_date']) ? $data['start_date'] : null;
-            $endDate = isset($data['end_date']) ? $data['end_date'] : null;
+            $endDate = isset($data['ed_date']) ? $data['end_date'] : null;
             $user =  $this->container->get('security.context')->getToken()->getUser();
             
             $command = new GetPublishStatusCommand(

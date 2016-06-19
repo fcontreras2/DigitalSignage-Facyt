@@ -10,6 +10,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
         $scope.status = -1;
         $scope.alert_message = false;
         var initializing = false;
+        console.log($scope.publish);
 
         var alertEmptyData = $alert(
             {
@@ -112,7 +113,7 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
             var data = angular.toJson({
                 'status': $scope.status_select,
                 'type': 'Text',
-                'page': 0,
+                'page': 1,
                 'filter': $scope.filter,
                 'order' : $scope.order
             });
@@ -144,4 +145,4 @@ text.controller('TextController', ['$scope','$filter', 'textService', '$modal', 
 
         $timeout(function() { initializing = true; $scope.$apply();});
 
-    }]);|
+    }]);

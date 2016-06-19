@@ -61,6 +61,7 @@ class GetTextsHandler implements Handler
 
         //todos los textos encontrados del usuario
         $texts = $rpText->findAllByUser($command->getUser());
+        var_dump(count($texts));
         //array de respuesta
         $response = array();
 

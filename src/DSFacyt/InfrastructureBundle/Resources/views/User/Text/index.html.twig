@@ -64,11 +64,10 @@
                             <select name="name" id="inputID" class="form-control" ng-model="status_select" style="padding-left:24px;" >
                                 <option value="-1" ng-selected="status == -1">  -- Selecione -- </option>
                                 <option value="0" ng-selected="status == 0"> Nuevo </option>
-                                <option value="1" ng-selected="status == 1"> Corregir </option>
-                                <option value="2" ng-selected="status == 2"> Aceptada </option>
-                                <option value="3" ng-selected="status == 3"> Activa </option>                                
-                                <option value="4" ng-selected="status == 4"> Finalizada </option>
-                                <option value="5" ng-selected="status == 5"> Cancelada </option>
+                                <option value="1" ng-selected="status == 1"> Aceptada </option>
+                                <option value="2" ng-selected="status == 2"> Activa </option>                                
+                                <option value="3" ng-selected="status == 3"> Finalizada </option>
+                                <option value="4" ng-selected="status == 4"> Cancelada </option>
                             </select>
                             </div>
                         </div>
@@ -102,11 +101,10 @@
                                         <td>
                                             <center><span class="fa fa-circle" ng-class="{
                                             'status-new': currentText.status === 0,
-                                            'status-change': currentText.status == 1,
-                                            'status-accepted': currentText.status == 2,
-                                            'status-active': currentText.status == 3,
-                                            'status-finish': currentText.status == 4,
-                                            'status-canceled' : currentText.status == 5}"></span></center>
+                                            'status-accepted': currentText.status == 1,
+                                            'status-active': currentText.status == 2,
+                                            'status-finish': currentText.status == 3,
+                                            'status-canceled' : currentText.status == 4}"></span></center>
                                         </td>                                        
                                     </tbody>
                                 </table>
@@ -118,7 +116,11 @@
                                     <a ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
                                 </li>
                                 <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
-                                    <a ng-click="generatePagination(currentPage-1)" ng-class="{'active': currentPage-1  == pagination.current}">{[{ pagination.firstPageInRange + $index }]}</a>
+                                    <a 
+                                        ng-click="generatePagination(currentPage)" 
+                                        ng-class="{'active': currentPage  == pagination.current}">
+                                        {[{ pagination.firstPageInRange + $index }]}
+                                        </a>
                                 </li>
                                 <li ng-show="pagination.current < pagination.lastPageInRange">
                                     <a ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>                                    

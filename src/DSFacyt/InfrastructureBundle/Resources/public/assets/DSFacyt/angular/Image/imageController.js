@@ -119,7 +119,7 @@ image.controller('ImageController', ['$scope','$filter', 'imageService', '$modal
             var data = angular.toJson({
                 'status': $scope.status_select,
                 'type': 'Image',
-                'page': 0,
+                'page': 1,
                 'filter': $scope.filter,
                 'order' : $scope.order
             });

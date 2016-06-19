@@ -32,7 +32,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 var data = angular.toJson({
                     'status': $scope.status_select,
                     'type': $scope.type,
-                    'page': 0,
+                    'page': 1,
                     'start_date' : start_date,
                     'end_date' : end_date
                 });
@@ -58,7 +58,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 var data = angular.toJson({
                     'status': $scope.status_select,
                     'type' : $scope.type,
-                    'page' : 0,
+                    'page' : 1,
                     'start_date' : start_date.format('YYYY-MM-DD'),
                     'end_date': end_date.format('YYYY-MM-DD')
                 })
@@ -104,8 +104,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 'type' : $scope.type,
                 'page' : page,
                 'start_date' : start_date,
-                'end_date': end_date,
-                'page': page
+                'end_date': end_date                
             })
 
             publishService.ajaxGetPublish(data, $scope);

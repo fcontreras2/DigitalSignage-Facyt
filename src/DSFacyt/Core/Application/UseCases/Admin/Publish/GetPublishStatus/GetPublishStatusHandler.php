@@ -60,7 +60,7 @@ class GetPublishStatusHandler implements Handler
         $data = $command->getRequest();
         $rpFactory = $rf->get($data['type']);
         $response = [];
-
+        
         $publish = $rpFactory->findByData($data);
 
         if ($publish) {

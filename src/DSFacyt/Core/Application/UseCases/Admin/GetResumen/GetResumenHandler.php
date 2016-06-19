@@ -56,8 +56,7 @@ class GetResumenHandler implements Handler
 
         $response = [];
         $response['publish'] = $this->getPublish($data['startDate'], $data['endDate']);
-        //$response['channels'] = $this->getChannels($data['startDate'], $data['endDate']);
-
+        
         return new ResponseCommandBus(200, 'Ok', $response);
     }
 

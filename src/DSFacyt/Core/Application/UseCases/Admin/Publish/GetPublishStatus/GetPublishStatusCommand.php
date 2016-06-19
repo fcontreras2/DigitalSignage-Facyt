@@ -59,7 +59,7 @@ class GetPublishStatusCommand implements Command
         $this->status = $status;
         $this->page = $page;
 
-        if ($user->hasRole('ROLE_ADMIN')){
+        if ($user->hasRole('ROLE_ADMIN')){            
             $this->startDate = !is_null($startDate) ? new \DateTime($startDate) : new \DateTime();
             $this->endDate = !is_null($endDate) ? new \DateTime($endDate) : (new \DateTime())->modify('+7 days');
         } else {

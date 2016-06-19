@@ -54,7 +54,8 @@ class SetTextHandler implements Handler
         $text->updateObject($request['data']);
         $text->setUser($request['user']);
         
-        $text->setStatus(0);
+        if (!isset($request['data']['status'])) 
+            $text->setStatus(0);        
         
             foreach ($request['data']['channels'] as $currentChannel) {
 

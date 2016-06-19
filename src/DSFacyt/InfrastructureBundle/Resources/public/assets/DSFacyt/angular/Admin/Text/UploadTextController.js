@@ -4,7 +4,8 @@ uploadText.controller('UploadTextController', ['$scope','$window','$timeout','Up
         $scope.data = data;
         $scope.data.publish_time = '7:00 AM'
         $scope.alert_message = null;
-        
+        $scope.color_status = UploadTextService.setColorStatus($scope.data.status);
+        console.log($scope.data);
         $scope.setData = function(){
             var url = Routing.generate('ds_facyt_infrastructure_admin_text_set');
             var data = angular.toJson($scope.data);

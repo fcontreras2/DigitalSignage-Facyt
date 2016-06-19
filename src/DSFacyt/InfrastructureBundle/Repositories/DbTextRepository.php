@@ -45,6 +45,14 @@ class DbTextRepository extends EntityRepository implements
     public function findByStartDateEndDate($startDate, $endDate)
     {
         return $this->createQueryBuilder('t')
+            ->where('
+                ((t.start_date <= :startDate and :startDate <= t.end_date) or
+                (t.start_date <= :endDate and :endDate <= t.end_date))
+            ')
+            ->setParameters([
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ])
             ->getQuery()->getResult();
     }
 
@@ -96,19 +104,20 @@ class DbTextRepository extends EntityRepository implements
             $parameters['endDate'] = $data['end_date'];
         }
 
-        if (isset($data['user']) and !is_null($data['user']) and $data['user']->hasRole('ROLE_USER')) {
+        if (isset($data['user']) and !is_null($data['user']) and !$data['user']->hasRole('ROLE_ADMIN')) {
             $where = $where. ' and t.user = :userId ';
             $parameters['userId'] = $data['user']->getId();
         }
         
-        $query = $this->createQueryBuilder('t');
-            /*->where($where)->setParameters($parameters);
+        $query = $this->createQueryBuilder('t')
+            ->where($where)->setParameters($parameters);
+
         if (isset($data['filter']) and !is_null($data['filter'])) {
             if (isset($data['order']) and !is_null($data['order']))
                 $query->orderBy('t.'.$data['filter'], $data['order']);
             else
                 $query->orderBy('t.'.$data['filter'], 'ASC');
-        }*/
+        }
 
         return $query->getQuery()->getResult();
     }

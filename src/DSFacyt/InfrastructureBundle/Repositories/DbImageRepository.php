@@ -105,19 +105,19 @@ class DbImageRepository extends EntityRepository implements
             $parameters['endDate'] = $data['end_date'];
         }
 
-        if (isset($data['user']) and !is_null($data['user']) and $data['user']->hasRole('ROLE_USER')) {
+        if (isset($data['user']) and !is_null($data['user']) and !$data['user']->hasRole('ROLE_ADMIN')) {
             $where = $where. ' and i.user = :userId ';
             $parameters['userId'] = $data['user']->getId();
         }
         
-        $query = $this->createQueryBuilder('i');
-            /*->where($where)->setParameters($parameters);
+        $query = $this->createQueryBuilder('i')
+            ->where($where)->setParameters($parameters);
         if (isset($data['filter']) and !is_null($data['filter'])) {
             if (isset($data['order']) and !is_null($data['order']))
                 $query->orderBy('i.'.$data['filter'], $data['order']);
             else
                 $query->orderBy('i.'.$data['filter'], 'ASC');
-        }*/
+        }
 
         return $query->getQuery()->getResult();
     }

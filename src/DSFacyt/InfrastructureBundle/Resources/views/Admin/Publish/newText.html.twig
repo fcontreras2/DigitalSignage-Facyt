@@ -23,12 +23,13 @@
                                 <label class="control-label">* Estado</label> 
                                 <br>
                                 <i class="fa fa-circle color_status circle-status" ng-class="color_status" ng-if="status_select != -1"></i>
-                                <select name="setText.status" id="inputID" class="form-control select-status" ng-model="data.status" ng-init="data.status = 0" >
-                                <option value="0" ng-selected="data.status == 0"> Nuevo </option>
-                                <option value="1" ng-selected="data.status == 1"> Aceptada </option>
-                                <option value="2" ng-selected="data.status == 2"> Cancelada </option>
-                                <option value="3" ng-selected="data.status == 3"> Finalizada </option>
-                            </select>
+                                <select name="setText.status" class="form-control select-status" ng-model="data.status" >
+                                    <option value="0" ng-selected="data.status == 0"> Nuevo </option>
+                                    <option value="1" ng-selected="data.status == 1"> Aceptada </option>
+                                    <option value="2" ng-selected="data.status == 2"> Activa </option>                                
+                                    <option value="3" ng-selected="data.status == 3"> Finalizada </option>
+                                    <option value="4" ng-selected="data.status == 4"> Cancelada </option>
+                                </select>
                             </div>                            
                             <div class="col-xs-10 col-xs-offset-1">
                                 <div class="row ">

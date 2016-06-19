@@ -37,19 +37,18 @@ publish.service('publishService', function(){
                 break;
 
             case '1':
-                response = 'status-change';
+                response = 'status-accepted';
                 break;
-
             case '2':
                 response = 'status-active';
                 break;
 
             case '3':
-                response = 'status-canceled';
+                response = 'status-finish';
                 break;
 
             case '4':
-                response = 'status-finish';
+                response = 'status-canceled';
                 break;
             default:
                 response = null;

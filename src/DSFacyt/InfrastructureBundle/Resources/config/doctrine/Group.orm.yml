@@ -1,0 +1,9 @@
+DSFacyt\InfrastructureBundle\Entity\Group:
+    type:  entity
+    table: fos_group
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbGroupRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

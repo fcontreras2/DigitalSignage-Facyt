@@ -1,25 +1,105 @@
 {% extends '@DSFacytInfrastructure/Admin/Default/base.html.twig' %}
 
+{% block title %} Editar y Crear usuario {% endblock title %}
+
+{% block title_notifications %}
+    <span class="fa fa-user"></label> Edición de usuario
+{% endblock title_notifications %}
+
 {% block body -%}
-    <h1>User creation</h1>
+    <div class="contaier">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="SetUserModule" ng-controller="SetUserController">
+            <form name="setUser">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Datos del usuario</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label">Nombre de usuario</label>
+                                <input type="text" name="setUser.username"  class="form-control" ng-model="data.username" >
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label">Contraseña</label>
+                                <input type="password" name="setUser.password"  class="form-control" ng-model="data.password" >
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label">Email</label>
+                                <input type="email" name="setUser.email"  class="form-control" ng-model="data.email" >
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label">Cedula de identidad</label>
+                                <input type="text" name="setUser.identity_card"  class="form-control" ng-model="data.identity_card" >
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label">Nombre</label>
+                                <input type="text" name="setUser.name"  class="form-control" ng-model="data.name" >
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label">Apellido</label>
+                                <input type="text" name="setUser.last_name"  class="form-control" ng-model="data.last_name" >
+                            </div>                            
+                        </div><br>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('ds_facyt_admin_user') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+                        <div class="row">                            
+                            <div class="col-xs-6">
+                                <label class="control-label">Escuela</label>
+                                <select  class="form-control" ng-model="data.school">
+                                    <option ng-repeat="current_school in data.schools" value="{[{current_school.id}]}" ng-selected="current_school.id == data.school">{[{ current_school.name }]}</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Tipo de usuario </label>
+                                <select  class="form-control" ng-model="data.group">
+                                    <option ng-repeat="current_group in data.groups" value="{[{current_group.id}]}" >{[{ current_group.name }]}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <button type="button" class="btn btn-default col-xs-12" ng-click="setData()">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
 
 {% block javascripts %}
-    {{ parent() }}
+    {{parent()}}
+
+        <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
 
     {% if app.environment == "dev" %}
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/SetUser/SetUserModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/SetUser/SetUserService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/SetUser/SetUserController.js') }}"></script>        
     {% else %}
         {% javascripts
             '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   

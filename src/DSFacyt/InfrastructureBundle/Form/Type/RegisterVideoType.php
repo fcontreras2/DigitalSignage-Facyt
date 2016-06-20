@@ -5,7 +5,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use DSFacyt\InfrastructureBundle\Form\Type\RegisterDocumentType;
+    use DSFacyt\InfrastructureBundle\Form\Type\RegisterDocumentType;
 use Symfony\Component\Validator\Constraints\File;
 
 
@@ -25,15 +25,14 @@ class RegisterVideoType extends AbstractType
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true))
-            ->add(
-                $builder->create('document', 'form',
+             ->add( 
+                $builder->create('document', 'form', 
                     array('data_class' => 'DSFacyt\InfrastructureBundle\Entity\Document', 'label' => false))
                     ->add('file', 'file', [
-                        'label' => false,
                         'required' => true,
                             'constraints' => [
                                 new File([
-                                    'maxSize' => '20000M'
+                                    'maxSize' => '8M'                                    
                                 ])
                             ]
                     ])

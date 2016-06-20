@@ -1,0 +1,10 @@
+modules: [text, image, video]
+groups:
+    defaults:
+        -
+            group: Profesor
+            modules: [text, image, video]
+
+        -
+            group: Estudiante
+            modules: [text, image]

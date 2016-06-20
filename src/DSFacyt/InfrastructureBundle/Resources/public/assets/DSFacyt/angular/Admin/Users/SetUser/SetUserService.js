@@ -1,0 +1,2 @@
+setUser.service('SetUserService', function(){    
+});

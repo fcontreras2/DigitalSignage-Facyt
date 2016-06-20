@@ -4,9 +4,12 @@ namespace DSFacyt\InfrastructureBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use DSFacyt\InfrastructureBundle\Entity\User;
+use DSFacyt\InfrastructureBundle\Entity\Group;
 use DSFacyt\InfrastructureBundle\Form\UserType;
+use DSFacyt\Core\Application\UseCases\Admin\Users\SetUser\SetUserCommand;
 
 /**
  * User controller.
@@ -33,24 +36,22 @@ class UserController extends Controller
      * Creates a new User entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction()
     {
-        $entity = new User();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+        $data = ['groups' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
-            return $this->redirect($this->generateUrl('ds_facyt_admin_user_show', array('id' => $entity->getId())));
+        $groups = $manager->getRepository('DSFacytInfrastructureBundle:Group')->findAll();
+        $auxGroup = [];
+
+        foreach ($groups as $currentGroup) {
+            $auxGroup['id'] = $currentGroup->getId();
+            $auxGroup['name'] = $currentGroup->getName();
+            $data['groups'][] = $auxGroup;
         }
 
-        return $this->render('DSFacytInfrastructureBundle:Admin/User:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render('DSFacytInfrastructureBundle:Admin/User:new.html.twig', ['data' => json_encode($data)]);
     }
 
     /**
@@ -78,13 +79,28 @@ class UserController extends Controller
      */
     public function newAction()
     {
-        $entity = new User();
-        $form   = $this->createCreateForm($entity);
+        $data = ['groups' => [], 'school' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
-        return $this->render('DSFacytInfrastructureBundle:Admin/User:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        $groups = $manager->getRepository('DSFacytInfrastructureBundle:Group')->findAll();
+        $auxGroup = [];
+
+        foreach ($groups as $currentGroup) {
+            $auxGroup['id'] = $currentGroup->getId();
+            $auxGroup['name'] = $currentGroup->getName();
+            $data['groups'][] = $auxGroup;
+        }
+
+        $schools = $manager->getRepository('DSFacytInfrastructureBundle:School')->findAll();
+        $auxSchool = [];
+
+        foreach ($schools as $currentSchool) {
+            $auxSchool['id'] = $currentSchool->getId();
+            $auxSchool['name'] = $currentSchool->getName();
+            $data['schools'][] = $auxSchool;
+        }
+
+        return $this->render('DSFacytInfrastructureBundle:Admin/User:new.html.twig', ['data' => json_encode($data)]);
     }
 
     /**
@@ -220,5 +236,17 @@ class UserController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function setUserAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);            
+            $command = new SetUserCommand($data);
+            $response = $this->get('CommandBus')->execute($command);
+            return new JsonResponse(null, $response->getStatusCode());
+        }
+
+        return new JsonResponse('Bad Request', 404);
     }
 }

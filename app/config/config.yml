@@ -88,6 +88,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: DSFacyt\InfrastructureBundle\Entity\User
+    group:
+        group_class: DSFacyt\InfrastructureBundle\Entity\Group
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

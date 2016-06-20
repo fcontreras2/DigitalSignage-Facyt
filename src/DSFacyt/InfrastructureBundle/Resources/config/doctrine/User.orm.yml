@@ -31,6 +31,9 @@ DSFacyt\InfrastructureBundle\Entity\User:
             nullable: true
             options:
                 default: null
+        access:
+            type: json_array
+            nullable: true
 
     oneToOne:
         image_profile:
@@ -65,4 +68,21 @@ DSFacyt\InfrastructureBundle\Entity\User:
                     referencedColumnName: id
             orphanRemoval: false
 
-    lifecycleCallbacks: {  }
+    manyToMany:
+        groups:
+            targetEntity: Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: users
+            joinTable:
+                name: fos_user_group
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+
+    lifecycleCallbacks:
+
+        prePersist: [setDefaultAccess]

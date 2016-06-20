@@ -4,6 +4,7 @@ namespace DSFacyt\InfrastructureBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use DSFacyt\Core\Domain\Adapter\ArrayCollection;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * La clase se encarga de manejar los usuarios del sistema
@@ -74,7 +75,7 @@ class User extends BaseUser
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->quick_notes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->texts = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->videos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->videos = new \Doctrine\Common\Collections\ArrayCollection();    
     }
 
     /**
@@ -373,5 +374,47 @@ class User extends BaseUser
     public function getSchool()
     {
         return $this->school;
+    }
+    /**
+     * @var array
+     */
+    private $access;
+
+
+    /**
+     * Set access
+     *
+     * @param array $access
+     * @return User
+     */
+    public function setAccess($access)
+    {
+        $this->access = $access;
+
+        return $this;
+    }
+
+    /**
+     * Get access
+     *
+     * @return array 
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function setDefaultAccess()
+    {
+        $nameGroup = $this->getGroups()[0]->getName();
+        global $kernel;
+        $arrayAccess = Yaml::parse(file_get_contents($kernel->getRootDir().'/config/access.yml'))['groups'];        
+
+        foreach ($arrayAccess['defaults'] as $currentAccess)
+            if ($nameGroup == $currentAccess['group']) {
+                $this->access = $currentAccess['modules'];
+                break;
+            }
+        
     }
 }

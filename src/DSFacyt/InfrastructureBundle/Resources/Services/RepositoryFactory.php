@@ -51,6 +51,10 @@ class RepositoryFactory implements RepositoryFactoryInterface
             'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbVideoRepository',
             'entity'=>'DSFacytDomain:Video'
         ),
+        'Group'=>array(
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbGroupRepository',
+            'entity'=>'DSFacytDomain:Group'
+        ),
     );
 
     public function __construct($em = null)

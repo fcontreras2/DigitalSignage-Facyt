@@ -75,4 +75,4 @@ DSFacyt\InfrastructureBundle\Entity\Video:
                         referencedColumnName: id
             orderBy: null
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: {}

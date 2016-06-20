@@ -1,6 +1,8 @@
 ds_facyt_admin_user:
     path:     /
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:index" }
+    options:
+        expose: true
 
 ds_facyt_admin_user_show:
     path:     /{id}/show
@@ -28,3 +30,9 @@ ds_facyt_admin_user_delete:
     path:     /{id}/delete
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:delete" }
     methods:  [POST, DELETE]
+
+ds_facyt_infrastructure_admin_user_set:
+    path:   /set
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:setUser"}
+    options:
+        expose: true

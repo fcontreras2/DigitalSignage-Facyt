@@ -59,7 +59,7 @@ class VideoController extends Controller
      */
     public function publishNewAction()
     {
-                $video= new Video();
+        $video= new Video();
         $form = $this->createForm(new RegisterVideoType(), $video,
             array(
                 'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_new_validate'),
@@ -77,34 +77,27 @@ class VideoController extends Controller
      */
     public function validateNewAction(Request $request)
     {
-        $video = new Video();
+       $video = new Video();
         
         $form = $this->createForm(new RegisterVideoType(), $video);
-
         $form->handleRequest($request);
-
         if ($form->isValid()) {
-
             $user = $security = $this->container->get('security.context')->getToken()->getUser();
             $video->setUser($user);
             $command = new UploadVideoCommand($video, $user->getIndentityCard());
             $this->get('CommandBus')->execute($command);
-
             $validator = $this->get('validator');
             $errors = $validator->validate($video);
-
             if (count($errors) > 0) {
-                return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+                return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
             }
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($video);
             $em->flush();
-
             return $this->redirectToRoute('ds_facyt_infrastructure_user_video_homepage');
         }
-
-        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathVideo' => null])));
+        
+        return $this->render('DSFacytInfrastructureBundle:User\Video:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
 
     }
 

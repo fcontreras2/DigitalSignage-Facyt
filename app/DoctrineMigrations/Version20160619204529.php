@@ -6,12 +6,12 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use DSFacyt\InfrastructureBundle\Entity\School;
+use DSFacyt\InfrastructureBundle\Entity\Group;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20151117214555 extends AbstractMigration implements ContainerAwareInterface
+class Version20160619204529 extends AbstractMigration implements ContainerAwareInterface
 {
     private $container;
 
@@ -19,33 +19,23 @@ class Version20151117214555 extends AbstractMigration implements ContainerAwareI
     {
         $this->container = $container;
     }
-
-    /**
+   /**
      * @param Schema $schema
      */
     public function up(Schema $schema)
     {
         $manager = $this->container->get('doctrine.orm.entity_manager');
 
-        $school = new School();
-        $school->setName('Física');
-        $school->setDescription('Descripción Física');
+        $newGroup = new Group();
+        $newGroup->setName('Profesor');
 
-        $manager->persist($school);
-        $manager->flush();
+        $manager->persist($newGroup);
 
-        $school = new School();
-        $school->setName('Matemática');
-        $school->setDescription('Descripción Matemática');
+        $newGroup2 = new Group();
+        $newGroup2->setName('Estudiante');
 
-        $manager->persist($school);
-        $manager->flush();
+        $manager->persist($newGroup2);
 
-        $school = new School();
-        $school->setName('Biología');
-        $school->setDescription('Descripción Biología');
-
-        $manager->persist($school);
         $manager->flush();
 
     }

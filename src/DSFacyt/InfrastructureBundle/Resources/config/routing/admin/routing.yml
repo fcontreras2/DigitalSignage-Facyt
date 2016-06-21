@@ -22,6 +22,11 @@ ds_facyt_infrastructure_admin_module_user:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/user.yml"
     prefix: /user
 
+# Rutas del modulo de grupos del sistema
+ds_facyt_infrastructure_admin_module_group:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/group.yml"
+    prefix: /group
+
 ds_facyt_infrastructure_admin_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }

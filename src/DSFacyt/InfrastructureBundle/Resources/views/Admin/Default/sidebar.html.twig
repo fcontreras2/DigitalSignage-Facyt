@@ -16,13 +16,13 @@
         </li>
         <li>
             {% if ('/publish/' in app.request.uri) %}
-                <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1" class="active">
+                <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1" class="active" aria-expanded="true">
             {% else %}
                 <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
             {% endif %}
                 <span class="fa fa-bell"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
             </a>
-            <div class="collapse list-group-submenu" id="SubMenu1" >
+            <div class="collapse list-group-submenu" id="SubMenu1" aria-expanded="true">
                 <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" data-parent="#SubMenu1">
                     <span class="fa fa-pencil"> </span> Textos
                 </a>
@@ -44,7 +44,15 @@
             <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}"><span class="fa fa-paper-plane"></span>  Notas rápidas </a>
         </li>
         <li>
-            <a href="{{ path('ds_facyt_admin_user') }}"><span class="fa fa-group"></span>  Usuarios</a>
+            <a href="#SubMenu2" data-toggle="collapse" data-parent="#SubMenu2"><span class="fa fa-group"></span>  Usuarios <span class="toggle-tag fa fa-angle-left" ></span></a>
+            <div class="collapse list-group-submenu" id="SubMenu2" >
+                <a style="margin-left: 6px" href="{{ path('ds_facyt_admin_user') }}" class="list-group-item" data-parent="#SubMenu2">
+                    <span class="fa fa-user"> </span> Usuarios
+                </a>
+                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu2">
+                    <span class="fa fa-group"> </span> Grupos
+                </a>                
+            </div>
         </li>
         <li>
             <a href="#">

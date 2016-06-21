@@ -30,6 +30,7 @@
                 {% endif %}
                     <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <span class="fa fa-pencil"></span> Textos </a>
                 </li>
+                {% if hasAccess('image') %}
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_image_homepage' %}
                     <li class="active">
                 {% else %}
@@ -39,6 +40,8 @@
                         <i class="fa fa-picture-o"></i> Imágenes
                     </a>
                 </li>
+                {% endif %}
+                {% if hasAccess('video') %}
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_video_homepage' %}
                     <li class="active">
                 {% else %}
@@ -46,6 +49,7 @@
                 {% endif %}
                     <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}} "> <span class="fa fa-play-circle-o"></span> Videos</a>
                 </li>
+                {% endif %}
                 
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
                     <li class="active">

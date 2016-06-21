@@ -41,6 +41,7 @@ class SetUserHandler implements Handler
             $user->setName($data['name']);
             $user->setEmail($data['email']);
             $user->setLastName($data['last_name']);
+            $user->setEnabled(true);
             $user->setIndentityCard($data['identity_card']);
 
             $school = $rpSchool->findOneBy(['id' => $data['school']]);

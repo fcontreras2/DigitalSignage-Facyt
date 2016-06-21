@@ -9,6 +9,13 @@ services:
         class: DSFacyt\InfrastructureBundle\Resources\Services\Pagination
         arguments: ["@service_container"]
 
+    app.twig_extension:
+        class: DSFacyt\InfrastructureBundle\Resources\Services\TwigExtension
+        arguments: ["@service_container"]
+        public: false
+        tags:
+            - { name: twig.extension }
+
 #Servicios de la Aplicación
     CommandBus:
         class: DSFacyt\Core\Application\Services\CommandBus

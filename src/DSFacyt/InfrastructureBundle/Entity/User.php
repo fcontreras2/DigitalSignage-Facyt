@@ -66,6 +66,18 @@ class User extends BaseUser
     private $school;
 
     /**
+     * Representa el conjunto de acceso en el sistema del usuario
+     * @var array
+     */
+    private $access;
+
+    /**
+     * Representa el tipo de usuario 
+     * @var \DSFacyt\InfrastructureBundle\Entity\Group
+     */
+    private $group;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -375,11 +387,6 @@ class User extends BaseUser
     {
         return $this->school;
     }
-    /**
-     * @var array
-     */
-    private $access;
-
 
     /**
      * Set access
@@ -406,15 +413,30 @@ class User extends BaseUser
 
     public function setDefaultAccess()
     {
-        $nameGroup = $this->getGroups()[0]->getName();
-        global $kernel;
-        $arrayAccess = Yaml::parse(file_get_contents($kernel->getRootDir().'/config/access.yml'))['groups'];        
+        $group = $this->getGroup();
+        $this->access = $group ? $group->getDefaultsPermisions() : ['text'];
+    }
 
-        foreach ($arrayAccess['defaults'] as $currentAccess)
-            if ($nameGroup == $currentAccess['group']) {
-                $this->access = $currentAccess['modules'];
-                break;
-            }
-        
+    /**
+     * Set group
+     *
+     * @param \DSFacyt\InfrastructureBundle\Entity\Group $group
+     * @return User
+     */
+    public function setGroup(\DSFacyt\InfrastructureBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \DSFacyt\InfrastructureBundle\Entity\Group 
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

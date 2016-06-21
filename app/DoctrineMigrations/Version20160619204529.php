@@ -25,16 +25,18 @@ class Version20160619204529 extends AbstractMigration implements ContainerAwareI
     public function up(Schema $schema)
     {
         $manager = $this->container->get('doctrine.orm.entity_manager');
+        $access = ['text', 'image'];
 
         $newGroup = new Group();
-        $newGroup->setName('Profesor');
-
+        $newGroup->setName('Estudiante');
+        $newGroup->setDefaultsPermisions($access);
         $manager->persist($newGroup);
 
-        $newGroup2 = new Group();
-        $newGroup2->setName('Estudiante');
-
-        $manager->persist($newGroup2);
+        $access[] = 'video';
+        $newGroup = new Group();
+        $newGroup->setName('Profesor');
+        $newGroup->setDefaultsPermisions($access);
+        $manager->persist($newGroup);
 
         $manager->flush();
 

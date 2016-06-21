@@ -1,9 +1,21 @@
 DSFacyt\InfrastructureBundle\Entity\Group:
     type:  entity
-    table: fos_group
+    table: group_user
     repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbGroupRepository
     id:
         id:
             type: integer
             generator:
                 strategy: AUTO
+
+    fields:
+        name:
+            type: string
+
+        defaults_permisions:
+            type: json_array
+            nullable: true
+    oneToMany:
+        users:
+            targetEntity: User
+            mappedBy: group

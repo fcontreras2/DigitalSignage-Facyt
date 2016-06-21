@@ -5,46 +5,79 @@
 {% block title_notifications %} <span class="fa fa-group"></span>  Usuarios {% endblock title_notifications %}
 
 {% block body -%}
-    <h1>Lista de usuarios</h1>
+    <h1>Lista de usuarios</h1>asasa
     <br>
     <a href="{{ path('ds_facyt_admin_user_new') }}">
         <button type="button" class="btn btn-default"><span class="fa fa-plus"></span> Crear nuevo</button>
     </a>
     <br><br>
-    <table class="table table-hover">
+    <div ng-app="IndexUserModule" ng-controller="IndexUserController">
+    <table class="table table-hover" >
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
-                <th>Télefono</th>
-                <th style="width:6%">Editar</th>
+                <th>Usuario</th>
+                <th>Nombre y Apellido</th>
+                <th>Cedula</th>                 
+                <th>Escuela</th>                 
+                <th>Tipo</th>                 
             </tr>
         </thead>
         <tbody>
-            {% for entity in entities %}
-            <tr>
-                <td> {{ loop.index}} </td>
-                <td> {{ entity.name }}</td>
-                <td> {{ entity.lastname }} </td>
-                <td> {{ entity.indentitycard }} </td>
-                <td> {{ entity.phone }} </td>
-                <td>
-                    <center><a href="{{ path('ds_facyt_admin_user_edit', { 'id': entity.id }) }}"><span class="fa fa-eye"></span></a></center>
-                </td>                    
-            </tr>
-            {% endfor %}
+            
+            <tr ng-repeat="currentUser in users">
+                <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                <td> <a href="{[{urlEdit}]}" ng-click="getUrlEdit(currentUser.id)" >{[{ currentUser.username }]}</a></td>
+                <td> {[{ currentUser.name }]} {[{ currentUser.lastname }]}</td>
+                <td> {[{ currentUser.identity_card }]} </td>
+                <td> {[{ currentUser.school }]}</td>
+                <td> {[{ currentUser.group }]}</td>
+            </tr>            
         </tbody>
     </table>   
+
+    
+        <center>
+        <ul class="pagination" style="margin: 0 0">
+            <li ng-show="pagination.current != pagination.firstPageInRange">
+                <a href="#" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+            </li>
+            <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+            </li>
+            <li ng-show="pagination.current != pagination.lastPageInRange">
+                <a href="#" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+            </li>
+        </ul>
+            </center>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
+        <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
     {% if app.environment == "dev" %}
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/IndexUser/IndexUserModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/IndexUser/IndexUserService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Users/IndexUser/IndexUserController.js') }}"></script>        
     {% else %}
         {% javascripts
             '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   

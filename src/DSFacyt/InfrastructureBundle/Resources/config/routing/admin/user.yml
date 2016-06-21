@@ -20,6 +20,8 @@ ds_facyt_admin_user_create:
 ds_facyt_admin_user_edit:
     path:     /{id}/edit
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:edit" }
+    options:
+        expose: true
 
 ds_facyt_admin_user_update:
     path:     /{id}/update
@@ -34,5 +36,11 @@ ds_facyt_admin_user_delete:
 ds_facyt_infrastructure_admin_user_set:
     path:   /set
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:setUser"}
+    options:
+        expose: true
+
+ds_facyt_infrastructure_api_get_users_filter:
+    path: /apiAjaxGetUsers
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/User:apiAjaxGetUsers"}
     options:
         expose: true

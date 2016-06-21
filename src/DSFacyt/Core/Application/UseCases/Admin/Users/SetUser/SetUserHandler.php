@@ -50,8 +50,10 @@ class SetUserHandler implements Handler
 
             $group = $rpGroup->findOneBy(['id' => $data['group']]);
 
-            if ($group)
-                $user->addGroup($group);
+            if ($group) {
+                $user->setGroup($group);
+                $group->addUser($user);
+            }
 
             $rpUser->save($user);
             return new ResponseCommandBus(201,'Created');

@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use DSFacyt\InfrastructureBundle\Entity\QuickNote;
 use DSFacyt\InfrastructureBundle\Form\QuickNoteType;
+use DSFacyt\Core\Application\UseCases\Admin\QuickNote\GetQuickNotes\GetQuickNotesCommand;
+
 
 /**
  * Class QuickNoteController
@@ -27,12 +29,11 @@ class QuickNoteController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('DSFacytInfrastructureBundle:QuickNote')->findAll();
+        $command = new GetQuickNotesCommand();
+        $response = $this->get('CommandBus')->execute($command);
 
         return $this->render('DSFacytInfrastructureBundle:Admin/QuickNote:index.html.twig', array(
-            'entities' => $entities,
+            'data' => json_encode($response->getData())
         ));
     }
     /**

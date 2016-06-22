@@ -5,71 +5,95 @@
 {% block title_notifications %} <span class="fa fa-paper-plane"></span>  Notas rápidas {% endblock title_notifications %}
 
 {% block body %}
-    <h3>Notas rápidas</h3>
-    <h4>Listado de notas rápidas</h4>
-    <br>
-    <div class="col-xs-12">
-        <div class="row">
-            <div class="col-xs-3">
-                <a href="{{ path('ds_facyt_infrastructure_admin_quicknote_new') }}">
-                    <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
-                </a>
-            </div>
-            <div class=" col-xs-9">
-                <div class="pull-right">
-                    <ol class="breadcrumb">
-                      <li><span class="fa fa-circle status-active"></span> Activo</li>
-                      <li><span class="fa fa-circle status-desactive"></span> Inactivo</li>
-                    </ol>
+    <div ng-app="IndexQuickNoteModule" ng-controller="IndexQuickNoteController">
+        <h3>Notas rápidas</h3>
+        <h4>Listado de notas rápidas</h4>
+        <br>
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-3">
+                    <a href="{{ path('ds_facyt_infrastructure_admin_quicknote_new') }}">
+                        <button type="button" class="btn btn-default"> <span class="fa fa-plus"></span> Crear nuevo</button>
+                    </a>
+                </div>
+                <div class=" col-xs-9">
+                    <div class="pull-right">
+                        <ol class="breadcrumb">
+                          <li><span class="fa fa-circle status-active"></span> Activo</li>
+                          <li><span class="fa fa-circle status-desactive"></span> Inactivo</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>    
-    <br><br>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Fecha inicial</th>
-                <th>Fecha final</th>
-                <th>Título</th>
-                <th>Información</th>
-                <th><center>Estado</center></th>                
-                <th style="width:6%">Editar</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.startdate %}{{ entity.startdate|date('d-m-Y') }}{% endif %}</td>
-                <td>{% if entity.enddate %}{{ entity.enddate|date('d-m-Y') }}{% endif %}</td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.info }}</td>
-                <td>
-                    <center>
-                    {% if entity.status == '1' %}
-                        <span class="fa fa-circle status-active"></span>
-                    {% else %}
-                        <span class="fa fa-circle status-desactive"></span>
-                    {% endif %}
-                    </center>
-                </td>
-                
-                <td><center><a href="{{ path('ds_facyt_infrastructure_admin_quicknote_edit', { 'id': entity.id }) }}"> <span class="fa fa-eye"></span></a></center></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div>    
+        <br><br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha inicial</th>
+                    <th>Fecha final</th>
+                    <th>Título</th>
+                    <th>Información</th>
+                    <th><center>Estado</center></th>                
+                    <th style="width:6%">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="currentQuickNote in quick_notes">
+                    <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                    <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                    <td>{[{ currentQuickNote.start_date}]}</td>
+                    <td>{[{ currentQuickNote.end_date}]}</td>
+                    <td>{[{ currentQuickNote.title}]}</td>
+                    <td>{[{ currentQuickNote.info}]}</td>
+                    <td>
+                        <center>
+                            <span class="fa fa-circle status-active" ng-class="{'status-active':currentQuickNote.status, 'status-desactive':!currentQuickNote.status}"></span>                        
+                        </center>
+                    </td>                    
+                    <td></td>
+                </tr>        
+            </tbody>
+        </table>
+        <center>
+            <ul class="pagination" style="margin: 0 0">
+                <li ng-show="pagination.current != pagination.firstPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                </li>
+                <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+                </li>
+                <li ng-show="pagination.current != pagination.lastPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+                </li>
+            </ul>
+        </center>
+    </div>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
     {% if app.environment == "dev" %}
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/QuickNote/indexQuickNoteModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/QuickNote/indexQuickNoteService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/QuickNote/indexQuickNoteController.js') }}"></script>        
     {% else %}
         {% javascripts
             '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   

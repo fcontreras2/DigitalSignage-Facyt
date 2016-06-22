@@ -29,18 +29,6 @@ DSFacyt\InfrastructureBundle\Entity\QuickNote:
             type: datetime
             nullable: true
 
-
-    manyToOne:
-        user:
-            targetEntity: User
-            cascade: {  }
-            mappedBy: null
-            inversedBy: quick_notes
-            joinColumns:
-                property_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-
     manyToMany:
         channels:
             targetEntity: Channel

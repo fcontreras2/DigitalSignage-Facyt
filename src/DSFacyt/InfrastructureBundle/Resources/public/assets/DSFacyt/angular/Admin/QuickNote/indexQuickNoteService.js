@@ -1,0 +1,3 @@
+indexQuickNote.service('IndexQuickNoteService', function(){
+
+});

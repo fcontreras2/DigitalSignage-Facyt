@@ -28,3 +28,9 @@ ds_facyt_infrastructure_admin_quicknote_delete:
     path:     /{id}/delete
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:delete" }
     methods:  [POST, DELETE]
+
+ds_facyt_infrastructure_admin_quicknote_asinc_pagination:
+    path:   /asinc/pagination
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:apiGetQuickNotes" }
+    options:
+        expose: true

@@ -5,6 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use DSFacyt\InfrastructureBundle\Entity\QuickNote;
 use DSFacyt\InfrastructureBundle\Form\QuickNoteType;
@@ -227,5 +228,18 @@ class QuickNoteController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function apiGetQuickNotesAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            $command = new GetQuickNotesCommand($data['page']);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }
+
+        return new JsonResponse(null, 404);
     }
 }

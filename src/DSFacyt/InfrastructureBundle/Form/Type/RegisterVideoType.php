@@ -32,7 +32,7 @@ class RegisterVideoType extends AbstractType
                         'required' => true,
                             'constraints' => [
                                 new File([
-                                    'maxSize' => '8M'                                    
+                                    'maxSize' => "80M"
                                 ])
                             ]
                     ])

@@ -1,0 +1,27 @@
+DSFacyt\InfrastructureBundle\Entity\Notification:
+    type: entity
+    table: notification
+    repositoryClass: DSFacyt\InfrastructureBundle\Repositories\DbNofiticationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        last_modified:
+            type: datetime
+        view:
+            type: boolean
+            options:
+                default: false
+        publish_type:
+            type: string
+        publish_id:
+            type: integer
+        data:
+            type: json_array
+        event:
+            type: string
+            options:
+                default: ''

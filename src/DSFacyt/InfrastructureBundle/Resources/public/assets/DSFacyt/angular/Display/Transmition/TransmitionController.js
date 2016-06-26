@@ -6,6 +6,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     $scope.amountTexts = Math.round($scope.publish.texts.length / 3);
     $scope.quickNotes = data.quickNotes;
     $scope.amountQuickNotes = $scope.quickNotes.length;
+    console.log(data);
     var controller = this;
     controller.state = null;
     controller.currentVideo = 0;
@@ -47,7 +48,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
                 interval: 1000
             });            
         
-            TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos);
+            TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos, $scope.videos, $scope.images);
 
         } else {
             controller.setVideo(controller.currentVideo);
@@ -61,6 +62,6 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         $timeout(controller.API.play.bind(controller.API), 100);
     };
 
-    $scope.showImages = false;
-    $scope.showVideos = true;
+    TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos, $scope.videos, $scope.images);
+
 }]);

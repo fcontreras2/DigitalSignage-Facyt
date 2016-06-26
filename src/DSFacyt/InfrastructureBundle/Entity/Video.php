@@ -75,6 +75,11 @@ class Video
     private $important = false;
 
     /**
+     * @var \DateTime Ultima modificación de la publicación
+     */
+    private $last_modified;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -354,5 +359,36 @@ class Video
     public function getImportant()
     {
         return $this->important;
+    }
+
+    /**
+     * Set last_modified
+     *
+     * @param \DateTime $lastModified
+     * @return Video
+     */
+    public function setLastModified($lastModified)
+    {
+        $this->last_modified = $lastModified;
+
+        return $this;
+    }
+
+    /**
+     * Get last_modified
+     *
+     * @return \DateTime 
+     */
+    public function getLastModified()
+    {
+        return $this->last_modified;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function updateLastModified()
+    {
+        $this->last_modified = new \DateTime();
     }
 }

@@ -160,6 +160,24 @@ class DbImageRepository extends EntityRepository implements
             ->getQuery()->getResult();  
     }
 
+    public function findAllToCheck()
+    {
+        return $this->createQueryBuilder('i')
+            ->where("
+                (TIME(i.publish_time) <= :current_time and
+                i.status = 1 and 
+                i.start_date >= :current_date)
+                or ( i.status = 2 and i.end_date <= :current_date) 
+                or ( i.status = 0 and i.last_modified >= :last_modified)
+            ")
+            ->setParameters([
+                'current_time' => (new \DateTime())->format('G:m:s'),
+                'current_date' => (new \DateTime()),
+                'last_modified' => (new \DateTime('-5 min'))
+            ])
+            ->getQuery()->getResult();
+    }
+
     /**
     * La siguiente función  elimina una imagen
     * @author Freddy Contreras <freddycontreras3@gmail.com>

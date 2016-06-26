@@ -55,6 +55,10 @@ class RepositoryFactory implements RepositoryFactoryInterface
             'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbGroupRepository',
             'entity'=>'DSFacytDomain:Group'
         ),
+        'Notification' => array(
+            'repository'=>'DSFacyt\InfrastructureBundle\Repositories\DbNotificationRepository',
+            'entity'=>'DSFacytDomain:Notification'
+        )
     );
 
     public function __construct($em = null)

@@ -1,4 +1,4 @@
-var uploadvideo = angular.module("UploadVideoModule", ['ngFileUpload'])
+var uploadvideo = angular.module("UploadVideoModule",[])
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })

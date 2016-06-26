@@ -70,7 +70,7 @@ class DbVideoRepository extends EntityRepository implements
             ->innerJoin('v.channels', 'c')
             ->where('
                 c.id = :channelId and
-                v.status = 0
+                v.status = 2
             ')
             ->setParameters([
                 'channelId' => $channelId
@@ -99,6 +99,24 @@ class DbVideoRepository extends EntityRepository implements
                 'status' => $status,
                 'startDate' => $startDate,
                 'endDate' => $endDate
+            ])
+            ->getQuery()->getResult();
+    }
+
+    public function findAllToCheck()
+    {
+        return $this->createQueryBuilder('v')
+            ->where("
+                (TIME(v.publish_time) <= :current_time and
+                v.status = 1 and 
+                v.start_date >= :current_date)
+                or ( v.status = 2 and v.end_date <= :current_date)
+                or ( v.status = 0 and v.last_modified >= :last_modified)
+            ")
+            ->setParameters([
+                'current_time' => (new \DateTime())->format('G:m:s'),
+                'current_date' => (new \DateTime()),
+                'last_modified' => (new \DateTime('-5 min'))
             ])
             ->getQuery()->getResult();
     }

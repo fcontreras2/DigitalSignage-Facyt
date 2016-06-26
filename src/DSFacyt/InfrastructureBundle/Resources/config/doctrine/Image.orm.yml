@@ -36,6 +36,9 @@ DSFacyt\InfrastructureBundle\Entity\Image:
             type: boolean
             options:
                 default: false
+        last_modified:
+            type: datetime
+            nullable: true
 
     manyToOne:
         user:
@@ -75,4 +78,6 @@ DSFacyt\InfrastructureBundle\Entity\Image:
             orderBy: null
 
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [updateLastModified]
+        preUpdate: [updateLastModified]

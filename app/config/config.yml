@@ -73,6 +73,12 @@ doctrine:
                 prefix: DSFacyt\InfrastructureBundle\Entity
                 dir: %kernel.root_dir%/../src/DSFacyt/InfrastructureBundle/Resources/config/doctrine/
                 is_bundle: false
+        dql:
+            datetime_functions:
+                date:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                time:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                timestamp:      Oro\ORM\Query\AST\Functions\SimpleFunction
+                convert_tz:     Oro\ORM\Query\AST\Functions\DateTime\ConvertTz
 
 
 # Swiftmailer Configuration

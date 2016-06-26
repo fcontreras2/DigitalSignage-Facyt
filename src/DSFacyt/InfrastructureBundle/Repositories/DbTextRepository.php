@@ -5,6 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Repositories;
 use Doctrine\ORM\EntityRepository;
 use DSFacyt\Core\Domain\Repository\TextRepository;
 use DSFacyt\InfrastructureBundle\Entity\Text;
+use Doctrine\DBAL\Types\Type;
 
 /**
 * La clase se declaran los metodos y funciones que implementan
@@ -77,7 +78,8 @@ class DbTextRepository extends EntityRepository implements
                 'status' => $status,
                 'startDate' => $startDate,
                 'endDate' => $endDate
-            ])
+            ])            
+
             ->getQuery()->getResult();
     }
 
@@ -159,6 +161,24 @@ class DbTextRepository extends EntityRepository implements
             ])
             ->orderBy('t.start_date', 'DESC')
             ->getQuery()->getResult();  
+    }
+
+    public function findAllToCheck()
+    {
+        return $this->createQueryBuilder('t')
+            ->where("
+                (TIME(t.publish_time) <= :current_time and
+                t.status = 1 and 
+                t.start_date >= :current_date)
+                or ( t.status = 2 and t.end_date <= :current_date)
+                or ( t.status = 0 and t.last_modified >= :last_modified)
+            ")
+            ->setParameters([
+                'current_time' => (new \DateTime())->format('G:m:s'),
+                'current_date' => (new \DateTime()),
+                'last_modified' => (new \DateTime('-5 min'))
+            ])
+            ->getQuery()->getResult();
     }
 
     /**

@@ -1,5 +1,5 @@
-index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal', '$alert', '$timeout',
-    function ($scope, $filter,indexService, $modal, $alert, $timeout) {
+index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal', '$alert', '$timeout','$interval',
+    function ($scope, $filter,indexService, $modal, $alert, $timeout,$interval) {
 
         $scope.data = data;
 
@@ -64,6 +64,10 @@ index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal
                 }
             }
         });
+
+        $interval(function() {
+            indexService.checkNotifications($scope);        
+          }, 1000);
 
         $timeout(function() { initializing = true; });
     }]);

@@ -30,7 +30,8 @@
         "ext-pdo_pgsql": "*",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
         "doctrine/doctrine-migrations-bundle": "^1.0",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "oro/doctrine-extensions": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

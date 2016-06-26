@@ -1,10 +1,10 @@
-uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','Upload','$window','$timeout',
-    function ($scope, UploadVideoService,Upload,$window, $timeout) {
+uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','$window','$timeout',
+    function ($scope, UploadVideoService,$window, $timeout) {
         
         $scope.data = data;
         $scope.data.publish_time = '7:00 AM'
 
-        if ($scope.data.pathVideo) {
+        /*if ($scope.data.pathVideo) {
             $scope.cropper.croppedVideo = '/uploads/videos/' + $scope.data.pathVideo;
             $scope.cropper.sourceVideo = true;
         }
@@ -25,5 +25,5 @@ uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','
             }).error(function (data, status, headers, config) {
                 console.log('error');
             });
-        }
+        }*/
     }]);

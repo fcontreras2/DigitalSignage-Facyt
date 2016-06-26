@@ -135,6 +135,6 @@ class GetDataTransmitionHandler implements Handler
             $response[] = $auxResponse;
         }
 
-        return $response;
+            return $response;
     }
 }

@@ -64,30 +64,31 @@
                             </div>
 
                             <div class="col-xs-10 col-xs-offset-1">
-                                <div class="row ">
+                                <div class="row">
                                     <div class="col-xs-4">
-
                                         {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
                                         <div class="input-group bootstrap-timepicker timepicker">
                                             {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}
                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                         </div>                                        
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div id="js-range-picker">
+                                        <div class="col-xs-4">
 
-                                        {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            {{ form_widget(form.start_date, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.start_date, {'attr': {'class': 'form-control datepicker-start_date'}}) }}
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            {{ form_widget(form.end_date, {'attr': {'class': 'form-control'}}) }}
+                                        <div class="col-xs-4">
+                                            {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.end_date, {'attr': {'class': 'form-control datepicker-end_date'}}) }}
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +107,7 @@
                                 {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                             </div>
 
-                            <div class="col-xs-10 col-xs-offset-1 " ng-app="UploadImageModule" ng-controller="UploadImageController">
+                            <div class="col-xs-10 col-xs-offset-1 ">
                                 <br>
                                 Selecciona una Video
                                 {{ form_errors(form.document) }}
@@ -174,10 +175,15 @@
     <script type="text/javascript">
         $('.input-group.date').datepicker({
             language: "es",
-            format: 'dd/mm/yyyy',
-            startDate: '-3d',
+            format: 'dd/mm/yyyy'
         });
 
+        jQuery(function($) {
+            $('#js-range-picker').rangePicker({
+                checkInSelector: '.datepicker-start_date',
+                checkOutSelector: '.datepicker-end_date'
+            });
+        });
     </script>
 
     <script type="text/javascript">

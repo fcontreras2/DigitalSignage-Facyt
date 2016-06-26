@@ -1,0 +1,5 @@
+ds_facyt_admin_check_notifications:
+    path: /check
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Notification:check"}
+    options:
+        expose: true

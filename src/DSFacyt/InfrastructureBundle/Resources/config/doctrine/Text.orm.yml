@@ -38,6 +38,9 @@ DSFacyt\InfrastructureBundle\Entity\Text:
         observation:
             type: string
             nullable: true
+        last_modified:
+            type: datetime
+            nullable: true
 
     manyToOne:
         user:
@@ -68,4 +71,6 @@ DSFacyt\InfrastructureBundle\Entity\Text:
                         referencedColumnName: id
             orderBy: null
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [updateLastModified]
+        preUpdate: [updateLastModified]

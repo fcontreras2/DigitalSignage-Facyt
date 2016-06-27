@@ -35,6 +35,11 @@ ds_facyt_infrastructure_admin_module_publish_image:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/image.yml"
     prefix: /image
 
+# Módulo de CRUD de las videos del sistema
+ds_facyt_infrastructure_admin_module_publish_video:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/publish/video.yml"
+    prefix: /video
+
 # Obtener una publicación dado un estado y un tipo de la publicación
 ds_facyt_infrastructure_get_publish_type_status:
     path: /{type}/{status}

@@ -1,0 +1,163 @@
+{% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
+
+
+{% block title %} Imágenes {% endblock title %}
+
+{% block title_notifications %}
+    <span class="fa fa-play-circle-o"></span> Editar Video
+{% endblock title_notifications %}
+
+{% block body %}
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2" >
+                <div class="panel panel-default" >
+                    <div class="panel-heading"><h4>Ingresa los datos de la publicación</h4></div >
+
+                    <div class="panel-body">
+                        {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                {{ form_errors(form.title) }}
+                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
+                                <br>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row ">
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.publish_time) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.start_date) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.end_date) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        </div>                                        
+                                    </div>
+                                    <div id="js-range-picker">
+                                        <div class="col-xs-4">
+
+                                            {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.start_date, {'attr': {'class': 'form-control datepicker-start_date'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.end_date, {'attr': {'class': 'form-control datepicker-end_date'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.Channels) }}
+                                {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.description) }}
+                                {{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1 ">
+                                <br>
+                                Selecciona una Video
+                                {{ form_errors(form.document) }}
+                                {{ form_widget(form.document, {'attr': {'class': 'form-control'}}) }}
+                                <br>
+                                {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
+                            </div>
+                                    
+                            </div>
+
+                             <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
+                                </button>
+                            </div>
+                        </div>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+        <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>        
+        
+
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        "@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/bootstrap-datepicker.js"
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+
+    <script type="text/javascript">
+        $('.input-group.date').datepicker({
+            language: "es",
+            format: 'dd/mm/yyyy',
+            startDate: '-3d',
+        });
+
+        $('#registerImage_publish_time').timepicker(
+        {
+            defaultTime: '7:00 AM',
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        });
+    </script>
+
+{% endblock javascripts %}

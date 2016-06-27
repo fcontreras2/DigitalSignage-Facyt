@@ -103,6 +103,47 @@ class DbVideoRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+    /**
+    * 
+    */
+    public function findByData($data)
+    {
+        $where = null;
+        $parameters = [];
+
+        if (isset($data['status']) and !is_null($data['status'])) {
+            $where = 'v.status = :status';
+            $parameters['status'] = $data['status'];
+        } else {
+            $where = ' v.status > -1';
+        }
+
+        if (isset($data['start_date']) and !is_null($data['start_date'])) {
+            $where = $where.' and ((v.start_date <= :startDate and :startDate <= v.end_date) or
+                (v.start_date <= :endDate and :endDate <= v.end_date))';
+
+            $parameters['startDate'] = $data['start_date'];
+            $parameters['endDate'] = $data['end_date'];
+        }
+
+        if (isset($data['user']) and !is_null($data['user']) and !$data['user']->hasRole('ROLE_ADMIN')) {
+            $where = $where. ' and v.user = :userId ';
+            $parameters['userId'] = $data['user']->getId();
+        }
+        
+        $query = $this->createQueryBuilder('v')
+            ->where($where)->setParameters($parameters);
+
+        if (isset($data['filter']) and !is_null($data['filter'])) {
+            if (isset($data['order']) and !is_null($data['order']))
+                $query->orderBy('v.'.$data['filter'], $data['order']);
+            else
+                $query->orderBy('v.'.$data['filter'], 'ASC');
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
     public function findAllToCheck()
     {
         return $this->createQueryBuilder('v')

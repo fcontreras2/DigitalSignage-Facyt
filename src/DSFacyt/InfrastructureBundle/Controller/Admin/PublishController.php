@@ -7,12 +7,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use DSFacyt\InfrastructureBundle\Entity\Text;
+use DSFacyt\InfrastructureBundle\Entity\Video;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
 use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
 use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
 use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\UpdateImportant\UpdateImportantCommand;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
+use DSFacyt\InfrastructureBundle\Form\Type\RegisterVideoType;
 use DSFacyt\Core\Application\UseCases\Text\SetText\SetTextCommand;
 use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
 use Symfony\Component\HttpFoundation\File\File;
@@ -398,4 +400,20 @@ class PublishController extends Controller
 
         return $this->redirect('ds_facyt_infrastructure_admin_homepage');
     }
+
+    /**
+    * La función se encarga de mostrar la vista de los videos
+    *
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    */
+    public function newVideoAction()
+    {
+        $video= new Video();
+        $form = $this->createForm(new RegisterVideoType(), $video,
+            array(
+                'action' => $this->generateUrl('ds_facyt_infrastructure_user_video_new_validate'),
+                'method' => 'POST'));
+        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathImage' => null])));
+    }
+
 }

@@ -1,0 +1,5 @@
+ds_facyt_infrastructure_admin_new_video:
+    path: /new
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Publish:newVideo" }
+    options:
+        expose: true

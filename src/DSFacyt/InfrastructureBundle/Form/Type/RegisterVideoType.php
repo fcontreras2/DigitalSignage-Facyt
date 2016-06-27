@@ -34,7 +34,8 @@ class RegisterVideoType extends AbstractType
                                 new File([
                                     'maxSize' => "80M"
                                 ])
-                            ]
+                            ],
+                        'label' => false
                     ])
             );
     }

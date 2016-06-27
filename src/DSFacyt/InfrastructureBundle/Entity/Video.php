@@ -385,8 +385,8 @@ class Video
     }
 
     /**
-     * @ORM\PrePersist
-     */
+    * Actualiza la ultima modificación
+    */
     public function updateLastModified()
     {
         $this->last_modified = new \DateTime();

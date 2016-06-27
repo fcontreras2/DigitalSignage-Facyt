@@ -26,9 +26,26 @@ class CheckNotificationHandler implements Handler
      */
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
-        $response = [];
+        $response = ['texts' => [], 'images' => [], 'videos' => []];
         $rpNotification = $rf->get('Notification');
-        
+        $notifications = $rpNotification->findNotViewNotifications();
+        $auxNotification = [];
+        foreach ($notifications as $currentNotification) {
+            $auxNotification['id'] = $currentNotification->getPublishId();
+            $auxNotification['event'] = $currentNotification->getEvent();
+
+            switch ($currentNotification->getPublishType()) {
+                case 'text':
+                    $response['texts'][] = $auxNotification;
+                    break;
+                case 'image':
+                    $response['images'][] = $auxNotification;
+                    break;
+                case 'videos':
+                    $response['videos'][] = $auxNotification;
+                    break;
+            }            
+        }
 
         return new ResponseCommandBus(200, 'Ok', $response);
     }

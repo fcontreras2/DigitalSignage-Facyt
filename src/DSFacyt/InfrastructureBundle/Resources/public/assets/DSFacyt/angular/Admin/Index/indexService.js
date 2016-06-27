@@ -7,7 +7,9 @@ index.service('indexService', function() {
             data: data,
             url: url,
             success: function(data) {
-                console.log(data);
+            	console.log(data);
+                $scope.notifications = data;
+                $scope.$apply();
             }
         });
 	}

@@ -19,6 +19,18 @@ use DSFacyt\Core\Domain\Repository\NotificationRepository;
 class DbNotificationRepository extends EntityRepository implements 
     NotificationRepository 
 {
+
+    /**
+    * Obtener las nofiticaciones recientes para el admin
+    * 
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    */
+    public function findNotViewNotifications()
+    {
+        return $this->createQueryBuilder('n')
+            ->where('n.view = false')
+            ->getQuery()->getResult();
+    }
     
     /**
     * La siguiente función  elimina una Notificación

@@ -2,6 +2,7 @@ index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal
     function ($scope, $filter,indexService, $modal, $alert, $timeout,$interval) {
 
         $scope.data = data;
+        $scope.notifications = {};
 
         var initializing = false;
 

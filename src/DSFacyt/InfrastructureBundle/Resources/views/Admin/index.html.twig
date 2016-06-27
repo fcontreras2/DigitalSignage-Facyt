@@ -29,7 +29,7 @@
 
         <div class="col-xs-12">
             <h4><span class="fa fa-bell-o"></span> Publicaciones </h4>
-            Publicaciones realizadas por los usuarios
+            Publicaciones realizadas por los usuarios {[{notifications.texts.length}]}
             <div class="row">
                 <div class="col-xs-4">
                     <div class="panel panel-default">
@@ -76,26 +76,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!--<div class="col-xs-12">
-            <h4> <span class="fa fa-desktop"></span> Canales</h4>
-            Medios donde se realizaran publicaciones
-            <div class="row">
-                {% for i in 1..3 %}
-                <div class="col-xs-4">
-                    <div class="panel panel-default">
-                    	  <div class="panel-heading">
-                    			<h3 class="panel-title">Nombre del Canal</h3>
-                    	  </div>
-                    	  <div class="panel-body">
-                    			Panel body
-                    	  </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>-->
+        </div>        
     </div>
 
 {% endblock body %}

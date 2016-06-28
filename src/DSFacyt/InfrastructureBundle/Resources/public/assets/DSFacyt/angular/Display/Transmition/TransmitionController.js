@@ -1,12 +1,11 @@
-Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout', function ($scope, TransmitionService,$sce, $timeout) {    
+Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout','$interval', function ($scope, TransmitionService,$sce, $timeout,$interval) {
     $scope.publish = data.publish;
     $scope.texts = $scope.publish.texts;
     $scope.images = $scope.publish.images;
     $scope.videos = $scope.publish.videos;
-    $scope.amountTexts = Math.round($scope.publish.texts.length / 3);
     $scope.quickNotes = data.quickNotes;
-    $scope.amountQuickNotes = $scope.quickNotes.length;
-    console.log(data);
+    $scope.currentVideo = 0;
+
     var controller = this;
     controller.state = null;
     controller.currentVideo = 0;
@@ -28,8 +27,8 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         }
     }
 
-    $scope.showImages = true;
-    $scope.showVideos = false;
+    $scope.showImages = false;
+    $scope.showVideos = true;
     controller.onPlayerReady = function(API) {
         controller.API = API;        
     };
@@ -55,13 +54,32 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         }
     };
 
-    controller.setVideo = function(index) {
+    controller.setVideo = function() {
         controller.API.stop();
-        controller.currentVideo = index;
-        controller.config.sources = controller.videos[index];
-        $timeout(controller.API.play.bind(controller.API), 100);
+        controller.currentVideo = $scope.currentVideo;
+        controller.config.sources = controller.videos[$scope.currentVideo];
+        $scope.currentVideo++;
+
+        if ($scope.currentVideo % 2 != 0)
+            $timeout(controller.API.play.bind(controller.API), 100);
+        else {
+            $scope.showImages = true;
+            $scope.showVideos = false;
+        }
+
+        if ($scope.currentVideo > $scope.videos.length - 1)
+            $scope.currentVideo = 0;
     };
 
     TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos, $scope.videos, $scope.images);
 
+    $scope.$watch('showImages', function() {
+        if ($scope.showImages) {
+            $timeout(function() {
+                $scope.showVideos = true;
+                $scope.showImages = false;
+                $timeout(controller.API.play.bind(controller.API), 100);
+            }, ($scope.images.length*2)*1000);
+        }
+    });
 }]);

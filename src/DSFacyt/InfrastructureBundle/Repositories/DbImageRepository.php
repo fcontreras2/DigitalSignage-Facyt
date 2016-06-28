@@ -135,7 +135,7 @@ class DbImageRepository extends EntityRepository implements
             ->innerJoin('i.channels', 'c')
             ->where('
                 c.id = :channelId and
-                i.status = 0 
+                i.status = 2
             ')
             ->setParameters([
                 'channelId' => $channelId

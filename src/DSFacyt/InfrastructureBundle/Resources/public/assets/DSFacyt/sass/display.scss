@@ -20,19 +20,19 @@ $fa-font-path:   "/fonts/font-awesome";
   padding: 0px !important;
   .block-media {
     background: $blue-dark;
-    height: 93vh;
-    width: 69.9%;
+    height: 92.5vh;
+    width: 75%;
     float: left;
     border-right: 1px solid black;
-    position: relative
+    position: relative;
     img {max-height:93vh;width: 100%;}
   }
 
   .block-info {
     background: $gray-light;
 
-    height: 93vh;
-    width: 30%;
+    height: 92.5vh;
+    width: 25%;
     float: left;
 
     .block-time {
@@ -41,12 +41,12 @@ $fa-font-path:   "/fonts/font-awesome";
       border-bottom: 1px solid black;
     } 
     .block-text {
-      height: 67vh;
+      height: 72.5vh;
       .item {
         z-index:10 !important;
         height:71.3vh;
         .panel {
-          height: 25.0vh !important;
+          height: 75.0vh !important;
           border-bottom: 1px solid black;
           margin: 0px;
           .text-profile {

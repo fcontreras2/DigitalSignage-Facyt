@@ -183,7 +183,7 @@ class VideoController extends Controller
             }
 
             die(var_dump($data));
-            /*if ($request->files->get('file')) 
+            /*if ($request->files->get('file'))
                 $file = new File($request->files->get('file'));
 
             $user = $security = $this->container->get('security.context')->getToken()->getUser();

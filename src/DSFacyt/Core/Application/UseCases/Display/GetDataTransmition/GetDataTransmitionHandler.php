@@ -126,7 +126,7 @@ class GetDataTransmitionHandler implements Handler
         $response = [];
         $rpQuickNote = $this->rf->get('QuickNote');
 
-        $quickNotes = $rpQuickNote->findBy(['status' => 0]);
+        $quickNotes = $rpQuickNote->findBy(['status' => 1]);
         $auxResponse = [];
         foreach ($quickNotes as $currentQuickNote) {
             

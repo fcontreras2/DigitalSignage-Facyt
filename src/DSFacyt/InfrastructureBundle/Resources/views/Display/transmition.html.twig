@@ -65,21 +65,21 @@ f
                     </div>
                 </div>
             </div>
-            <div class="block-text">                 
+            <div class="block-text">
                 <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
                     <div class="carousel-inner">
-                        <div class="item" ng-repeat="n in [] | range:amountTexts" ng-init="i_parent = $index "ng-class="{'active':!i_parent}">
-                            <div class="panel panel-default" ng-repeat="n_ in [] | range:3" ng-init="i_child = $index" data-interval="500">
+                            <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}">
+                            <div class="panel panel-default" data-interval="500">
                                 <div class="panel-heading" style="font-size:16px;">
-                                    <b>{[{ texts[i_child + (3 * i_parent)].title }]}</b> <span style="float: right"> {[{ texts[i_child + (3 * i_parent)].start_date }]}</span>
+                                    <b>{[{ texts[$index].title }]}</b> <span style="float: right"> {[{ texts[$index].start_date }]}</span>
                                 </div>
                                 <div class="panel-body">
                                     <div class="text-profile">
-                                        <img src="/uploads/images/{[{texts[i_child + (3* i_parent)].image_profile}]}" alt="" style="vertical-align:middle;float:left;width: 80%;height: 60px;  background-position: center center;  background-repeat: no-repeat;float:left;">
-                                        <left> <p style="float:left;width:100%">{[{texts[i_child + (3* i_parent)].user_full_name}]}</p></left>
+                                        <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;float:left;width: 80%;height: 60px;  background-position: center center;  background-repeat: no-repeat;float:left;">
+                                        <left> <p style="float:left;width:100%">{[{texts[$index].currentText.user_full_name}]}</p></left>
                                     </div>
                                     <div class="text-info">
-                                    {[{ texts[i_child + (3 * i_parent)].info }]}
+                                    {[{ texts[$index].info }]}
                                     </div>
                                 </div>
                             </div>                        

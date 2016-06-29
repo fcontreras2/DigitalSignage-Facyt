@@ -7,3 +7,7 @@ ds_facyt_display_index:
 ds_facyt_display_show:
     path: /{slug}
     defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:showChannel"}
+
+ds_facyt_display_check_publish:
+    path: /{slug}
+    defaults: { _controller: "DSFacytInfrastructuraBundle:Display/Default:checkPublish" }

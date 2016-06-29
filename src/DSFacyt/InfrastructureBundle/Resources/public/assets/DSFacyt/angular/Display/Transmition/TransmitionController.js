@@ -4,15 +4,17 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     $scope.images = $scope.publish.images;
     $scope.videos = $scope.publish.videos;
     $scope.quickNotes = data.quickNotes;
-    $scope.currentVideo = 0;
 
+    // Inicialización de variables
+    $scope.currentVideo = 0;
+    $scope.showImages = false;
+    $scope.showVideos = true;
     var controller = this;
-    controller.state = null;
-    controller.currentVideo = 0;
     controller.API = null;
 
+    //Se inicializa los videos actualmente
     controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
-
+    // Configuraciones iniciales
     controller.config = {
         preload: "none",
         autoHide: false,
@@ -27,59 +29,49 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         }
     }
 
-    $scope.showImages = false;
-    $scope.showVideos = true;
+    // Iniciar automaticamente la reproducción de videos
     controller.onPlayerReady = function(API) {
         controller.API = API;        
     };
 
+    // Cuando termina un video
     controller.onCompleteVideo = function() {
-        controller.isCompleted = true;
 
-        controller.currentVideo++;
-
-        if (controller.currentVideo >= controller.videos.length) {
+        // Si termina el ultimo video
+        if ($scope.currentVideo > controller.videos.length - 1) {
             controller.currentVideo = 0;
-            $scope.showVideos = false;
-            $scope.showImages = true;
-
             $('#carousel-images').carousel({
                 interval: 1000
-            });            
-        
-            TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos, $scope.videos, $scope.images);
-
+            });
+            TransmitionService.changeMedia($scope);
         } else {
-            controller.setVideo(controller.currentVideo);
+            // Se para el video actual
+            controller.API.stop();
+            $scope.currentVideo++;
+            if ($scope.currentVideo > $scope.videos.length - 1)
+                $scope.currentVideo = 0;
+
+            controller.config.sources = controller.videos[$scope.currentVideo];
+
+            // Se reproduce 2 videos a la vez
+            if ($scope.currentVideo % 2 != 0)
+                $timeout(controller.API.play.bind(controller.API), 100);
+            else
+                TransmitionService.changeMedia($scope);
         }
     };
 
-    controller.setVideo = function() {
-        controller.API.stop();
-        controller.currentVideo = $scope.currentVideo;
-        controller.config.sources = controller.videos[$scope.currentVideo];
-        $scope.currentVideo++;
-
-        if ($scope.currentVideo % 2 != 0)
-            $timeout(controller.API.play.bind(controller.API), 100);
-        else {
-            $scope.showImages = true;
-            $scope.showVideos = false;
-        }
-
-        if ($scope.currentVideo > $scope.videos.length - 1)
-            $scope.currentVideo = 0;
-    };
-
-    TransmitionService.changeMedia($timeout, $scope.showImages, $scope.showVideos, $scope.videos, $scope.images);
-
+    // Cuando cambia la transmisición de videos
     $scope.$watch('showImages', function() {
         if ($scope.showImages) {
             $timeout(function() {
-                $scope.showVideos = true;
-                $scope.showImages = false;
+                TransmitionService.changeMedia($scope);
                 $timeout(controller.API.play.bind(controller.API), 100);
-            }, ($scope.images.length*2)*1000);
+            }, ($scope.images.length)*500);
         }
     });
+
+    $interval(function() {
+        TransmitionService.checkPublish($scope);
+    }, 1000);
 }]);

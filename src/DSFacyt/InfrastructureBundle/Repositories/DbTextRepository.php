@@ -181,6 +181,22 @@ class DbTextRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+    public function findActiveFinishedByChannel($channelId)
+    {
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.channels', 'c')
+            ->where('
+               c.id = :channelId and
+               (t.status = 2 or t.status = 3) and
+               t.last_modified >= :last_modified
+            ')
+            ->setParameters([
+                'channelId' => $channelId,
+                'last_modified' =>  (new \DateTime('-5 min'))
+            ])
+            ->getQuery()->getResult();
+    }
+
     /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>

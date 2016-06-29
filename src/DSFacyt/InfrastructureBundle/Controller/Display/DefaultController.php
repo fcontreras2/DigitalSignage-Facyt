@@ -2,7 +2,9 @@
 
 namespace DSFacyt\InfrastructureBundle\Controller\Display;
 
+use DSFacyt\Core\Application\UseCases\Display\CheckPublish\CheckPublishCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +20,7 @@ class DefaultController extends Controller
         return $this->render('@DSFacytInfrastructure/Display/index.html.twig',['data' => $response->getData()]);
     }
 
-    public function showChannelAction($slug)
+    public function showChannelAction($slug, Request $request)
     {
         $command = new GetDataTransmitionCommand($slug);        
         $response = $this->get('CommandBus')->execute($command);
@@ -26,8 +28,15 @@ class DefaultController extends Controller
         return $this->render("DSFacytInfrastructureBundle:Display:transmition.html.twig", ['data' => json_encode($response->getData())]);
     }
 
-    public function checkPublish()
+    public function checkPublishAction(Request $request)
     {
-        $command =
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            $command = new CheckPublishCommand($data['slug']);
+            $response = $this->get('CommandBus')->execute($command);
+
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }
+        return new JsonResponse(404,'Bad Request');
     }
 }

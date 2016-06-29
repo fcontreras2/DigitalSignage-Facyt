@@ -9,5 +9,7 @@ ds_facyt_display_show:
     defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:showChannel"}
 
 ds_facyt_display_check_publish:
-    path: /{slug}
-    defaults: { _controller: "DSFacytInfrastructuraBundle:Display/Default:checkPublish" }
+    path: /asinc/check-channel
+    defaults: { _controller: "DSFacytInfrastructureBundle:Display/Default:checkPublish" }
+    options:
+        expose: true

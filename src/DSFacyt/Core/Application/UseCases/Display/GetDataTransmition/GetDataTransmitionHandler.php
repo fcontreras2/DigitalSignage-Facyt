@@ -34,7 +34,7 @@ class GetDataTransmitionHandler implements Handler
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
         $this->rf = $rf;
-        $response = ['publish' => [], 'quick_notes' => []];
+        $response = ['publish' => [], 'quick_notes' => [],'slug' => $command->getRequest()['slug']];
 
         $slug = $command->getRequest()['slug'];
         $channel = $rf->get('Channel')->findOneBy(['slug' => $slug]);

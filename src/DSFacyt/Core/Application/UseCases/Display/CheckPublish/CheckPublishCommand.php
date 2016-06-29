@@ -1,5 +1,4 @@
 <?php
-<?php
 
 namespace DSFacyt\Core\Application\UseCases\Display\CheckPublish;
 
@@ -11,7 +10,7 @@ use DSFacyt\Core\Application\Contract\Command;
  * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
  * @version 03/03/2016
  */
-class GetCheckPublishCommand implements Command
+class CheckPublishCommand implements Command
 {
     /**
      * @var string representa el slug del canal

@@ -20,18 +20,40 @@ Transmition.service('TransmitionService', function(){
     this.checkPublish = function($scope) {
         var url = Routing.generate('ds_facyt_display_check_publish');
         var data = angular.toJson({"slug": $scope.slug});
+        var response = null;
         $.ajax({
             method: 'POST',
             data: data,
             url: url,
             success: function(data) {
-                if (checkChange($scope, data))
-                    $scope.$apply();
+                $scope.check_data = data;
+                $scope.$apply();
             }
         });
-    }
 
-    this.checkChange = function($scope, data) {
+    };
 
+    this.checkChange = function($scope) {
+
+        if ($scope.check_data ) {
+            console.log($scope.check_data);
+            $.each($scope.check_data.publish.texts, function (key_parent, value_parent) {
+                $.each($scope.texts, function (key_child, value_child) {
+                    if (value_child.id = value_parent.id) {
+                        if (value_parent.status == 2)
+                            $scope.texts[key_child] = $scope.check_data.texts[key_parent];
+                        else if (value_parent.status == 3) {
+                            $scope.texts.splice(key_child, 1);
+                            $("#carousel-texts").carousel("pause").removeData();
+                            $('#carousel-texts').carousel({
+                                interval: 10000
+                            });
+                        }
+
+                        return false;
+                    }
+                });
+            });
+        };
     }
 });

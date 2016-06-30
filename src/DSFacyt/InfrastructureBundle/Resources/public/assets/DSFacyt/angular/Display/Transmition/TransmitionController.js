@@ -74,5 +74,6 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
 
     $interval(function() {
         TransmitionService.checkPublish($scope);
+        TransmitionService.checkChange($scope);
     }, 1000);
 }]);

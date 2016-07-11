@@ -28,28 +28,34 @@ Canales Online
     <br>
     <div class="container" style="min-height:100vh">
         <div class="row">
-            <div class="col-xs-6" style="color:white;position:fixed">
-                <h2><span class="fa fa-desktop"></span> Canales Online</h2>
+            <div class="col-xs-4" style="position:fixed">
+                <h2 class="channel-title"><span class="fa fa-desktop"></span> Canales Online</h2>
                 <br>
+                <div class="channel-info">
                 <h4> <i class="fa fa-check"></i> Visualiza la programación de los canales disponibles. <br><br>
                 <i class="fa fa-check"></i> Selecciona el canal que quieres visualizar.<br><br>
                 <i class="fa fa-check"></i> <a href="#"><b>¿Qué es un canal?</b></a><br>
                 </h4>
-            </div>
-            {% for currentChannel in data %}
-                <div class="col-xs-6 col-xs-offset-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{currentChannel.name}}</h3>
-                        </div>
-                        <div class="panel-body">
-                            {{currentChannel.description}}
-                            <br>
-                            <a href="{{ path('ds_facyt_display_show',{'slug':currentChannel.slug})}}"> <span style="color:green" class="fa fa-circle"> </span> Ver canal </a>
-                        </div>
-                    </div>
                 </div>
-            {% endfor %}
+            </div>
+            <div class="col-xs-6 col-xs-offset-6 box-channel-panel">
+                <div class="row">
+                    {% for currentChannel in data %}
+                        <div class="col-xs-12" >
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{currentChannel.name}}</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="description-channel">{{currentChannel.description}}</div>
+                                    <br>
+                                    <a href="{{ path('ds_facyt_display_show',{'slug':currentChannel.slug})}}"> <span style="color:green" class="fa fa-circle"> </span> Ver canal </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
   </div>

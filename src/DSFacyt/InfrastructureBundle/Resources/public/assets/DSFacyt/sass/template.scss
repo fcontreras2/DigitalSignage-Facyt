@@ -42,7 +42,25 @@ body {
 }
 
 .body-channel {
-  background: $blue-ligth !important;
+  background: $gray-light !important;
+  .channel-title { color: $blue-ligth}
+  .channel-info {
+    background-color: $gray-light-two;
+    border-radius: 5px;
+    padding: 10px;
+    color:$blue-dark;
+  }
+  .fa-check {color: $blue-ligth}
+  .box-channel-panel {margin-top: 2%;}
+  .panel-title {
+    font-size: 135%;
+  }
+  .panel-body {
+    font-size: 125%;
+  }
+  .description-channel {
+    min-height: 62px;
+  }
 }
 
 .checkbox {
@@ -98,14 +116,24 @@ body {
 .panel {
   .panel-heading {
     font-family: 'Avenir LT Std 85 Heavy';
-    background: $blue-ligth;
-    color:white;
+    background: $blue-ligth !important;
+    color:white !important;
     text-align: left;
   }
   .panel-footer {
     button {
-      background:$blue-ligth;      
+      background:$blue-ligth !important;
     }
+  }
+  .title {
+    font-size: 32px !important;
+    color:$blue-ligth !important;
+    font-weight: bold;
+  }
+  .sub-title {
+    font-size: 22px !important;
+    color:$blue-dark !important;
+    font-weight: bold;
   }
 }
 
@@ -285,9 +313,13 @@ body {
 }
 
 #body-login {
-  background: $blue-dark;
+  background: $gray-light;
+  label {color:$blue-dark}
+  #login-title {color: $blue-ligth}
+  #login-info { color:$blue-dark; .fa-check {color:$blue-ligth}}
 }
 
+.panel-login { color: $blue-ligth !important;}
 #body-user {
   background: $blue-dark;
   min-height: 100vh;  
@@ -491,4 +523,24 @@ body {
     text-align: right;
     float: right !important;
     width: 60%;
+  }
+
+  .body-importants {
+    background-color: $gray-light;
+    #title-page {color:$blue-ligth}
+    #sub-title-page {color: $blue-dark}
+
+    #box-texts {
+      .title {color:$blue-ligth;font-weight: bold}
+      #box-texts-aux {background-color: $gray-light-two !important;}
+    }
+    #box-images {
+      background-color: $gray-dark;
+      .title {color:$blue-ligth;font-weight: bold}
+      #box-texts-aux {background-color: $gray-light-two !important;}
+    }
+    #box-videos {
+      .title {color:$blue-ligth;font-weight: bold}
+      #box-texts-aux {background-color: $gray-light-two !important;}
+    }
   }

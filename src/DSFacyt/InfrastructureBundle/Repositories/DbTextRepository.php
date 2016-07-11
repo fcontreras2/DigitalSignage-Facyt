@@ -149,12 +149,12 @@ class DbTextRepository extends EntityRepository implements
     {
         $date = new \DateTime();
         $date->modify('-7 days');
-        
+
         return $this->createQueryBuilder('t')
             ->where('
                 t.start_date >= :date and
-                t.important = true 
-                
+                t.important = true
+
             ')
             ->setParameters([
                 'date' => $date

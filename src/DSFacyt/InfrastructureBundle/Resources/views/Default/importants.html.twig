@@ -17,53 +17,143 @@
  
 {% block body %}
 {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
-<div id="body-login">
-<div class="container" style=";min-height:100vh">
+<div class="body-importants" style="min-height:100vh">
+>
 
 	<div class="container">
-		<div class="col-xs-12" style="color:white">
-			<br>
-			<h2><span class="fa fa-star"></span> Destacados</h2>
-            
-            <br>
-                <h4> <i class="fa fa-check"></i> Información destacada de la semana. <br><br>
-                
-                </h4>
-                
-		</div>
-		<div class="col-xs-12" >			
-			<h3 style="color:white"><span class="fa fa-pencil"></span> Textos</h3>
-            <br>
-            <div class="row">
-            	{% for currentText in data.texts %}
-                        <div class="col-xs-12 col-md-3">
-                        <div class="panel panel-default" style="
-    min-height: 300px;
-    max-height: 300px;">
-                            <div class="panel-heading">
-                                <h4>{{currentText.title}}</h4>
-                            </div>
-                            <div class="panel-body" style="max-height:160px;min-height:160px;">
-                                <p style="font-size:16px;">
-                                    {{currentText.info}}
-                                    <br>
-                                    <br>
-                                    <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
-                                </p>
-                            </div>
-                            <div class="panel-footer" style="min-height:78px">
-                                <b>
-                                    {{currentText.start_date}}<br>
-                                    Publicado por {{currentText.user_full_name}}
-                                </b>
-                            </div>
-                        </div>
-                        </div>
-                    {% endfor %}
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                <br>
+                <h2 id="title-page"><b>Destacados</b></h2>
+                <h2 id="sub-title-page"> Información destacada de la semana. <br><br>
+                </h2>
             </div>
-            <br>
-		</div>
-	</div>
+        </div>
+    </div>
+    <div id="box-texts">
+        <div class="container" >
+            <div class="row">
+            <div class="col-xs-12" id="box-texts-aux">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                <h3 class="title">Textos destacados</h3>
+                <br>
+                <div class="row">
+                    {% for currentText in data.texts %}
+                            <div class="col-xs-12 col-md-4">
+                            <div class="panel panel-default"">
+                                <div class="panel-heading">
+                                    <h4>{{currentText.title}}</h4>
+                                </div>
+                                <div class="panel-body" style="max-height:160px;min-height:160px;">
+                                    <p style="font-size:16px;">
+                                        {{currentText.info}}
+                                        <br>
+                                        <br>
+                                        <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                    </p>
+                                </div>
+                                <div class="panel-footer" style="min-height:78px">
+                                    <b>
+                                        {{currentText.start_date}}<br>
+                                        Publicado por {{currentText.user_full_name}}
+                                    </b>
+                                </div>
+                            </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    <div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div id="box-images">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12" id="box-images-aux">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <h3 class="title">Imágenes destacados</h3>
+                            <br>
+                            <div class="row">
+                                {% for currentText in data.texts %}
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="panel panel-default"">
+                                    <div class="panel-heading">
+                                        <h4>{{currentText.title}}</h4>
+                                    </div>
+                                    <div class="panel-body" style="max-height:160px;min-height:160px;">
+                                        <p style="font-size:16px;">
+                                            {{currentText.info}}
+                                            <br>
+                                            <br>
+                                            <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                        </p>
+                                    </div>
+                                    <div class="panel-footer" style="min-height:78px">
+                                        <b>
+                                            {{currentText.start_date}}<br>
+                                            Publicado por {{currentText.user_full_name}}
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+<div id="box-videos">
+    <div class="container" >
+        <div class="row">
+            <div class="col-xs-12" id="box-videos-aux">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <h3 class="title">Videos destacados</h3>
+                        <br>
+                        <div class="row">
+                            {% for currentText in data.texts %}
+                            <div class="col-xs-12 col-md-4">
+                                <div class="panel panel-default"">
+                                <div class="panel-heading">
+                                    <h4>{{currentText.title}}</h4>
+                                </div>
+                                <div class="panel-body" style="max-height:160px;min-height:160px;">
+                                    <p style="font-size:16px;">
+                                        {{currentText.info}}
+                                        <br>
+                                        <br>
+                                        <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                    </p>
+                                </div>
+                                <div class="panel-footer" style="min-height:78px">
+                                    <b>
+                                        {{currentText.start_date}}<br>
+                                        Publicado por {{currentText.user_full_name}}
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
 </div>
 {% endblock body %}
 

@@ -49,8 +49,23 @@
                 </a>
             </div>
         </li>
+
+
         <li>
-            <a href="{{ path('ds_facyt_admin_channel') }}">
+            {% if ('/notification/' in app.request.uri) %}
+                <a href="{{ path('ds_facyt_admin_home_notification') }}" class="active">
+            {% else %}
+                <a href="{{ path('ds_facyt_admin_home_notification') }}">
+            {% endif %}
+                <span class="fa fa-bell-o"></span>  Notificaciones
+            </a>
+        </li>
+        <li>
+            {% if ('/channel/' in app.request.uri) %}
+                <a href="{{ path('ds_facyt_admin_channel') }}" class="active">
+            {% else %}
+                <a href="{{ path('ds_facyt_admin_channel') }}">
+            {% endif %}
                 <span class="fa fa-desktop"></span>  Canales
             </a>
         </li>

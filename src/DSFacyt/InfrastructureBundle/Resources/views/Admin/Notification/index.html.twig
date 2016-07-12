@@ -1,0 +1,65 @@
+{% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
+
+{% block title %} Canales {% endblock title %}
+
+{% block title_notifications %} <span class="fa fa fa-bell-o"></span>  Notificaciones {% endblock title_notifications %}
+
+{% block body -%}
+    <h3>Notificaciones </h3>
+    <h4>Listado de las notificaciones</h4>
+    <br>
+    <div ng-app="IndexNotificationModule" ng-controller="IndexNotifcationController">
+    <table class="table table-hover" >
+        <thead>
+        <tr>
+            <th> # </th>
+            <th>Publicación</th>
+            <th>Evento</th>
+            <th >Info</th>
+            <th >Fecha</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="currentNotification in notifications ">
+                <td>asdas</td>
+            </tr>
+        </tbody>
+    </table>
+        <center>
+            <ul class="pagination" style="margin: 0 0">
+                <li ng-show="pagination.current != pagination.firstPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+                </li>
+                <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                    <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+                </li>
+                <li ng-show="pagination.current != pagination.lastPageInRange">
+                    <a href="#" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+                </li>
+            </ul>
+        </center>
+    </div>
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        {% if app.environment == "dev" %}
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Notification/IndexNotification/IndexNotificationModule.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Notification/IndexNotification/IndexNotificationService.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Notification/IndexNotification/IndexNotificationController.js') }}"></script>
+        {% else %}
+            {% javascripts
+            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+            {% endjavascripts %}
+        {% endif %}
+
+    {% endblock javascripts %}
+

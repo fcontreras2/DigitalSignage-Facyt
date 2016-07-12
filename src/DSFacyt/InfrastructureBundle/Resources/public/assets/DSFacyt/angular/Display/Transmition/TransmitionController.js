@@ -1,17 +1,22 @@
 Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout','$interval', function ($scope, TransmitionService,$sce, $timeout,$interval) {
-    $scope.publish = data.publish;
     $scope.slug = data.slug;
-    $scope.texts = $scope.publish.texts;
-    $scope.images = $scope.publish.images;
-    $scope.videos = $scope.publish.videos;
+    $scope.texts = data.publish.texts;
+    $scope.images = data.publish.images;
+    $scope.videos = data.publish.videos;
     $scope.quickNotes = data.quickNotes;
 
     // Inicialización de variables
     $scope.currentVideo = 0;
-    $scope.showImages = false;
-    $scope.showVideos = true;
+    if (!$scope.videos.length) {
+        $scope.showImages = true;
+        $scope.showVideos = false;
+    } else {
+        $scope.showImages = false;
+        $scope.showVideos = true;
+    }
     var controller = this;
     controller.API = null;
+    $scope.check_data = null;
 
     //Se inicializa los videos actualmente
     controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
@@ -41,9 +46,6 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         // Si termina el ultimo video
         if ($scope.currentVideo > controller.videos.length - 1) {
             controller.currentVideo = 0;
-            $('#carousel-images').carousel({
-                interval: 1000
-            });
             TransmitionService.changeMedia($scope);
         } else {
             // Se para el video actual
@@ -64,16 +66,21 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
 
     // Cuando cambia la transmisición de videos
     $scope.$watch('showImages', function() {
-        if ($scope.showImages) {
+        if ($scope.showImages && $scope.videos.length > 0) {
             $timeout(function() {
                 TransmitionService.changeMedia($scope);
                 $timeout(controller.API.play.bind(controller.API), 100);
-            }, ($scope.images.length)*500);
+            }, ($scope.images.length * 10000));
         }
     });
 
     $interval(function() {
         TransmitionService.checkPublish($scope);
-        TransmitionService.checkChange($scope);
-    }, 1000);
+        TransmitionService.checkChange($scope.check_data['publish']['texts'], $scope.texts, 'texts');
+        TransmitionService.checkChange($scope.check_data['publish']['images'], $scope.images, 'images');
+        TransmitionService.checkChange($scope.check_data['publish']['videos'], $scope.videos, 'videos');
+        TransmitionService.checkChange($scope.check_data['quick_notes'], $scope.quickNotes, 'quick-notes');
+        
+    }, 5000);
+
 }]);

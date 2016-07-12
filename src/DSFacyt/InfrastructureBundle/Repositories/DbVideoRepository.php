@@ -103,6 +103,18 @@ class DbVideoRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+     public function findLastImportant()
+    {
+        return $this->createQueryBuilder('v')
+            ->where('
+                v.important = true
+            ')            
+            ->orderBy('v.start_date', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery()->getResult();  
+    }
+
+
     /**
     * 
     */

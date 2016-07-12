@@ -28,9 +28,10 @@ class GetImportantAllHandler implements Handler
      */
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
-        $response = ['texts' => [], 'images' => []];
+        $response = ['texts' => [], 'images' => [], 'videos' => []];
         $rpText = $rf->get('Text');
         $rpImages = $rf->get('Image');
+        $rpVideos = $rf->get('Video');
 
         $texts = $rpText->findLastImportant();
 
@@ -39,7 +40,7 @@ class GetImportantAllHandler implements Handler
             $auxText['id'] = $currentText->getId();
             $auxText['title'] = $currentText->getTitle();
             $auxText['info'] = $currentText->getInfo();
-            $auxText['start_date'] = $currentText->getStartDate()->format('Y-m-d');
+            $auxText['start_date'] = $currentText->getStartDate()->format('d-m-Y');
             $auxText['user_full_name'] = $currentText->getUser()->getName().' '.$currentText->getUser()->getLastName();
             $response['texts'][] = $auxText;
         }
@@ -51,8 +52,22 @@ class GetImportantAllHandler implements Handler
             $auxImage['id'] = $currentImage->getId();
             $auxImage['title'] = $currentImage->getTitle();
             $auxImage['image_url'] = $currentImage->getDocument()->getFileName();
+            $auxImage['start_date'] = $currentImage->getStartDate()->format('d-m-Y');
+            $auxImage['user_full_name'] = $currentImage->getUser()->getName().' '.$currentImage->getUser()->getLastName();
             $response['images'][] = $auxImage;
         }
+
+        $videos = $rpVideos->findLastImportant();
+        foreach ($videos as $currentVideo) {
+            $auxImage = [];
+            $auxImage['id'] = $currentVideo->getId();
+            $auxImage['title'] = $currentVideo->getTitle();
+            $auxImage['start_date'] = $currentVideo->getStartDate()->format('d-m-Y');
+            $auxImage['user_full_name'] = $currentVideo->getUser()->getName().' '.$currentImage->getUser()->getLastName();
+            $response['videos'][] = $auxImage;
+        }
+
+
 
         return new ResponseCommandBus(200, 'Ok', $response);
     }

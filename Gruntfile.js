@@ -43,8 +43,9 @@ module.exports = function(grunt) {
               'js/vg-controls.js' : 'videogular-controls/vg-controls.js',
               'js/vg-overlay-play.js' : 'videogular-overlay-play/vg-overlay-play.js',
               'js/vg-poster.js' : 'videogular-poster/vg-poster.js',
-              'js/vg-buffering.js' : 'videogular-buffering/vg-buffering.js'
-          }
+              'js/vg-buffering.js' : 'videogular-buffering/vg-buffering.js',
+              'js/ui-bootstrap.js' : 'angular-bootstrap/ui-bootstrap.js',
+              'js/ui-bootstrap-tpls.js' : 'angular-bootstrap/ui-bootstrap-tpls.js'          }
       },      
       folders: {
           files: {
@@ -56,7 +57,8 @@ module.exports = function(grunt) {
               "css/ng-img-crop.css": "ng-img-crop/compile/minified/ng-img-crop.css",
               "css/angular-clock.css" : "angular-ui-clock/dist/angular-clock.css",
               "css/videogular.css" : "videogular-themes-default/videogular.css",
-              "css/fonts/" : "videogular-themes-default/fonts/*"
+              "css/fonts/" : "videogular-themes-default/fonts/*",
+              "css/ui-bootstrap.css" : "angular-bootstrap/ui-bootstrap-csp.css"
           }
       }
     },

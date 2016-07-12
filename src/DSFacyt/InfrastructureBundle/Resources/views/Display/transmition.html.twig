@@ -19,19 +19,30 @@ f
 {% block body %}
     <div class="container-display" ng-app="TransmitionModule" ng-controller="TransmitionController as controller" style="height: 100vh !important;width: 100%;" >
         <div class="block-media">
-        <div id="carousel-images" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" ng-if="showImages">
+        <div id="carousel-images" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" ng-show="showImages">
             <div class="carousel-inner">
                 <div class="item" ng-repeat="n in [] | range:images.length" ng-class="{'active':!$index}">
-                    <center><img src="/uploads/images/{[{images[$index].image_url}]}" style="
-    vertical-align: middle;
-    width: 80%;
-    max-width: 410px;
-    background-position: center center;
-    background-repeat: no-repeat;"></center>
+                    <center>
+                        <div style="height:85.5vh;">
+                            <img src="/uploads/images/{[{images[$index].image_url}]}" style="
+                            vertical-align: middle;
+                            max-height: 85vh;
+                            background-position: center center;
+                            background-repeat: no-repeat;">
+                        </div>
+                        <div class="title-image" style="
+                            background: blue;
+                            padding: 10px;
+                            color: white;
+                            font-size: 127%;
+                        ">
+                            <span>{[{images[$index].title}]}</span>
+                        </div>
+                    </center>
                 </div>
             </div>
         </div>
-         <videogular vg-theme="controller.config.theme" ng-if="showVideos" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
+         <videogular vg-theme="controller.config.theme" ng-show="showVideos" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
             <vg-media vg-src="controller.config.sources"
                      vg-plays-inline="true">
             </vg-media>
@@ -70,16 +81,25 @@ f
                     <div class="carousel-inner">
                         <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}">
                             <div class="panel panel-default" data-interval="500">
-                                <div class="panel-heading" style="font-size:16px;">
-                                    <b>{[{ texts[$index].title }]}</b> <span style="float: right"> {[{ texts[$index].start_date }]}</span>
-                                </div>
                                 <div class="panel-body">
-                                    <div class="text-profile">
-                                        <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;float:left;width: 80%;height: 60px;  background-position: center center;  background-repeat: no-repeat;float:left;">
-                                        <left> <p style="float:left;width:100%">{[{texts[$index].currentText.user_full_name}]}</p></left>
-                                    </div>
-                                    <div class="text-info">
-                                    {[{ texts[$index].info }]}
+                                    <div class="text-profile-2" style="width:100%;display:block;float:left; margin-bottom:2%; border-bottom:1px solid black;padding-bottom:2%">
+                                        <div class="text-profile-image" style="width:30%" ng-show="texts[$index].image_profile">
+                                            <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;float:left;width: 80%; background-position: center center;  background-repeat: no-repeat;float:left;max-height:10vh;">
+                                        </div>
+                                        <div class="text-profile-info" style="width:100%;font-size:110%">
+                                            <span><b>Usuario: {[{texts[$index].user_full_name}]}</b></span>
+                                            <br>
+                                            <span><b>Publicado : {[{texts[$index].start_date}]}</b></span>
+                                        </div>
+                                    </div>                                    
+
+                                    <div class="tex1312t-info" style="width:100%;float:left;">
+                                        <div class="text-title" style="font-size:145%">
+                                            <b>{[{ texts[$index].title }]}</b>
+                                        </div>
+                                        <div class="text-info" style="font-size:160%">
+                                            --{[{ texts[$index].info }]}--
+                                        </div>                                    
                                     </div>
                                 </div>
                             </div>
@@ -137,25 +157,19 @@ f
     {% endif %}
 
     <script type="text/javascript">
-
         jQuery(function($) {
             $('#carousel-texts').carousel({
-                interval: 10000
+                interval: 30000
             });            
-        });
-        jQuery(function($) {
+
             $('#carousel-images').carousel({
-                interval: 1000
+                interval: 30000
             });            
-        });
-
-        jQuery(function($) {
-        $('#carousel-quick-notes').carousel({
-                interval: 1000
-            });
-        });
         
+            $('#carousel-quick-notes').carousel({
+                interval: 30000
+            });
+        }); 
     </script>
-
 
 {% endblock javascripts %}

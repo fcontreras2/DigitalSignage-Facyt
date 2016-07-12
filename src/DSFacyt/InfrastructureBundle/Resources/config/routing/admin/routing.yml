@@ -34,4 +34,6 @@ ds_facyt_infrastructure_notifications:
 ds_facyt_infrastructure_admin_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }
+    options:
+        expose: true
 

@@ -8,6 +8,14 @@
 
 {% block body %}
     <div class="row" ng-app="IndexModule" ng-controller="IndexController">
+        {% include "DSFacytInfrastructureBundle:Admin/Default:notifications.html.twig" %}        
+        <div class="col-xs-6">
+                    <div class="alert alert-info pull-right" style="position:fixed;right:16px;bottom:0;z-index:100" ng-show="alert_message != false" ng-cloak>
+                        <span ng-show="alert_message == 1">
+                            <span class="fa fa-spinner fa-spin" aria-hidden="true"></span> Actualizando ... 
+                        </span>                        
+                    </div>                                   
+                </div>
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-2">
@@ -28,8 +36,7 @@
         </div>
 
         <div class="col-xs-12">
-            <h4><span class="fa fa-bell-o"></span> Publicaciones </h4>
-            Publicaciones realizadas por los usuarios {[{notifications.texts.length}]}
+            <h4><span class="fa fa-bullhorn"></span> Publicaciones </h4>            
             <div class="row">
                 <div class="col-xs-4">
                     <div class="panel panel-default">
@@ -37,7 +44,7 @@
                     			<h3 class="panel-title"><span class="fa fa-pencil"></span> Textos</h3>
                     	  </div>
                     	  <div class="panel-body" ng-cloak>
-                    			<a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" ng-cloak> Nuevo {[{data['publish']['texts'][0]}]} </a>
+                    			<a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" ng-cloak> Nuevo {[{data['publish']['texts'][0]}]} </a><br>
                                 <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 1}) }}" ng-cloak> Aceptada {[{data['publish']['texts'][1]}]}</a><br>
                                 <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 2}) }}" ng-cloak> Activa {[{data['publish']['texts'][2]}]}</a><br>
                                 <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text','status': 3}) }}" ng-cloak> Finalizada {[{data['publish']['texts'][3]}]}</a>
@@ -67,10 +74,10 @@
                         </div>
                         <div class="panel-body">
                             <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Nuevo {[{data['publish']['videos'][0]}]}</a>
-                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Aceptada {[{data['publish']['videos'][2]}]}</a>                            
-                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Activa {[{data['publish']['videos'][3]}]}</a><br>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Aceptada {[{data['publish']['videos'][1]}]}</a>                            
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Activa {[{data['publish']['videos'][2]}]}</a><br>
                             <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Finalizada {[{data['publish']['videos'][3]}]}</a>
-                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Cancelada {[{data['publish']['videos'][3]}]}</a>
+                            <a href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}"> Cancelada {[{data['publish']['videos'][4]}]}</a>
                             
                         </div>
                     </div>
@@ -91,6 +98,7 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>

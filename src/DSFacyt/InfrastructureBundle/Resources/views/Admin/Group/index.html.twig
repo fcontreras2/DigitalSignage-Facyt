@@ -1,0 +1,94 @@
+{% extends '@DSFacytInfrastructure/Admin/Default/base.html.twig' %}
+
+{% block title %} Usuarios {% endblock title %}
+
+{% block title_notifications %} <span class="fa fa-group"></span>  Usuarios {% endblock title_notifications %}
+
+{% block body -%}
+    <h1>Lista de usuarios</h1>
+    <br>
+    <a href="{{ path('ds_facyt_admin_user_new') }}">
+        <button type="button" class="btn btn-default"><span class="fa fa-plus"></span> Crear nuevo</button>
+    </a>
+    <br><br>
+    <div ng-app="IndexGroupModule" ng-controller="IndexGroupController">
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tipo de Usuario</th>
+                <th>Permisos por defecto</th>                
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr ng-repeat="currentGroup in groups">
+                <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                <td> {[{ currentGroup.name }]}</td>
+                <td>
+                    <label style="margin:5px;" class="col col-offset-10">
+                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('text') != -1" ng-mode="permissons[$index].text" ng-click="changePermisson(currentGroup.id, 'text', $index)" ng-true-value="1" ng-false-value="0">Texto
+                    </label>                    
+                    <label style="margin:5px;" class="col col-offset-10">
+                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('image') != -1" ng-mode="permissons[$index].image" ng-click="changePermisson(currentGroup.id, 'image', $index)" ng-true-value="1" ng-false-value="0"> Imagen
+                    </label>
+                    <label style="margin:5px;" class="col col-offset-10">
+                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('video') != -1" ng-mode="permissons[$index].video" ng-click="changePermisson(currentGroup.id, 'video', $index)" ng-true-value="1" ng-false-value="0"> Video
+                    </label>                    
+                </td>
+            </tr>            
+        </tbody>
+    </table>   
+
+    
+        <center>
+        <ul class="pagination" style="margin: 0 0">
+            <li ng-show="pagination.current != pagination.firstPageInRange">
+                <a href="#" ng-click="generatePagination(pagination.previous)" style="font-weight:bold"><</a>
+            </li>
+            <li ng-repeat="currentPage in [] | range:pagination.firstPageInRange:pagination.lastPageInRange" >
+                <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage == pagination.current" class="active">{[{ pagination.firstPageInRange + $index }]}</a>
+                <a href="#" ng-click="generatePagination(currentPage)" ng-show="currentPage != pagination.current" >{[{ pagination.firstPageInRange + $index }]}</a>
+            </li>
+            <li ng-show="pagination.current != pagination.lastPageInRange">
+                <a href="#" ng-click="generatePagination(pagination.next)" style="font-weight:bold">></a>
+            </li>
+        </ul>
+            </center>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Groups/IndexGroup/IndexGroupModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Groups/IndexGroup/IndexGroupService.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Groups/IndexGroup/IndexGroupController.js') }}"></script>        
+    {% else %}
+        {% javascripts
+            '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}   
+
+{% endblock javascripts %}

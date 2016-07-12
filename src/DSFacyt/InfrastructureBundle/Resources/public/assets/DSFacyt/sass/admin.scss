@@ -29,8 +29,8 @@ $fa-font-path:   "/fonts/font-awesome";
     display: inline !important;
   }
   .sidebar-nav > li > .active {
-    background: $gray-dark !important;
-    color:white !important;
+    background: $blue-ligth !important;
+    color: white !important;
     }
 
   .list-group-submenu > .list-group-item {
@@ -71,12 +71,11 @@ a {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  background: $blue-dark !important;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background: $gray-light;
+  transition: all 0.5s ease;  
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -87,6 +86,7 @@ a {
   width: 100%;
   position: absolute;
   padding: 0px !important;
+  color:$blue-dark;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -113,7 +113,7 @@ a {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: white !important;
 }
 
 .sidebar-nav li a:hover {
@@ -125,6 +125,8 @@ a {
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
   text-decoration: none;
+  background: $blue-ligth;
+  color:$blue-dark;
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -132,11 +134,13 @@ a {
   font-size: 18px;
   line-height: 60px;
   border-bottom: 1px solid;
+  color:$blue-dark;
+  font-weight: bold;
   background: $gray-light-two !important;
 }
 
 .sidebar-nav > .sidebar-brand a {
-  color: #999999;
+  color: $blue-dark !important;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -266,4 +270,18 @@ a {
     padding: 10px;
     label {padding-left: 27px;}
 
+}
+
+.panel {
+  .panel-heading {
+    background: $blue-ligth;
+    color:white;
+  }
+}
+
+.pagination {
+  .active {
+    background: $blue-dark !important;
+    color:$gray-white !important;
+  }
 }

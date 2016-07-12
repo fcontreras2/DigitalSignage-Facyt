@@ -16,21 +16,35 @@
         </li>
         <li>
             {% if ('/publish/' in app.request.uri) %}
-                <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1" class="active" aria-expanded="true">
+                <a href="#SubMenu1" data-toggle="collapse" data-parent="#SubMenu1" aria-expanded="true" class="active">
+                <span class="fa fa-bullhorn "></span>  Publicaciones <span class="toggle-tag fa fa-angle-down" ></span>
+                <div class="collapse list-group-submenu in" id="SubMenu1" aria-expanded="true">
             {% else %}
                 <a href="#SubMenu1"  data-toggle="collapse" data-parent="#SubMenu1">
-            {% endif %}
-                <span class="fa fa-bell"></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
-            </a>
-            <div class="collapse list-group-submenu" id="SubMenu1" aria-expanded="true">
-                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" data-parent="#SubMenu1">
-                    <span class="fa fa-pencil"> </span> Textos
+                <span class="fa fa-bullhorn "></span>  Publicaciones <span class="toggle-tag fa fa-angle-left" ></span>
+                </a>            
+                <div class="collapse list-group-submenu" id="SubMenu1" aria-expanded="true">
+            {% endif %}                
+                
+                {% if ('/publish/text' in app.request.uri) %}
+                    <a style="background-color:#777777 !important;color:white !important;" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" class="active" data-parent="#SubMenu1">
+                {% else %}
+                    <a style="" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'text'}) }}" class="list-group-item" class="active" data-parent="#SubMenu1">    
+                {% endif %}
+                                <span class="fa fa-pencil"> </span> Textos
                 </a>
-                <a style="margin-left: 6px"
-             href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% if ('/publish/image' in app.request.uri) %}
+                    <a style="background-color:#777777 !important;color:white !important;" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% else %}
+                    <a style="" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% endif %}
                     <span class="fa fa-camera"> </span> Imágenes
                 </a>
-                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% if ('/publish/video' in app.request.uri) %}
+                    <a style="background-color:#777777 !important;color:white !important;" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% else %}
+                    <a  href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'video'}) }}" class="list-group-item" data-parent="#SubMenu1">
+                {% endif %}
                     <span class="fa fa-play"> </span> Videos
                 </a>
             </div>
@@ -44,12 +58,24 @@
             <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}"><span class="fa fa-paper-plane"></span>  Notas rápidas </a>
         </li>
         <li>
-            <a href="#SubMenu2" data-toggle="collapse" data-parent="#SubMenu2"><span class="fa fa-group"></span>  Usuarios <span class="toggle-tag fa fa-angle-left" ></span></a>
-            <div class="collapse list-group-submenu" id="SubMenu2" >
-                <a style="margin-left: 6px" href="{{ path('ds_facyt_admin_user') }}" class="list-group-item" data-parent="#SubMenu2">
-                    <span class="fa fa-user"> </span> Usuarios
+            {% if ('/user' in app.request.uri) or ('/group' in app.request.uri) %}
+                <a href="#SubMenu2" data-toggle="collapse" data-parent="#SubMenu2" aria-expanded="true" class="active">
+                <span class="fa fa-group"></span>  Usuarios <span class="toggle-tag fa fa-angle-down" ></span></a>
+                <div class="collapse list-group-submenu in" id="SubMenu2" >
+            {% else %}
+                <a href="#SubMenu2" data-toggle="collapse" data-parent="#SubMenu2" >
+                <span class="fa fa-group"></span>  Usuarios <span class="toggle-tag fa fa-angle-left" ></span></a>
+                <div class="collapse list-group-submenu" id="SubMenu2" >
+            {% endif %}
+
+            {% if ('/user' in app.request.uri) or ('/group' in app.request.uri)%}
+                <a style="background-color:#777777 !important;color:white !important;" href="{{ path('ds_facyt_admin_user') }}" class="list-group-item" data-parent="#SubMenu2" >
+            {% else %}
+                <a style="" href="{{ path('ds_facyt_admin_user') }}" class="list-group-item" data-parent="#SubMenu2">
+            {% endif %}
+                    <span class="fa fa-user"> </span> Usuarios                
                 </a>
-                <a style="margin-left: 6px" href="{{ path('ds_facyt_infrastructure_get_publish_type_status',{'type':'image'}) }}" class="list-group-item" data-parent="#SubMenu2">
+                <a style="" href="{{ path('ds_facyt_admin_group_homepage')}}" class="list-group-item" data-parent="#SubMenu2">
                     <span class="fa fa-group"> </span> Grupos
                 </a>                
             </div>

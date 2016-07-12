@@ -41,7 +41,7 @@ class CheckPublishHandler implements Handler
             $response['publish']['images'] = $this->getImages();
             $response['publish']['videos'] = $this->getVideos();
 
-            $response['quickNotes'] = $this->getQuickNotes();
+            $response['quick_notes'] = $this->getQuickNotes();
 
             return new ResponseCommandBus(200, 'Ok', $response);
         }
@@ -105,7 +105,6 @@ class CheckPublishHandler implements Handler
 
         $videos = $rpVideo->findActiveFinishedByChannel($this->channelId);
         $auxResponse = [];
-
         foreach ($videos as $currentVideo) {
             $auxResponse['id'] = $currentVideo->getId();
             $auxResponse['image_url'] = $currentVideo->getDocument()->getFileName();
@@ -125,12 +124,13 @@ class CheckPublishHandler implements Handler
         $response = [];
         $rpQuickNote = $this->rf->get('QuickNote');
 
-        $quickNotes = $rpQuickNote->findBy(['status' => 1]);
+        $quickNotes = $rpQuickNote->findActiveFinished();
         $auxResponse = [];
         foreach ($quickNotes as $currentQuickNote) {
 
             $auxResponse['id'] = $currentQuickNote->getId();
             $auxResponse['info'] = $currentQuickNote->getInfo();
+            $auxResponse['status'] = $currentQuickNote->getStatus();
             $response[] = $auxResponse;
         }
 

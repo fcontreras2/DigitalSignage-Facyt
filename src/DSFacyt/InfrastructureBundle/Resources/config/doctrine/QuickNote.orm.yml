@@ -28,6 +28,9 @@ DSFacyt\InfrastructureBundle\Entity\QuickNote:
         date_create:
             type: datetime
             nullable: true
+        last_modified:
+            type: datetime
+            nullable: true
 
     manyToMany:
         channels:
@@ -47,4 +50,7 @@ DSFacyt\InfrastructureBundle\Entity\QuickNote:
                         referencedColumnName: id
             orderBy: null
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [updateLastModified]
+        preUpdate: [updateLastModified]
+

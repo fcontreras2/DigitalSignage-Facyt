@@ -19,5 +19,15 @@ use DSFacyt\Core\Domain\Repository\QuickNoteRepository;
 class DbQuickNoteRepository extends EntityRepository implements 
     QuickNoteRepository 
 {
-
+	public function findActiveFinished()
+	{
+		return $this->createQueryBuilder('qn')
+            ->where('
+               qn.last_modified >= :last_modified
+            ')
+            ->setParameters([
+                'last_modified' =>  (new \DateTime('-5 min'))
+            ])
+            ->getQuery()->getResult();
+	}
 }

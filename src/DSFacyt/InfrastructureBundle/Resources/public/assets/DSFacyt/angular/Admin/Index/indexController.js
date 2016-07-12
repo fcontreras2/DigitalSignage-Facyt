@@ -3,31 +3,11 @@ index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal
 
         $scope.data = data;
         $scope.notifications = {};
-
         var initializing = false;
-
-        $scope.$watch('status_select', function() {
-            if (initializing) {
-
-                var start_date = null;
-                var end_date = null;
-
-                if ($scope.start_date)
-                    start_date = moment($scope.start_date, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
-                if ($scope.end_date)
-                    end_date = moment($scope.end_date, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
-
-                var data = angular.toJson({
-
-                    'start_date' : start_date,
-                    'end_date' : end_date
-                });
-
-                indexService.ajaxGetPublish(data, $scope);
-            }
-        });
+        $scope.alert_message = false;
+        $scope.start_date = moment().format('DD/MM/YYYY');
+        var start_date = moment($scope.start_date, 'DD/MM/YYYY');
+        $scope.end_date = start_date.add(7, 'days').format('DD/MM/YYYY');
 
         $scope.$watch('start_date', function() {
             if (initializing) {
@@ -45,8 +25,9 @@ index.controller('IndexController', ['$scope','$filter', 'indexService', '$modal
                     'start_date' : start_date.format('YYYY-MM-DD'),
                     'end_date': end_date.format('YYYY-MM-DD')
                 })
-
-                publishService.ajaxGetPublish(data, $scope);
+                $scope.alert_message = 1;
+                indexService.ajaxGetPublish(data, $scope);
+                $timeout(function() { $scope.alert_message = false;}, 1500);
             }
         });
 

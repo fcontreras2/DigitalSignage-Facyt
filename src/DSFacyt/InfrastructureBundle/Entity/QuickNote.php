@@ -60,6 +60,12 @@ class QuickNote
     private $channels;
 
     /**
+     * Ultima modificación de la publicación
+     * @var \DateTime
+     */
+    private $last_modified;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -269,5 +275,34 @@ class QuickNote
     public function getChannels()
     {
         return $this->channels;
+    }
+ 
+    /**
+     * Set last_modified
+     *
+     * @param \DateTime $lastModified
+     * @return QuickNote
+     */
+    public function setLastModified($lastModified)
+    {
+        $this->last_modified = $lastModified;
+
+        return $this;
+    }
+
+    /**
+     * Get last_modified
+     *
+     * @return \DateTime 
+     */
+    public function getLastModified()
+    {
+        return $this->last_modified;
+    }
+
+    
+    public function updateLastModified()
+    {
+        $this->last_modified = new \DateTime();
     }
 }

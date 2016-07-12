@@ -147,19 +147,12 @@ class DbTextRepository extends EntityRepository implements
 
     public function findLastImportant()
     {
-        $date = new \DateTime();
-        $date->modify('-7 days');
-
         return $this->createQueryBuilder('t')
             ->where('
-                t.start_date >= :date and
                 t.important = true
-
-            ')
-            ->setParameters([
-                'date' => $date
-            ])
+            ')            
             ->orderBy('t.start_date', 'DESC')
+            ->setMaxResults(6)
             ->getQuery()->getResult();  
     }
 

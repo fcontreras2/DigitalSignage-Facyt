@@ -109,8 +109,8 @@ body {
 }
 .pagination {
   .active {
-    background: $gray-light;
-    color:$blue-dark;
+    background: $blue-dark;
+    color:$gray-white;
   }
 }
 .panel {
@@ -142,12 +142,18 @@ body {
     background: white;
     color:$blue-dark;
   }
+  .panel-footer{
+    color:$blue-dark;
+  }
 }
 
 .panel-perfil {
   .panel-body {
-    background: $green;
+    background: $blue-ligth;
     color:white;
+  }
+  .panel-footer{
+    color:$blue-dark;
   }
 }
 
@@ -155,19 +161,20 @@ body {
    
   border: 1px solid $blue-dark !important;
   thead {
-    background: $green; 
+    background: $blue-ligth; 
     th {
-      border: 1px solid $gray-dark!important;
+      border: 1px solid $blue-dark !important;
     }
-    a { color:#ffffff; }
+    a { color:white; }
   }
   tbody {
     tr:hover {
-      td { background: $gray-light; color:$blue-dark}
+      td { background: $gray-white; color:$gray-dark !important}
     }
     td {
-      background: $gray-light-two;
-      border: 1px solid $gray-dark !important;
+      background: white;
+      border: 1px solid $blue-dark !important;
+      color:$blue-dark !important;
     }    
   }
 }
@@ -207,11 +214,11 @@ body {
   padding: 0.5%;
   a {color: $gray-dark !important;}
   .fa {
-    color:$gray-dark;
+    color:$gray-dark !important;
   }
   #logo-facyt { width: 52px;margin-top:-18px;}
-  li { border-bottom: 4px solid white;}
-  li:hover { border-bottom: 2px solid $gray-light;background-color: white}
+  li { border-bottom: 4px solid white;color:$gray-dark}
+  li:hover { border-bottom: 2px solid $gray-light;background-color: white !important}
   .active {
     border-bottom: 2px solid $blue-ligth;
     a, .fa{color:$blue-ligth !important;}
@@ -319,12 +326,20 @@ body {
   #login-info { color:$blue-dark; .fa-check {color:$blue-ligth}}
 }
 
-.panel-login { color: $blue-ligth !important;}
-#body-user {
-  background: $blue-dark;
-  min-height: 100vh;  
+#body-user-home, #body-user {
+  background: $gray-light-two;
+    min-height: 100vh;  
   margin-top: 58px;  
+  #box-title {
+    h1 { color: $blue-ligth !important;}  
+    h4 { color: $blue-dark !important;}
+  }
+
+  .panel {color:$blue-dark}
+  .fa-check {color:$blue-ligth}
 }
+
+.panel-login { color: $blue-ligth !important;}
 
 #home-channels {
   #info-channels {
@@ -386,7 +401,7 @@ body {
   }
   
   background: white;
-  border-color: #EAEAEA;
+  border-color: $blue-dark;
   padding: 1%;
   a {
     background: white;
@@ -532,15 +547,21 @@ body {
 
     #box-texts {
       .title {color:$blue-ligth;font-weight: bold}
-      #box-texts-aux {background-color: $gray-light-two !important;}
+      #box-texts-aux {background-color: $gray-light-two !important; margin-bottom:2%; margin-top:2%;}
     }
     #box-images {
-      background-color: $gray-dark;
+      background-color: $gray-dark-two;
       .title {color:$blue-ligth;font-weight: bold}
-      #box-texts-aux {background-color: $gray-light-two !important;}
+      #box-images-aux {background-color: $gray-light !important; margin-bottom:2%; margin-top:2%;}
+      .panel-important { 
+        .panel-body {padding: 0px !important;}
+        img { width: 100% !important;height: 160px !important;}
+      }
+
     }
     #box-videos {
       .title {color:$blue-ligth;font-weight: bold}
-      #box-texts-aux {background-color: $gray-light-two !important;}
+      #box-videos-aux {background-color: $gray-light-two !important; margin-bottom:2%; margin-top:2%;}
     }
+    .panel-footer { color: $blue-dark;height: 66px}
   }

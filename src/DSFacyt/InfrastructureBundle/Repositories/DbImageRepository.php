@@ -145,18 +145,12 @@ class DbImageRepository extends EntityRepository implements
 
     public function findLastImportant()
     {
-        $date = new \DateTime();
-        $date->modify('-7 days');
-        
         return $this->createQueryBuilder('i')
             ->where('
-                i.start_date >= :date and
-                i.important = true and
-                (i.status >= 3 and i.status <=5)
+                i.important = true 
             ')
-            ->setParameters([
-                'date' => $date
-            ])
+            ->setMaxResults(9)
+            ->orderBy('i.start_date', 'DESC')
             ->getQuery()->getResult();  
     }
 

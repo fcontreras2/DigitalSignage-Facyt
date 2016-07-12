@@ -19,14 +19,12 @@
 {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
 <div class="body-importants" style="min-height:100vh">
 >
-
 	<div class="container">
         <div class="row">
             <div class="col-xs-12">
                 <br>
-                <br>
                 <h2 id="title-page"><b>Destacados</b></h2>
-                <h2 id="sub-title-page"> Información destacada de la semana. <br><br>
+                <h2 id="sub-title-page"> Información destacada <br><br>
                 </h2>
             </div>
         </div>
@@ -36,13 +34,13 @@
             <div class="row">
             <div class="col-xs-12" id="box-texts-aux">
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
+                <div class="col-xs-10 col-xs-offset-1">
                 <h3 class="title">Textos destacados</h3>
                 <br>
-                <div class="row">
+                    <div class="row">
                     {% for currentText in data.texts %}
                             <div class="col-xs-12 col-md-4">
-                            <div class="panel panel-default"">
+                            <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4>{{currentText.title}}</h4>
                                 </div>
@@ -50,21 +48,19 @@
                                     <p style="font-size:16px;">
                                         {{currentText.info}}
                                         <br>
-                                        <br>
-                                        <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                        <br>                                        
                                     </p>
                                 </div>
                                 <div class="panel-footer" style="min-height:78px">
                                     <b>
-                                        {{currentText.start_date}}<br>
-                                        Publicado por {{currentText.user_full_name}}
+                                        Publicado: {{currentText.start_date}}<br>
+                                        Publicado por: {{currentText.user_full_name}}
                                     </b>
                                 </div>
                             </div>
                             </div>
                         {% endfor %}
-                        </div>
-                    <div>
+                    </div>                    
                 </div>
                 <br>
             </div>
@@ -81,31 +77,24 @@
                             <h3 class="title">Imágenes destacados</h3>
                             <br>
                             <div class="row">
-                                {% for currentText in data.texts %}
+                                {% for currentImage in data.images %}
                                 <div class="col-xs-12 col-md-4">
-                                    <div class="panel panel-default"">
-                                    <div class="panel-heading">
-                                        <h4>{{currentText.title}}</h4>
-                                    </div>
+                                    <div class="panel panel-default panel-important">
                                     <div class="panel-body" style="max-height:160px;min-height:160px;">
-                                        <p style="font-size:16px;">
-                                            {{currentText.info}}
-                                            <br>
-                                            <br>
-                                            <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
-                                        </p>
+                                        <img src="/uploads/images/{{currentImage.image_url}}" >
                                     </div>
-                                    <div class="panel-footer" style="min-height:78px">
+                                    <div class="panel-footer" >
                                         <b>
-                                            {{currentText.start_date}}<br>
-                                            Publicado por {{currentText.user_full_name}}
+                                        <b>
+                                            Publicado: {{currentImage.start_date}} <br>
+                                            Publicado por: {{currentImage.user_full_name}}
+                                            </b>
                                         </b>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
-                        </div>
-                        <div>
+                        </div>                        
                         </div>
                         <br>
                     </div>
@@ -123,31 +112,29 @@
                         <h3 class="title">Videos destacados</h3>
                         <br>
                         <div class="row">
-                            {% for currentText in data.texts %}
+                            {% for currentVideo in data.videos %}
                             <div class="col-xs-12 col-md-4">
-                                <div class="panel panel-default"">
+                                <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4>{{currentText.title}}</h4>
+                                    <h4>{{currentVideo.title}}</h4>
                                 </div>
                                 <div class="panel-body" style="max-height:160px;min-height:160px;">
                                     <p style="font-size:16px;">
-                                        {{currentText.info}}
+                                        
                                         <br>
-                                        <br>
-                                        <a href=""> <span class="fa fa-circle"> </span> Ver publicación </a>
+                                        <br>                                        
                                     </p>
                                 </div>
                                 <div class="panel-footer" style="min-height:78px">
                                     <b>
-                                        {{currentText.start_date}}<br>
-                                        Publicado por {{currentText.user_full_name}}
+                                        {{currentVideo.start_date}}<br>
+                                        Publicado por {{currentVideo.user_full_name}}
                                     </b>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    <div>
                     </div>
                     <br>
                 </div>

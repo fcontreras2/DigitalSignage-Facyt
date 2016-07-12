@@ -5,6 +5,7 @@ namespace DSFacyt\InfrastructureBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use DSFacyt\Core\Application\UseCases\Admin\GetResumen\GetResumenCommand;
 
 /**
@@ -28,13 +29,21 @@ class DefaultController extends Controller
      * @version 05/01/2016
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
-    {
-        $command = new GetResumenCommand();
-        $response = $this->get('CommandBus')->execute($command);
+    public function indexAction(Request $request)
+    {   
+        if (!$request->isXmlHttpRequest()) {
+            $command = new GetResumenCommand();
+            $response = $this->get('CommandBus')->execute($command);
 
-        return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig',
-            ['data' => json_encode($response->getData())]
-        );
+            return $this->render('DSFacytInfrastructureBundle:Admin:index.html.twig',
+                ['data' => json_encode($response->getData())]
+            );
+        } else {
+            $data = json_decode($request->getContent(),true);
+            $command = new GetResumenCommand($data['start_date'], $data['end_date']);
+            $response = $this->get('CommandBus')->execute($command);            
+
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }
     }
 }

@@ -96,7 +96,11 @@
             </div>
         </li>
         <li>
-            <a href="#">
+            {% if ('/config/' in app.request.uri) %}
+                <a href="{{ path('ds_facyt_admin_config_homepage') }}" class="active">
+            {% else %}
+                <a href="{{ path('ds_facyt_admin_config_homepage') }}">
+            {% endif %}
                 <span class="fa fa-gears"></span>  Configuraciones
             </a>
         </li>

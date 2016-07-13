@@ -14,7 +14,11 @@ services:
         arguments: ["@service_container"]
         public: false
         tags:
-            - { name: twig.extension }
+            -
+             { name: twig.extension }
+
+    ConfigurationDSFacyt:
+        class: DSFacyt\InfrastructureBundle\Resources\Services\ConfigurationDSFacyt
 
 #Servicios de la Aplicación
     CommandBus:

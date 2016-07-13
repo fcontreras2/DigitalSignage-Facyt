@@ -1,0 +1,94 @@
+{% extends '@DSFacytInfrastructure/Admin/Default/base.html.twig' %}
+
+{% block title %} Configuraciones {% endblock title %}
+
+{% block title_notifications %} <span class="fa fa-gears"></span>  Configuraciones {% endblock title_notifications %}
+
+{% block body %}
+    <h3>Listado de configuraciones</h3>
+    <h4>Cambia las configuraciones del sistema</h4>
+    <br>
+    <div class="col-xs-12" ng-app="IndexConfigModule" ng-controller="IndexConfigController">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Configuraciones</b>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label"><span class="fa fa-pencil"></span> Transición textos (seg)</label>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.time_text_transition" autofocus ng-required="true" >
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label"><span class="fa fa-camera"></span> Transición imágenes (seg)</label>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.time_image_transition" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label">Ancho imagen (px)</label>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.image_width" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label">Alto imagen (px)</label>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.image_height" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label class="control-label">Tiempo de eliminación de publicaciones (días)</label>
+                                <input type="text" name="title" id="input" class="form-control" ng-model="data.time_clean_publish" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 ">
+                                <div class="control-label required">&nbsp;</div>
+                                    <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-disabled="registerText.$invalid" ng-click="setData()"><b>Actualizar</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Tomando variables enviadas desde el servidor -->
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        //console.log( div.firstChild.nodeValue);
+        data = JSON.parse(data);
+    </script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Config/ConfigModule.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Config/ConfigController.js') }}"></script>
+    {% else %}
+        {% javascripts
+        '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}

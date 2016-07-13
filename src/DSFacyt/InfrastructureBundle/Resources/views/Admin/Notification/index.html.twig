@@ -15,7 +15,6 @@
             <th> # </th>
             <th>Publicación</th>
             <th>Evento</th>
-            <th >Info</th>
             <th >Fecha</th>
         </tr>
         </thead>
@@ -23,7 +22,7 @@
             <tr ng-repeat="currentNotification in notifications ">
                 <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                 <td  ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                <td>{[{currentNotification.type}]}</td>
+                <td>{[{currentNotification.title}]}</td>
                 <td>{[{currentNotification.event}]}</td>
                 <td>{[{currentNotification.last_modified}]}</td>
             </tr>
@@ -50,7 +49,8 @@
     {% block javascripts %}
         {{ parent() }}
         <!-- Tomando variables enviadas desde el servidor -->
-        
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
         {% if app.environment == "dev" %}
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>

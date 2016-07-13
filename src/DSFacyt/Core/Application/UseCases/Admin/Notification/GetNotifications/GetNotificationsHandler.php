@@ -17,6 +17,7 @@ use DSFacyt\Core\Application\Contract\ResponseCommandBus;
 
 class GetNotificationsHandler implements Handler
 {
+    private $rf;
     /**
      * @var La variable contiene el servicio de paginación
      */
@@ -48,6 +49,7 @@ class GetNotificationsHandler implements Handler
      */
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
+        $this->rf = $rf;
         $rpNotification = $rf->get('Notification');
         $response = ['pagination' => [], 'notifications'=>[]];
         $notifications = $rpNotification->findNotViewNotifications();
@@ -59,14 +61,44 @@ class GetNotificationsHandler implements Handler
             $auxNotification = [];
 
             foreach ($notifications as $currentNotification) {
-                $auxNotification['id'] = $currentNotification->getId();
-                $auxNotification['event'] = $currentNotification->getEvent();
-                $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
-                $auxNotification['type'] = $currentNotification->getPublishType();
-                $response['notifications'][] = $auxNotification;
+
+                $auxNotification['title'] = $this->getTitlePublication(
+                    $currentNotification->getPublishId(),
+                    $currentNotification->getPublishId()
+                );
+
+
+                    $auxNotification['id'] = $currentNotification->getId();
+                    $auxNotification['event'] = $currentNotification->getEvent();
+                    $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
+                    $auxNotification['type'] = $currentNotification->getPublishType();
+                    $response['notifications'][] = $auxNotification;
+
             }
         }
 
         return new ResponseCommandBus(200,'Ok', $response);
+    }
+
+    public function getTitlePublication($id, $type)
+    {
+        $response = null;
+
+        switch ($type) {
+            case 'text':
+                $text = $this->rf->get('Text')->findOneBy(['id' => $id]);
+                $response = $text->getTitle();
+                break;
+            case 'image':
+                $image = $this->rf->get('Image')->findOneBy(['id' => $id]);
+                $response = $image->getTitle();
+                break;
+            case 'video':
+                $video = $this->rf->get('Video')->findOneBy(['id' => $id]);
+                $response = $video->getTitle();
+                break;
+        }
+
+        return $response;
     }
 }

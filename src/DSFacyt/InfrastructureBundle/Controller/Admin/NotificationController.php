@@ -34,7 +34,7 @@ class NotificationController extends Controller
             ['data' => json_encode($response->getData())]);
     }
 
-    public function apiGetNotifications()
+    public function apiGetNotificationsAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             

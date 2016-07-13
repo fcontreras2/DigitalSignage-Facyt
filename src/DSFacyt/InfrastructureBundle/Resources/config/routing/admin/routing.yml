@@ -31,6 +31,10 @@ ds_facyt_infrastructure_notifications:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/notification.yml"
     prefix: /notification
 
+ds_facyt_infrastructure_config:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/admin/config.yml"
+    prefix: /config
+
 ds_facyt_infrastructure_admin_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Admin\Default:index }

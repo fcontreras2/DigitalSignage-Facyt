@@ -31,6 +31,20 @@ class NotificationController extends Controller
         $command = new GetNotificationsCommand();
         $response = $this->get('CommandBus')->execute($command);
         return $this->render('DSFacytInfrastructureBundle:Admin/Notification:index.html.twig',
-            ['data' => $response->getData()]);
+            ['data' => json_encode($response->getData())]);
+    }
+
+    public function apiGetNotifications()
+    {
+        if ($request->isXmlHttpRequest()) {
+            
+            $data = json_decode($request->getContent(),true);
+            
+            $command = new GetNotificationsCommand($data['page']);
+            $response = $this->get('CommandBus')->execute($command);
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }
+
+        return new JsonResponse('Error', 503);
     }
 }

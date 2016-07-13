@@ -3,14 +3,12 @@ indexNotification.controller('IndexNotificationController', ['$scope','$window',
 
         $scope.pagination = data.pagination;
         $scope.notifications = data.notifications;
-        console.log($scope.notifications);
-
         $scope.generatePagination = function (page)
         {
             var data = angular.toJson({
                 'page': page
             })
 
-            IndexNotificationService.ajaxGetUsers(data, $scope);
+            IndexNotificationService.ajaxGetNotifications(data, $scope);
         };
     }]);

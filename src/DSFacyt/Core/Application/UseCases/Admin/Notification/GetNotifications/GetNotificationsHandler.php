@@ -48,9 +48,9 @@ class GetNotificationsHandler implements Handler
      */
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
-        $rpNotification = $rf->get('Notifications');
+        $rpNotification = $rf->get('Notification');
         $response = ['pagination' => [], 'notifications'=>[]];
-        $notifications = $rpNotification->findBy(['view' => false]);
+        $notifications = $rpNotification->findNotViewNotifications();
 
         $request = $command->getRequest();
         if ($notifications) {
@@ -60,7 +60,9 @@ class GetNotificationsHandler implements Handler
 
             foreach ($notifications as $currentNotification) {
                 $auxNotification['id'] = $currentNotification->getId();
-                $auxNotification['event'] = $currentNotification->getName();
+                $auxNotification['event'] = $currentNotification->getEvent();
+                $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
+                $auxNotification['type'] = $currentNotification->getPublishType();
                 $response['notifications'][] = $auxNotification;
             }
         }

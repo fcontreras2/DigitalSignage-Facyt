@@ -1,6 +1,6 @@
 {% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
 
-{% block title %} Canales {% endblock title %}
+{% block title %} Notificaciones {% endblock title %}
 
 {% block title_notifications %} <span class="fa fa fa-bell-o"></span>  Notificaciones {% endblock title_notifications %}
 
@@ -8,7 +8,7 @@
     <h3>Notificaciones </h3>
     <h4>Listado de las notificaciones</h4>
     <br>
-    <div ng-app="IndexNotificationModule" ng-controller="IndexNotifcationController">
+    <div ng-app="IndexNotificationModule" ng-controller="IndexNotificationController">
     <table class="table table-hover" >
         <thead>
         <tr>
@@ -21,7 +21,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="currentNotification in notifications ">
-                <td>asdas</td>
+                <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
+                <td  ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
+                <td>{[{currentNotification.type}]}</td>
+                <td>{[{currentNotification.event}]}</td>
+                <td>{[{currentNotification.last_modified}]}</td>
             </tr>
         </tbody>
     </table>
@@ -40,11 +44,13 @@
             </ul>
         </center>
     </div>
+
 {% endblock %}
 
     {% block javascripts %}
         {{ parent() }}
-
+        <!-- Tomando variables enviadas desde el servidor -->
+        
         {% if app.environment == "dev" %}
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>

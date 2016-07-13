@@ -7,3 +7,9 @@ ds_facyt_admin_check_notifications:
 ds_facyt_admin_home_notification:
     path: /
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Notification:index" }
+
+ds_facyt_admin_asinc_get_notifications:
+    path: /getNotifications/async
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Notification:apiGetNotifications"}
+    options:
+        expose: true

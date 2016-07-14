@@ -33,7 +33,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th style="width:6%">Estado</th>
-                <th style="width:6%">Editar</th>
+                <th style="width:15%"><center>Ver Online</center></th>
             </tr>
         </thead>
         <tbody>
@@ -41,7 +41,7 @@
             <tr>
                 <td><a href="{{ path('ds_facyt_admin_channel_show', { 'id': entity.id }) }}">{{ loop.index }}</a></td>                
                 <td>{{ entity.name }}</td>
-                <td>{{ entity.description }}</td>
+                <td> <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}">{{ entity.description }}</a></td>
                 <td>
                     <center>
                     {% if entity.status == '1' %}
@@ -54,7 +54,7 @@
                 </td>                
                 <td>
                     <center>
-                    <a href="{{ path('ds_facyt_admin_channel_edit', { 'id': entity.id }) }}"> <span class="fa fa-pencil"></span></a>
+                    <a href="{{ path('ds_facyt_display_show', { 'slug': entity.slug }) }}" target="_blank"> <span class="fa fa-desktop fa-2x"></span></a>
                     </center>
                 </td>
             </tr>

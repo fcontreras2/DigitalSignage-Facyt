@@ -5,6 +5,8 @@ ds_facyt_infrastructure_admin_quicknote:
 ds_facyt_infrastructure_admin_quicknote_show:
     path:     /{id}/show
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:show" }
+    options:
+        expose: true
 
 ds_facyt_infrastructure_admin_quicknote_new:
     path:     /new
@@ -18,6 +20,8 @@ ds_facyt_infrastructure_admin_quicknote_create:
 ds_facyt_infrastructure_admin_quicknote_edit:
     path:     /{id}/edit
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/QuickNote:edit" }
+    options:
+        expose: true
 
 ds_facyt_infrastructure_admin_quicknote_update:
     path:     /{id}/update

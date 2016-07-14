@@ -31,22 +31,17 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Fecha inicial</th>
-                    <th>Fecha final</th>
                     <th>Título</th>
-                    <th>Información</th>
-                    <th><center>Estado</center></th>                
-                    <th style="width:6%">Editar</th>
+                    <th></th>
+                    <th><center>Estado</center></th>                                    
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="currentQuickNote in quick_notes">
                     <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                     <td ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                    <td>{[{ currentQuickNote.start_date}]}</td>
-                    <td>{[{ currentQuickNote.end_date}]}</td>
                     <td>{[{ currentQuickNote.title}]}</td>
-                    <td>{[{ currentQuickNote.info}]}</td>
+                    <td><a ng-href="{[{urlEdit}]}" ng-click="generateUrl(currentQuickNote.id)" >{[{ currentQuickNote.info}]}</a></td>
                     <td>
                         <center>
                             <span class="fa fa-circle status-active" ng-class="{'status-active':currentQuickNote.status, 'status-desactive':!currentQuickNote.status}"></span>                        

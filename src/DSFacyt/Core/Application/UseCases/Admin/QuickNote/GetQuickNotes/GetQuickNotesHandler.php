@@ -61,8 +61,6 @@ class GetQuickNotesHandler implements Handler
             foreach ($quickNotes as $currentQuickNote) {
                 $auxQuick['id'] = $currentQuickNote->getId();
                 $auxQuick['title'] = $currentQuickNote->getTitle();
-                $auxQuick['start_date'] = $currentQuickNote->getStartDate()->format('d-m-Y');
-                $auxQuick['end_date'] = $currentQuickNote->getEndDate()->format('d-m-Y');
                 $auxQuick['info'] = $currentQuickNote->getInfo();
                 $auxQuick['status'] = $currentQuickNote->getStatus();
                 $response['quick_notes'][] = $auxQuick;

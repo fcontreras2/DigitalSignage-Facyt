@@ -3,6 +3,7 @@ indexQuickNote.controller('IndexQuickNoteController', ['$scope', 'IndexQuickNote
         console.log(data);
     $scope.pagination = data.pagination;
     $scope.quick_notes = data.quick_notes;
+    $scope.urlEdit = null;
 
     $scope.generatePagination = function (page)
     {
@@ -23,4 +24,10 @@ indexQuickNote.controller('IndexQuickNoteController', ['$scope', 'IndexQuickNote
             }
         });
     };
+
+    $scope.generateUrl   = function(id)
+    {
+        $scope.urlEdit = Routing.generate('ds_facyt_infrastructure_admin_quicknote_edit',{'id':id});         
+
+    }
 }]);

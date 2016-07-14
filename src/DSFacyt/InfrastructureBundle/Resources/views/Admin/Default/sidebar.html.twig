@@ -70,7 +70,13 @@
             </a>
         </li>
         <li>
-            <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}"><span class="fa fa-paper-plane"></span>  Notas rápidas </a>
+             {% if ('/quicknote/' in app.request.uri) %}
+                <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}" class="active">
+            {% else %}
+                <a href="{{ path('ds_facyt_infrastructure_admin_quicknote') }}">
+            {% endif %}
+
+            <span class="fa fa-paper-plane"></span>  Notas rápidas </a>
         </li>
         <li>
             {% if ('/user' in app.request.uri) or ('/group' in app.request.uri) %}

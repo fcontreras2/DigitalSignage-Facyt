@@ -9,11 +9,6 @@ DSFacyt\InfrastructureBundle\Entity\QuickNote:
             generator:
                 strategy: AUTO
     fields:
-        start_date:
-            type: date
-
-        end_date:
-            type: date
 
         title:
             type: string

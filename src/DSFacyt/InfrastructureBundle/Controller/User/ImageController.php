@@ -78,6 +78,7 @@ class ImageController extends Controller
             $auxChannel['name'] = $currentChannel->getName();
             $data['channels'][] = $auxChannel;
         }
+        $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
 
         return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array(
             'data' => json_encode($data)));
@@ -145,9 +146,10 @@ class ImageController extends Controller
         $command = new GetImageCommand($imageId);
         $response = $this->get('CommandBus')->execute($command);
         if ($response->getStatusCode() == 200) {           
-
+            $data = $response->getData();
+            $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
             return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array(
-            'data' => json_encode($response->getData())));
+            'data' => json_encode($data)));
         }
 
         return $this->redirect('ds_facyt_infrastructure_user_image_homepage');

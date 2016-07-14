@@ -1,6 +1,7 @@
 <?php
 
 namespace DSFacyt\InfrastructureBundle\Resources\Services;
+
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -14,7 +15,14 @@ class ConfigurationDSFacyt
 {
     public function getConfig()
     {
-
         return Yaml::parse(file_get_contents('../app/config/config_dsf_facyt.yml'))['config'];
+    }
+
+    public function updateConfig($config)
+    {
+    	$curretConfig = Yaml::parse(file_get_contents('../app/config/config_dsf_facyt.yml'));
+    	$curretConfig['config'] = $config;
+    	$yaml = Yaml::dump($curretConfig);
+		file_put_contents('../app/config/config_dsf_facyt.yml', $yaml);
     }
 }

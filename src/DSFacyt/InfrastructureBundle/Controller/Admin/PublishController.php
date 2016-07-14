@@ -347,6 +347,7 @@ class PublishController extends Controller
             $data['channels'][] = $auxChannel;
         }
 
+        $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
         $data['status'] = $this->status;
 
         return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newImage.html.twig', array(
@@ -393,10 +394,11 @@ class PublishController extends Controller
     {
         $command = new GetImageCommand($imageId);
         $response = $this->get('CommandBus')->execute($command);
-        if ($response->getStatusCode() == 200) {           
-
+        if ($response->getStatusCode() == 200) {                       
+            $data = $response->getData();
+            $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
             return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newImage.html.twig', array(
-            'data' => json_encode($response->getData())));
+            'data' => json_encode($data)));
         }
 
         return $this->redirect('ds_facyt_infrastructure_admin_homepage');

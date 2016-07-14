@@ -1,3 +1,9 @@
 ds_facyt_admin_config_homepage:
     path: /
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Config:index" }
+
+ds_facyt_admin_config_update:
+    path: /update
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Config:updateConfig"}
+    options:
+        expose: true

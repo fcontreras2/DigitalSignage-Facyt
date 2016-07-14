@@ -4,6 +4,8 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
         $scope.data = data;
         $scope.data.publish_time = '7:00 AM'
         $scope.alert_message = null;
+        $scope.config = data.config;
+        console.log($scope.data);
         var cropImageModal = $modal({scope: $scope, template: 'modal-uploadImage.tpl', show: false});    
         $scope.color_status = UploadImageService.setColorStatus($scope.data.status);
 

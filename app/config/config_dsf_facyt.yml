@@ -1,11 +1,6 @@
 config:
-  #Ancho de imagenes
-  image_width:  1366
-  #Alto de imagenes
-  image_height: 768
-  #transición entre textos (seg)
-  time_text_transition: 10
-  #transición entre imagenes (seg)
-  time_image_transition: 10
-  # tiempo de eliminación de datos (días)
-  time_clean_publish: 60
+    image_width: 1366
+    image_height: 768
+    time_text_transition: 10
+    time_image_transition: 10
+    time_clean_publish: 2321

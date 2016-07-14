@@ -15,18 +15,27 @@
                         </div>
                     </div>
                     <div class="modal-body" style="font-size:16px">
-                        <canvas 
-                            width="500" 
-                            height="300" 
-                            id="canvas" 
-                            image-cropper 
-                            image="cropper.sourceImage" 
-                            cropped-image="cropper.croppedImage" 
-                            crop-width="400" 
-                            crop-height="200"
-                            keep-aspect="true" 
-                            touch-radius="30">
-                        </canvas>
+                        
+                        
+                            <center>
+                            Límites: ancho {[{config.image_width}]}px - alto : {[{config.image_height}]}px
+                            <br>
+                            
+                            <canvas 
+                                id="canvas" 
+                                width="500px"
+                                height="auto"
+                                image-cropper 
+                                image="cropper.sourceImage" 
+                                cropped-image="cropper.croppedImage" 
+                                crop-width="config.image_width" 
+                                crop-height="config.image_height"
+                                keep-aspect="false" 
+                                touch-radius="30">
+                            </canvas>
+                            </center>
+                        
+                        
                     </div>
                     <div class="modal-footer">
                         <div class="row">

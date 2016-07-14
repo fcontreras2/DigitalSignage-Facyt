@@ -1,7 +1,8 @@
-publish.controller('PublishController', ['$scope','$filter', 'publishService', '$modal', '$alert', '$timeout',
-    function ($scope, $filter,publishService, $modal, $alert, $timeout)
+publish.controller('PublishController', ['$scope','$filter', 'publishService', '$modal', '$alert', '$timeout','$interval',
+    function ($scope, $filter,publishService, $modal, $alert, $timeout, $interval)
     {
         var initializing = false;
+        $scope.notifications = {};
         $scope.pagination = data.data.pagination;
         $scope.publish = data.data.publish;
         $scope.status = data.status;
@@ -189,6 +190,10 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                 }                
             });
         }
+
+        $interval(function() {
+            publishService.checkNotifications($scope);
+        }, 1000);
 
         $timeout(function() { initializing = true; $scope.$apply();});
 

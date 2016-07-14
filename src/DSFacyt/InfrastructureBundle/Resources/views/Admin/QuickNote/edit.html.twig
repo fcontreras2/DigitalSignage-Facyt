@@ -1,7 +1,10 @@
 {% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
-
+{% block title %}Notas rápidas{% endblock title %}
+{% block title_notifications %} <span class="fa fa-paper-plane"></span>  Notas rápidas {% endblock title_notifications %}
 
 {% block body %}
+<div ng-app="NotificationModule" ng-controller="NotificationController">
+    {% include "DSFacytInfrastructureBundle:Admin/Default:notifications.html.twig" %}
     <h1>QuickNote edit</h1>
 
     {{ form(edit_form) }}
@@ -14,14 +17,18 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
     {% if app.environment == "dev" %}
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Admin/Notification/notification.js') }}"></script>
     {% else %}
         {% javascripts
             '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/js/scripts.js'                   

@@ -25,7 +25,11 @@ class DefaultController extends Controller
         $command = new GetDataTransmitionCommand($slug);        
         $response = $this->get('CommandBus')->execute($command);
 
-        return $this->render("DSFacytInfrastructureBundle:Display:transmition.html.twig", ['data' => json_encode($response->getData())]);
+        return $this->render("DSFacytInfrastructureBundle:Display:transmition.html.twig", 
+            [
+                'data' => json_encode($response->getData()),
+                'config' => $this->get('ConfigurationDSFacyt')->getConfig()
+            ]);
     }
 
     public function checkPublishAction(Request $request)

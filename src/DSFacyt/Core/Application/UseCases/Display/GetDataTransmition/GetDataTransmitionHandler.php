@@ -45,7 +45,7 @@ class GetDataTransmitionHandler implements Handler
             $response['publish']['images'] = $this->getImages();
             $response['publish']['videos'] = $this->getVideos();
         
-            $response['quickNotes'] = $this->getQuickNotes();
+            $response['quickNotes'] = $this->getQuickNotes();            
 
             return new ResponseCommandBus(200, 'Ok', $response);
         }

@@ -157,17 +157,18 @@ f
     {% endif %}
 
     <script type="text/javascript">
+        
         jQuery(function($) {
             $('#carousel-texts').carousel({
-                interval: 30000
+                interval: "{{config.time_text_transition}}"*1000
             });            
 
             $('#carousel-images').carousel({
-                interval: 30000
+                interval: "{{config.time_image_transition}}"*1000
             });            
         
             $('#carousel-quick-notes').carousel({
-                interval: 30000
+                interval: "{{config.time_quick_note_transition}}"*1000
             });
         }); 
     </script>

@@ -48,6 +48,19 @@
                             <hr>
                             <div class="row">
                                 <div class="col-xs-6">
+                                    <label class="control-label"><span class="fa fa-paper-plane"> Transición notas rápidas (seg)</label>
+                                    <input type="number" name="time_quick_note_transition" id="input" class="form-control" ng-model="data.time_quick_note_transition" autofocus ng-required="true">
+                                    <span class="error" ng-show="config.time_quick_note_transition.$invalid" ng-cloak> * valor obligatorio</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="control-label"><span class="fa fa-trash"> Tiempo de eliminación de publicaciones (días)</label>
+                                    <input type="number" name="time_clean_publish" id="input" class="form-control" ng-model="data.time_clean_publish" autofocus ng-required="true">
+                                    <span class="error" ng-show="config.time_clean_publish.$invalid" ng-cloak> * valor obligatorio</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-xs-6">
                                     <label class="control-label">Ancho imagen (px)</label>
                                     <input type="number" name="image_width" id="input" class="form-control" ng-model="data.image_width" autofocus ng-required="true" >
                                     <span class="error" ng-show="config.image_width.$invalid" ng-cloak> * valor obligatorio</span>
@@ -57,15 +70,8 @@
                                     <input type="number" name="image_height" id="input" class="form-control" ng-model="data.image_height" autofocus ng-required="true" >
                                     <span class="error" ng-show="config.image_height.$invalid" ng-cloak> * valor obligatorio</span>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label class="control-label">Tiempo de eliminación de publicaciones (días)</label>
-                                    <input type="number" name="time_clean_publish" id="input" class="form-control" ng-model="data.time_clean_publish" autofocus ng-required="true">
-                                    <span class="error" ng-show="config.time_clean_publish.$invalid" ng-cloak> * valor obligatorio</span>
-                                </div>
-                            </div>
+                            </div>                            
+                            
                         </div>
                         <div class="panel-footer">
                             <div class="row">

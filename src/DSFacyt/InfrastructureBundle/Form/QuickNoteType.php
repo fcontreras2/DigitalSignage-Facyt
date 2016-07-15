@@ -15,13 +15,13 @@ class QuickNoteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('info')
+            ->add('title','text',['label' => 'Título'])
+            ->add('info','text', ['label' => 'información'])
             ->add('status', 'choice',
                 [   'label' => 'Estado',
                     'choices' => [
                     1 => 'Activo', 0 => 'Inactivo'
-            ]])
+            ]])           
             
         ;
     }

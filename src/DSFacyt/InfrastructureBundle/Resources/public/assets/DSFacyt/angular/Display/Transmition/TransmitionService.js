@@ -1,5 +1,79 @@
 Transmition.service('TransmitionService', function(){   
 
+    //Obtener el Día y Mes Actual
+    this.getCurrentDate = function() {
+        var today = new Date();
+        var day_number = today.getDate();
+        var day_weekend = today.getDay();
+        var month = today.getMonth(); //January is 0!        
+        var response = '';
+        switch (day_weekend) {
+            case 0:
+                response = 'Domingo';
+                break;
+            case 1:
+                response = 'Lunes';
+                break;
+
+            case 2:
+                response = 'Miércoles';
+                break;
+
+            case 3:
+                response = 'Jueves';
+                break;
+
+            case 4:
+                response = 'Viernes';
+                break;
+
+            case 5:
+                response = 'Sábado';
+                break;
+        }
+
+        switch (month) {
+            case 0:
+                response = response + ', Enero';
+                break;
+            case 1:
+                response = response + ', Febrero';
+                break;
+            case 2:
+                response = response + ', Marzo';
+                break;
+            case 3:
+                response = response + ', Abril';
+                break;
+            case 4:
+                response = response + ', Mayo';
+                break;
+            case 5:
+                response = response + ', Junio';
+                break;
+            case 6:
+                response = response + ', Julio';
+                break;
+            case 7:
+                response = response + ', Agosto';
+                break;
+            case 8:
+                response = response + ', Septiembre';
+                break;
+            case 9:
+                response = response + ', Octubre';
+                break;
+            case 10:
+                response = response + ', Noviembre';
+                break;
+            case 11:
+                response = response + ', Diciembre';
+                break;
+        }
+
+        return response + ' ' + day_number;
+    }
+
     // Cambia las transmisiones entre imagenes y videos
     this.changeMedia = function($scope) {
         $scope.showImages = !$scope.showImages;

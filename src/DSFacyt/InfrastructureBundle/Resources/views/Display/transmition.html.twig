@@ -68,23 +68,42 @@ f
         <div class="block-info">
             <div class="block-time">
                 <div class="block-time" style="margin: 10px">
-                    <div class="time"  >
-                        <ds-widget-clock show-digital digital-format="'hh:mm:ss a '">></ds-widget-clock>
+                    <div class="time" >
+                        <ds-widget-clock show-digital digital-format="'hh:mm a '">></ds-widget-clock>
                     </div>
                     <div class="date">
-                        <ds-widget-clock show-digital digital-format="'EEEE MMMM d'">></ds-widget-clock>
-                    </div>
+                        <center><h2>{[{current_date}]}</h2></center>
+                    </div>                                                                
                 </div>
             </div>
             <div class="block-text">
-                <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
-                    <div class="carousel-inner">
-                        <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}">
-                            <div class="panel panel-default" data-interval="500">
-                                <div class="panel-body">
-                                    <div class="text-profile-2" style="width:100%;display:block;float:left; margin-bottom:2%; border-bottom:1px solid black;padding-bottom:2%">
+                
+                            <div class="panel panel-default">
+                                <div class="panel-heading" >
+                                    <h3> Publicaciones</h3>
+                                </div>
+                                <div class="panel-body">                                    
+                                    <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+                                        <div class="carousel-inner">                        
+                                            <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}">                                
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                    <span><b>Publicado : {[{texts[$index].start_date}]}</b></span>  
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div style="width:9%" ng-show='{[{texts[$index].image_profile}]}'>
+                                                        <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;background-position: center center;  background-repeat: no-repeat;float:left;max-height:15vh;">                                                        
+                                                    </div>
+                                                    <div style="width:90%" style="margin-left:1%;padding-left:3%; padding-right:1%">
+                                                        <p style="font-size:135%">{[{ texts[$index].title}]}</p>
+                                                        <p style="font-size:160%">{[{ texts[$index].info }]}</p>
+                                                    </div>
+                                                </div>
+
+                                    <!--<div class="text-profile" style="width:100%;display:block;float:left; margin-bottom:2%; border-bottom:1px solid black;padding-bottom:2%">
                                         <div class="text-profile-image" style="width:30%" ng-show="texts[$index].image_profile">
-                                            <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;float:left;width: 80%; background-position: center center;  background-repeat: no-repeat;float:left;max-height:10vh;">
+                                            
                                         </div>
                                         <div class="text-profile-info" style="width:100%;font-size:110%">
                                             <span><b>Usuario: {[{texts[$index].user_full_name}]}</b></span>
@@ -100,7 +119,7 @@ f
                                         <div class="text-info" style="font-size:160%">
                                             --{[{ texts[$index].info }]}--
                                         </div>                                    
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>                        
@@ -160,7 +179,7 @@ f
         
         jQuery(function($) {
             $('#carousel-texts').carousel({
-                interval: "{{config.time_text_transition}}"*1000
+                interval: "{{config.time_text_transition}}"*1
             });            
 
             $('#carousel-images').carousel({

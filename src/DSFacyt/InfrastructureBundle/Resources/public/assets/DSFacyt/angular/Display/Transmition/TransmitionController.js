@@ -83,4 +83,9 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         
     }, 5000);
 
+    $scope.current_date = TransmitionService.getCurrentDate();
+    $interval(function(){        
+        $scope.current_date = TransmitionService.getCurrentDate();
+    }, 10000);
+    
 }]);

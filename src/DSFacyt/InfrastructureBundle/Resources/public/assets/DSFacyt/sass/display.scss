@@ -29,7 +29,7 @@ $fa-font-path:   "/fonts/font-awesome";
   }
 
   .block-info {
-    background: $gray-light;
+    background: $blue-ligth;
 
     height: 92.5vh;
     width: 25%;
@@ -37,15 +37,35 @@ $fa-font-path:   "/fonts/font-awesome";
 
     .block-time {
       height: 20vh;
-      color:$blue-ligth;
+      color:$blue-dark;
       border-bottom: 1px solid black;
+      background: $blue-ligth;
+      .hours {color:white !important}
+      .time {font-family:'Avenir LT Std 45 Book';font-weight:normal;}
+      .date {
+        font-size:2.5em;
+        font-family:'Avenir LT Std 45 Book';font-weight:normal;
+      }
+
     } 
     .block-text {
       height: 72.5vh;
-      .item {
+      .panel {
+      
         z-index:10 !important;
         height:71.3vh;
-        .panel {
+          .panel-heading {
+            background: $blue-white;
+            margin:0%;
+            padding:0px;
+            padding-top: 3%;
+            padding-bottom: 3%;
+            padding-left: 2%;
+            h3 { margin: 0px;font-size:135%}
+            border-radius: 0px;
+            color:white;
+
+          }
           height: 75.0vh !important;
           border-bottom: 1px solid black;
           margin: 0px;
@@ -59,7 +79,7 @@ $fa-font-path:   "/fonts/font-awesome";
             font-size:16px;
           }
         }
-      }
+      
     }
   }
   .block-quick-notes {
@@ -69,7 +89,7 @@ $fa-font-path:   "/fonts/font-awesome";
     z-index: 1000 !important;
     float: left;
     p {
-      color:$blue-ligth;
+      color:$blue-dark;
       font-size:20px;
       padding:10px;
     }

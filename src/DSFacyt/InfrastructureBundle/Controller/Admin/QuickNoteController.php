@@ -75,7 +75,7 @@ class QuickNoteController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Enviar'));
 
         return $form;
     }
@@ -155,7 +155,7 @@ class QuickNoteController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enviar'));
 
         return $form;
     }
@@ -180,7 +180,7 @@ class QuickNoteController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ds_facyt_infrastructure_admin_quicknote_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ds_facyt_infrastructure_admin_quicknote', array('id' => $id)));
         }
 
         return $this->render('DSFacytInfrastructureBundle:Admin/QuickNote:edit.html.twig', array(

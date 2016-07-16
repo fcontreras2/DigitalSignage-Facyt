@@ -1,4 +1,5 @@
 Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout','$interval', function ($scope, TransmitionService,$sce, $timeout,$interval) {
+    console.log(data);
     $scope.slug = data.slug;
     $scope.texts = data.publish.texts;
     $scope.images = data.publish.images;

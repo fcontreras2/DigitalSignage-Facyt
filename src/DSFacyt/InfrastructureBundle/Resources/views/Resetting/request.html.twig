@@ -1,35 +1,47 @@
 {% extends "DSFacytInfrastructureBundle:Resetting:layoutResetting.html.twig" %}
 {% block title %} Restablecer contraseña {% endblock %}
 {% block body %}
-    <div id="body-login" style="min-height: 92vh">
-        <div class="container" style="color:white">
-        <br>
-        <br>
-            <div class="row">
-                <div class="col-xs-12 col-md-4" >
-                    <h2> Restablecer contraseña</h2>
-                    <h4> </h4>
-                    <form action="{{ path('ds_facyt_infrastructure_resetting_send_email') }}" method="POST" >
-                        <h4 class="form-extranet-heading" style="width: 330px;color:white"><b>Ingresa tu correo electronico</h4>
-                        {% if invalid_username is defined %}
-                            <div class="alert alert-danger">
-                                <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
-                                <span class="sr-only">Error:</span>
-                                <span>Datos incorrectos</span>
-                            </div>
-                        {% endif %}
-                        <label for="password" class="sr-only">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-                        <input type="text" id="username" name="username" class="form-control my-input" required="required" placeholder="Correo electrónico"/>
-                        <br>
-                        <button type="submit" id="_submit" name="_submit" class="btn btn-md btn-primary btn-reset" style="width: 100%"><b>Enviar</b> </button>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3> <span class="fa fa-check"> Recibirás un correo</span></h3>
-                    <h3> <span class="fa fa-check"> Ingresa en el enlace </span></h3>
-                    <h3> <span class="fa fa-check"> Ingresa tu nueva contraseña </span></h3>
-                </div>
-            </div>
+<div id="body-login">
+<div class="container" style="height:100vh;padding-top:7%">
+    <div class="row">        
+        <div class="col-md-7" >
+            <h1 id="login-title"><b>Restablecer contraseña</b></h1>
+            <h3 id="login-info">
+                <i class="fa fa-check"></i> Ingresa tu nombre de usuario o correo electrónico<br><br>
+                <i class="fa fa-check"></i> Te enviaremos un correo de confirmación<br><br>
+                <i class="fa fa-check"></i> <a href="{{path('ds_facyt_infrastructure_user_security_login')}}">Iniciar sesión </a><br>
+            </h3>
         </div>
+        <div class="col-md-5">
+          <form action="{{ path('ds_facyt_infrastructure_resetting_send_email') }}" method="POST" >
+                <div class="panel panel-default" id="panel-login">
+                    <div class="panel-heading" ><b><h4>Inicio de Sesión</b></h4></div>
+                    <div class="panel-content">                        
+                        <div class="tab-pane active panel-body" id="login">
+                            {% if error is defined %}
+                                <span style="color:#DB2929">
+                                    <span class="fa fa-warning"></span> Datos incorrectos
+                                </span>
+                                <br>
+                                <br>
+                            {% endif %}
+                              <label ><span class="fa fa-user"></span> Nombre de Usuario o correo electrónico</label>
+                            <input type="text" id="username" name="username" class="form-control my-input" required="required" placeholder="Nombre de usuario / correo electrónico"/>
+                        <br>
+                        
+                        </div>
+                    </div>                    
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Ingresar</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </form>
+        </div>
+    </div>
     </div>
 {% endblock body %}

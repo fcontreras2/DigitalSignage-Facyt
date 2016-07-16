@@ -15,6 +15,7 @@ f
     {% endif %}
 
 {% endblock %}
+{% block title %} Canal Online{% endblock title %}
 
 {% block body %}
     <div class="container-display" ng-app="TransmitionModule" ng-controller="TransmitionController as controller" style="height: 100vh !important;width: 100%;" >
@@ -23,20 +24,10 @@ f
             <div class="carousel-inner">
                 <div class="item" ng-repeat="n in [] | range:images.length" ng-class="{'active':!$index}">
                     <center>
-                        <div style="height:85.5vh;">
-                            <img src="/uploads/images/{[{images[$index].image_url}]}" style="
-                            vertical-align: middle;
-                            max-height: 85vh;
-                            background-position: center center;
-                            background-repeat: no-repeat;">
-                        </div>
-                        <div class="title-image" style="
-                            background: blue;
-                            padding: 10px;
-                            color: white;
-                            font-size: 127%;
-                        ">
-                            <span>{[{images[$index].title}]}</span>
+                        <div class="parentbox">
+                            <div class="childbox">
+                                <img src="/uploads/images/{[{images[$index].image_url}]}" style="">
+                            </div>                            
                         </div>
                     </center>
                 </div>
@@ -76,54 +67,29 @@ f
                     </div>                                                                
                 </div>
             </div>
-            <div class="block-text">
-                
-                            <div class="panel panel-default">
-                                <div class="panel-heading" >
-                                    <h3> Publicaciones</h3>
-                                </div>
-                                <div class="panel-body">                                    
-                                    <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
-                                        <div class="carousel-inner">                        
-                                            <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}">                                
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                    <span><b>Publicado : {[{texts[$index].start_date}]}</b></span>  
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div style="width:9%" ng-show='{[{texts[$index].image_profile}]}'>
-                                                        <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;background-position: center center;  background-repeat: no-repeat;float:left;max-height:15vh;">                                                        
-                                                    </div>
-                                                    <div style="width:90%" style="margin-left:1%;padding-left:3%; padding-right:1%">
-                                                        <p style="font-size:135%">{[{ texts[$index].title}]}</p>
-                                                        <p style="font-size:160%">{[{ texts[$index].info }]}</p>
-                                                    </div>
-                                                </div>
-
-                                    <!--<div class="text-profile" style="width:100%;display:block;float:left; margin-bottom:2%; border-bottom:1px solid black;padding-bottom:2%">
-                                        <div class="text-profile-image" style="width:30%" ng-show="texts[$index].image_profile">
-                                            
+            <div class="block-text">                
+                <div class="panel panel-default">
+                    <div class="panel-heading" >
+                        <h3> Canal Cafetín</h3>
+                    </div>
+                    <div class="panel-body" style="background:#F6F6F6;height:66vh">
+                        <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+                            <div class="carousel-inner">                        
+                                <div class="item" ng-repeat="n in [] | range:texts.length" ng-class="{'active':!$index}" >
+                                    <div class="row" style="height:66vh">
+                                        <div class="col-xs-2" ng-show='{[{texts[$index].image_profile}]}' style="padding-right:0px">
+                                            <img src="/uploads/images/{[{texts[$index].image_profile}]}" alt="" style="vertical-align:middle;background-position: center center;  background-repeat: no-repeat;float:left;max-height:15vh;width:100%">
                                         </div>
-                                        <div class="text-profile-info" style="width:100%;font-size:110%">
-                                            <span><b>Usuario: {[{texts[$index].user_full_name}]}</b></span>
-                                            <br>
-                                            <span><b>Publicado : {[{texts[$index].start_date}]}</b></span>
+                                        <div class="col-xs-10">
+                                            <p style="font-size:135%; color:#007ed3;font-weight:bold;">{[{ texts[$index].title}]}</p>
+                                            <p style="color:#007ed3;font-weight:bold;"><b>Publicado : {[{texts[$index].start_date}]}</b></p>  
+                                            <p style="font-size:160%;word-wrap: break-word;color:#142b4c">{[{ texts[$index].info }]}</p>
                                         </div>
                                     </div>                                    
-
-                                    <div class="tex1312t-info" style="width:100%;float:left;">
-                                        <div class="text-title" style="font-size:145%">
-                                            <b>{[{ texts[$index].title }]}</b>
-                                        </div>
-                                        <div class="text-info" style="font-size:160%">
-                                            --{[{ texts[$index].info }]}--
-                                        </div>                                    
-                                    </div>-->
                                 </div>
                             </div>
                         </div>                        
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>

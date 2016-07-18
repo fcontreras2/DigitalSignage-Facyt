@@ -64,16 +64,14 @@ class GetNotificationsHandler implements Handler
 
                 $auxNotification['title'] = $this->getTitlePublication(
                     $currentNotification->getPublishId(),
-                    $currentNotification->getPublishId()
+                    $currentNotification->getPublishType()
                 );
 
-
-                    $auxNotification['id'] = $currentNotification->getId();
-                    $auxNotification['event'] = $currentNotification->getEvent();
-                    $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
-                    $auxNotification['type'] = $currentNotification->getPublishType();
-                    $response['notifications'][] = $auxNotification;
-
+                $auxNotification['id'] = $currentNotification->getId();
+                $auxNotification['event'] = $currentNotification->getEvent();
+                $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
+                $auxNotification['type'] = $currentNotification->getPublishType();
+                $response['notifications'][] = $auxNotification;
             }
         }
 

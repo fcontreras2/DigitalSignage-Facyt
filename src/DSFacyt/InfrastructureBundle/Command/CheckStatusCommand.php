@@ -32,6 +32,6 @@ class CheckStatusCommand extends ContainerAwareCommand
         
         $command = new CheckPublishCommand();
         $response = $container->get('CommandBus')->execute($command);
-        $output->writeln($response->getMessage());
+        $output->writeln('-'.(new \DateTime())->format('Y-m-d h:m:s').' '.$response->getMessage());
     }
 }

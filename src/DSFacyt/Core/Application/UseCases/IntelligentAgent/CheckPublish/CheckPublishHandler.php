@@ -29,6 +29,7 @@ class CheckPublishHandler implements Handler
         $rpText = $rf->get('Text');
         $rpNotification = $rf->get('Notification');
 
+        // Conseguimos publicaciones (nuevas, )
         $texts = $rpText->findAllToCheck();
 
         foreach ($texts as $currentText) {
@@ -43,14 +44,14 @@ class CheckPublishHandler implements Handler
                 $currentNotification->setPublishId($currentText->getId());
                 $currentNotification->setPublishType('text');
             }
-
-            $currentNotification->setData([]);
-            $currentNotification->setLastModified(new \DateTime());
-            $currentNotification->setEvent($this->getEvent($currentText->getStatus()));
-            $rpNotification->save($currentNotification);
             
+            $lastStatus = $currentText->getStatus();
+            $currentNotification->setEvent($this->getEvent($currentText->getStatus()));
+            $currentNotification->setLastModified(new \DateTime());
+            $currentText->setStatus($this->changeStatus($currentText->getStatus()));
+            $currentNotification->setData($this->getData($currentText->getStatus(), $lastStatus));
 
-            $currentText->setStatus($currentText->getStatus()+1);
+            $rpNotification->save($currentNotification);            
             $rpText->save($currentText);            
         }        
 
@@ -71,13 +72,13 @@ class CheckPublishHandler implements Handler
                 $currentNotification->setPublishType('text');
             }
 
-            $currentNotification->setData([]);
+            $lastStatus = $currentImage->getStatus();
             $currentNotification->setLastModified(new \DateTime());
             $currentNotification->setEvent($this->getEvent($currentImage->getStatus()));
-            $rpNotification->save($currentNotification);
-            
+            $currentImage->setStatus($this->changeStatus($currentImage->getStatus()));
+            $currentNotification->setData($this->getData($currentImage->getStatus(),$lastStatus));
 
-            $currentImage->setStatus($currentImage->getStatus()+1);
+            $rpNotification->save($currentNotification);
             $rpImage->save($currentImage);            
         }
 
@@ -98,12 +99,13 @@ class CheckPublishHandler implements Handler
                 $currentNotification->setPublishType('text');
             }
 
-            $currentNotification->setData([]);
+            $lastStatus = $currentVideo->getStatus();
             $currentNotification->setLastModified(new \DateTime());
             $currentNotification->setEvent($this->getEvent($currentVideo->getStatus()));
-            $rpNotification->save($currentNotification);            
+            $currentVideo->setStatus($this->changeStatus($currentVideo->getStatus()));            
+            $currentNotification->setData($this->getData($currentVideo->getStatus(),$lastStatus));
 
-            $currentVideo->setStatus($currentVideo->getStatus()+1);
+            $rpNotification->save($currentNotification);
             $rpImage->save($currentVideo);            
         }
         
@@ -121,6 +123,35 @@ class CheckPublishHandler implements Handler
                 break;
             case 2:
                 $response = 'finished';
+                break;
+        }
+
+        return $response;
+    }
+
+    private function changeStatus($status)
+    {
+        $response = $status;
+
+        if ($status == 1 or $status == 2) {
+            $response = $status + 1;
+        }
+
+        return $response;
+    }
+
+    private function getData($status, $lastStatus)
+    {
+        $response = ['last_status' => $lastStatus, 'info' => null];
+        switch ($status) {
+            case 0:
+                $response['info'] = 'Publicación creada';
+                break;
+            case 2:
+                $response['info'] = 'Publicación en transmisión (activa)';
+                break;
+            case 3:
+                $response['info'] = 'Publicación finalizada';
                 break;
         }
 

@@ -85,7 +85,7 @@ Transmition.service('TransmitionService', function(){
         var response = [];
         $.each(arrayVideos, function(key, value) {
             response.push(
-                [{src: $sce.trustAsResourceUrl('/uploads/videos/'+value.video_url), type: "video/mp4"}]
+                [{src: $sce.trustAsResourceUrl('/uploads/videos/'+value.video_url), type: value.mime_type}]
             );
         });
         return response;

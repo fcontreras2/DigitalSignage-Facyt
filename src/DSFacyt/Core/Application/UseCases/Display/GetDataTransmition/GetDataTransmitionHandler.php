@@ -114,6 +114,7 @@ class GetDataTransmitionHandler implements Handler
             $auxResponse['title'] = $currentVideo->getTitle();
             $auxResponse['start_date'] = $currentVideo->getStartDate();
             $auxResponse['video_url'] = $currentVideo->getDocument()->getFileName();
+            $auxResponse['mime_type'] = mime_content_type($_SERVER['DOCUMENT_ROOT'].'/uploads/videos/'.$currentVideo->getDocument()->getFileName());
             $auxResponse['user_full_name'] = $currentVideo->getUser()->getName().' '.$currentVideo->getUser()->getLastName();
 
             $response[] = $auxResponse;

@@ -35,7 +35,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             poster: "http://www.videogular.com/assets/images/videogular.png"
         }
     }
-
+    console.log(controller.videos);
     // Iniciar automaticamente la reproducción de videos
     controller.onPlayerReady = function(API) {
         controller.API = API;        
@@ -60,8 +60,8 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             // Se reproduce 2 videos a la vez
             if ($scope.currentVideo % 2 != 0)
                 $timeout(controller.API.play.bind(controller.API), 100);
-            else
-                TransmitionService.changeMedia($scope);
+            else                 
+                TransmitionService.changeMedia($scope);            
         }
     };
 
@@ -71,7 +71,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             $timeout(function() {
                 TransmitionService.changeMedia($scope);
                 $timeout(controller.API.play.bind(controller.API), 100);
-            }, ($scope.images.length * 10000));
+            }, ($scope.images.length * 500));
         }
     });
 

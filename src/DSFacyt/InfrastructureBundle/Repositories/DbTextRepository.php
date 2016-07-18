@@ -162,14 +162,14 @@ class DbTextRepository extends EntityRepository implements
             ->where("
                 (TIME(t.publish_time) <= :current_time and
                 t.status = 1 and 
-                t.start_date >= :current_date)
+                t.start_date <= :current_date)
                 or ( t.status = 2 and t.end_date <= :current_date)
                 or ( t.status = 0 and t.last_modified >= :last_modified)
             ")
             ->setParameters([
                 'current_time' => (new \DateTime())->format('G:m:s'),
                 'current_date' => (new \DateTime()),
-                'last_modified' => (new \DateTime('-45 min'))
+                'last_modified' => (new \DateTime('-5 min'))
             ])
             ->getQuery()->getResult();
     }

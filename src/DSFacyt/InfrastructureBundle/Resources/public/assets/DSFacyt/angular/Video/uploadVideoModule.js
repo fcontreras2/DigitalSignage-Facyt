@@ -1,4 +1,10 @@
-var uploadvideo = angular.module("UploadVideoModule",[])
+var uploadvideo = angular.module("UploadVideoModule",[
+    "ngSanitize",
+    "com.2fdevs.videogular",
+    "com.2fdevs.videogular.plugins.controls",
+    "com.2fdevs.videogular.plugins.overlayplay",
+    "com.2fdevs.videogular.plugins.buffering",
+    "com.2fdevs.videogular.plugins.poster"])
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
@@ -28,6 +34,7 @@ var uploadvideo = angular.module("UploadVideoModule",[])
         }
     }]);
 
+
 uploadvideo.directive('validFile',function(){
   return {
     require:'ngModel',
@@ -42,3 +49,12 @@ uploadvideo.directive('validFile',function(){
     }
   }
 });
+
+uploadvideo.filter('range', function() {
+      return function(val, range) {
+        range = parseInt(range);
+        for (var i=0; i<range; i++)
+          val.push(i);
+        return val;
+      }
+    });

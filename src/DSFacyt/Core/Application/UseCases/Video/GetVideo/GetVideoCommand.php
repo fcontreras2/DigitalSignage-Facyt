@@ -3,8 +3,9 @@
 namespace DSFacyt\Core\Application\UseCases\Video\GetVideo;
 
 use DSFacyt\Core\Application\Contract\Command;
+use DSFacyt\InfrastructureBundle\Entity\Video;
 /**
- * Comando 'Obtener los datos de una video'
+ * Comando 'Obtener los datos de una videon'
  * @author Freddy Contreras <freddycontreras3@gmail.com>
  * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
  * @version 02/02/2016
@@ -14,7 +15,7 @@ class GetVideoCommand implements Command
 {
 
     /**
-    * Representa el video a editar
+    * Representa la videon a editar
     * @var $iamgeId 
     **/
     private $videoId;
@@ -27,7 +28,7 @@ class GetVideoCommand implements Command
     {
         $this->videoId = $videoId;        
     }
-
+    
     /**
      * La función retorna todos los atributos de la clase en un arreglo
      *

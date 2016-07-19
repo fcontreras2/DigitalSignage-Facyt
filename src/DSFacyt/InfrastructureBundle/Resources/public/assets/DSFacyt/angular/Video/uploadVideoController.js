@@ -1,29 +1,42 @@
-uploadvideo.controller('UploadVideoController', ['$scope','UploadVideoService','$window','$timeout',
-    function ($scope, UploadVideoService,$window, $timeout) {
-        
-        $scope.data = data;
-        $scope.data.publish_time = '7:00 AM'
+uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$sce', function($scope,UploadVideoService,$sce){
+    $scope.data = data;
+    $scope.color_status = UploadVideoService.setColorStatus($scope.data.status);
+    $scope.$watch('data.status', function() {$scope.color_status = UploadVideoService.setColorStatus($scope.data.status);});
+    
+    var controller = this;
+    controller.API = null;
+    console.log($scope.data);
 
-        /*if ($scope.data.pathVideo) {
-            $scope.cropper.croppedVideo = '/uploads/videos/' + $scope.data.pathVideo;
-            $scope.cropper.sourceVideo = true;
+    
+    controller.videos = [[{src: $sce.trustAsResourceUrl('/uploads/videos/'+$scope.data.video_url), type: $scope.data.mime_type}]]
+
+    //Se inicializa los videos actualmente
+
+    // Configuraciones iniciales
+    controller.config = {
+        preload: "none",
+        autoHide: false,
+        autoHideTime: 3000,
+        autoPlay: true,
+        sources: controller.videos[0],
+        theme: {
+            url: "http://digitalsignagefacyt.dev/bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css",
+        },
+        plugins: {
+            poster: "http://www.videogular.com/assets/images/videogular.png"
         }
+    }
 
-        $scope.setData = function($file){
-            var url = Routing.generate('ds_facyt_infrastructure_user_video_set');            
-            var data = angular.toJson($scope.data);
-            console.log($file);
-            
-            Upload.upload({
-                url: url,
-                data: {file: $file, data: data}
-            }).progress(function (evt) {
-                $timeout(function() { $scope.alert_message = 1;}, 1500);
-            }).success(function (request) {
-                $timeout(function() { $scope.alert_message = false;}, 1500);
-                //$window.location.href = Routing.generate('ds_facyt_infrastructure_user_video_homepage');
-            }).error(function (data, status, headers, config) {
-                console.log('error');
-            });
-        }*/
-    }]);
+    // Iniciar automaticamente la reproducción de videos
+    controller.onPlayerReady = function(API) {
+        controller.API = API;        
+    };
+
+    // Cuando termina un video
+    controller.onCompleteVideo = function() {
+
+        // Se para el video actual
+        controller.API.stop();           
+    };
+
+}]);

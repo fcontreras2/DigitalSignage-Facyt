@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 use DSFacyt\Core\Application\UseCases\Image\SetImage\SetImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImage\GetImageCommand;
+use DSFacyt\Core\Application\UseCases\Video\GetVideo\GetVideoCommand;
 
 
 /**
@@ -397,6 +398,7 @@ class PublishController extends Controller
         if ($response->getStatusCode() == 200) {                       
             $data = $response->getData();
             $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
+
             return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newImage.html.twig', array(
             'data' => json_encode($data)));
         }
@@ -411,12 +413,26 @@ class PublishController extends Controller
     */
     public function newVideoAction()
     {
-        $video= new Video();
-        $form = $this->createForm(new RegisterVideoType(), $video,
+        //$video= new Video();
+        $data = ['channels' => []];
+        $manager = $this->container->get('doctrine.orm.entity_manager');
+
+        $channels = $manager->getRepository('DSFacytInfrastructureBundle:Channel')->findAll();
+        $auxChannel = [];
+
+        foreach ($channels as $currentChannel) {
+            $auxChannel['id'] = $currentChannel->getId();
+            $auxChannel['name'] = $currentChannel->getName();
+            $data['channels'][] = $auxChannel;
+        }
+
+        $data['status'] = $this->status;
+     
+        /*$form = $this->createForm(new RegisterVideoType(), $video,
             array(
                 'action' => $this->generateUrl('ds_facyt_infrastructure_admin_video_new_validate'),
-                'method' => 'POST'));
-        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('form' => $form->createView(),'data' => json_encode(['pathImage' => null])));
+                'method' => 'POST'));*/
+        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('data' => json_encode($data)));
     }
 
     public function validateNewVideoAction(Request $request)
@@ -444,4 +460,16 @@ class PublishController extends Controller
         return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
     }
 
+    public function editVideoAction($videoId)
+    {
+        $command = new GetVideoCommand($videoId);
+        $response = $this->get('CommandBus')->execute($command);
+        if ($response->getStatusCode() == 200) {
+            $data = $response->getData();
+
+            return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('data' => json_encode($data)));
+        }
+
+        return $this->redirect('ds_facyt_infrastructure_user_video_homepage');
+    }
 }

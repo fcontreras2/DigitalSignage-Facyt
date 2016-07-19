@@ -2,6 +2,7 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
     function ($scope, $filter,publishService, $modal, $alert, $timeout, $interval)
     {
         var initializing = false;
+        console.log(data);
         $scope.notifications = {};
         $scope.pagination = data.data.pagination;
         $scope.publish = data.data.publish;
@@ -117,7 +118,6 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
         
         $scope.generateUrlEdit = function(publish_id) {
             var publish_type = data.type.toLowerCase();
-            console.log(publish_type);
             var auxUrl = 'ds_facyt_infrastructure_admin_edit_'+publish_type;
             
             switch (publish_type) {
@@ -126,6 +126,9 @@ publish.controller('PublishController', ['$scope','$filter', 'publishService', '
                     break;
                 case 'image':
                     $scope.urlEdit = Routing.generate( auxUrl, {'imageId' : $scope.publish[publish_id].id });
+                    break;
+                case 'video':
+                    $scope.urlEdit = Routing.generate( auxUrl, {'videoId' : $scope.publish[publish_id].id});
                     break;
             }           
         }        

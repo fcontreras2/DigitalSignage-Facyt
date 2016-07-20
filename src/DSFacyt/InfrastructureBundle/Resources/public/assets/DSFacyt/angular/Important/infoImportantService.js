@@ -1,0 +1,3 @@
+infoimportant.service('InfoImportantService', function(){   
+ 
+});

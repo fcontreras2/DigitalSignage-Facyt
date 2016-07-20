@@ -1,0 +1,190 @@
+{% extends "DSFacytInfrastructureBundle:Default:base.html.twig" %}
+
+{% block title %} Destacados {% endblock %}
+{% block stylesheets %}
+	{% if app.environment == "dev" %}
+		<link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+				<link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css') }}"/>
+		<style type="text/css" media="screen">
+
+			.fa-facebook-square,.fa-twitter-square { font-size:190%;}
+		</style>
+
+	{% else %}
+		{% stylesheets
+ 			'@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
+ 		%}
+ 		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+
+ 	{% endstylesheets %}
+ 	{% endif %}
+
+ {% endblock %}
+ 
+{% block body %}
+
+
+{% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
+	<div class="body-importants" style="min-height:100vh" ng-app="infoImportantModule" ng-controller="infoImportantController">
+	>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-6 col-xs-offset-3" ng-if="data.type =='text'">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{[{data.title}]}</h4>
+                    </div>
+                    <div class="panel-body" style="max-height:160px;min-height:160px;">
+                        <p style="font-size:16px;">
+                            {[{data.info}]}
+                            <br>
+                            <br>                                        
+                        </p>
+                    </div>
+                    <div class="panel-footer" style="min-height:78px">
+                    	<div class="row">
+                    	<div class="col-xs-12">
+                        <b>
+                            Publicado: {[{data.start_date}]}<br>
+                            Publicado por: {[{data.user_full_name}]}<br>
+                            <a class="fa fa-facebook-square" href="" title="This will navigate in this window" social-facebook  custom-url="{{ app.request.uri}}"><span class="hide">Share on facebook</span></a>
+							<a class="fa fa-twitter-square" href="" social-twitter><span class="hide">Share on twitter</span></a>
+
+                        </b>
+                        </div>
+                        </div>
+                    </div>
+                </div>   
+               </div>
+              
+			<div class="col-xs-12 col-md-10 col-xs-offset-1" ng-if="data.type == 'image'">
+			<br>
+                <div class="panel panel-default " >
+                	<div class="panel-heading">
+                		<h2>{[{ data.title}]}</h2>
+                	</div>
+                    <div class="panel-body" >
+                    	<div class="row">
+	                    	<div class="col-xs-12">
+	                        	<img src="/uploads/images/{[{data.pathImage}]}" style="width:100%" >
+	                        </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" >
+                    	<div class="row">
+                    		<div class="col-xs-12">                    		
+		                        <b>	                        
+		                            Publicado: {[{data.start_date}]} 
+		                            Publicado por: {[{data.user_full_name}]}<br>
+		                            Compartir:<a class="fa fa-facebook-square" href="" title="This will navigate in this window" social-facebook  custom-url="{{ app.request.uri}}"><span class="hide">Share on facebook</span></a>
+									<a class="fa fa-twitter-square" href="" social-twitter><span class="hide">Share on twitter</span></a>
+	                        	</b>
+                        	</div>
+                        </div>
+                    </div>
+				</div>
+		</div>
+
+
+			<div class="col-xs-12 col-md-10 col-xs-offset-1"  ng-if="data.type == 'video'">
+			<br>
+                <div class="panel panel-default ">
+                	<div class="panel-heading">
+                		<h2>{[{ data.title}]}</h2>
+                	</div>
+
+                    <div class="panel-body" >
+                    	<div class="row">
+	                    	<div class="col-xs-12">
+	                    		<div class=" videogular-container">
+	                        	 <videogular vg-theme="controller.config.theme" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
+						            <vg-media vg-src="controller.config.sources"
+						                     vg-plays-inline="true">
+						            </vg-media>
+						 
+						            <vg-controls>
+						                <vg-play-pause-button></vg-play-pause-button>
+						                <vg-time-display>{[{ currentTime | date:'mm:ss' }]}</vg-time-display>
+						                <vg-scrub-bar>
+						                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+						                </vg-scrub-bar>
+						                <vg-time-display>{[{ timeLeft | date:'mm:ss' }]}</vg-time-display>
+						                <vg-volume>
+						                    <vg-mute-button></vg-mute-button>
+						                    <vg-volume-bar></vg-volume-bar>
+						                </vg-volume>
+						                <vg-fullscreen-button></vg-fullscreen-button>
+						            </vg-controls>
+
+						            <vg-overlay-play></vg-overlay-play>
+						            <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+						        </videogular>        
+						        </div>
+	                        </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" >
+                    	<div class="row">
+                    		<div class="col-xs-12">                    		
+		                        <b>	                        
+		                            Publicado: {[{data.start_date}]} 
+		                            Publicado por: {[{data.user_full_name}]}<br>
+		                            Compartir: <a class="fa fa-facebook-square" href="" title="This will navigate in this window" social-facebook  custom-url="{{ app.request.uri}}"><span class="hide">Share on facebook</span></a>
+									<a class="fa fa-twitter-square" href="" social-twitter><span class="hide">Share on twitter</span></a>
+	                        	</b>
+                        	</div>
+                        </div>
+                    </div>
+				</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+{% endblock body %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
+
+{% block javascripts%}
+    {{ parent() }}
+    
+    {% if data is defined %}
+    <script type="text/javascript">
+        var data = "{{ data }}";
+        var div = document.createElement('div');
+        div.innerHTML = data;
+        data = div.firstChild.nodeValue;
+        data = JSON.parse(data);
+    </script>
+    {% endif %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% if app.environment == "dev" %}
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/moment.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-clock.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-sanitize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/videogular.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-controls.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-overlay-play.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-poster.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-buffering.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-social-links.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Important/infoImportantModule.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Important/infoImportantService.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Important/infoImportantController.js') }}"></script>
+    
+    {% endif %}
+
+{% endblock javascripts %}
+

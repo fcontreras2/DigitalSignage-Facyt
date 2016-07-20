@@ -13,6 +13,13 @@ use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishS
 use DSFacyt\Core\Application\UseCases\GetImportant\GetImportantCommand; 
 use DSFacyt\Core\Application\UseCases\GetImportantAll\GetImportantAllCommand; 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
+use DSFacyt\Core\Application\UseCases\Video\GetVideo\GetVideoCommand;
+use DSFacyt\Core\Application\UseCases\Image\GetImage\GetImageCommand;
+
+
+
+
 
 /**
  * Class DefaultController
@@ -172,5 +179,27 @@ class DefaultController extends Controller
         $response = $this->get('CommandBus')->execute($command);
 
         return $this->render("DSFacytInfrastructureBundle:Default:importants.html.twig", ['data' => $response->getData()]);
+    }
+
+    public function getInfoImportantAction($type, $id)
+    {
+        $response = null;
+        switch ($type) {
+            case 'text':
+                $command = new GetTextCommand($id);            
+                break;
+            case 'image':
+                $command = new GetImageCommand($id);            
+                break;
+            case 'video':
+                $command = new GetVideoCommand($id);            
+                break;
+        }
+
+        $response = $this->get('CommandBus')->execute($command);
+        $data = $response->getData();
+        $data['type'] = $type;
+        dump($data);
+        return $this->render('DSFacytInfrastructureBundle:Default:infoImportant.html.twig', ['data' => json_encode($data)]);
     }
 }

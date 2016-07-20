@@ -1,5 +1,5 @@
 Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout','$interval', function ($scope, TransmitionService,$sce, $timeout,$interval) {
-    console.log(data);
+
     $scope.slug = data.slug;
     $scope.texts = data.publish.texts;
     $scope.images = data.publish.images;
@@ -9,7 +9,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     // Inicialización de variables
     $scope.currentVideo = 0;
     if (!$scope.videos.length) {
-        $scope.showImages = true;
+        $scope.showImages = false;
         $scope.showVideos = false;
     } else {
         $scope.showImages = false;
@@ -18,9 +18,10 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     var controller = this;
     controller.API = null;
     $scope.check_data = null;
+    $scope.showVideos = true;
 
     //Se inicializa los videos actualmente
-    controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
+    controller.videos = [[{src: $sce.trustAsResourceUrl('/uploads/videos/21335506/titulo_del_video_1758966916.mp4'), type: "video/mp4"}]];
     // Configuraciones iniciales
     controller.config = {
         preload: "none",
@@ -35,7 +36,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             poster: "http://www.videogular.com/assets/images/videogular.png"
         }
     }
-    console.log(controller.videos);
+    
     // Iniciar automaticamente la reproducción de videos
     controller.onPlayerReady = function(API) {
         controller.API = API;        

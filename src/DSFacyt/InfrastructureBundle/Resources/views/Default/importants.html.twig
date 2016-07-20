@@ -39,6 +39,7 @@
                 <br>
                     <div class="row">
                     {% for currentText in data.texts %}
+                    <a href="{{ path('ds_facyt_infrastructure_get_importants',{'type':'text', 'id': currentText.id})}}">
                             <div class="col-xs-12 col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -59,6 +60,7 @@
                                 </div>
                             </div>
                             </div>
+                            </a>
                         {% endfor %}
                     </div>                    
                 </div>
@@ -77,7 +79,9 @@
                             <h3 class="title">Imágenes destacados</h3>
                             <br>
                             <div class="row">
+                            
                                 {% for currentImage in data.images %}
+                                <a href="{{ path('ds_facyt_infrastructure_get_importants',{'type':'image', 'id': currentImage.id})}}">
                                 <div class="col-xs-12 col-md-4">
                                     <div class="panel panel-default panel-important">
                                     <div class="panel-body" style="max-height:160px;min-height:160px;">
@@ -93,6 +97,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                             {% endfor %}
                         </div>                        
                         </div>
@@ -113,6 +118,7 @@
                         <br>
                         <div class="row">
                             {% for currentVideo in data.videos %}
+                            <a href="{{ path('ds_facyt_infrastructure_get_importants',{'type':'video', 'id': currentVideo.id})}}">
                             <div class="col-xs-12 col-md-4">
                                 <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -133,6 +139,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                         {% endfor %}
                     </div>
                     </div>

@@ -23,7 +23,8 @@
                 {% endif %}
                     <a class="page-scroll" href="{{ path('ds_facyt_display_index')}}"> <span class="fa fa-desktop"></span> Canales Online</a>
                 </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_importants' %}
+                {% if ('/importants' in app.request.uri) %}
+                
                     <li class="active">
                         {% else %}
                     <li>
@@ -32,9 +33,7 @@
                         <i class="fa fa-star"></i> Destacados
                     </a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#contact"> <span class="fa fa-question"></span> Ayuda</a>
-                </li>
+               
                 {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
                     {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_security_login' %}
                     <li class="active">

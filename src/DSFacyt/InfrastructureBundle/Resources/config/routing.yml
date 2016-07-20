@@ -28,14 +28,14 @@ ds_facyt_infrastructure_module_resetting:
     resource: "@DSFacytInfrastructureBundle/Resources/config/routing/resetting.yml"
     prefix: "resetting"
 
+# Modulo de las vista de las publicaciones importantes o destacadas
+ds_facyt_infrastructure_module_importants:
+    resource: "@DSFacytInfrastructureBundle/Resources/config/routing/importants.yml"
+    prefix: "importants"
+
 # === RUTAS DE MODULOS DE USUARIOS  INVITADOS ===
 
 # HomePage del sistema
 ds_facyt_infrastructure_homepage:
     path:    /
     defaults: { _controller: DSFacytInfrastructureBundle:Default:index }
-
-# Rutas del modulo de usuarios del sistema
-ds_facyt_infrastructure_importants:
-    path:   /importans
-    defaults: { _controller: DSFacytInfrastructureBundle:Default:getImportant }

@@ -1,7 +1,6 @@
-uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$sce', function($scope,UploadVideoService,$sce){
+infoimportant.controller('infoImportantController',['$scope','InfoImportantService','$sce', function($scope,InfoImportantService,$sce){
     $scope.data = data;
-    $scope.color_status = UploadVideoService.setColorStatus($scope.data.status);
-    $scope.$watch('data.status', function() {$scope.color_status = UploadVideoService.setColorStatus($scope.data.status);});
+    
     
     var controller = this;
     controller.API = null;

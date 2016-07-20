@@ -1,0 +1,8 @@
+# Rutas del modulo de usuarios del sistema
+ds_facyt_infrastructure_importants:
+    path:   /
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:getImportant }
+
+ds_facyt_infrastructure_get_importants:
+    path:   /{type}/{id}
+    defaults: { _controller: DSFacytInfrastructureBundle:Default:getInfoImportant }

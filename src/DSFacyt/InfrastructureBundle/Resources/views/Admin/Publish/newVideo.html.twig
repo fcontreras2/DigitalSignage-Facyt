@@ -28,7 +28,7 @@ f
                 <div class="panel panel-default" >
                     <div class="panel-heading"><h4>Ingresa los datos de la publicación</h4></div>
                     <div class="panel-body">
-                        <form name="setVideo" action="{{ path('ds_facyt_infrastructure_admin_video_new_validate')}}" method="POST">                        
+                        <form name="setVideo" action="{{ path('ds_facyt_infrastructure_admin_video_new_validate')}}" method="POST">
                         <div class="row">
                             <div class="col-xs-5 col-xs-offset-1">
                                 <label class="control-label">* Título</label> <span class="error" ng-show="setVideo.title.$invalid && !setVideo.title.$pristine" ng-cloak> de 10 a 30 caracteres</span>
@@ -93,16 +93,15 @@ f
                                 <span class="error" ng-show="setImage.description.$invalid && !setImage.description.$pristine" ng-cloak>*descripción obligatoria</span>
                             </div>
 
-                            <div class="col-xs-10 col-xs-offset-1 ">
+                            <div class="col-xs-10 col-xs-offset-1 videogular-container">
                                 <br>
                                 Selecciona una Video
-                                <input type="file">                                
+                                <!--<input type="file">                                -->
                                 <br>
-                                <videogular vg-theme="controller.config.theme" ng-show="data.video_url" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
-                                    <vg-media vg-src="controller.config.sources"
-                                             vg-plays-inline="true">
+                                <videogular vg-theme="controller.config.theme" vg-player-ready="controller.onPlayerReady($API)" vg-auto-play="true" ng-show="data.video_url">
+                                    <vg-media vg-src="controller.config.sources">
                                     </vg-media>
-                         
+
                                     <vg-controls>
                                         <vg-play-pause-button></vg-play-pause-button>
                                         <vg-time-display>{[{ currentTime | date:'mm:ss' }]}</vg-time-display>
@@ -160,16 +159,15 @@ f
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-sanitize.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/videogular.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-controls.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-overlay-play.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-poster.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-buffering.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/videogular.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-controls.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-overlay-play.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-poster.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-buffering.js') }}"></script>    
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoModule.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoService.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoController.js') }}"></script>        

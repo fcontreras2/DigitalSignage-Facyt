@@ -45,7 +45,9 @@ module.exports = function(grunt) {
               'js/vg-poster.js' : 'videogular-poster/vg-poster.js',
               'js/vg-buffering.js' : 'videogular-buffering/vg-buffering.js',
               'js/ui-bootstrap.js' : 'angular-bootstrap/ui-bootstrap.js',
-              'js/ui-bootstrap-tpls.js' : 'angular-bootstrap/ui-bootstrap-tpls.js'          }
+              'js/ui-bootstrap-tpls.js' : 'angular-bootstrap/ui-bootstrap-tpls.js',
+              'js/angular-social-links.js' : 'angular-social-links/angular-social-links.js'
+            }
       },      
       folders: {
           files: {

@@ -6,8 +6,10 @@ infoimportant.controller('infoImportantController',['$scope','InfoImportantServi
     controller.API = null;
     
     controller.videos = [];
+    console.log($scope.data);
     //Se inicializa los videos actualmente
-    controller.videos.push([{src: $sce.trustAsResourceUrl('/uploads/videos/21335506/titulo_del_video_1758966916.mp4'), type: "video/mp4"}]);    
+    controller.videos.push([{src: $sce.trustAsResourceUrl('/uploads/videos/'+$scope.data.video_url), type: $scope.data.mime_type}]);    
+    console.log(controller);
 
     // Configuraciones iniciales
     controller.config = {
@@ -20,7 +22,7 @@ infoimportant.controller('infoImportantController',['$scope','InfoImportantServi
             url: "http://digitalsignagefacyt.dev/bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css",
         },
         plugins: {
-            poster: "http://www.videogular.com/assets/images/videogular.png"
+            poster: "/images/video.png"
         }
     }
 

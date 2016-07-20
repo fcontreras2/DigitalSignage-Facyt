@@ -13,6 +13,10 @@ use DSFacyt\Core\Application\Contract\Command;
 
 class SetVideoCommand implements Command
 {
+    /**
+    * @var File
+    */
+    private $video;
 
     /**
     * Representa los datos de la publicación (título, fecha inicial, fecha final, etc)
@@ -29,8 +33,9 @@ class SetVideoCommand implements Command
     /**
     * Constructor de la clase
     **/
-    public function __construct($data, $user = null)
+    public function __construct($video, $data, $user = null)
     {
+        $this->video = $video;
         $this->data = $data;
         $this->user = $user;
     }
@@ -45,6 +50,7 @@ class SetVideoCommand implements Command
     public function getRequest()
     {
         return [
+            'video' => $this->video,
             'data' => $this->data,
             'user' => $this->user
         ];

@@ -437,27 +437,51 @@ class PublishController extends Controller
 
     public function validateNewVideoAction(Request $request)
     {
-        $video = new Video();
+        // dump($request->get);
+        // die();
+        // $video = new Video();
 
-        $form = $this->createForm(new RegisterVideoType(), $video);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $user = $security = $this->container->get('security.context')->getToken()->getUser();
-            $video->setUser($user);
-            $command = new UploadVideoCommand($video, $user->getIndentityCard());
-            $this->get('CommandBus')->execute($command);
-            $validator = $this->get('validator');
-            $errors = $validator->validate($video);
-            if (count($errors) > 0) {
-                return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
-            }
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($video);
-            $em->flush();
-            return $this->redirectToRoute('ds_facyt_infrastructure_get_publish_type_status',['type' => 'video','status' => 0]);
-        }
+        // $form = $this->createForm(new RegisterVideoType(), $video);
+        // $form->handleRequest($request);
+        // if ($form->isValid()) {
+        //     $user = $security = $this->container->get('security.context')->getToken()->getUser();
+        //     $video->setUser($user);
+        //     $command = new UploadVideoCommand($video, $user->getIndentityCard());
+        //     $this->get('CommandBus')->execute($command);
+        //     $validator = $this->get('validator');
+        //     $errors = $validator->validate($video);
+        //     if (count($errors) > 0) {
+        //         return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+        //     }
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->persist($video);
+        //     $em->flush();
+        //     return $this->redirectToRoute('ds_facyt_infrastructure_get_publish_type_status',['type' => 'video','status' => 0]);
+        // }
 
-        return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
+        // return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
+
+        
+        $data['title'] = $request->get('title');
+        $data['start_date'] = $request->get('start_date');
+        $data['end_date'] = $request->get('end_date');
+        $data['publish_time'] = $request->get('publish_time');
+        $data['channel'] = $request->get('channel');
+        $data['description'] = $request->get('description');        
+        dump($request);
+        die($request->files->get('file'));
+        if ($request->files->get('file')) 
+            $file = new File($request->files->get('file'));
+        else
+            $file = null;
+
+        $user = $security = $this->container->get('security.context')->getToken()->getUser();
+        $command = new SetImageCommand($file,$data, $user);
+        $response = $this->get('CommandBus')->execute($command);
+
+        
+
+                
     }
 
     public function editVideoAction($videoId)

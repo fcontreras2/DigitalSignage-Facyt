@@ -48,28 +48,45 @@ class SetVideoHandler implements Handler
             $video = $rpVideo->findOneBy(['id' => $request['data']['id']]);
             if (!$video)
                 return new ResponseCommandBus(404, 'Not Found');
-        } else
+        } else {
             $video = new Video();
+            $video->setUser($request['user']));
+        }
         
         $video->updateObject($request['data']);
-        $video->setUser($request['user']);
-        
-        $video->setStatus(0);
-        
-            foreach ($request['data']['channels'] as $currentChannel) {
 
-                $channel = $rpChannel->findOneBy(['id' => $currentChannel['id']]);
-                $video->removeChannel($channel);
-                if ($channel) {
-                    if (isset($currentChannel['value']) and $currentChannel['value'])
-                        $video->addChannel($channel);
-                    else
-                        $video->removeChannel($channel);
-                }
+        if (!isset($request['data']['status']))
+            $video->setStatus(0);
+        else
+            $video->setStatus($request['data']['status']);            
+
+
+        if ($request['video']) {
+            $document = $video->getDocument();
+            if ($document) 
+                $oldImage = $video->getDocument()->getFileName();
+            else {
+                $image->setDocument(new Document());
+                $document = $video->getDocument();
             }
-            
-            $rpVideo->save($video);
 
+            $video->getDocument()->setName($image->getTitle());
+            $document->setFile($request['video']);
+            $fileName = strtolower(str_replace(' ','_',$image->getTitle())).'_';
+            $video->getDocument()->upload('video', $video->getUser()->getIndentityCard().'/',$fileName);
+        }
+
+        $video->removeAllChannels($channel);
+    
+        foreach ($request['data']['channels'] as $currentChannel) {
+
+            $channel = $rpChannel->findOneBy(['id' => $currentChannel['id']]);
+            
+            if ($channel) {                
+                $video->addChannel($channel);
+        }
+        
+        $rpVideo->save($video);
 
         return new ResponseCommandBus(201,'Created');
         

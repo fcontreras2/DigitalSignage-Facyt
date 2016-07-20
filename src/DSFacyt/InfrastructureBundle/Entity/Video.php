@@ -391,4 +391,27 @@ class Video
     {
         $this->last_modified = new \DateTime();
     }
+
+    public function removeAllChannels()
+    {
+        $this->channels = new ArrayCollection();
+    }
+
+    public function updateObject($data)
+    {
+        if (isset($data['title']))
+            $this->title = $data['title'];
+
+        if (isset($data['start_date']))
+            $this->start_date = new \DateTime($data['start_date']);
+
+        if (isset($data['end_date']))
+            $this->end_date = new \DateTime($data['end_date']);
+
+        if (isset($data['publish_time']))
+            $this->publish_time = $data['publish_time'];
+
+        if (isset($data['description']))
+            $this->description = $data['description'];        
+    }
 }

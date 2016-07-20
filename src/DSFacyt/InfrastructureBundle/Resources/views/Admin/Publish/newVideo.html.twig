@@ -24,12 +24,13 @@ f
 
 {% block body %}
         <div class="row">
-            <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadVideoModule" ng-controller="UploadVideoController">
+            <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadVideoModule" ng-controller="UploadVideoController as controller">
                 <div class="panel panel-default" >
                     <div class="panel-heading"><h4>Ingresa los datos de la publicación</h4></div>
                     <div class="panel-body">
                         <form name="setVideo" action="{{ path('ds_facyt_infrastructure_admin_video_new_validate')}}" method="POST">
                         <div class="row">
+                            <input type="hidden" name="id" value="{[{data.id}]}">
                             <div class="col-xs-5 col-xs-offset-1">
                                 <label class="control-label">* Título</label> <span class="error" ng-show="setVideo.title.$invalid && !setVideo.title.$pristine" ng-cloak> de 10 a 30 caracteres</span>
                                 <input type="text" name="title" id="input" class="form-control" ng-model="data.title" autofocus ng-required="true" ng-minlength="10" ng-maxlength="30">                                                               
@@ -39,7 +40,7 @@ f
                                 <label class="control-label">* Estado</label> 
                                 <br>
                                 <i class="fa fa-circle color_status circle-status" ng-class="color_status" ng-if="status_select != -1"></i>
-                                <select name="setVideo.status" class="form-control select-status" ng-model="data.status" >
+                                <select name="status" class="form-control select-status" ng-model="data.status" >
                                     <option value="0" ng-selected="data.status == 0"> Nuevo </option>
                                     <option value="1" ng-selected="data.status == 1"> Aceptada </option>
                                     <option value="2" ng-selected="data.status == 2"> Activa </option>                                
@@ -81,7 +82,7 @@ f
                                 <label class="control-label">Canales a publicar </label>
                                 <div class="checkbox" >
                                     <label ng-repeat="(key, value) in data.channels">
-                                        <input type="checkbox" value="{[{value.id}]}" ng-model="data.channels[key].value">
+                                        <input type="checkbox" name="channels[{[{key}]}]" value="{[{value.id}]}" ng-model="data.channels[key].value">
                                         {[{value.name}]}
                                     </label>
                                 </div>
@@ -96,9 +97,9 @@ f
                             <div class="col-xs-10 col-xs-offset-1 videogular-container">
                                 <br>
                                 Selecciona una Video
-                                <!--<input type="file">                                -->
+                                <input type="file" name="video">
                                 <br>
-                                <videogular vg-theme="controller.config.theme" vg-player-ready="controller.onPlayerReady($API)" vg-auto-play="true" ng-show="data.video_url">
+                                <videogular vg-theme="controller.config.theme" vg-player-ready="controller.onPlayerReady($API)" ng-show="data.video_url">
                                     <vg-media vg-src="controller.config.sources">
                                     </vg-media>
 

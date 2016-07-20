@@ -25,7 +25,7 @@
 
 
 {% include 'DSFacytInfrastructureBundle:Default:header.html.twig' %}
-	<div class="body-importants" style="min-height:100vh" ng-app="infoImportantModule" ng-controller="infoImportantController">
+	<div class="body-importants" style="min-height:100vh" ng-app="infoImportantModule" ng-controller="infoImportantController as controller">
 	>
 	<br>
 	<br>
@@ -80,7 +80,7 @@
 		                        <b>	                        
 		                            Publicado: {[{data.start_date}]} 
 		                            Publicado por: {[{data.user_full_name}]}<br>
-		                            Compartir:<a class="fa fa-facebook-square" href="" title="This will navigate in this window" social-facebook  custom-url="{{ app.request.uri}}"><span class="hide">Share on facebook</span></a>
+		                            Compartir: <a class="fa fa-facebook-square" href="" title="This will navigate in this window" social-facebook  custom-url="{{ app.request.uri}}"><span class="hide">Share on facebook</span></a>
 									<a class="fa fa-twitter-square" href="" social-twitter><span class="hide">Share on twitter</span></a>
 	                        	</b>
                         	</div>

@@ -6,9 +6,10 @@ uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$
     var controller = this;
     controller.API = null;
     
+    console.log($scope.data);
     controller.videos = [];
     //Se inicializa los videos actualmente
-    controller.videos.push([{src: $sce.trustAsResourceUrl('/uploads/videos/21335506/titulo_del_video_1758966916.mp4'), type: "video/mp4"}]);    
+    controller.videos.push([{src: $sce.trustAsResourceUrl('/uploads/videos/'+$scope.data.video_url), type: $scope.data.mime_type}]);    
 
     // Configuraciones iniciales
     controller.config = {
@@ -21,7 +22,7 @@ uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$
             url: "http://digitalsignagefacyt.dev/bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css",
         },
         plugins: {
-            poster: "http://www.videogular.com/assets/images/videogular.png"
+            poster: "/images/video.png"
         }
     }
 

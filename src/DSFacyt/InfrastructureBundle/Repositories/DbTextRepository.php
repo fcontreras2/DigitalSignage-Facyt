@@ -190,6 +190,19 @@ class DbTextRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+    public function findOldByDays($days)
+    {
+         return $this->createQueryBuilder('t')
+            ->where('
+               t.end_date <= :max_date and
+               t.status >= 3
+            ')
+            ->setParameters([
+                'max_date' =>  (new \DateTime('-'.$days.' days'))
+            ])
+            ->getQuery()->getResult();
+    }
+
     /**
     * La siguiente función  elimina un texto
     * @author Freddy Contreras <freddycontreras3@gmail.com>

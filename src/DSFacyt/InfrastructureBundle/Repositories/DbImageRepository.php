@@ -172,6 +172,19 @@ class DbImageRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+    public function findOldByDays($days)
+    {
+         return $this->createQueryBuilder('i')
+            ->where('
+               i.end_date <= :max_date and
+               i.status >= 3
+            ')
+            ->setParameters([
+                'max_date' =>  (new \DateTime('-'.$days.' days'))
+            ])
+            ->getQuery()->getResult();
+    }
+
 
     public function findActiveFinishedByChannel($channelId)
     {

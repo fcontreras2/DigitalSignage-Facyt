@@ -1,7 +1,7 @@
 config:
     image_width: 1366
     image_height: 768
-    time_text_transition: 10
+    time_text_transition: 12
     time_image_transition: 10
-    time_clean_publish: 60
+    time_clean_publish: 15
     time_quick_note_transition: 10

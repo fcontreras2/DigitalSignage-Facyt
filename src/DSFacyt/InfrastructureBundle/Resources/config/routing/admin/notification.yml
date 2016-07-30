@@ -13,3 +13,9 @@ ds_facyt_admin_asinc_get_notifications:
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Notification:apiGetNotifications"}
     options:
         expose: true
+
+ds_facyt_admin_change_view:
+    path: /setNofitication/async
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Notification:apiSetView"}
+    options:
+        expose: true

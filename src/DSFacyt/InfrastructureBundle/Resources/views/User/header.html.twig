@@ -23,32 +23,36 @@
                 {% endif %}
                     <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_homepage')}}"> <span class="fa fa-list-alt"></span> Principal </a>
                 </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' %}
-                    <li class="active">
-                {% else %}
-                    <li>
+                {% if hasAccess('text') %}
+                    {% if ('/text' in app.request.uri) %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <span class="fa fa-pencil"></span> Textos </a>
+                    </li>
                 {% endif %}
-                    <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <span class="fa fa-pencil"></span> Textos </a>
-                </li>
+
                 {% if hasAccess('image') %}
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_image_homepage' %}
-                    <li class="active">
-                {% else %}
-                    <li>
-                {% endif %}                
-                    <a href="{{path('ds_facyt_infrastructure_user_image_homepage')}}">
-                        <i class="fa fa-picture-o"></i> Imágenes
-                    </a>
-                </li>
+                    {% if ('/image' in app.request.uri) %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}                
+                        <a href="{{path('ds_facyt_infrastructure_user_image_homepage')}}">
+                            <i class="fa fa-picture-o"></i> Imágenes
+                        </a>
+                    </li>
                 {% endif %}
+
                 {% if hasAccess('video') %}
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_video_homepage' %}
-                    <li class="active">
-                {% else %}
-                    <li>
-                {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}} "> <span class="fa fa-play-circle-o"></span> Videos</a>
-                </li>
+                    {% if ('/video' in app.request.uri) %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}} "> <span class="fa fa-play-circle-o"></span> Videos</a>
+                    </li>
                 {% endif %}
                 
                 {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
@@ -65,123 +69,3 @@
     <!-- /.container -->
 </nav>
 <div class="divider-header-body"></div>
-<!--<nav class="navbar navbar-inverse navbar-fixed-top top-navbar-panel" role="navigation" id="top-navbar">
-    <!-- Brand and toggle get grouped for better mobile display 
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{path('ds_facyt_infrastructure_homepage')}}">
-            <img src="{{ asset('images/logo-facyt.png')}}" id="logo-facyt">
-        </a>
-    </div>
-    <div class="container">
-        <!-- Collect the nav links, forms, and other content for toggling 
-        <div class="collapse navbar-collapse sidebar dropdown" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right hidden-xs">
-
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
-                    <li class="active ">
-                {% else %}
-                    <li class="desactive ">
-                {% endif %}
-                    <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <a href="{{ path('ds_facyt_infrastructure_user_profile')}}"> <li><i class="fa fa-user"></i> Perfil </li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_security_logout')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
-                    </ul>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_video_homepage' or ('panel/video/' in app.request.uri) %}
-                <li  class="dropdown active ">
-                {% else %}
-                <li  class="dropdown desactive ">
-                    {% endif %}
-                    <a  id="dropdown-video" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-video-camera" ></span><br>Textos</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-video">
-                        <a href="{{ path('ds_facyt_infrastructure_user_video_homepage')}}"> <li><i class="fa fa-video-camera"></i> Mis Videos</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_video_new')}}"><li><i class="fa fa-plus"></i> Video nuevo</li></a>
-                    </ul>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_image_homepage' or ('panel/image/' in app.request.uri) %}                
-                    <li  class="dropdown active ">
-                {% else %}
-                    <li  class="dropdown desactive ">
-                {% endif %}
-                    <a id="dropdown-image" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span class="fa fa-picture-o" ></span><br>Imágenes</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-image">
-                        <a href="{{ path('ds_facyt_infrastructure_user_image_homepage')}}"> <li><i class="fa fa-picture-o"></i> Mis imágenes</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_image_new')}}"><li><i class="fa fa-plus"></i> Imagen nueva</li></a>
-                    </ul>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
-                <li  class="dropdown active ">
-                {% else %}
-                <li  class="dropdown desactive ">
-                    {% endif %}
-                    <a  id="dropdown-text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil" ></span><br>Textos</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-text">
-                        <a href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <li><i class="fa fa-pencil"></i> Mis textos</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
-                    </ul>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
-                    <li class="active ">
-                {% else %}
-                    <li class="desactive ">
-                {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa fa-list-alt"></span><br>Principal</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right visible-xs">
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
-                <li class="active ">
-                {% else %}
-                <li class="desactive ">
-                {% endif %}
-                    <a href="{{ path('ds_facyt_infrastructure_user_homepage')}}" ><span class="fa fa-home"></span><br>Principal</a>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_text_homepage' or ('panel/text/' in app.request.uri) %}
-                <li  class="dropdown active ">
-                {% else %}
-                <li  class="dropdown desactive ">
-                    {% endif %}
-                    <a  id="dropdown-text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-pencil" ></span><br>Textos</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-text">
-                        <a href="{{ path('ds_facyt_infrastructure_user_text_homepage')}}"> <li><i class="fa fa-pencil"></i> Mis textos</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_text_new')}}"><li><i class="fa fa-plus"></i> Texto nuevo</li></a>
-                    </ul>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_homepage' %}
-                    <li class="active ">
-                {% else %}
-                    <li class="desactive ">
-                {% endif %}
-                    <a id="dropdown-image" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span class="fa fa-picture-o" ></span><br>Imágenes</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-images">
-                        <a href="{{ path('ds_facyt_infrastructure_user_image_homepage')}}"> <li><i class="fa fa-picture-o"></i> Mis imágenes</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_image_new')}}"><li><i class="fa fa-plus"></i> Imagen nueva</li></a>
-                    </ul>
-                </li>
-                <li class="">
-                    <a href="#"><span class="fa fa-video-camera"></span> <br>Videos</a>
-                </li>
-                {% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
-                    <li class="active ">
-                {% else %}
-                    <li class="desactive ">
-                {% endif %}
-                    <a  id="dropdown-user" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" ></span><br>Perfil</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <a href="{{ path('ds_facyt_infrastructure_user_image_homepage')}}"> <li><i class="fa fa-user"></i> Perfil</li></a>
-                        <a href="{{ path('ds_facyt_infrastructure_user_profile')}}"> <li><i class="fa fa-sign-out"></i> Salir </li></a>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse 
-    </div>
-    <!-- /.container 
-</nav>-->

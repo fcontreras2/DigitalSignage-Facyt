@@ -5,27 +5,65 @@
 {% block title_notifications %} <span class="fa fa fa-bell-o"></span>  Notificaciones {% endblock title_notifications %}
 
 {% block body -%}
-    <h3>Notificaciones </h3>
-    <h4>Listado de las notificaciones</h4>
-    <br>
     <div ng-app="IndexNotificationModule" ng-controller="IndexNotificationController">
+    <h3>Notificaciones </h3>
+    <div class="row">
+        <div class="col-xs-12" >
+        <div class="pull-left">
+            <h4>Listado de las notificaciones </h4>
+        </div>
+            <div class="pull-right">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <b>&nbsp;</b>       
+                        <div>
+                        <ol class="breadcrumb">
+                          <li><span class="fa fa-circle status-finish"></span> Visto</li>                  
+                        </ol>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <b>Tipo</b>       
+                        <div>
+                        <i class="fa font_type" style="position:absolute;padding-left:10px;padding-top:10px;" ng-class="font_type" ng-if="type_select != -1"></i>
+                        <select name="name" id="inputID" class="form-control" ng-model="type_select" style="padding-left:24px;" >
+                            <option value="-1" ng-selected="status == -1">  -- Selecione -- </option>
+                            <option value="text" ng-selected="status == 'text'"> Texto </option>            
+                            <option value="image" ng-selected="status == 'image'"> Imagen </option>
+                            <option value="video" ng-selected="status == 'video'"> Video </option>         
+                        </select>
+                        </div>
+                    </div>
+                </div>                    
+            </div>        
+        </div>
+    </div>
+    
+    <br>
+    <div >
     <table class="table table-hover" >
         <thead>
         <tr>
             <th> # </th>
             <th>Publicación</th>
+            <th>Tipo</th>
             <th>Evento</th>
-            <th >Fecha</th>
+            <th>Fecha</th>                        
         </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="currentNotification in notifications ">
+        <tbody>            
+            
+            <tr ng-repeat="currentNotification in notifications "  ng-class="{'notification-view': currentNotification.view}">
+            
                 <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                 <td  ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
-                <td>{[{currentNotification.title}]}</td>
+                <td><a ng-href="{[{urlEdit}]}" ng-click="getUrlEdit($index)" target="_blank">{[{currentNotification.title}]}</a></td>
+                <td>{[{currentNotification.type}]}</td>
                 <td>{[{currentNotification.event}]}</td>
                 <td>{[{currentNotification.last_modified}]}</td>
+                </a>
             </tr>
+            
         </tbody>
     </table>
         <center>

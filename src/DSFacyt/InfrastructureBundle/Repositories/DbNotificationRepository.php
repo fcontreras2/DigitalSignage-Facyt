@@ -28,7 +28,7 @@ class DbNotificationRepository extends EntityRepository implements
     public function findNotViewNotifications()
     {
         return $this->createQueryBuilder('n')
-            ->where('n.view = false')
+            ->orderBy('n.view')
             ->getQuery()->getResult();
     }
     
@@ -37,7 +37,7 @@ class DbNotificationRepository extends EntityRepository implements
     * @author Freddy Contreras <freddycontreras3@gmail.com>
     * @version 06/10/2015
     */
-    public function delete(Notification $notification)
+    public function delete($notification)
     {
         $this->getEntityManager()->remove($notification);
         $this->getEntityManager()->flush();

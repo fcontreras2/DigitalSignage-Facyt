@@ -14,4 +14,23 @@ indexNotification.service('IndexNotificationService', function() {
             }
         });
     }
+
+    this.getFontType = function (type)
+    {
+        var response = false;
+
+        switch (type) {
+            case 'text':
+                response = 'fa-pencil';
+                break;
+            case 'image':
+                response = 'fa-picture-o';
+                break;
+            case 'video':
+                response = 'fa-play-circle-o';
+                break;
+        }
+
+        return response;
+    }
 });

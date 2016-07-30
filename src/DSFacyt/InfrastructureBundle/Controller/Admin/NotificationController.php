@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use DSFacyt\Core\Application\UseCases\Admin\Notification\CheckNotification\CheckNotificationCommand;
+use DSFacyt\Core\Application\UseCases\Admin\Notification\SetNotificationView\SetNotificationViewCommand;
+
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -46,5 +48,17 @@ class NotificationController extends Controller
         }
 
         return new JsonResponse('Error', 503);
+    }
+
+    public function apiSetViewAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(),true);
+            $command = new SetNotificationViewCommand($data['id']);
+            $response = $this->get('CommandBus')->execute($command);
+            return new JsonResponse($response->getData(), $response->getStatusCode());
+        }
+
+        return new JsonResponse('Bad Request', 404);
     }
 }

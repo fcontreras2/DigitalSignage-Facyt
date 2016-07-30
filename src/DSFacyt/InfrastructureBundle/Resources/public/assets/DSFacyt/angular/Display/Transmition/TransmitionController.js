@@ -19,9 +19,10 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     controller.API = null;
     $scope.check_data = null;
     $scope.showVideos = true;
+    console.log($scope.videos);
 
     //Se inicializa los videos actualmente
-    controller.videos = [[{src: $sce.trustAsResourceUrl('/uploads/videos/21335506/titulo_del_video_1758966916.mp4'), type: "video/mp4"}]];
+    controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
     // Configuraciones iniciales
     controller.config = {
         preload: "none",

@@ -190,6 +190,29 @@ class DbVideoRepository extends EntityRepository implements
             ->getQuery()->getResult();
     }
 
+    public function findOldByDays($days)
+    {
+         return $this->createQueryBuilder('v')
+            ->where('
+               v.end_date <= :max_date and
+               v.status >= 3
+            ')
+            ->setParameters([
+                'max_date' =>  (new \DateTime('-'.$days.' days'))
+            ])
+            ->getQuery()->getResult();
+    }
+
+    /**
+    * La siguiente función  elimina una imagen
+    * @author Freddy Contreras <freddycontreras3@gmail.com>
+    * @version 06/10/2015
+    */
+    public function delete(Video $video)
+    {
+        $this->getEntityManager()->remove($video);
+        $this->getEntityManager()->flush();       
+    }
     /**
      * Almacena en la BD una videon
      *

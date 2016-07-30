@@ -66,8 +66,9 @@ class GetNotificationsHandler implements Handler
                     $currentNotification->getPublishId(),
                     $currentNotification->getPublishType()
                 );
-
+                $auxNotification['publish_id'] = $currentNotification->getPublishId();
                 $auxNotification['id'] = $currentNotification->getId();
+                $auxNotification['view'] = $currentNotification->getView();
                 $auxNotification['event'] = $currentNotification->getEvent();
                 $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
                 $auxNotification['type'] = $currentNotification->getPublishType();
@@ -81,7 +82,6 @@ class GetNotificationsHandler implements Handler
     public function getTitlePublication($id, $type)
     {
         $response = null;
-
         switch ($type) {
             case 'text':
                 $text = $this->rf->get('Text')->findOneBy(['id' => $id]);

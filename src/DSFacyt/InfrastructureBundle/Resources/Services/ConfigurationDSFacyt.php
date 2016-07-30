@@ -23,6 +23,6 @@ class ConfigurationDSFacyt
     	$curretConfig = Yaml::parse(file_get_contents('../app/config/config_dsf_facyt.yml'));
     	$curretConfig['config'] = $config;
     	$yaml = Yaml::dump($curretConfig);
-		file_put_contents('../app/config/config_dsf_facyt.yml', $yaml);
+		file_put_contents('app/config/config_dsf_facyt.yml', $yaml);
     }
 }

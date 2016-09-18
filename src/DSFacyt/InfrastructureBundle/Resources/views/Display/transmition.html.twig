@@ -145,15 +145,15 @@ f
         
         jQuery(function($) {
             $('#carousel-texts').carousel({
-                interval: "{{config.time_text_transition}}"*1
+                interval: "{{config.time_text_transition}}"*1000
             });            
 
             $('#carousel-images').carousel({
-                interval: "{{config.time_image_transition}}"*1
+                interval: "{{config.time_image_transition}}"*1000
             });            
         
             $('#carousel-quick-notes').carousel({
-                interval: "{{config.time_quick_note_transition}}"*1
+                interval: "{{config.time_quick_note_transition}}"*1000
             });
         }); 
     </script>

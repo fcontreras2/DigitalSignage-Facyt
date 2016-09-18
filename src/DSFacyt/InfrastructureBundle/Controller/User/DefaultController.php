@@ -65,6 +65,7 @@ class DefaultController extends Controller
         $command->setUser($user);
 
         $response = $this->get('CommandBus')->execute($command);
+        $data['config'] = $this->get('ConfigurationDSFacyt')->getConfig();
 
         return $this->render('DSFacytInfrastructureBundle:User:profile.html.twig',
             array('data' => json_encode($response->getData())));

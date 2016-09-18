@@ -52,7 +52,8 @@ class QuickNoteController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ds_facyt_infrastructure_admin_quicknote_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ds_facyt_infrastructure_admin_quicknote', array('id' => $entity->getId())));
+            //return $this->redirect($this->generateUrl('ds_facyt_infrastructure_admin_quicknote_show', array('id' => $entity->getId())));
         }
 
         return $this->render('DSFacytInfrastructureBundle:Admin/QuickNote:new.html.twig', array(

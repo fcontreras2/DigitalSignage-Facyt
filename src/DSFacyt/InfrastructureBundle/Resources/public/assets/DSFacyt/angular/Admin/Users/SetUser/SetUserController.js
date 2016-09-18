@@ -1,8 +1,8 @@
 setUser.controller('SetUserController', ['$scope','$window','$timeout','SetUserService',
     function ($scope, $window, $timeout,SetUserService) {
         $scope.data = data;
-
-        $scope.setData = function() {
+        
+            $scope.setData = function() {
             var url = Routing.generate('ds_facyt_infrastructure_admin_user_set');
             var data = angular.toJson($scope.data);             
             $.ajax({

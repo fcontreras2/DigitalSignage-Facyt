@@ -52,6 +52,7 @@ class GetTextHandler implements Handler
             $response['status'] = $text->getStatus();
             $response['important'] = $text->getImportant();
             $response['publish_time'] = $text->getPublishTime();
+            $response['user_full_name'] = $text->getUser()->getName().' '.$text->getUser()->getLastName();
 
             $response['channels'] = [];
             $auxChannel = [];

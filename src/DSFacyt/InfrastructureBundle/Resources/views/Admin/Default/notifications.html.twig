@@ -1,9 +1,17 @@
-<div class="" style="position: fixed;top: 0.5%;right: 3%;">
+<div class="" style="position: fixed;top: -1.5%;right: 3%;z-index: 10000;">
     <div class="row">
-        <h3 class="pull-right">
-            <span class="fa fa-pencil"></span> {[{notifications.texts.length}]}     
+        <h3 class="pull-right" style="
+    height: auto;
+    background: white;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+">
+        <a href="{{path('ds_facyt_admin_home_notification')}}">    <span class="fa fa-pencil"></span> {[{notifications.texts.length}]}     
             <span class="fa fa-camera"></span> {[{notifications.images.length}]}     
             <span class="fa fa-play-circle-o"></span> {[{notifications.videos.length}]}
+            </a>
         </h3>
     </div>
  </div>

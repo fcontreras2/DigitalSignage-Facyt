@@ -1,3 +1,15 @@
 ds_facyt_admin_group_homepage:
     path: /
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Group:index" }
+
+ds_facyt_infrastructure_admin_group_edit:
+    path: /edit/{group_id}
+    defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Group:edit"}
+    options:
+        expose: true
+
+ds_facyt_infrastructure_admin_group_new:
+    path: /new
+    defaults: { _controller:"DSFacytInfrastructureBundle:Admin/Group:newGroup"}
+    options:
+        expose: true

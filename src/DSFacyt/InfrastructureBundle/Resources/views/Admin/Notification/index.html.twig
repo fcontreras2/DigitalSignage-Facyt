@@ -8,6 +8,7 @@
     <div ng-app="IndexNotificationModule" ng-controller="IndexNotificationController">
     <h3>Notificaciones </h3>
     <div class="row">
+    {% include "DSFacytInfrastructureBundle:Admin/Default:notifications.html.twig" %}
         <div class="col-xs-12" >
         <div class="pull-left">
             <h4>Listado de las notificaciones </h4>
@@ -51,15 +52,14 @@
             <th>Fecha</th>                        
         </tr>
         </thead>
-        <tbody>            
-            
-            <tr ng-repeat="currentNotification in notifications "  ng-class="{'notification-view': currentNotification.view}">
+        <tbody>                        
+            <tr ng-repeat="currentNotification in notifications_ "  ng-class="{'notification-view': currentNotification.view}">
             
                 <td ng-if="pagination.current">{[{ $index  + 1 + ((pagination.current - 1)  * 10)  }]}</td>
                 <td  ng-if="!pagination.current">{[{ $index  + 1 }]}</td>
                 <td><a ng-href="{[{urlEdit}]}" ng-click="getUrlEdit($index)" target="_blank">{[{currentNotification.title}]}</a></td>
-                <td>{[{currentNotification.type}]}</td>
-                <td>{[{currentNotification.event}]}</td>
+                <td>{[{currentNotification.typeTitle}]}</td>
+                <td>{[{currentNotification.eventTitle}]}</td>
                 <td>{[{currentNotification.last_modified}]}</td>
                 </a>
             </tr>

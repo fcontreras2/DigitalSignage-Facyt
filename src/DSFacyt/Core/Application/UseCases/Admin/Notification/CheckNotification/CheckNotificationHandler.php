@@ -41,7 +41,7 @@ class CheckNotificationHandler implements Handler
                 case 'image':
                     $response['images'][] = $auxNotification;
                     break;
-                case 'videos':
+                case 'video':
                     $response['videos'][] = $auxNotification;
                     break;
             }            

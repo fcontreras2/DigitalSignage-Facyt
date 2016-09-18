@@ -69,7 +69,7 @@ class CheckPublishHandler implements Handler
             if (!$currentNotification) {
                 $currentNotification = new Notification();
                 $currentNotification->setPublishId($currentImage->getId());
-                $currentNotification->setPublishType('text');
+                $currentNotification->setPublishType('image');
             }
 
             $lastStatus = $currentImage->getStatus();
@@ -96,7 +96,7 @@ class CheckPublishHandler implements Handler
             if (!$currentNotification) {
                 $currentNotification = new Notification();
                 $currentNotification->setPublishId($currentVideo->getId());
-                $currentNotification->setPublishType('text');
+                $currentNotification->setPublishType('video');
             }
 
             $lastStatus = $currentVideo->getStatus();
@@ -106,7 +106,7 @@ class CheckPublishHandler implements Handler
             $currentNotification->setData($this->getData($currentVideo->getStatus(),$lastStatus));
 
             $rpNotification->save($currentNotification);
-            $rpImage->save($currentVideo);            
+            $rpVideo->save($currentVideo);            
         }
         
         return new ResponseCommandBus(200,'Ok');

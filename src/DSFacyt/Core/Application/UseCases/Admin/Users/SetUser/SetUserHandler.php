@@ -17,6 +17,14 @@ use DSFacyt\InfrastructureBundle\Entity\User;
 
 class SetUserHandler implements Handler
 {
+
+    private $email;
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
     /**
      * Ejecuta el caso de uso 'Editar o crear un usuario'
      *
@@ -36,20 +44,22 @@ class SetUserHandler implements Handler
             new User();
 
         if ($user) {
-            $user->setUserName($data['username']);
-            $user->setPlainPassword($data['password']);
+            
+            $user->setUserName($data['username']);            
+            if (isset($data['password']))
+                $user->setPlainPassword($data['password']);
             $user->setName($data['name']);
             $user->setEmail($data['email']);
             $user->setLastName($data['last_name']);
             $user->setEnabled(true);
             $user->setIndentityCard($data['identity_card']);
 
-            $school = $rpSchool->findOneBy(['id' => $data['school']]);
+            $school = $rpSchool->findOneBy(['id' => $data['school']['id']]);
 
             if ($school)
                 $user->setSchool($school);
 
-            $group = $rpGroup->findOneBy(['id' => $data['group']]);
+            $group = $rpGroup->findOneBy(['id' => $data['group']['id']]);
 
             if ($group) {
                 $user->setGroup($group);
@@ -57,6 +67,19 @@ class SetUserHandler implements Handler
             }
 
             $rpUser->save($user);
+            $data['new'] = !isset($data['id']) ? true : false;
+
+            $this->email->setRecipients(array($data['email']));
+            if ($data['new'])
+                $this->email->setSubject('Bienvenido, creación de usuario - DSFacyt');
+            else
+                $this->email->setSubject('Actualizanción de datos - DSFacyt');                
+
+            $this->email->setViewRender('DSFacytInfrastructureBundle:Email:newEditUser.html.twig');
+            $this->email->setViewParameters($data);
+            $this->email->setEmailSender('ds_facyt@uc.edu.ve');
+            $this->email->sendEmail();
+
             return new ResponseCommandBus(201,'Created');
         }
 

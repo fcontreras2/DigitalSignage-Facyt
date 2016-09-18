@@ -89,11 +89,10 @@
                                 <center>
                                     <span class="fa fa-circle" ng-class="{
                                     'status-new': currentImage.status === 0,
-                                    'status-change': currentImage.status == 1,
-                                    'status-accepted': currentImage.status == 2,
-                                    'status-active': currentImage.status == 3,
-                                    'status-finish': currentImage.status == 4,
-                                    'status-canceled' : currentImage.status == 5}">
+                                    'status-accepted': currentImage.status == 1,
+                                    'status-active': currentImage.status == 2,
+                                    'status-finish': currentImage.status == 3,
+                                    'status-canceled' : currentImage.status == 4}">
                                     </span>
                                 </center>
                             </td>                            
@@ -122,6 +121,10 @@
             </div>
 	       
 {% endblock %}
+
+{% block footer %}
+    {% include 'DSFacytInfrastructureBundle:Default:footer.html.twig' %}
+{% endblock footer %}
 
 {% block javascripts%}
     <!-- Tomando variables enviadas desde el servidor -->

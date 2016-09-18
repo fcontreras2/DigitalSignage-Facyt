@@ -52,6 +52,7 @@ class GetImageHandler implements Handler
             $response['publish_time'] = $image->getPublishTime();
             $response['status'] = $image->getStatus();
             $response['important'] = $image->getImportant();
+            $response['user_full_name'] = $image->getUser()->getName().' '.$image->getUser()->getLastName();
 
             $response['channels'] = [];
             $auxChannel = [];

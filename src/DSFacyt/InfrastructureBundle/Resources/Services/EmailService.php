@@ -83,7 +83,7 @@ class EmailService implements EmailInterface
             $email = $this->container->get("swiftmailer.mailer." . $this->configEmail);
             $message = \Swift_Message::newInstance()
                 ->setSubject($this->subject)
-                ->setFrom(array($this->emailSender => 'Navicu'))
+                ->setFrom(array($this->emailSender => 'DSFacyt'))
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')
                 ->setBody(

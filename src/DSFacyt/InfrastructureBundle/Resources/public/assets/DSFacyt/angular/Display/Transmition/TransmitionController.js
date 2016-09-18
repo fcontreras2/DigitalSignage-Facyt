@@ -72,8 +72,8 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         if ($scope.showImages && $scope.videos.length > 0) {
             $timeout(function() {
                 TransmitionService.changeMedia($scope);
-                $timeout(controller.API.play.bind(controller.API), 100);
-            }, ($scope.images.length * 500));
+                $timeout(controller.API.play.bind(controller.API), 1000);
+            }, ($scope.images.length * 10000));
         }
     });
 

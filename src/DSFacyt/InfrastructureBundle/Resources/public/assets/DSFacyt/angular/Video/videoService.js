@@ -39,18 +39,15 @@ video.service('videoService', function(){
                 response = 'status-new';
                 break;
             case '1':
-                response = 'status-change';
-                break;
-            case '2':
                 response = 'status-accepted';
                 break;
-            case '3':
+            case '2':
                 response = 'status-active';                
                 break;
-            case '4':
+            case '3':
                 response = 'status-finish';
                 break;
-            case '5':
+            case '4':
                 response = 'status-canceled';
                 break;
             default:

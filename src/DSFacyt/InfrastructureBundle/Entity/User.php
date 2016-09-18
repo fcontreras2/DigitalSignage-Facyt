@@ -101,7 +101,16 @@ class User extends BaseUser
         switch($rol){
             case 0:
                 array_push($this->roles, 'ROLE_ADMIN');
+                break;
+            case 1:
+                array_push($this->roles, 'ROLE_USER_TEXT');
+                break;
+            case 2:
+                array_push($this->roles, 'ROLE_USER_IMAGE');
                 break;            
+            case 3:
+                array_push($this->roles,'ROLE_USER_VIDEO');
+                break;
             default:
                 array_push($this->roles, 'ROLE_USER');
                 break;

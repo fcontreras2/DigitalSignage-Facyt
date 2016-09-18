@@ -5,13 +5,24 @@
 {% block title_notifications %} <span class="fa fa-group"></span>  Usuarios {% endblock title_notifications %}
 
 {% block body -%}
+<div ng-app="IndexGroupModule" ng-controller="IndexGroupController">
     <h1>Lista de usuarios</h1>
     <br>
-    <a href="{{ path('ds_facyt_admin_user_new') }}">
-        <button type="button" class="btn btn-default"><span class="fa fa-plus"></span> Crear nuevo</button>
-    </a>
-    <br><br>
-    <div ng-app="IndexGroupModule" ng-controller="IndexGroupController">
+    <div class="row"    >
+    <div class=" col-xs-4 pull-right">
+        <form ng-submit="setNewGroup()">
+            <label>Introduce el nombre del nuevo grupo</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="newGroup" placeholder="Nombre del nuevo grupo">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </span>
+            </div>
+        </form>    
+    </div>
+    </div>
+    <br>
+    
     <table class="table table-hover" >
         <thead>
             <tr>
@@ -28,13 +39,19 @@
                 <td> {[{ currentGroup.name }]}</td>
                 <td>
                     <label style="margin:5px;" class="col col-offset-10">
-                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('text') != -1" ng-mode="permissons[$index].text" ng-click="changePermisson(currentGroup.id, 'text', $index)" ng-true-value="1" ng-false-value="0">Texto
+                        <input type="checkbox" name="group" 
+                        ng-checked="currentGroup.permissons.indexOf('text') !== -1 " 
+                        ng-model="inputs_check[$index].text" ng-click="changePermisson(currentGroup.id, 'text', $index)" >Texto
                     </label>                    
                     <label style="margin:5px;" class="col col-offset-10">
-                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('image') != -1" ng-mode="permissons[$index].image" ng-click="changePermisson(currentGroup.id, 'image', $index)" ng-true-value="1" ng-false-value="0"> Imagen
+                        <input type="checkbox" name="group" 
+                        ng-checked="currentGroup.permissons.indexOf('image') !== -1 " 
+                        ng-model="inputs_check[$index].image " ng-click="changePermisson(currentGroup.id, 'image', $index)"> Imagen
                     </label>
                     <label style="margin:5px;" class="col col-offset-10">
-                        <input type="checkbox" name="group" ng-checked="currentGroup.permissons.indexOf('video') != -1" ng-mode="permissons[$index].video" ng-click="changePermisson(currentGroup.id, 'video', $index)" ng-true-value="1" ng-false-value="0"> Video
+                        <input type="checkbox" name="group" 
+                        ng-checked="currentGroup.permissons.indexOf('video') !== -1" 
+                        ng-model="inputs_check[$index].video " ng-click="changePermisson(currentGroup.id, 'video', $index)" > Video
                     </label>                    
                 </td>
             </tr>            

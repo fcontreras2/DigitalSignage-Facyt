@@ -84,7 +84,7 @@ class ResettingController extends Controller
         $emailService = $this->get('EmailService');
         $emailService->setConfigEmail('first_mailer');
         $emailService->setRecipients(array($user->getEmail()));
-        $emailService->setSubject('Recuperar Contraseña - Facyt');
+        $emailService->setSubject('Recuperar Contraseña - DSFacyt');
 
         $emailService->setViewRender('DSFacytInfrastructureBundle:Email:resettingPassword.html.twig');
         $emailData['confirmationUrl'] = $this->get('router')->generate('ds_facyt_infrastructure_resetting_reset', array('token' => $user->getConfirmationToken()), true);
@@ -145,7 +145,7 @@ class ResettingController extends Controller
             $dispatcher->dispatch(FOSUserEvents::RESETTING_RESET_SUCCESS, $event);
             $userManager->updateUser($user);
             if (null === $response = $event->getResponse()) {
-                $response = new RedirectResponse($this->generateUrl('ds_facyt_infrastructure_resetting_password_success'));
+                $response = new RedirectResponse($this->generateUrl('ds_facyt_infrastructure_resetting_update_password_success'));
             }
             $dispatcher->dispatch(FOSUserEvents::RESETTING_RESET_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
             return $response;

@@ -52,6 +52,7 @@ class GetVideoHandler implements Handler
             $response['publish_time'] = $video->getPublishTime();
             $response['status'] = $video->getStatus();
             $response['important'] = $video->getImportant();
+            $response['user_full_name'] = $video->getUser()->getName().' '.$video->getUser()->getLastName();
 
             $response['channels'] = [];
             $auxChannel = [];

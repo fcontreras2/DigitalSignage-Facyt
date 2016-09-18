@@ -141,7 +141,7 @@
                             </div>
                             <div class="panel-body" style="max-height:160px;min-height:160px;">
                                 <p style="font-size:16px;">
-                                    {{currentText.info}}
+                                    {{currentText.info | truncate(144, false, " ...")}}
                                     
                                 </p>
                             </div>

@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	{% if new == true%}
+		Bienvenido, ahora podrás realizar publicaciones en el sistema DSFacyt <br>
+	{% else %}
+		Hemos realizado una actualización de tus datos<br>
+	{% endif %}
+		<br>
+			Tus datos son los siguientes:<br>
+			-------------------------------<br>
+			<span style="font-weight:bold">Usuario:{{username}}</span><br>
+			{% if password is defined %}
+				<span style="font-weight:bold">Contraseña:{{username}}</span><br>
+			{% endif %}
+			-------------------------------<br>
+			Nombre: {{ name }} <br>
+			Apellido: {{ last_name }} <br>
+			Cedula: {{ identity_card}}<br>
+			Email: {{ email }}<br>
+			-------------------------------<br>
+			<span style="font-style:italic !important">Ingresa al sistema en el siguiente enlace: <a href="{{ url('ds_facyt_infrastructure_user_security_login')}}">{{ url('ds_facyt_infrastructure_user_security_login')}}</span>	
+
+
+</body>
+</html>

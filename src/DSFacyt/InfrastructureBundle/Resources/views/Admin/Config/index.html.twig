@@ -10,6 +10,7 @@
     <br>
     <div class="col-xs-12" ng-app="IndexConfigModule" ng-controller="IndexConfigController">
         <div class="row">
+        {% include "DSFacytInfrastructureBundle:Admin/Default:notifications.html.twig" %}
             <div class="col-xs-6">
                 <div class="alert alert-info pull-right" style="position:fixed;right:16px;bottom:0;z-index:100" ng-show="alert_message != false" ng-cloak>
                     <span ng-show="alert_message == 1">

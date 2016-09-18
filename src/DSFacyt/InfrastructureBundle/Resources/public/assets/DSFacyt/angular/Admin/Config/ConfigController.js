@@ -1,5 +1,5 @@
-indexConfig.controller('IndexConfigController', ['$scope','$timeout',
-    function ($scope, $timeout) {
+indexConfig.controller('IndexConfigController', ['$scope','$timeout','$interval',
+    function ($scope, $timeout, $interval) {
 
         $scope.data = data;
         console.log($scope.data);
@@ -19,4 +19,17 @@ indexConfig.controller('IndexConfigController', ['$scope','$timeout',
 	            }
 	        });
         }
+
+        $interval(function() {
+            var url = Routing.generate('ds_facyt_admin_check_notifications');
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: url,
+                success: function(data) {
+                    $scope.notifications = data;
+                    $scope.$apply();
+                }
+            });
+        }, 1000);
     }]);

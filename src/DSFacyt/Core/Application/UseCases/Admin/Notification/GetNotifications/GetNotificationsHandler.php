@@ -70,8 +70,10 @@ class GetNotificationsHandler implements Handler
                 $auxNotification['id'] = $currentNotification->getId();
                 $auxNotification['view'] = $currentNotification->getView();
                 $auxNotification['event'] = $currentNotification->getEvent();
+                $auxNotification['eventTitle'] = $this->getTitleEvent($currentNotification->getEvent());                
                 $auxNotification['last_modified'] = $currentNotification->getLastModified()->format('d-m-Y');
                 $auxNotification['type'] = $currentNotification->getPublishType();
+                $auxNotification['typeTitle'] = $this->getTitleType($currentNotification->getPublishType());
                 $response['notifications'][] = $auxNotification;
             }
         }
@@ -94,6 +96,43 @@ class GetNotificationsHandler implements Handler
             case 'video':
                 $video = $this->rf->get('Video')->findOneBy(['id' => $id]);
                 $response = $video->getTitle();
+                break;
+        }
+
+        return $response;
+    }
+
+    public function getTitleType($type)
+    {
+        $response = null;
+
+        switch ($type) {
+            case 'text':
+                $response = 'Texto';
+                break;
+            case 'image':
+                $response = 'Imagen';
+                break;
+            case 'video':
+                $response = 'Video';
+                break;            
+        }
+
+        return $response;
+    }
+
+    public function getTitleEvent($event)
+    {
+        $response = null;
+        switch ($event) {
+            case 'new':
+                $response = 'nuevo';
+                break;
+            case 'activa':
+                $response = 'activa';
+                break;
+            case 'finished':
+                $response = 'finalizada';
                 break;
         }
 

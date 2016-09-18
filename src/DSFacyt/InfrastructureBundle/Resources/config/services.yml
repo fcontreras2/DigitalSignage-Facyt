@@ -20,10 +20,15 @@ services:
     ConfigurationDSFacyt:
         class: DSFacyt\InfrastructureBundle\Resources\Services\ConfigurationDSFacyt
 
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+         - { name: twig.extension }
+
 #Servicios de la Aplicación
     CommandBus:
         class: DSFacyt\Core\Application\Services\CommandBus
-        arguments: ["@RepositoryFactory","@Pagination"]
+        arguments: ["@RepositoryFactory","@Pagination", "@EmailService"]
 
     EmailService:
         class: DSFacyt\InfrastructureBundle\Resources\Services\EmailService

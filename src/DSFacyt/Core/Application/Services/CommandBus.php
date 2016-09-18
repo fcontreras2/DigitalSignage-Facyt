@@ -27,16 +27,22 @@ class CommandBus
     */
     private $pagination;
 
+    /**
+    * @var servicio del envio de correos del sistema
+    */
+    private $email;
+
      /**
      * Create a new CommandBus
      *
      * @param Container $container
      * @return void
      */
-    public function __construct($rf, $pagination)
+    public function __construct($rf, $pagination, $email)
     { 
         $this->rf = $rf;
         $this->pagination = $pagination;
+        $this->email = $email;
     }
  
     /**
@@ -52,6 +58,8 @@ class CommandBus
         {   
             if (property_exists($handler, 'pagination'))
                 $handler->setPagination($this->pagination);
+            if (property_exists($handler, 'email'))
+                $handler->setEmail($this->email);
             return $handler->handle($command,$this->rf);
         }else{
             return new ResponseCommandBus(404,'Handler not Found');

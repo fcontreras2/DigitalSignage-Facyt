@@ -41,9 +41,20 @@ class GetUserHandler implements Handler
             $response['email'] = $user->getEmail();
             $response['last_name'] = $user->getLastName();
             $response['identity_card'] = $user->getIndentityCard();            
-            $response['school'] = $user->getSchool() ? $user->getSchool()->getId() : null;
-            $response['group'] = $user->getGroup() ? $user->getGroup()->getId() : null;            
-            
+            $school = $user->getSchool();
+            $response['school'] = [];            
+            if ($school){                
+                $response['school']['id'] = $school->getId();
+                $response['school']['name'] = $school->getName();
+            }                
+
+            $group = $user->getGroup();
+            $response['group'] = [];
+            if ($group) {
+                $response['group']['id'] = $group->getId();
+                $response['group']['name'] = $group->getName();
+            }
+
             return new ResponseCommandBus(200,'Ok', $response);
         }
 

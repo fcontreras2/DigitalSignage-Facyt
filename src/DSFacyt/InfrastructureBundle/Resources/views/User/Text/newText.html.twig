@@ -85,8 +85,12 @@
                                 <br>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">
-                                <label class="control-label">* Información</label>
-                                <textarea name="info" id="input" class="form-control" ng-model="data.info" ng-required="true"> </textarea>
+                                <label class="control-label">* Información </label>
+                                <div class="pull-right">
+                                     <span ng-show="!data.info">Líminte de caracteres es 144</span>
+                                     <span ng-show="data.info.length != 0 && data.info.length <= 144">{[{data.info.length}]}/144</span>
+                                </div>
+                                <textarea name="info" id="input" class="form-control" ng-model="data.info" ng-required="true" ng-maxlength="144"> </textarea>
                                 <span class="error" ng-show="setText.info.$invalid && !setText.info.$pristine" ng-cloak>*información obligatoria</span>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">

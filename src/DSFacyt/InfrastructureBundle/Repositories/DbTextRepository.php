@@ -169,7 +169,7 @@ class DbTextRepository extends EntityRepository implements
             ->setParameters([
                 'current_time' => (new \DateTime())->format('G:m:s'),
                 'current_date' => (new \DateTime()),
-                'last_modified' => (new \DateTime('-5 min'))
+                'last_modified' => (new \DateTime('-10 min'))
             ])
             ->getQuery()->getResult();
     }

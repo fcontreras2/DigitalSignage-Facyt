@@ -10,7 +10,7 @@
     <div class="contaier">
         <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="SetUserModule" ng-controller="SetUserController">
-            <form name="setUser">
+            <form name="setUser" ng-submit="setData()">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Datos del usuario</h3>
@@ -18,46 +18,58 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-6">
-                                <label class="control-label">Nombre de usuario</label>
-                                <input type="text" name="setUser.username"  class="form-control" ng-model="data.username" >
+                                <label class="control-label">Nombre de usuario</label> 
+                                <span class="error" ng-show="setUser.username.$error.required && setUser.username.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <span class="error" ng-show="setUser.username.$invalid && setUser.username.$dirty" ng-cloak>* mínimo 6 caracteres</span>
+                                <input type="text" name="username" class="form-control" ng-model="data.username" ng-minlength="6" ng-required="true" autofocus>
                             </div>
                             <div class="col-xs-6">
                                 <label class="control-label">Contraseña</label>
-                                <input type="password" name="setUser.password"  class="form-control" ng-model="data.password" >
+                                <span class="error" ng-if="!data.id" ng-show="setUser.password.$error.required && setUser.password.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <span class="error" ng-show="setUser.password.$invalid && setUser.password.$dirty" ng-cloak>* mínimo 6 caracteres</span>
+                                <input type="password" name="password" ng-if="!data.id" class="form-control" ng-model="data.password" ng-minlength="6" ng-required="true">
+                                <input type="password" name="password" ng-if="data.id" class="form-control" ng-model="data.password" ng-minlength="6" >
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-xs-6">
                                 <label class="control-label">Email</label>
-                                <input type="email" name="setUser.email"  class="form-control" ng-model="data.email" >
+                                <span class="error" ng-show="setUser.email.$error.required" ng-cloak>* Campo obligatorio</span>
+                                <span class="error" ng-show="setUser.email.$error.email" ng-cloak>* formato email inválido</span>
+                                <input type="email" name="email" class="form-control" ng-model="data.email" ng-required="true" >
                             </div>
                             <div class="col-xs-6">
                                 <label class="control-label">Cedula de identidad</label>
-                                <input type="text" name="setUser.identity_card"  class="form-control" ng-model="data.identity_card" >
+                                <span class="error" ng-show="setUser.identity_card.$error.required" ng-cloak>* Campo obligatorio</span>
+                                <input type="text" name="identity_card"  class="form-control" ng-model="data.identity_card" ng-required="true">
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-xs-6">
                                 <label class="control-label">Nombre</label>
-                                <input type="text" name="setUser.name"  class="form-control" ng-model="data.name" >
+                                <span class="error" ng-show="setUser.name.$error.required && setUser.name.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <input type="text" name="name"  class="form-control" ng-model="data.name" ng-required="true">
                             </div>
                             <div class="col-xs-6">
                                 <label class="control-label">Apellido</label>
-                                <input type="text" name="setUser.last_name"  class="form-control" ng-model="data.last_name" >
+                                <span class="error" ng-show="setUser.last_name.$error.required && setUser.last_name.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <input type="text" name="last_name"  class="form-control" ng-model="data.last_name" ng-required="true">
                             </div>                            
                         </div><br>
 
                         <div class="row">                            
                             <div class="col-xs-6">
                                 <label class="control-label">Escuela</label>
-                                <select  class="form-control" ng-model="data.school">
-                                    <option ng-repeat="current_school in data.schools" value="{[{current_school.id}]}" ng-selected="current_school.id == data.school">{[{ current_school.name }]}</option>
+                                <span class="error" ng-show="setUser.school.$valid && setUser.school.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <select class="form-control" ng-model="data.school" name="school" ng-required="true" required
+                                    ng-options="option.name for option in data.schools track by option.id">
                                 </select>
                             </div>
                             <div class="col-xs-6">
                                 <label>Tipo de usuario </label>
-                                <select  class="form-control" ng-model="data.group">
-                                    <option ng-repeat="current_group in data.groups" value="{[{current_group.id}]}" >{[{ current_group.name }]}</option>
+                                <span class="error" ng-show="setUser.group.$invalid && setUser.group.$pristine" ng-cloak>* Campo obligatorio</span>
+                                <select class="form-control" ng-model="data.group" name="group" ng-required="true" required
+                                    ng-options="option.name for option in data.groups track by option.id">
                                 </select>
                             </div>
                         </div>
@@ -65,7 +77,7 @@
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ng-disabled="setUser.$invalid"><b>Publicar</b>
                             </div>
                         </div>
                     </div>

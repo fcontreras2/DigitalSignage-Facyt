@@ -39,6 +39,8 @@ ds_facyt_infrastructure_user_homepage:
 ds_facyt_infrastructure_user_profile:
     path:   /profile
     defaults: { _controller: DSFacytInfrastructureBundle:User\Default:getProfile }
+    options:
+        expose: true
 
 ds_facyt_infrastructure_user_edit_profile:
     path:   /profile/edit

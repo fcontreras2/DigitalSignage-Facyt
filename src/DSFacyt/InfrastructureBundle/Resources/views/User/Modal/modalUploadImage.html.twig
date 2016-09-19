@@ -1,6 +1,6 @@
 <script id="modal-uploadImage.tpl" type="text/ng-template">
     <div class="modal" tabindex="-1" role="dialog" aria-hidden="true" ng-click="hideModal()">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:80% !important; ">
             <form name="form" class="css-form" novalidate>
                 <div class="modal-content">
                     <div class="modal-header" >
@@ -23,19 +23,17 @@
                             
                             <canvas 
                                 id="canvas" 
-                                width="500px"
-                                height="auto"
                                 image-cropper 
                                 image="cropper.sourceImage" 
                                 cropped-image="cropper.croppedImage" 
                                 crop-width="config.image_width" 
                                 crop-height="config.image_height"
-                                keep-aspect="false" 
-                                touch-radius="30">
+                                keep-aspect="true" 
+                                touch-radius="30"
+                                width="800" height="500"
+                                >
                             </canvas>
-                            </center>
-                        
-                        
+                        </center>
                     </div>
                     <div class="modal-footer">
                         <div class="row">

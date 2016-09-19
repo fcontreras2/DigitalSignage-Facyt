@@ -1,7 +1,8 @@
-user.controller('UserController', ['$scope','Upload','$filter', 'userService','$modal',
-    function ($scope, Upload, $filter,userService, $modal) {
+user.controller('UserController', ['$scope','Upload','$filter', 'userService','$modal','$window',
+    function ($scope, Upload, $filter,userService, $modal,$window) {
 
         $scope.data = data;
+        console.log($scope.data);
         $scope.profile_data_text = true;
         $scope.editData = {};
         $scope.change_password = false;
@@ -12,6 +13,9 @@ user.controller('UserController', ['$scope','Upload','$filter', 'userService','$
         userService.resetValues($scope.data, $scope.editData);
 
         $scope.cropper = {};
+        $scope.config = {};
+        $scope.config.image_width = 100;
+        $scope.config.image_height = 100;
         $scope.cropper.sourceImage = null;
         $scope.cropper.croppedImage   = null;
         $scope.bounds = {};
@@ -23,8 +27,7 @@ user.controller('UserController', ['$scope','Upload','$filter', 'userService','$
         if ($scope.data.profile_image) {
             $scope.cropper.croppedImage = '/uploads/images/' + $scope.data.profile_image;
             $scope.cropper.sourceImage = true;
-        }
-        
+        }        
 
         $scope.editProfile = function() {
             $scope.profile_data_text = false;
@@ -48,14 +51,10 @@ user.controller('UserController', ['$scope','Upload','$filter', 'userService','$
                 data: data,
                 url: url,
                 success: function(data) {
-
-                    userService.resetValues($scope.editData,$scope.data);
-                    $scope.profile_data_text = true;
+                    $window.location.href = Routing.generate('ds_facyt_infrastructure_user_profile');
                 }
             });
-        };
-
-        
+        };        
 
         $scope.showCropImageModal = function() {
             userService.resetCropper(cropImageModal, $scope, $modal);
@@ -65,15 +64,14 @@ user.controller('UserController', ['$scope','Upload','$filter', 'userService','$
             userService.resetCropper(cropImageModal, $scope, $modal);
         };
 
-        $scope.uploadFile = function($file) {
-            $scope.icon_loading = true;
+        $scope.uploadFile = function() {
             cropImageModal.$promise.then(cropImageModal.hide);
             
             Upload.upload({
                 url: Routing.generate('ds_facyt_infrastructure_user_upload_image'),
-                data: {file: Upload.dataUrltoBlob($file)}
+                data: {file: Upload.dataUrltoBlob($scope.cropper.croppedImage)}
             }).then(function (resp) {
-                
+                                $window.location.href = Routing.generate('ds_facyt_infrastructure_user_profile');                
             }, function (resp) {
 
             }, function (evt) {

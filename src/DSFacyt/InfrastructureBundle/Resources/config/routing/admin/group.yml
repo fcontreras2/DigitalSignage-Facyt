@@ -1,6 +1,8 @@
 ds_facyt_admin_group_homepage:
     path: /
     defaults: { _controller: "DSFacytInfrastructureBundle:Admin/Group:index" }
+    options:
+        expose: true
 
 ds_facyt_infrastructure_admin_group_edit:
     path: /edit/{group_id}

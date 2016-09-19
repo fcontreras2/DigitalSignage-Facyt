@@ -55,14 +55,7 @@
                                             <br>
                                             <b>Nombre de Usuario</b> {[{ data.user_name }]}.
                                             <hr>
-                                        </div>
-                                        <hr>
-                                        <div class="col-xs-12 col-md-6">
-
-                                            <b>Cédula</b> <i ng-show="profile_data_text">{[{data.identity_card}]}</i>
-                                            <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                            <input type="number" ng-show="!profile_data_text" value="{[{data.identity_card}]}" class="form-control col-xs-6" ng-model="editData.identity_card">
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <div class="row">
                                             <div class="col-xs-12 col-md-6">
@@ -77,15 +70,11 @@
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
                                                 <input type="text" ng-show="!profile_data_text" value="{[{data.last_name}]}" class="form-control" ng-model="editData.last_name">
                                             </div>
-                                            <br>
-                                            <br>
                                             <div class="col-xs-12 col-md-6">
                                                 <br>
-                                                <b>Escuela</b> <i ng-show="profile_data_text">{[{ data.school }]}</i>
+                                                <b>Cédula</b> <i ng-show="profile_data_text">{[{data.identity_card}]}</i>
                                                 <b class="pull-right" ng-show="profile_data_text"><i class="fa fa-pencil" ng-click="editProfile()"></i></b>
-                                                <select  class="form-control" ng-show="!profile_data_text">
-                                                    <option ng-repeat="current_school in data.all_school" ng-model="editData.school_index" value="$index" ng-selected="current_school.name == data.school">{[{ current_school.name }]}</option>
-                                                </select>
+                                                <input type="number" ng-show="!profile_data_text" value="{[{data.identity_card}]}" class="form-control col-xs-6" ng-model="editData.identity_card">
                                             </div>
                                             <div class="col-xs-12 col-md-6">
                                                 <br>
@@ -116,7 +105,7 @@
                                                             <label class="button img-rounded img-default drop-box" style="text-align:center;">
                                                                 <span ng-if="!cropper.sourceImage" class="fa fa-camera fa-3x camera button"></span>
                                                                 <center ng-if="!cropper.sourceImage"><h6>Subir imagen</h6></center>
-                                                                <center ng-if="cropper.sourceImage != null" id="change-image" style="margin-top:100%" >
+                                                                <center ng-if="cropper.sourceImage != null" id="change-image" style="margin-top:73%" >
                                                                     <h6 style="color: white;font-weight: bold;">Cambiar </h6>
                                                                 </center>
                                                                 <span class="fa fa-circle-o-notch fa-spin" ng-if="icon_loading" ></span>
@@ -181,9 +170,9 @@
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-repeat-n.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-strap.tpl.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload-shim.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/ng-file-upload.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-img-cropper.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userModule.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userService.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/User/userController.js') }}"></script>

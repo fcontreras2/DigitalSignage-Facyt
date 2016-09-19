@@ -54,7 +54,7 @@ class GroupController extends Controller
 
 	        	$manager->persist($group);
 	        	$manager->flush();
-
+                return new JsonResponse(null, 200);
         	} catch (\Exception $e) {
         		return new JsonResponse(null, 500);
         	}

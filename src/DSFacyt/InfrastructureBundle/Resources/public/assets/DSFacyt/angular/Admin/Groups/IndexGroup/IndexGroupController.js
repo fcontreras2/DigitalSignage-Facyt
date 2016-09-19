@@ -48,8 +48,8 @@ indexGroup.controller('IndexGroupController', ['$scope','$window','$timeout','In
                 method: 'POST',
                 data: data,                
                 url: url,
-                success: function(data) {                    
-                    console.log('Ok');
+                success: function(data) {                                        
+                    $window.location.href = Routing.generate('ds_facyt_admin_group_homepage');
                 }                
             });
         }

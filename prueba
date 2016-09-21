@@ -1,0 +1,87 @@
+
+/*** Clase del Agente A ***
+// La siguiente clase se encarga de analizar el conjunto
+// de publicaciones en el sistema
+clase AgenteA()
+{
+	// Constructor de la clase
+	funcion publica constructor()
+	{
+		analizarPublicaciones();
+	}
+
+	// Función principal
+	funcion publica analizarPublicaciones()
+	{
+		//Se obtiene las publicaciones de tipo texto
+		$textos = obtenerTextos();
+
+		//Inspeccionamos todos los textos encontrados
+		para $textos en $textoActual {
+
+			//Verificar si existe notificación previa
+			$notificacion = buscarnotificación($textoActual);
+			si (es_nulo($notificacion)) entonces {
+				$notificación = nueva Notificacion();
+				$notificación->actualizarIdPublicacion($textoActual->getId());
+				$notificacion->actualizarTipoDePublicacion('Texto');
+			}
+
+			$ultimoEstado = $notification->getEstado();
+			$notificacion->actualizarEvento(obtenerEvento($ultimoEstado));
+			$notificacion->actualizarUltimaModificacion(obtenerFechaActual());
+			$textoActual->actualizarEstado(obtenerEstado($ultimoEstado))
+			$notificacion->actualizarData(obtenerData());
+
+			// Se almacena la notificación y la publicación
+			almacenarEnBD($notificacion);
+			almacenarEnBD($textoActual);
+		}
+	}
+
+	// La función obtiene el evento
+	// que se registrará dado el cambio de la publicación
+	funcion privada obtenerEvento($estadoActual)
+	{
+		caracteres $respuesta;
+
+		si ($estadoActual == 0) {
+			$respuesta = 'nuevo';
+		} sino si ($estadoActual == 1) {
+			$respuesta = 'activo';
+		} sino si ($estadoActual == 2) {
+			$respuesta = 'finalizado';
+		}
+		retornar $respuesta;
+	}
+
+	// Obtener el estado de la publicación
+	// dado el estado actual
+	funcion privada obtenerEstado($estado)
+	{
+		entero $respuesta = $estado;
+
+		si ($estado == 1 or $estado == 2) {
+			$respuesta = $respuesta + 1;
+		}
+
+		retornar $respuesta;
+	}
+
+	// La función retorna un arreglo que registra una
+	// información adicional al cambio de estado de la publicación
+	funcion privada obtenerData($estado, $ultimoEstado)
+	{
+		arreglo $respuesta = ['ultimo_estado' => $ultimoEstado, 'info' => nulo];
+
+		si ($estado == 0 ) {
+			$respuesta['info'] = 'Publicación creada';
+		} sino si ($estado == 2) {
+			$respuesta['info'] = 'Publicación en transmisión (activa)';
+		} sino si ($estado == 3) {
+			$respuesta['info'] = 'Publicación finalizada';
+		}
+
+		retornar $respuesta;
+	}
+}

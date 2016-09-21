@@ -9,7 +9,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     // Inicialización de variables
     $scope.currentVideo = 0;
     if (!$scope.videos.length) {
-        $scope.showImages = false;
+        $scope.showImages = true;
         $scope.showVideos = false;
     } else {
         $scope.showImages = false;
@@ -18,17 +18,15 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     var controller = this;
     controller.API = null;
     $scope.check_data = null;
-    $scope.showVideos = true;
-    console.log($scope.videos);
-
+    
     //Se inicializa los videos actualmente
     controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
     // Configuraciones iniciales
     controller.config = {
         preload: "none",
-        autoHide: false,
+        autoHide: true,
         autoHideTime: 3000,
-        autoPlay: true,
+        autoPlay: false,
         sources: controller.videos[0],
         theme: {
             url: "http://digitalsignagefacyt.dev/bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css",
@@ -46,45 +44,44 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     // Cuando termina un video
     controller.onCompleteVideo = function() {
 
+        controller.isCompleted = true;
+        controller.API.stop();
+
         // Si termina el ultimo video
-        if ($scope.currentVideo > controller.videos.length - 1) {
-            controller.currentVideo = 0;
-            TransmitionService.changeMedia($scope);
-        } else {
-            // Se para el video actual
-            controller.API.stop();
+        if ($scope.currentVideo >= controller.videos.length - 1) 
+            $scope.currentVideo = 0;
+         else 
             $scope.currentVideo++;
-            if ($scope.currentVideo > $scope.videos.length - 1)
-                $scope.currentVideo = 0;
+    
+        // Se para el video actual
+        controller.config.sources = controller.videos[$scope.currentVideo];
 
-            controller.config.sources = controller.videos[$scope.currentVideo];
-
-            // Se reproduce 2 videos a la vez
-            if ($scope.currentVideo % 2 != 0)
-                $timeout(controller.API.play.bind(controller.API), 100);
-            else                 
-                TransmitionService.changeMedia($scope);            
+        // Se reproduce 2 videos a la vez
+        if ($scope.currentVideo % 2 != 0)
+            $timeout(controller.API.play.bind(controller.API), 100);
+        else {                 
+            controller.API.pause();
+            TransmitionService.changeMedia($scope);            
         }
     };
 
     // Cuando cambia la transmisición de videos
     $scope.$watch('showImages', function() {
         if ($scope.showImages && $scope.videos.length > 0) {
-            $timeout(function() {
+            $timeout(function() {                
                 TransmitionService.changeMedia($scope);
-                $timeout(controller.API.play.bind(controller.API), 1000);
-            }, ($scope.images.length * 10000));
+                $timeout(controller.API.play.bind(controller.API), $scope.images.length * 1000);
+            }, ($scope.images.length * 1000));
         }
     });
 
-    $interval(function() {
+/*    $interval(function() {
         TransmitionService.checkPublish($scope);
         TransmitionService.checkChange($scope.check_data['publish']['texts'], $scope.texts, 'texts');
         TransmitionService.checkChange($scope.check_data['publish']['images'], $scope.images, 'images');
         TransmitionService.checkChange($scope.check_data['publish']['videos'], $scope.videos, 'videos');
-        TransmitionService.checkChange($scope.check_data['quick_notes'], $scope.quickNotes, 'quick-notes');
-        
-    }, 5000);
+        TransmitionService.checkChange($scope.check_data['quick_notes'], $scope.quickNotes, 'quick-notes');        
+    }, 5000);*/
 
     $scope.current_date = TransmitionService.getCurrentDate();
     $interval(function(){        

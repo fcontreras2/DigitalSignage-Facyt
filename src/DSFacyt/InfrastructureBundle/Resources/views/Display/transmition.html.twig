@@ -33,9 +33,12 @@ f
                 </div>
             </div>
         </div>
-         <videogular vg-theme="controller.config.theme" ng-show="showVideos" vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-auto-play="true">
-            <vg-media vg-src="controller.config.sources"
-                     vg-plays-inline="true">
+         <videogular 
+            vg-theme="controller.config.theme" 
+            ng-show="showVideos" 
+            vg-player-ready="controller.onPlayerReady($API)" 
+            vg-complete="controller.onCompleteVideo()" >
+            <vg-media vg-src="controller.config.sources">
             </vg-media>
  
             <vg-controls>

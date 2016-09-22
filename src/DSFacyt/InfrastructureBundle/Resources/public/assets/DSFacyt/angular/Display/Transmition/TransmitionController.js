@@ -15,18 +15,48 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         $scope.showImages = false;
         $scope.showVideos = true;
     }
+    
     var controller = this;
+    controller.state = null;
     controller.API = null;
+    controller.currentVideo = 0;
+
     $scope.check_data = null;
     
+    // Iniciar automaticamente la reproducción de videos
+    controller.onPlayerReady = function(API) {
+        controller.API = API;                
+    };
+
+    // Cuando termina un video
+    controller.onCompleteVideo = function() {
+        
+        controller.isCompleted = true;
+        controller.currentVideo++;
+
+        if (controller.currentVideo >= controller.videos.length) controller.currentVideo = 0;
+
+        controller.API.stop();
+        // Se para el video actual
+        controller.config.sources = controller.videos[controller.currentVideo];
+
+        // Se reproduce 2 videos a la vez
+        if (controller.currentVideo % 2 != 0 && controller.currentVideo != 0){
+            $timeout(controller.API.play.bind(controller.API), 100);
+        }
+        else {                 
+            TransmitionService.changeMedia($scope);            
+        }
+    };
+
     //Se inicializa los videos actualmente
     controller.videos = TransmitionService.initialVideos($scope.videos, $sce);
     // Configuraciones iniciales
     controller.config = {
         preload: "none",
         autoHide: true,
-        autoHideTime: 3000,
-        autoPlay: false,
+        autoHideTime: 100,
+        autoPlay: true,
         sources: controller.videos[0],
         theme: {
             url: "http://digitalsignagefacyt.dev/bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css",
@@ -35,44 +65,22 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             poster: "http://www.videogular.com/assets/images/videogular.png"
         }
     }
-    
-    // Iniciar automaticamente la reproducción de videos
-    controller.onPlayerReady = function(API) {
-        controller.API = API;        
-    };
-
-    // Cuando termina un video
-    controller.onCompleteVideo = function() {
-
-        controller.isCompleted = true;
-        controller.API.stop();
-
-        // Si termina el ultimo video
-        if ($scope.currentVideo >= controller.videos.length - 1) 
-            $scope.currentVideo = 0;
-         else 
-            $scope.currentVideo++;
-    
-        // Se para el video actual
-        controller.config.sources = controller.videos[$scope.currentVideo];
-
-        // Se reproduce 2 videos a la vez
-        if ($scope.currentVideo % 2 != 0)
-            $timeout(controller.API.play.bind(controller.API), 100);
-        else {                 
-            controller.API.pause();
-            TransmitionService.changeMedia($scope);            
-        }
-    };
 
     // Cuando cambia la transmisición de videos
     $scope.$watch('showImages', function() {
-        if ($scope.showImages && $scope.videos.length > 0) {
+        if ($scope.showImages && controller.videos.length > 0) {
             $timeout(function() {                
-                TransmitionService.changeMedia($scope);
-                $timeout(controller.API.play.bind(controller.API), $scope.images.length * 1000);
+                TransmitionService.changeMedia($scope);                
             }, ($scope.images.length * 1000));
         }
+    });
+
+    $scope.$watch('showVideos',function() {
+        if ($scope.showVideos) 
+            controller.API.play();
+        else
+            controller.API.stop();
+
     });
 
 /*    $interval(function() {
@@ -87,5 +95,8 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
     $interval(function(){        
         $scope.current_date = TransmitionService.getCurrentDate();
     }, 10000);
-    
+
+    $timeout(function(){
+        controller.API.play();
+    },1000);
 }]);

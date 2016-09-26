@@ -30,7 +30,7 @@ class DbVideoRepository extends EntityRepository implements
     public function findAllByUser($user)
     {
         return $this->createQueryBuilder('p')
-            ->where(' p.user = :user')
+            ->where(' p.user = :user and p.active = true')
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
     }
@@ -49,6 +49,7 @@ class DbVideoRepository extends EntityRepository implements
             ->where('
                 (v.start_date <= :startDate and :startDate <= v.end_date) or
                 (v.start_date <= :endDate and :endDate <= v.end_date)
+                and v.active = true
             ')
             ->setParameters([
                 'startDate' => $startDate,
@@ -71,6 +72,7 @@ class DbVideoRepository extends EntityRepository implements
             ->where('
                 c.id = :channelId and
                 v.status = 2
+                and v.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId
@@ -94,6 +96,7 @@ class DbVideoRepository extends EntityRepository implements
                 v.status = :status and
                 ((v.start_date <= :startDate and :startDate <= v.end_date) or
                 (v.start_date <= :endDate and :endDate <= v.end_date))
+                and v.active = true
             ')
             ->setParameters([
                 'status' => $status,
@@ -108,6 +111,7 @@ class DbVideoRepository extends EntityRepository implements
         return $this->createQueryBuilder('v')
             ->where('
                 v.important = true
+                and v.active = true
             ')            
             ->orderBy('v.start_date', 'DESC')
             ->setMaxResults(6)
@@ -142,6 +146,11 @@ class DbVideoRepository extends EntityRepository implements
             $where = $where. ' and v.user = :userId ';
             $parameters['userId'] = $data['user']->getId();
         }
+
+        if ($where)
+            $where = $where.' and v.active = true';
+        else
+            $where = 'v.active = true';
         
         $query = $this->createQueryBuilder('v')
             ->where($where)->setParameters($parameters);
@@ -165,6 +174,7 @@ class DbVideoRepository extends EntityRepository implements
                 v.start_date >= :current_date)
                 or ( v.status = 2 and v.end_date <= :current_date)
                 or ( v.status = 0 and v.last_modified >= :last_modified)
+                and v.active = true
             ")
             ->setParameters([
                 'current_time' => (new \DateTime())->format('G:m:s'),
@@ -182,6 +192,7 @@ class DbVideoRepository extends EntityRepository implements
                c.id = :channelId and
                (t.status = 2 or t.status = 3) and
                t.last_modified >= :last_modified
+                and v.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId,
@@ -196,6 +207,7 @@ class DbVideoRepository extends EntityRepository implements
             ->where('
                v.end_date <= :max_date and
                v.status >= 3
+               or v.active = false
             ')
             ->setParameters([
                 'max_date' =>  (new \DateTime('-'.$days.' days'))

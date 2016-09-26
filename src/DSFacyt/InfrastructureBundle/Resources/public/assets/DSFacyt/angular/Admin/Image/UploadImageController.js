@@ -56,5 +56,21 @@ uploadImage.controller('UploadImageController', ['$scope','$modal','UploadImageS
             });
         }
 
+        $scope.deleteData = function() {
+            var url = Routing.generate('ds_facyt_infrastructure_admin_publish_delete');
+            var data  = angular.toJson({'type':'Image','publish_id':$scope.data.id});
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: url, 
+                success: function(data) {
+                    console.log('bien');
+                },
+                error: function(data){
+                    console.log('mal');
+                }
+            });
+        }
+
         $scope.$watch('data.status', function() {$scope.color_status = UploadImageService.setColorStatus($scope.data.status);});
     }]);

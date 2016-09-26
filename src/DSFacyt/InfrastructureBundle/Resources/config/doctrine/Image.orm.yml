@@ -40,6 +40,11 @@ DSFacyt\InfrastructureBundle\Entity\Image:
             type: datetime
             nullable: true
 
+        active:
+            type: boolean
+            options:
+                default: true
+
     manyToOne:
         user:
             targetEntity: User

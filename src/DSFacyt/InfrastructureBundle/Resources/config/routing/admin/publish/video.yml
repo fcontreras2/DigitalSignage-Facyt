@@ -5,8 +5,8 @@ ds_facyt_infrastructure_admin_new_video:
         expose: true
 
 ds_facyt_infrastructure_admin_video_new_validate:
-    path: /new_validate
-    defaults: { _controller: DSFacytInfrastructureBundle:Admin\Publish:validateNewVideo }
+    path: /new_validate/{videoId}
+    defaults: { _controller: DSFacytInfrastructureBundle:Admin\Publish:validateNewVideo, videoId: null }
 
 ds_facyt_infrastructure_admin_edit_video:
     path:   /edit/{videoId}

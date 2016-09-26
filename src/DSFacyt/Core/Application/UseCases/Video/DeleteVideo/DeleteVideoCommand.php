@@ -1,25 +1,23 @@
 <?php
 
-namespace DSFacyt\Core\Application\UseCases\Video\EditVideo;
+namespace DSFacyt\Core\Application\UseCases\Video\DeleteVideo;
 
 use DSFacyt\Core\Application\Contract\Command;
+use DSFacyt\InfrastructureBundle\Entity\Video;
 /**
- * Comando 'Obtener los datos de una video'
+ * Comando 'Eliminar los datos de una videon'
  * @author Freddy Contreras <freddycontreras3@gmail.com>
  * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
  * @version 02/02/2016
  */
 
-class EditVideoCommand implements Command
+class DeleteVideoCommand implements Command
 {
-
     /**
-    * Representa el video a editar
-    * @var $iamgeId 
-    **/
-    private $videoId;
-
-    private $entityVideo;
+     * La variable representa el id de la video a editar
+     * @var integer $videoId
+     */
+    protected $videoId;
 
     /**
      *   Constructor de la clase
@@ -44,15 +42,21 @@ class EditVideoCommand implements Command
         );
     }
 
-    public function setVideoId($id)
+    /**
+     * Método Get del atributo $videoId
+     * @return integer
+     */
+    public function getVideoId()
     {
-        $this->videoId = $id;
+        return $this->videoId;
     }
 
-    public function getVideoId(){ return $this->videoId;}
-
-    public function setEntityVideo($entityVideo) { $this->entityVideo = $entityVideo;}
-
-    public function getEntityVideo(){ return $this->entityVideo;}
-
+    /**
+     * Método Set del atributo $videoId
+     * @param integer $videoId
+     */
+    public function setVideoId($videoId)
+    {
+        $this->videoId = $videoId;
+    }    
 }

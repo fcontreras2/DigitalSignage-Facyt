@@ -39,6 +39,10 @@ DSFacyt\InfrastructureBundle\Entity\Video:
         last_modified:
             type: datetime
             nullable: true
+        active:
+            type: boolean
+            options:
+                default: true
 
     manyToOne:
         user:

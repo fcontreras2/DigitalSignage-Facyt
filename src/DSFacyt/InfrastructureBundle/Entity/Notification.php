@@ -39,6 +39,11 @@ class Notification
      */
     private $data;
 
+    public function __construct() 
+    {
+        $this->last_modified = new \DateTime();
+        $this->data = [];
+    }
 
     /**
      * Get id
@@ -59,7 +64,6 @@ class Notification
     public function setCurrentTime($currentTime)
     {
         $this->current_time = $currentTime;
-
         return $this;
     }
 

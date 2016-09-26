@@ -414,4 +414,32 @@ class Video
         if (isset($data['description']))
             $this->description = $data['description'];        
     }
+    /**
+     * @var boolean
+     */
+    private $active = true;
+
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Video
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

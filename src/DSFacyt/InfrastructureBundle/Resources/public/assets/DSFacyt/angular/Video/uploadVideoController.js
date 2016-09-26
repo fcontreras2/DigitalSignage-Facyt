@@ -6,7 +6,6 @@ uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$
     var controller = this;
     controller.API = null;
     
-    console.log($scope.data);
     controller.videos = [];
     //Se inicializa los videos actualmente
     controller.videos.push([{src: $sce.trustAsResourceUrl('/uploads/videos/'+$scope.data.video_url), type: $scope.data.mime_type}]);    
@@ -37,5 +36,21 @@ uploadvideo.controller('UploadVideoController',['$scope','UploadVideoService','$
         // Se para el video actual
         controller.API.stop();           
     };
+
+     $scope.deleteData = function() {
+            var url = Routing.generate('ds_facyt_infrastructure_admin_publish_delete');
+            var data  = angular.toJson({'type':'Video','publish_id':$scope.data.id});
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: url, 
+                success: function(data) {
+                    console.log('bien');
+                },
+                error: function(data){
+                    console.log('mal');
+                }
+            });
+        }
 
 }]);

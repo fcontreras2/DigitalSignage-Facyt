@@ -24,5 +24,21 @@ uploadText.controller('UploadTextController', ['$scope','$window','$timeout','Up
             });
         }
 
+        $scope.deleteData = function() {
+            var url = Routing.generate('ds_facyt_infrastructure_admin_publish_delete');
+            var data  = angular.toJson({'type':'Text','publish_id':$scope.data.id});
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: url, 
+                success: function(data) {
+                    alert('bien');
+                },
+                error: function(data){
+                    alert('mal');
+                }
+            });
+        }
+
         $scope.$watch('data.status', function() {$scope.color_status = UploadTextService.setColorStatus($scope.data.status);});
     }]);

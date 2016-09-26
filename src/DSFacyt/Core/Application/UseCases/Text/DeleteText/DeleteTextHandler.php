@@ -6,6 +6,7 @@ use DSFacyt\Core\Application\Contract\Handler;
 use DSFacyt\Core\Application\Contract\Command;
 use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
+use DSFacyt\InfrastructureBundle\Entity\Notification;
 
 /**
  * Clase para ejecutar el caso de uso DeleteText
@@ -40,7 +41,14 @@ class DeleteTextHandler implements Handler
         $text = $rpText->findOneBy(array('id' => $command->getTextId()));
 
         if ($text) {
-            $rpText->delete($text);
+            $text->setActive(false);
+            $rpText->save($text);
+            $notification = new Notification();
+            $notification->setPublishId($text->getId());
+            $notification->setPublishType('text');
+            $notification->setEvent('finished');
+            $rf->get('Notification')->save($notification);
+
             return new ResponseCommandBus(201, 'Ok');
         }
 

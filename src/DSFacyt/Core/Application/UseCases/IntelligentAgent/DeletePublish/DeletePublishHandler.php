@@ -31,7 +31,7 @@ class DeletePublishHandler implements Handler
         $rpNotification = $rf->get('Notification');
         $maxDate = $command->getRequest()['maxDate'];
         $response = [];
-        var_dump("expression");
+
         try {
             $texts = $rpText->findOldByDays($maxDate);
 

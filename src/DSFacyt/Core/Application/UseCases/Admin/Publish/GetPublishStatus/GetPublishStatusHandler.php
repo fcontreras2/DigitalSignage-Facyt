@@ -73,7 +73,10 @@ class GetPublishStatusHandler implements Handler
                 $auxPublish['end_date'] = $currentPublish->getEndDate()->format('d-m-Y');
                 $auxPublish['title'] = $currentPublish->getTitle();
                 $auxPublish['publish_time'] = $currentPublish->getPublishTime();
-                $auxPublish['user_name'] = $currentPublish->getUser()->getUserName();
+                if ($currentPublish->getUser())
+                    $auxPublish['user_name'] = $currentPublish->getUser()->getUserName();
+                else 
+                    $auxPublish['user_name'] = 'N/A';
                 $auxPublish['channels'] = [];
                 $auxPublish['status'] = $currentPublish->getStatus();
                 $auxPublish['important'] = $currentPublish->getImportant();

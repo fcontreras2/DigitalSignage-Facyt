@@ -12,9 +12,11 @@ use DSFacyt\InfrastructureBundle\Entity\Video;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\GetPublishStatus\GetPublishStatusCommand;
 use DSFacyt\Core\Application\UseCases\Text\EditText\EditTextCommand;
 use DSFacyt\Core\Application\UseCases\Image\DeleteImage\DeleteImageCommand;
+use DSFacyt\Core\Application\UseCases\Video\DeleteVideo\DeleteVideoCommand;
 use DSFacyt\Core\Application\UseCases\Text\DeleteText\DeleteTextCommand;
 use DSFacyt\Core\Application\UseCases\Admin\Publish\UpdateImportant\UpdateImportantCommand;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterAdminTextType;
+use DSFacyt\InfrastructureBundle\Form\Type\EditVideoType;
 use DSFacyt\InfrastructureBundle\Form\Type\RegisterVideoType;
 use DSFacyt\Core\Application\UseCases\Text\SetText\SetTextCommand;
 use DSFacyt\Core\Application\UseCases\Text\GetText\GetTextCommand;
@@ -23,6 +25,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use DSFacyt\Core\Application\UseCases\Image\SetImage\SetImageCommand;
 use DSFacyt\Core\Application\UseCases\Image\GetImage\GetImageCommand;
 use DSFacyt\Core\Application\UseCases\Video\GetVideo\GetVideoCommand;
+use DSFacyt\Core\Application\UseCases\Video\EditVideo\EditVideoCommand;
 
 
 /**
@@ -284,6 +287,11 @@ class PublishController extends Controller
                     $command = new DeleteImageCommand();
                     $command->setImageId($data['publish_id']);                
                     break;
+
+                case 'Video':
+                    $command = new DeleteVideoCommand();
+                    $command->setVideoId($data['publish_id']);
+                    break;
                 default:
                     $command = null;
                     break;
@@ -413,7 +421,7 @@ class PublishController extends Controller
     */
     public function newVideoAction()
     {
-        //$video= new Video();
+        $video= new Video();
         $data = ['channels' => []];
         $manager = $this->container->get('doctrine.orm.entity_manager');
 
@@ -428,72 +436,70 @@ class PublishController extends Controller
 
         $data['status'] = $this->status;
      
-        /*$form = $this->createForm(new RegisterVideoType(), $video,
+        $form = $this->createForm(new RegisterVideoType(), $video,
             array(
                 'action' => $this->generateUrl('ds_facyt_infrastructure_admin_video_new_validate'),
-                'method' => 'POST'));*/
-        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('data' => json_encode($data)));
+                'method' => 'POST'));
+        return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('data' => json_encode($data),'form' => $form->createView()));
     }
 
-    public function validateNewVideoAction(Request $request)
+    public function validateNewVideoAction($videoId, Request $request)
     {
-        // dump($request->get);
-        // die();
-        // $video = new Video();
-
-        // $form = $this->createForm(new RegisterVideoType(), $video);
-        // $form->handleRequest($request);
-        // if ($form->isValid()) {
-        //     $user = $security = $this->container->get('security.context')->getToken()->getUser();
-        //     $video->setUser($user);
-        //     $command = new UploadVideoCommand($video, $user->getIndentityCard());
-        //     $this->get('CommandBus')->execute($command);
-        //     $validator = $this->get('validator');
-        //     $errors = $validator->validate($video);
-        //     if (count($errors) > 0) {
-        //         return $this->render('DSFacytInfrastructureBundle:User\Image:newImage.html.twig', array('form' => $form->createView(), 'errors' => $erros));
-        //     }
-        //     $em = $this->getDoctrine()->getManager();
-        //     $em->persist($video);
-        //     $em->flush();
-        //     return $this->redirectToRoute('ds_facyt_infrastructure_get_publish_type_status',['type' => 'video','status' => 0]);
-        // }
-
-        // return $this->render('DSFacytInfrastructureBundle:Admin/Publish:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['pathImage' => null])));
+        if (is_null($videoId)) {
+            $video = new Video();
+            $form = $this->createForm(new RegisterVideoType(), $video);
+        }
+        else {
+            $manager = $this->container->get('doctrine.orm.entity_manager');
+            $video = $manager->getRepository('DSFacytInfrastructureBundle:Video')->findOneBy([
+                'id' => $videoId
+            ]);
+            if (is_null($videoId)) {
+                $video = new Video();
+                $form = $this->createForm(new RegisterVideoType(), $video);;
+            } else
+                $form = $this->createForm(new EditVideoType(), $video);;
+        }
 
         
-        $data['title'] = $request->get('title');
-        $data['start_date'] = $request->get('start_date');
-        $data['end_date'] = $request->get('end_date');
-        $data['publish_time'] = $request->get('publish_time');
-        $data['channel'] = $request->get('channel');
-        $data['description'] = $request->get('description');        
-        dump($request);
-        die($request->files->get('file'));
-        if ($request->files->get('file')) 
-            $file = new File($request->files->get('file'));
-        else
-            $file = null;
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            if (is_null($videoId)) {
+                $user = $security = $this->container->get('security.context')->getToken()->getUser();
+                $video->setUser($user);  
+                $command = new UploadVideoCommand($video, $user->getIndentityCard());
+                $this->get('CommandBus')->execute($command);
+            }
 
-        $user = $security = $this->container->get('security.context')->getToken()->getUser();
-        $command = new SetImageCommand($file,$data, $user);
-        $response = $this->get('CommandBus')->execute($command);
-
-        
-
-                
+            $validator = $this->get('validator');
+            $errors = $validator->validate($video);
+            if (count($errors) > 0) {
+                return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('form' => $form->createView(), 'errors' => $erros));
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+            return $this->redirectToRoute('ds_facyt_infrastructure_get_publish_type_status',['type' => 'video','status' => 0]);
+        }               
     }
 
     public function editVideoAction($videoId)
     {
-        $command = new GetVideoCommand($videoId);
+
+        $command = new EditVideoCommand();
+        $command->setVideoId($videoId);
+
         $response = $this->get('CommandBus')->execute($command);
-        if ($response->getStatusCode() == 200) {
-            $data = $response->getData();
-
-            return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('data' => json_encode($data)));
+        if ($response->getStatusCode() == 201) {
+            $form = $this->createForm(new EditVideoType(), $command->getEntityVideo(),
+                array(
+                    'action' => $this->generateUrl('ds_facyt_infrastructure_admin_video_new_validate',array('videoId' => $videoId)),
+                    'method' => 'POST'));
+            $pathVideo = $command->getEntityVideo()->getDocument()->getFileName();
+            $mimeType = mime_content_type($_SERVER['DOCUMENT_ROOT'].'/uploads/videos/'.$pathVideo);
+            $important = $command->getEntityVideo()->getImportant();            
+            return $this->render('DSFacytInfrastructureBundle:Admin\Publish:newVideo.html.twig', array('form' => $form->createView(), 'data' => json_encode(['video_url' => $pathVideo,'mime_type' => $mimeType,'important' => $important, 'id' => $videoId])));
         }
-
-        return $this->redirect('ds_facyt_infrastructure_user_video_homepage');
     }
+
 }

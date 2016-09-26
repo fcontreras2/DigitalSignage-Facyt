@@ -1,6 +1,6 @@
 <?php
 
-namespace DSFacyt\Core\Application\UseCases\Image\DeleteImage;
+namespace DSFacyt\Core\Application\UseCases\Video\DeleteVideo;
 
 use DSFacyt\Core\Application\Contract\Handler;
 use DSFacyt\Core\Application\Contract\Command;
@@ -8,13 +8,13 @@ use DSFacyt\Core\Application\Contract\RepositoryFactoryInterface;
 use DSFacyt\Core\Application\Contract\ResponseCommandBus;
 use DSFacyt\InfrastructureBundle\Entity\Notification;
 /**
- * Clase para ejecutar el caso de uso DeleteImage
+ * Clase para ejecutar el caso de uso DeleteVideo
  * @author Freddy Contreras <freddycontreras3@gmail.com>
  * @author Currently Working: Freddy Contreras <freddycontreras3@gmail.com>
  * @version 02/02/2015
  */
 
-class DeleteImageHandler implements Handler
+class DeleteVideoHandler implements Handler
 {
     /**
      * @var Representa el comando de la clase
@@ -27,7 +27,7 @@ class DeleteImageHandler implements Handler
     private $rf;
 
     /**
-     * Ejecuta el caso de uso 'Eliminar la imagen'
+     * Ejecuta el caso de uso 'Eliminar la videon'
      *
      * @param Command $command Objeto Command contenedor de la solicitud del usuario
      * @param RepositoryFactoryInterface  $rf
@@ -36,21 +36,21 @@ class DeleteImageHandler implements Handler
      */
     public function handle(Command $command, RepositoryFactoryInterface $rf = null)
     {
-        $rpImage = $rf->get('Image');
-        $image = $rpImage->findOneBy(array('id' => $command->getImageId()));
+        $rpVideo = $rf->get('Video');
+        $video = $rpVideo->findOneBy(array('id' => $command->getVideoId()));
 
-        if ($image) {
+        if ($video) {
 
-            $image->setActive(false);
-            $rpImage->save($image);
+            $video->setActive(false);
+            $rpVideo->save($video);
             $notification = new Notification();
-            $notification->setPublishId($image->getId());
-            $notification->setPublishType('image');
+            $notification->setPublishId($video->getId());
+            $notification->setPublishType('video');
             $notification->setEvent('finished');
             $rf->get('Notification')->save($notification);
             /*try {
-                $image->getDocument()->removeFile('image');   
-                $rpImage->delete($image);
+                $video->getDocument()->removeFile('video');   
+                $rpVideo->delete($video);
                 return new ResponseCommandBus(201, 'Ok');
             } catch (\Exception $e) {
                 return new ResponseCommandBus(500,$e->getmessage(),'No se pudo eliminar');

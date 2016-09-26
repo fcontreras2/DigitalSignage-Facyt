@@ -30,7 +30,7 @@ class DbImageRepository extends EntityRepository implements
     public function findAllByUser($user)
     {
         return $this->createQueryBuilder('p')
-            ->where(' p.user = :user')
+            ->where(' p.user = :user and p.active = true')
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
     }
@@ -49,6 +49,7 @@ class DbImageRepository extends EntityRepository implements
             ->where('
                 (i.start_date <= :startDate and :startDate <= i.end_date) or
                 (i.start_date <= :endDate and :endDate <= i.end_date)
+                and i.active = true
             ')
             ->setParameters([
                 'startDate' => $startDate,
@@ -73,6 +74,7 @@ class DbImageRepository extends EntityRepository implements
                 i.status = :status and
                 ((i.start_date <= :startDate and :startDate <= i.end_date) or
                 (i.start_date <= :endDate and :endDate <= i.end_date))
+                and i.active = true
             ')
             ->setParameters([
                 'status' => $status,
@@ -110,6 +112,11 @@ class DbImageRepository extends EntityRepository implements
             $parameters['userId'] = $data['user']->getId();
         }
         
+        if ($where)
+            $where = $where.' and i.active = true';
+        else
+            $where = $where.' i.active = true'; 
+
         $query = $this->createQueryBuilder('i')
             ->where($where)->setParameters($parameters);
         if (isset($data['filter']) and !is_null($data['filter'])) {
@@ -135,7 +142,8 @@ class DbImageRepository extends EntityRepository implements
             ->innerJoin('i.channels', 'c')
             ->where('
                 c.id = :channelId and
-                i.status = 2
+                i.status = 2 and
+                i.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId
@@ -147,7 +155,8 @@ class DbImageRepository extends EntityRepository implements
     {
         return $this->createQueryBuilder('i')
             ->where('
-                i.important = true 
+                i.important = true and
+                i.active = true
             ')
             ->setMaxResults(9)
             ->orderBy('i.start_date', 'DESC')
@@ -163,6 +172,7 @@ class DbImageRepository extends EntityRepository implements
                 i.start_date >= :current_date)
                 or ( i.status = 2 and i.end_date <= :current_date) 
                 or ( i.status = 0 and i.last_modified >= :last_modified)
+                and i.active = true
             ")
             ->setParameters([
                 'current_time' => (new \DateTime())->format('G:m:s'),
@@ -177,7 +187,8 @@ class DbImageRepository extends EntityRepository implements
          return $this->createQueryBuilder('i')
             ->where('
                i.end_date <= :max_date and
-               i.status >= 3
+               i.status >= 3 and 
+               or i.active = false
             ')
             ->setParameters([
                 'max_date' =>  (new \DateTime('-'.$days.' days'))
@@ -194,6 +205,7 @@ class DbImageRepository extends EntityRepository implements
                c.id = :channelId and
                (t.status = 2 or t.status = 3) and
                t.last_modified >= :last_modified
+               and i.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId,

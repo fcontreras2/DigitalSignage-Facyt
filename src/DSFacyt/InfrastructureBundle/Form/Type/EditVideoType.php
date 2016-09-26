@@ -7,7 +7,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\File;
 
-
 class EditVideoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

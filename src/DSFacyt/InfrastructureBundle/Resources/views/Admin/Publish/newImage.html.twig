@@ -11,7 +11,14 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2"  ng-app="UploadImageModule" ng-controller="UploadImageController">
                 <div class="panel panel-default">
                     <form name="setImage">
-                    <div class="panel-heading"> <h5>Ingresa los datos de la publicación <span class="pull-right fa fa-star" ng-if="data.important"> Destacada</span></h5> </div>
+                    <div class="panel-heading"> <h5>Ingresa los datos de la publicación 
+
+                    <span class="pull-right">
+                        <span ng-id="data.important"><span class=" fa fa-star"></span> Destacada</span>
+                        <a ng-if="data.id" href="" ng-click="deleteData()"><span class=" fa fa-trash"></span> Eliminar</a>
+                    </span>
+
+                    </h5> </div>
                     <div class="panel-body">
                         
                         <div class="row">

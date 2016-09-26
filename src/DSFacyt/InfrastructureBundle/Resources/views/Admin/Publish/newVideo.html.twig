@@ -3,8 +3,11 @@
 {% block stylesheets %}
 {{ parent()}}
     {% if app.environment == "dev" %}
-        
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/stylesheets/template.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/bootstrap-datepicker.css') }}"/>                
+        <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/angular-clock.css') }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/css/videogular.css') }}"/>
+
     {% else %}
         {% stylesheets
         '@DSFacytInfrastructureBundle/Resources/public/assets/DSFacyt/dist/css/template.css'
@@ -23,7 +26,7 @@ f
 {% endblock title_notifications %}
 
 {% block body %}
-        <div class="row">
+       <!-- <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadVideoModule" ng-controller="UploadVideoController as controller">
                 <div class="panel panel-default" >
                     <div class="panel-heading"><h4>Ingresa los datos de la publicación</h4></div>
@@ -135,7 +138,138 @@ f
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2" ng-app="UploadVideoModule" ng-controller="UploadVideoController as controller">
+                <div class="panel panel-default" >
+                    <div class="panel-heading"> <h5>Ingresa los datos de la publicación 
+
+                    <span class="pull-right">
+                        <span ng-id="data.important"><span class=" fa fa-star"></span> Destacada</span>
+                        <a ng-if="data.id" href="" ng-click="deleteData()"><span class=" fa fa-trash"></span> Eliminar</a>
+                    </span>
+
+                    </h5> </div>
+
+                    <div class="panel-body">
+                        {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                {{ form_errors(form.title) }}
+                                {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
+                                <br>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row ">
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.publish_time) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.start_date) }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{ form_errors(form.end_date) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        {{ form_label(form.publish_time, null, {'label_attr': {'class': 'control-label'}}) }}
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            {{ form_widget(form.publish_time, {'attr': {'class': 'form-control  input-small'}}) }}
+                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        </div>                                        
+                                    </div>
+                                    <div id="js-range-picker">
+                                        <div class="col-xs-4">
+
+                                            {{ form_label(form.start_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.start_date, {'attr': {'class': 'form-control datepicker-start_date'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            {{ form_label(form.end_date, null, {'label_attr': {'class': 'control-label'}}) }}
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                {{ form_widget(form.end_date, {'attr': {'class': 'form-control datepicker-end_date'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.Channels) }}
+                                {{ form_label(form.Channels,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.Channels, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="col-xs-10 col-xs-offset-1" id="register_text_checkbox">
+                                <br>
+                                {{ form_errors(form.description) }}
+                                {{ form_label(form.description,  null, {'label_attr': {'class': 'foo'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            {% if form.document is defined %}
+                            <div class="col-xs-10 col-xs-offset-1 ">
+                                <br>
+                                Selecciona una Video
+                                {{ form_errors(form.document) }}
+                                {{ form_widget(form.document, {'attr': {'class': 'form-control'}}) }}
+                                <br>
+                                {{ include("DSFacytInfrastructureBundle:User:Modal/modalUploadImage.html.twig") }}
+                            </div>
+                            {% endif %}
+                            <div class="col-xs-10 col-xs-offset-1 videogular-container">
+                                <br>
+                                <videogular vg-theme="controller.config.theme" vg-player-ready="controller.onPlayerReady($API)" ng-show="data.video_url">
+                                    <vg-media vg-src="controller.config.sources">
+                                    </vg-media>
+
+                                    <vg-controls>
+                                        <vg-play-pause-button></vg-play-pause-button>
+                                        <vg-time-display>{[{ currentTime | date:'mm:ss' }]}</vg-time-display>
+                                        <vg-scrub-bar>
+                                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                        </vg-scrub-bar>
+                                        <vg-time-display>{[{ timeLeft | date:'mm:ss' }]}</vg-time-display>
+                                        <vg-volume>
+                                            <vg-mute-button></vg-mute-button>
+                                            <vg-volume-bar></vg-volume-bar>
+                                        </vg-volume>
+                                        <vg-fullscreen-button></vg-fullscreen-button>
+                                    </vg-controls>
+
+                                    <vg-overlay-play></vg-overlay-play>
+                                    <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+                                </videogular>    
+                                <br>
+                                <br>    
+                            </div> 
+                                    
+                            </div>
+
+                             <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block " ><b>Publicar</b>
+                                </button>
+                            </div>
+                            
+                        </div>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>        
 {% endblock %}
 
 {% block javascripts %}
@@ -144,6 +278,7 @@ f
 
         <!-- Tomando variables enviadas desde el servidor -->
     <script type="text/javascript">
+
         var data = "{{ data }}";
         var div = document.createElement('div');
         div.innerHTML = data;
@@ -160,15 +295,15 @@ f
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-datepicker.es.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/bootstrap-timepicker.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/angular-sanitize.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/videogular.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-controls.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-overlay-play.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-poster.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-buffering.js') }}"></script>    
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/videogular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-controls.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-overlay-play.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-poster.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/vendor/js/vg-buffering.js') }}"></script>    
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoModule.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoService.js') }}"></script>        
         <script type="text/javascript" src="{{ asset('bundles/dsfacytinfrastructure/assets/DSFacyt/angular/Video/uploadVideoController.js') }}"></script>        

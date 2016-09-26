@@ -30,7 +30,7 @@ class DbTextRepository extends EntityRepository implements
     public function findAllByUser($user)
     {
         return $this->createQueryBuilder('p')
-            ->where(' p.user = :user')
+            ->where(' p.user = :user and p.active = true')
             ->setParameters( array('user' => $user))
             ->getQuery()->getResult();
     }
@@ -49,6 +49,7 @@ class DbTextRepository extends EntityRepository implements
             ->where('
                 ((t.start_date <= :startDate and :startDate <= t.end_date) or
                 (t.start_date <= :endDate and :endDate <= t.end_date))
+                and t.active = true
             ')
             ->setParameters([
                 'startDate' => $startDate,
@@ -73,6 +74,7 @@ class DbTextRepository extends EntityRepository implements
                 t.status = :status and
                 ((t.start_date <= :startDate and :startDate <= t.end_date) or
                 (t.start_date <= :endDate and :endDate <= t.end_date))
+                and t.active = true
             ')
             ->setParameters([
                 'status' => $status,
@@ -111,6 +113,11 @@ class DbTextRepository extends EntityRepository implements
             $parameters['userId'] = $data['user']->getId();
         }
         
+        if ($where)
+            $where = $where.' and t.active = true';
+        else
+            $where = $where.' t.active = true'; 
+
         $query = $this->createQueryBuilder('t')
             ->where($where)->setParameters($parameters);
 
@@ -137,7 +144,8 @@ class DbTextRepository extends EntityRepository implements
             ->innerJoin('t.channels', 'c')
             ->where('
                 c.id = :channelId and
-                t.status = 2                
+                t.status = 2 
+                and t.active = true         
             ')
             ->setParameters([
                 'channelId' => $channelId
@@ -149,7 +157,8 @@ class DbTextRepository extends EntityRepository implements
     {
         return $this->createQueryBuilder('t')
             ->where('
-                t.important = true
+                t.important = true 
+                and t.active = true
             ')            
             ->orderBy('t.start_date', 'DESC')
             ->setMaxResults(6)
@@ -165,6 +174,7 @@ class DbTextRepository extends EntityRepository implements
                 t.start_date <= :current_date)
                 or ( t.status = 2 and t.end_date <= :current_date)
                 or ( t.status = 0 and t.last_modified >= :last_modified)
+                and t.active = true
             ")
             ->setParameters([
                 'current_time' => (new \DateTime())->format('G:m:s'),
@@ -182,6 +192,7 @@ class DbTextRepository extends EntityRepository implements
                c.id = :channelId and
                (t.status = 2 or t.status = 3) and
                t.last_modified >= :last_modified
+               and t.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId,
@@ -196,6 +207,7 @@ class DbTextRepository extends EntityRepository implements
             ->where('
                t.end_date <= :max_date and
                t.status >= 3
+               or t.active = false
             ')
             ->setParameters([
                 'max_date' =>  (new \DateTime('-'.$days.' days'))

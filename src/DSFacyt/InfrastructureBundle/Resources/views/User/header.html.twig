@@ -23,6 +23,7 @@
                 {% endif %}
                     <a class="page-scroll" href="{{ path('ds_facyt_infrastructure_user_homepage')}}"> <span class="fa fa-list-alt"></span> Principal </a>
                 </li>
+                {% if hasAccess('text') %}
                 {% if ('/text' in app.request.uri) %}
                 <li class="dropdown active">
                 {% else %}
@@ -46,7 +47,9 @@
                         </li>
                     </ul>
                 </li>
+                {% endif %}
 
+                {% if hasAccess('image') %}
                 {% if ('/image' in app.request.uri) %}
                 <li class="dropdown active">
                 {% else %}
@@ -70,7 +73,9 @@
                         </li>
                     </ul>
                 </li>
+                {% endif %}
 
+                {% if hasAccess('video') %}
                 {% if ('/video' in app.request.uri) %}
                 <li class="dropdown active">
                 {% else %}
@@ -94,6 +99,7 @@
                         </li>
                     </ul>
                 </li>
+                {% endif %}
                 {#{% if app.request.attributes.get('_route') == 'ds_facyt_infrastructure_user_profile' %}
                     <li class="active">
                 {% else %}

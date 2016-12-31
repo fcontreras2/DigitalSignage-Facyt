@@ -42,6 +42,7 @@ class DeleteImageHandler implements Handler
         if ($image) {
 
             $image->setActive(false);
+            $image->setStatus(3);
             $rpImage->save($image);
             $notification = new Notification();
             $notification->setPublishId($image->getId());

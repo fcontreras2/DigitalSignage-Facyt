@@ -169,17 +169,17 @@ class DbTextRepository extends EntityRepository implements
     {
         return $this->createQueryBuilder('t')
             ->where("
-                (TIME(t.publish_time) <= :current_time and
+                ((
                 t.status = 1 and 
                 t.start_date <= :current_date)
                 or ( t.status = 2 and t.end_date <= :current_date)
                 or ( t.status = 0 and t.last_modified >= :last_modified)
-                and t.active = true
+                )and t.active = true
             ")
             ->setParameters([
-                'current_time' => (new \DateTime())->format('G:m:s'),
+                //'current_time' => (new \DateTime())->format('G:m:s'),
                 'current_date' => (new \DateTime()),
-                'last_modified' => (new \DateTime('-10 min'))
+                'last_modified' => (new \DateTime('-100 min'))
             ])
             ->getQuery()->getResult();
     }

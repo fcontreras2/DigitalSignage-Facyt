@@ -19,6 +19,14 @@ class RegisterVideoType extends AbstractType
             ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
             ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
             ->add('description','text',array('label' => 'Descripción de la video', 'constraints' => array(new NotBlank())))
+            ->add('status', 'choice', array(
+    'choices'  => array(
+        'Nuevo' => 0,
+        'Aceptada' => 2,
+        'Activa' => 2,
+        'Finalizada' => 3,
+        'Cancelada' => 4
+        )))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',
                 'class' => 'DSFacytDomain:Channel',

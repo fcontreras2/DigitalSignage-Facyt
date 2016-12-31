@@ -73,7 +73,7 @@ f
             <div class="block-text">                
                 <div class="panel panel-default">
                     <div class="panel-heading" >
-                        <h3> Canal Cafetín</h3>
+                        <h3> Canal {[{name}]}</h3>
                     </div>
                     <div class="panel-body" style="background:#F6F6F6;height:66vh">
                         <div id="carousel-texts" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
@@ -120,6 +120,13 @@ f
         div.innerHTML = data;
         data = div.firstChild.nodeValue;
         data = JSON.parse(data);
+
+        var config = "{{ config|json_encode() }}";
+        var div = document.createElement('div');
+        div.innerHTML = config;
+        config = div.firstChild.nodeValue;
+        config = JSON.parse(config);
+
     </script>
     {% endif %}
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>

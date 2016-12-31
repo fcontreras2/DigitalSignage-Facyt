@@ -46,7 +46,7 @@ class ChannelController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ds_facyt_admin_channel_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ds_facyt_admin_channel'));
         }
 
         return $this->render('DSFacytInfrastructureBundle:Admin/Channel:new.html.twig', array(
@@ -69,7 +69,7 @@ class ChannelController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
     }

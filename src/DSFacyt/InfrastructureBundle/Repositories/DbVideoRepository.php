@@ -167,9 +167,10 @@ class DbVideoRepository extends EntityRepository implements
 
     public function findAllToCheck()
     {
+        //TIME(v.publish_time) <= :current_time and
         return $this->createQueryBuilder('v')
             ->where("
-                (TIME(v.publish_time) <= :current_time and
+                (
                 v.status = 1 and 
                 v.start_date >= :current_date)
                 or ( v.status = 2 and v.end_date <= :current_date)
@@ -177,9 +178,9 @@ class DbVideoRepository extends EntityRepository implements
                 and v.active = true
             ")
             ->setParameters([
-                'current_time' => (new \DateTime())->format('G:m:s'),
+                //'current_time' => (new \DateTime())->format('G:m:s'),
                 'current_date' => (new \DateTime()),
-                'last_modified' => (new \DateTime('-5 min'))
+                'last_modified' => (new \DateTime('-100 min'))
             ])
             ->getQuery()->getResult();
     }
@@ -192,7 +193,7 @@ class DbVideoRepository extends EntityRepository implements
                c.id = :channelId and
                (t.status = 2 or t.status = 3) and
                t.last_modified >= :last_modified
-                and v.active = true
+                and t.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId,

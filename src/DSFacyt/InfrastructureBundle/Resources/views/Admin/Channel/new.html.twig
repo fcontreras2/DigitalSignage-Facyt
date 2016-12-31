@@ -1,17 +1,51 @@
 {% extends 'DSFacytInfrastructureBundle:Admin/Default:base.html.twig' %}
-
+    {% block title_notifications %} <span class="fa fa-desktop"></span>  Crear canal {% endblock title_notifications %}
 {% block body -%}
-    <h1>Channel creation</h1>
+    <h1>Creación de nuevo canal</h1>
 
-    {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('ds_facyt_admin_channel') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+     {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
+     <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">            
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Editar Canal</h4>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{ form_label(form.name, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                    <div class="col-xs-6">
+                        {{ form_label(form.status, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.status, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <br>
+                        {{ form_label(form.description, null, {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control '}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-16">
+                        <center>
+                            {{ form_label(form.submit, null, {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                        </center>
+                    </div>
+                </div>                    
+            </div>
+            {{ form_rest(form)}}
+
+      </div>
+      </div>
 {% endblock %}
 
 {% block javascripts %}

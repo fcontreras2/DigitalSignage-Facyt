@@ -17,6 +17,14 @@ class EditVideoType extends AbstractType
             ->add('start_date','date',array('label' => 'Fecha inicial','widget' => 'single_text', 'format' => 'dd/MM/yyyy','constraints' => array(new NotBlank())))
             ->add('end_date','date',array('label' => 'Fecha final', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'constraints' => array(new NotBlank())))
             ->add('description','text',array('label' => 'Descripción de la video', 'constraints' => array(new NotBlank())))
+             ->add('status', 'choice', array('label' => 'Estado',
+    'choices'  => array(
+        0 => 'Nuevo',
+        1 => 'Aceptada',
+        2 => 'Activa',
+        3 => 'Finalizada',
+        4 => 'Cancelada'        
+        )))
             ->add('Channels', 'entity', array(
                 'label' => 'Canales a publicar',
                 'class' => 'DSFacytDomain:Channel',

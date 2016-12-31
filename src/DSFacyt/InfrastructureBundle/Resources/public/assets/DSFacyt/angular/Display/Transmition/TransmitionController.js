@@ -1,13 +1,18 @@
 Transmition.controller('TransmitionController', ['$scope','TransmitionService','$sce','$timeout','$interval', function ($scope, TransmitionService,$sce, $timeout,$interval) {
 
+    $scope.name = data.name;
     $scope.slug = data.slug;
     $scope.texts = data.publish.texts;
     $scope.images = data.publish.images;
     $scope.videos = data.publish.videos;
     $scope.quickNotes = data.quickNotes;
+    $scope.config = config;    
 
     // Inicialización de variables
     $scope.currentVideo = 0;
+    $scope.currentImage = 0;
+    $scope.currentText = 0;
+    
     if (!$scope.videos.length) {
         $scope.showImages = true;
         $scope.showVideos = false;
@@ -41,7 +46,7 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
         controller.config.sources = controller.videos[controller.currentVideo];
 
         // Se reproduce 2 videos a la vez
-        if (controller.currentVideo % 2 != 0 && controller.currentVideo != 0){
+        if (controller.currentVideo % 2 != 0){
             $timeout(controller.API.play.bind(controller.API), 100);
         }
         else {                 
@@ -68,11 +73,12 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
 
     // Cuando cambia la transmisición de videos
     $scope.$watch('showImages', function() {
-        if ($scope.showImages && controller.videos.length > 0) {
+        if ($scope.showImages ) {
             $timeout(function() {                
                 TransmitionService.changeMedia($scope);                
-            }, ($scope.images.length * 1000));
-        }
+            }, ($scope.images.length * ($scope.config.time_image_transition*1000 )));
+        } else if (controller.videos.length == 0)
+            $scope.showImages = true;        
     });
 
     $scope.$watch('showVideos',function() {
@@ -80,16 +86,28 @@ Transmition.controller('TransmitionController', ['$scope','TransmitionService','
             controller.API.play();
         else
             controller.API.stop();
-
     });
 
-/*    $interval(function() {
+    $interval(function() {
         TransmitionService.checkPublish($scope);
-        TransmitionService.checkChange($scope.check_data['publish']['texts'], $scope.texts, 'texts');
-        TransmitionService.checkChange($scope.check_data['publish']['images'], $scope.images, 'images');
-        TransmitionService.checkChange($scope.check_data['publish']['videos'], $scope.videos, 'videos');
+        TransmitionService.checkChange($scope.check_data['publish']['texts'], $scope.texts, 'texts', $scope.currentText);
+        TransmitionService.checkChange($scope.check_data['publish']['images'], $scope.images, 'images',$scope.currentImage);
+        TransmitionService.checkVideos($scope.check_data['publish']['videos'], controller.videos, 'videos', controller.currentVideo,$sce,$scope.videos);
         TransmitionService.checkChange($scope.check_data['quick_notes'], $scope.quickNotes, 'quick-notes');        
-    }, 5000);*/
+    }, 5000);
+
+    $interval ( function (){
+        $scope.currentImage++;
+        if ($scope.currentImage > $scope.images.length)
+            $scope,currentImage = 0;        
+    }, $scope.config.time_image_transition * 1000);
+
+    $interval ( function (){
+        $scope.currentText++;
+        if ($scope.currentText > $scope.texts.length)
+            $scope,currentText = 0;        
+
+    }, $scope.config.time_text_transition * 1000);
 
     $scope.current_date = TransmitionService.getCurrentDate();
     $interval(function(){        

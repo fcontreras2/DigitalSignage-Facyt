@@ -41,6 +41,7 @@ class GetDataTransmitionHandler implements Handler
 
         if ($channel) {
             $this->channelId = $channel->getId();
+            $response['name'] = $channel->getName();
             $response['publish']['texts'] = $this->getTexts();
             $response['publish']['images'] = $this->getImages();
             $response['publish']['videos'] = $this->getVideos();

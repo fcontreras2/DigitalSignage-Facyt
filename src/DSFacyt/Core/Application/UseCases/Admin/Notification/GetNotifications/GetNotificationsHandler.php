@@ -128,7 +128,7 @@ class GetNotificationsHandler implements Handler
             case 'new':
                 $response = 'nuevo';
                 break;
-            case 'activa':
+            case 'active':
                 $response = 'activa';
                 break;
             case 'finished':

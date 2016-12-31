@@ -155,10 +155,16 @@ f
                     <div class="panel-body">
                         {{ form_start(form ,{attr: {novalidate: 'novalidate'}}) }}
                         <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
+                            <div class="col-xs-5 col-xs-offset-1">
                                 {{ form_errors(form.title) }}
                                 {{ form_label(form.title, null, {'label_attr': {'class': 'control-label'}}) }}
                                 {{ form_widget(form.title, {'attr': {'class': 'form-control '}}) }}
+                                <br>
+                            </div>
+                            <div class="col-xs-5">
+                                {{ form_errors(form.status) }}
+                                {{ form_label(form.status, null, {'label_attr': {'class': 'control-label'}}) }}
+                                {{ form_widget(form.status, {'attr': {'class': 'form-control '}}) }}
                                 <br>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">

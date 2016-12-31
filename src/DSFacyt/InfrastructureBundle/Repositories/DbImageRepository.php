@@ -167,7 +167,7 @@ class DbImageRepository extends EntityRepository implements
     {
         return $this->createQueryBuilder('i')
             ->where("
-                (TIME(i.publish_time) <= :current_time and
+                (
                 i.status = 1 and 
                 i.start_date >= :current_date)
                 or ( i.status = 2 and i.end_date <= :current_date) 
@@ -175,9 +175,9 @@ class DbImageRepository extends EntityRepository implements
                 and i.active = true
             ")
             ->setParameters([
-                'current_time' => (new \DateTime())->format('G:m:s'),
+                //'current_time' => (new \DateTime())->format('G:m:s'),
                 'current_date' => (new \DateTime()),
-                'last_modified' => (new \DateTime('-5 min'))
+                'last_modified' => (new \DateTime('-100 min'))
             ])
             ->getQuery()->getResult();
     }
@@ -205,7 +205,7 @@ class DbImageRepository extends EntityRepository implements
                c.id = :channelId and
                (t.status = 2 or t.status = 3) and
                t.last_modified >= :last_modified
-               and i.active = true
+               and t.active = true
             ')
             ->setParameters([
                 'channelId' => $channelId,

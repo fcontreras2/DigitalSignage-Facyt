@@ -75,6 +75,7 @@ class GetVideosHandler implements Handler
                 $auxVideo['title'] = $currentVideo->getTitle();
                 $auxVideo['status'] = $currentVideo->getStatus();
                 $auxVideo['url_video'] = $currentVideo->getDocument()->getFileName();
+                $auxVideo['mime_type'] = mime_content_type($_SERVER['DOCUMENT_ROOT'].'/uploads/videos/'.$currentVideo->getDocument()->getFileName());
                 $auxVideo['channels'] = array();
 
                 foreach ($currentVideo->getChannels() as $currentChannel) {

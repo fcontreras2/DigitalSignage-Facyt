@@ -42,6 +42,7 @@ class DeleteTextHandler implements Handler
 
         if ($text) {
             $text->setActive(false);
+            $text->setStatus(3);
             $rpText->save($text);
             $notification = new Notification();
             $notification->setPublishId($text->getId());

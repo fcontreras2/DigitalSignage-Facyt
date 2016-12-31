@@ -42,6 +42,7 @@ class DeleteVideoHandler implements Handler
         if ($video) {
 
             $video->setActive(false);
+            $video->setStatus(3);
             $rpVideo->save($video);
             $notification = new Notification();
             $notification->setPublishId($video->getId());

@@ -48,6 +48,19 @@ class Version20151117214555 extends AbstractMigration implements ContainerAwareI
         $manager->persist($school);
         $manager->flush();
 
+        $school = new School();
+        $school->setName('Computación');
+        $school->setDescription('Descripción Biología');
+
+        $manager->persist($school);
+        $manager->flush();
+
+        $school = new School();
+        $school->setName('Química');
+        $school->setDescription('Descripción Biología');
+
+        $manager->persist($school);
+        $manager->flush();
     }
 
     /**
